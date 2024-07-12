@@ -2,7 +2,10 @@
     from {
         clip-path: inset(0 100% 0 0);
     }
-    10% {
+    2% {
+        clip-path: inset(0 100% 0 0);
+    }
+    15% {
         clip-path: inset(0 0 0 0);
     }
     to {
@@ -19,7 +22,10 @@
     from {
       clip-path: inset(100% 0 0 0);
     }
-    10% {
+    2% {
+        clip-path: inset(100% 0 0 0);
+    }
+    15% {
         clip-path: inset(0 0 0 0);
     }
     to {
