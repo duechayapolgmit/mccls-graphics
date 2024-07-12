@@ -2,7 +2,7 @@
     from {
         clip-path: inset(0 100% 0 0);
     }
-    2% {
+    3% {
         clip-path: inset(0 100% 0 0);
     }
     15% {
@@ -22,7 +22,7 @@
     from {
       clip-path: inset(100% 0 0 0);
     }
-    2% {
+    3% {
         clip-path: inset(100% 0 0 0);
     }
     15% {
@@ -38,15 +38,18 @@
     animation-iteration-count: infinite;
 }
 
-    
-
-    div {
+    div .main {
         position: absolute;
     }
 
     @font-face {
         font-family: Metropolis;
         src: url(fonts/Metropolis-Regular.otf);
+    }
+
+    @font-face {
+        font-family: Metropolis BL;
+        src: url(fonts/Metropolis-Black.otf)
     }
 
     body {
@@ -60,4 +63,14 @@
         font-size: 48px;
         width: 500px;
         text-transform: uppercase;
+    }
+
+    .top-bar-right {
+        font-family: Metropolis BL;
+        top: 65px;
+        left: 1350px;
+        font-size: 48px;
+        width: 500px;
+        text-transform: uppercase;
+        text-align: right;
     }

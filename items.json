@@ -13,5 +13,10 @@
         "name": "01-games",
         "title": "Games Overview",
         "picture": "./break_screens/01-3-Games.png"
+    },
+    {
+        "name": "02-ace-race",
+        "title": "Ace Race",
+        "picture": "./break_screens/02-AR.png"
     }
 ]
