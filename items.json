@@ -1,0 +1,17 @@
+[
+    {
+        "name": "01-event-format",
+        "title": "Event Format",
+        "picture": "./break_screens/01-1-EventFormat.png"
+    },
+    {
+        "name": "01-teams",
+        "title": "Teams Overview",
+        "picture": "./break_screens/01-2-Teams.png"
+    },
+    {
+        "name": "01-games",
+        "title": "Games Overview",
+        "picture": "./break_screens/01-3-Games.png"
+    }
+]
