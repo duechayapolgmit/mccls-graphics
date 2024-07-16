@@ -2,7 +2,7 @@
     from {
         clip-path: inset(0 100% 0 0);
     }
-    3% {
+    3.5% {
         clip-path: inset(0 100% 0 0);
     }
     15% {
@@ -22,7 +22,7 @@
     from {
       clip-path: inset(100% 0 0 0);
     }
-    3% {
+    3.5% {
         clip-path: inset(100% 0 0 0);
     }
     15% {
@@ -57,7 +57,7 @@
         color: white;
     }
 
-    .top-bar {
+    .top-bar-left {
         top: 65px;
         left: 120px;
         font-size: 48px;

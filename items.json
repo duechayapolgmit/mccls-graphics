@@ -18,5 +18,40 @@
         "name": "02-ace-race",
         "title": "Ace Race",
         "picture": "./break_screens/02-AR.png"
+    },
+    {
+        "name": "02-dodgebolt",
+        "title": "Dodgebolt",
+        "picture": "./break_screens/02-DB.png"
+    },
+    {
+        "name": "02-grid-runners",
+        "title": "Grid Runners",
+        "picture": "./break_screens/02-GR.png"
+    },
+    {
+        "name": "02-hole-in-the-wall",
+        "title": "Hole in the Wall",
+        "picture": "./break_screens/02-HITW.png"
+    },
+    {
+        "name": "02-meltdown",
+        "title": "Meltdown",
+        "picture": "./break_screens/02-MD.png"
+    },
+    {
+        "name": "02-sky-battle",
+        "title": "Sky Battle",
+        "picture": "./break_screens/02-SBA.png"
+    },
+    {
+        "name": "02-survival-games",
+        "title": "Survival Games",
+        "picture": "./break_screens/02-SG.png"
+    },
+    {
+        "name": "02-tgttos",
+        "title": "TGTTOS",
+        "picture": "./break_screens/02-TGTTOS.png"
     }
 ]

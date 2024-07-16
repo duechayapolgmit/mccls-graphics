@@ -1,7 +1,14 @@
 const res = await fetch("./items.json")
 const itemsJSON = await res.json()
 
-const TIMER = 17
+const TIMER = 181
+
+// Query Handling
+const searchParams = new URLSearchParams(window.location.search);
+
+// QH - Get time
+var time = searchParams.get('time');
+if (time == null) time = 60; // default is 60
 
 // Initialise with Event Format
 document.getElementById("title").innerText = await itemsJSON[0].title;
@@ -11,6 +18,8 @@ var screenRotate = setInterval(rotate, 15080)
 
 let prev = 0
 async function rotate() {
+    changeOpacity(0)
+
     let randSlide = Math.floor(Math.random() * (itemsJSON.length-1)) + 1
     if (prev == randSlide) randSlide = randSlide + 1;
 
@@ -18,9 +27,15 @@ async function rotate() {
 
     document.getElementById("title").innerText = await itemsJSON[randSlide].title;
     document.getElementById("picture").src = await itemsJSON[randSlide].picture;
+    
+    changeOpacity(1)
 }
 
-var time = TIMER;
+function changeOpacity(percent) {
+    document.getElementById("top-bar").style.opacity = percent
+    document.getElementById("middle-content").style.opacity = percent
+}
+
 var countdown = setInterval(minusTime, 1000)
 var countdownSound = document.getElementById("sound");
 
