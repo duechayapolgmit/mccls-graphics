@@ -4,9 +4,13 @@ This repository contains some of the mechanics and graphics used for [MCC Live S
 
 ## Features
 This repository currently contains the following features:
-* Break Screens - automatic break screen switching with a timer
+* Break screens - automatic break screen switching with a timer
 
 ## Usage
 Currently, this repository is to be served manually via `npx serve`. The user can then navigate to each file necessary via `localhost:3000` address.
 * To access the break screens, `localhost:3000/breakscreen` is used, optionally followed by:
   * `?time=[time]` - define the timer of [time] seconds
+ 
+## Tools and Libraries
+This repository uses the following tools and libraries:
+* [Transition.css](https://www.transition.style/) - animations and transitions for break screens
