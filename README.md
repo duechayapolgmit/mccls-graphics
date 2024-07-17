@@ -11,6 +11,7 @@ Currently, this repository is to be served manually via `npx serve`. The user ca
 * To access the break screens, `localhost:3000/breakscreen` is used, optionally followed by:
   * `?time=[time]` - define the timer of [time] seconds
  
-## Tools and Libraries
-This repository uses the following tools and libraries:
+## Resources
+This repository uses the following resources:
+* [Noxcrew - MC Championship](https://noxcrew.com/) - game logos, screenshots, and sound effects from MC Championship event
 * [Transition.css](https://www.transition.style/) - animations and transitions for break screens
