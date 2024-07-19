@@ -53,5 +53,10 @@
         "name": "02-tgttos",
         "title": "TGTTOS",
         "picture": "./break_screens/02-TGTTOS.png"
+    },
+    {
+        "name": "01-reserves",
+        "title": "Reserves",
+        "picture": "./break_screens/01-4-Reserves.png"
     }
 ]

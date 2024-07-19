@@ -1,3 +1,4 @@
+
 const res = await fetch("./items.json")
 const itemsJSON = await res.json()
 
@@ -14,10 +15,13 @@ if (time == null) time = 60; // default is 60
 document.getElementById("title").innerText = await itemsJSON[0].title;
 document.getElementById("picture").src = await itemsJSON[0].picture;
 
-var screenRotate = setInterval(rotate, 15080)
+changeOpacity(1)
+
+var screenRotate = setInterval(rotate, 15000)
 
 let prev = 0
 async function rotate() {
+    console.log("changing")
     changeOpacity(0)
 
     let randSlide = Math.floor(Math.random() * (itemsJSON.length-1)) + 1
@@ -32,6 +36,15 @@ async function rotate() {
 }
 
 function changeOpacity(percent) {
+    if (percent == 0) {
+        $('#top-bar').attr("transition-style", "")
+        $('#middle-content').attr("transition-style", "")
+    }   
+    else {
+        $('#top-bar').attr("transition-style", "in:wipe:right")
+        $('#middle-content').attr("transition-style", "in:wipe:up")
+    }
+
     document.getElementById("top-bar").style.opacity = percent
     document.getElementById("middle-content").style.opacity = percent
 }
