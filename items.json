@@ -58,5 +58,10 @@
         "name": "01-reserves",
         "title": "Reserves",
         "picture": "./break_screens/01-4-Reserves.png"
+    },
+    {
+        "name": "02-parkour-warrior",
+        "title": "Parkour Warrior",
+        "picture": "./break_screens/02-PKW.png"
     }
 ]
