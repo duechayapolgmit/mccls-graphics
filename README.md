@@ -1,6 +1,6 @@
 <img src="MCCLS-Logo-Long-Condensed.png" height="50" width="auto"/>
 
-This repository contains some of the mechanics and graphics used for [MCC Live Show](https://www.youtube.com/@mccliveshow_) in its live commentary streams. This currently makes use of HTML, CSS, JavaScript and Node.JS, to help accommodate the graphics and mechanics needed.
+This repository contains some of the mechanics and graphics used for [MCC Live Show](https://www.youtube.com/@mccliveshow_) in its live commentary streams. This currently makes use of HTML, CSS, JavaScript, jQuery and Node.JS, to help accommodate the graphics and mechanics needed.
 
 ## Features
 This repository currently contains the following features:
