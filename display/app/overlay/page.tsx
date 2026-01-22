@@ -30,7 +30,7 @@ export default function Page() {
         <div className="overlay">
             <div className="header">
                 <div className="ls-icon"><img src={"/icon-event.png"}/></div>
-                <div className={overlayData.firstDB > -1 ? "event-status-final" : "event-status"}>{overlayData.firstDB > -1 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
+                <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
             </div>
             <div className="game">
                 <img src={overlayData.gameLogo} />
