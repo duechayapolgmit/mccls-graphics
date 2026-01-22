@@ -7,7 +7,11 @@ export default function Page() {
         gameNumber: 1,
         multiplier: "x1.0",
         game: "DEFAULT",
-        gameLogo: "/game_logos/Default.png"
+        gameLogo: "/game_logos/Default.png",
+        first: "",
+        firstLabel: undefined,
+        second: "",
+        secondLabel: undefined
     });
 
     useEffect(() => {
@@ -24,6 +28,8 @@ export default function Page() {
         <div>
             Game {overlayData.gameNumber} ({overlayData.multiplier})
             <img src={overlayData.gameLogo} />
+            1. <img src={overlayData.firstLabel} /> - 0
+            2. <img src={overlayData.secondLabel} /> - 0
         </div>
     );
 }

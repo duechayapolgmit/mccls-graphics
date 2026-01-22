@@ -1,11 +1,16 @@
 import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
+import teamLabels from '@/data/team_labels.json';
 
 let data = {
     gameNumber: 1,
     multiplier: "x1.0",
     game: "DEFAULT",
-    gameLogo: "/game_logos/Default.png"
+    gameLogo: "/game_logos/Default.png",
+    first: "",
+    firstLabel: undefined,
+    second: "",
+    secondLabel: undefined
 }
 
 export function getOverlayData() {
@@ -34,4 +39,27 @@ export function setGame(game) {
 
     // Check the game logo associated
     data.gameLogo = gameLogos[data.game] || "/game_logos/Default.png";
+}
+
+/* Controls Standings */
+export function getFirstPlace() {
+    return data.first
+}
+
+export function getSecondPlace() {
+    return data.second
+}
+
+export function setFirstPlace(team) {
+    data.first = team;
+
+    // Check the label
+    data.firstLabel = teamLabels[data.first] || undefined;
+}
+
+export function setSecondPlace(team) {
+    data.second = team;
+
+    // Check the label
+    data.secondLabel = teamLabels[data.second] || undefined;
 }
