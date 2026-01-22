@@ -1,21 +1,26 @@
 @import "tailwindcss";
+@font-face {
+    font-family: Metropolis;
+    src: url("/fonts/Metropolis-Regular.otf");
+}
+
+@font-face {
+    font-family: Metropolis BL;
+    src: url("/fonts/Metropolis-Black.otf");
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+ /*--background: #ffffff;
+  --foreground: #171717;*/
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
   }
 }
 
@@ -23,4 +28,169 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.overlay {
+  position: relative;
+  top: 50px;
+  left: 50px;
+}
+
+.header {
+  display: flex;
+}
+
+.ls-icon {
+  background-color: rgba(0, 0, 0, .75);
+  width: 100px;
+  height: 50px;
+  margin-right: 5px;
+}
+
+.ls-icon img {
+  width: 75px;
+  translate: 0px -12.5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-status {
+  background-color: rgba(0, 0, 0, .75);
+  width: 295px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.event-status-final {
+  background-color: rgba(0, 0, 0, .75);
+  width: 295px;
+  height: 50px;
+  color: rgba(255,255,0);
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.game {
+  background-color: rgba(0, 0, 0, .75);
+  top: 5px;
+  width: 400px;
+  height: 160px;
+  position: relative;
+}
+
+.game img {
+  translate: 0px -25px;
+}
+
+.first-place {
+  top: 5px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.first-icon {
+  position: relative;
+  top: 10px;
+  background-color: rgba(167, 141, 0);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.first-label {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  left: 55px;
+  top: -40px;
+  width: 290px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.first-label img {
+  height: 50px;
+  width: 290px;
+  object-fit: fill;
+}
+
+.finale-points {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  width: 50px;
+  height: 50px;
+  top: -90px;
+  left: 350px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.finale-points img {
+  width: 40px;
+  height: 40px;
+  translate: 0px 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.finale-points-won {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  width: 50px;
+  height: 50px;
+  top: -90px;
+  left: 350px;
+  color: rgba(255,255,0);
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.second-place {
+  position: relative;
+}
+
+.second-icon {
+  position: relative;
+  top: 10px;
+  background-color: rgba(165, 165, 165);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.second-label {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  left: 55px;
+  top: -40px;
+  width: 290px;
+  height: 50px;
+}
+
+.second-label img {
+  height: 50px;
+  width: 290px;
+  object-fit: fill;
 }

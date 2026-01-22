@@ -9,10 +9,10 @@ export default function Page() {
         game: "DEFAULT",
         gameLogo: "/game_logos/Default.png",
         first: "",
-        firstLabel: undefined,
+        firstLabel: "/team_labels/Blank.png",
         firstDB: -1,
         second: "",
-        secondLabel: undefined,
+        secondLabel: "/team_labels/Blank.png",
         secondDB: -1
     });
 
@@ -27,13 +27,24 @@ export default function Page() {
     }, [])
 
     return (
-        <div>
-            Game {overlayData.gameNumber} ({overlayData.multiplier})
-            <img src={overlayData.gameLogo} />
-            1. <img src={overlayData.firstLabel} /> - 
-            {overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}
-            2. <img src={overlayData.secondLabel} /> - 
-            {overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}
+        <div className="overlay">
+            <div className="header">
+                <div className="ls-icon"><img src={"/icon-event.png"}/></div>
+                <div className={overlayData.firstDB > -1 ? "event-status-final" : "event-status"}>{overlayData.firstDB > -1 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
+            </div>
+            <div className="game">
+                <img src={overlayData.gameLogo} />
+            </div>
+            <div className="first-place">
+                <div className="first-icon">1</div>
+                <div className="first-label"><img src={overlayData.firstLabel} /></div>
+                <div className={overlayData.firstDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}</div>
+            </div>
+            <div className="second-place">
+                <div className="second-icon">2</div>
+                <div className="second-label"><img src={overlayData.secondLabel} /></div>
+                <div className={overlayData.secondDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}</div>
+            </div>
         </div>
     );
 }

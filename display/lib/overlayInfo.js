@@ -8,10 +8,10 @@ let data = {
     game: "DEFAULT",
     gameLogo: "/game_logos/Default.png",
     first: "",
-    firstLabel: undefined,
+    firstLabel: "/team_labels/Blank.png",
     firstDB: -1,
     second: "",
-    secondLabel: undefined,
+    secondLabel: "/team_labels/Blank.png",
     secondDB: -1,
 }
 
@@ -56,14 +56,14 @@ export function setFirstPlace(team) {
     data.first = team;
 
     // Check the label
-    data.firstLabel = teamLabels[data.first] || undefined;
+    data.firstLabel = teamLabels[data.first] || "/team_labels/Blank.png";
 }
 
 export function setSecondPlace(team) {
     data.second = team;
 
     // Check the label
-    data.secondLabel = teamLabels[data.second] || undefined;
+    data.secondLabel = teamLabels[data.second] || "/team_labels/Blank.png";
 }
 
 /* Controls DB score */
