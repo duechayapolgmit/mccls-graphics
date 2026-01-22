@@ -1,0 +1,19 @@
+{
+    "AR": "/game_logos/AceRace.png",
+    "BB": "/game_logos/BattleBox.png",
+    "BBF": "/game_logos/BingoButFast.png",
+    "BM": "/game_logos/BuildMart.png",
+    "DB": "/game_logos/Dodgebolt.png",
+    "GR": "/game_logos/GridRunners.png",
+    "HITW": "/game_logos/HoleInTheWall.png",
+    "MD": "/game_logos/Meltdown.png",
+    "PT": "/game_logos/ParkourTag.png",
+    "PW": "/game_logos/ParkourWarrior.png",
+    "RRR": "/game_logos/RailroadRush.png",
+    "RSR": "/game_logos/RocketSpleefRush.png",
+    "SOT": "/game_logos/SandsOfTime.png",
+    "SB": "/game_logos/SkyBattle.png",
+    "SG": "/game_logos/SurvivalGames.png",
+    "TGTTOS": "/game_logos/TGTTOSAWAF.png",
+    "DEFAULT": "/game_logos/Default.png"
+}
