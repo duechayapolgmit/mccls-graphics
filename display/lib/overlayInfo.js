@@ -1,4 +1,4 @@
-import multipliers from '@/data/gameMultipliers.json';
+import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
 
 let data = {
