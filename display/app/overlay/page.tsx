@@ -10,8 +10,10 @@ export default function Page() {
         gameLogo: "/game_logos/Default.png",
         first: "",
         firstLabel: undefined,
+        firstDB: -1,
         second: "",
-        secondLabel: undefined
+        secondLabel: undefined,
+        secondDB: -1
     });
 
     useEffect(() => {
@@ -28,8 +30,10 @@ export default function Page() {
         <div>
             Game {overlayData.gameNumber} ({overlayData.multiplier})
             <img src={overlayData.gameLogo} />
-            1. <img src={overlayData.firstLabel} /> - 0
-            2. <img src={overlayData.secondLabel} /> - 0
+            1. <img src={overlayData.firstLabel} /> - 
+            {overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}
+            2. <img src={overlayData.secondLabel} /> - 
+            {overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}
         </div>
     );
 }

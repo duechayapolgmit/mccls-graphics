@@ -9,8 +9,10 @@ let data = {
     gameLogo: "/game_logos/Default.png",
     first: "",
     firstLabel: undefined,
+    firstDB: -1,
     second: "",
-    secondLabel: undefined
+    secondLabel: undefined,
+    secondDB: -1,
 }
 
 export function getOverlayData() {
@@ -62,4 +64,21 @@ export function setSecondPlace(team) {
 
     // Check the label
     data.secondLabel = teamLabels[data.second] || undefined;
+}
+
+/* Controls DB score */
+export function getFirstDBPoints() {
+    return data.firstDB;
+}
+
+export function getSecondDBPoints() {
+    return data.secondDB;
+}
+
+export function setFirstDBPoints(points) {
+    data.firstDB = points
+}
+
+export function setSecondDBPoints(points) {
+    data.secondDB = points
 }
