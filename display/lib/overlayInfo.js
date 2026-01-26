@@ -13,6 +13,8 @@ let data = {
     second: "",
     secondLabel: "/team_labels/Blank.png",
     secondDB: -1,
+    statusVisible: true,
+    placementsVisible: true
 }
 
 export function getOverlayData() {
@@ -81,4 +83,25 @@ export function setFirstDBPoints(points) {
 
 export function setSecondDBPoints(points) {
     data.secondDB = points
+}
+
+/* Controls animations */
+export function getStatusDisplayOptions() {
+    return data.statusVisible;
+}
+
+export function getPlacementsDisplayOptions() {
+    return data.placementsVisible;
+}
+
+export function setStatusDisplayOptions(option) {
+    if (typeof option != "boolean") return;
+
+    data.statusVisible = option;
+}
+
+export function setPlacementsDisplayOptions(option) {
+    if (typeof option != "boolean") return;
+
+    data.placementsVisible = option;
 }

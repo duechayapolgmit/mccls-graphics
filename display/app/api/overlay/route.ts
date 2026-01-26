@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints} from '@/lib/overlayInfo';
+import {setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlayInfo';
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -12,6 +12,8 @@ export function GET(request: NextRequest) {
     const dbActivateUpdate = searchParams.get('dodgebolt')
     const firstDB = searchParams.get('firstDB')
     const secondDB = searchParams.get('secondDB')
+    const statusVisibleUpdate = searchParams.get('status')
+    const placementsVisibleUpdate = searchParams.get('placements')
 
     // Current info
     let currentGameNo = getGameNumber();
@@ -20,6 +22,8 @@ export function GET(request: NextRequest) {
     let currentSecondPlace = getSecondPlace();
     let currentFirstDB = getFirstDBPoints();
     let currentSecondDB = getSecondDBPoints();
+    let currentStatusVisible = getStatusDisplayOptions();
+    let currentPlacementsVisible = getPlacementsDisplayOptions();
     
     // Game Number
     if (gameNoUpdate == null || gameNoUpdate == undefined) currentGameNo = currentGameNo;
@@ -55,6 +59,12 @@ export function GET(request: NextRequest) {
     else if (secondDB == "increase") currentSecondDB++;
     else currentSecondDB = parseInt(secondDB);
     
+    // Visibility
+    if (statusVisibleUpdate == "show") currentStatusVisible = true;
+    else if (statusVisibleUpdate == "hide") currentStatusVisible = false;
+
+    if (placementsVisibleUpdate == "show") currentPlacementsVisible = true;
+    else if (placementsVisibleUpdate == "hide") currentPlacementsVisible = false;
 
     // Set back
     setGameNumber(currentGameNo);
@@ -63,6 +73,8 @@ export function GET(request: NextRequest) {
     setSecondPlace(currentSecondPlace);
     setFirstDBPoints(currentFirstDB);
     setSecondDBPoints(currentSecondDB);
+    setStatusDisplayOptions(currentStatusVisible);
+    setPlacementsDisplayOptions(currentPlacementsVisible);
 
     // Get the current data
     const data = getOverlayData();

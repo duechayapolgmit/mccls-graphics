@@ -13,7 +13,9 @@ export default function Page() {
         firstDB: -1,
         second: "",
         secondLabel: "/team_labels/Blank.png",
-        secondDB: -1
+        secondDB: -1,
+        statusVisible: true,
+        placementsVisible: true
     });
 
     useEffect(() => {
@@ -28,22 +30,26 @@ export default function Page() {
 
     return (
         <div className="overlay">
-            <div className="header">
-                <div className="ls-icon"><img src={"/icon-event.png"}/></div>
-                <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
+            <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
+                <div className="header">
+                    <div className="ls-icon"><img src={"/icon-event.png"}/></div>
+                    <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
+                </div>
+                <div className="game">
+                    <img src={overlayData.gameLogo} />
+                </div>
             </div>
-            <div className="game">
-                <img src={overlayData.gameLogo} />
-            </div>
-            <div className="first-place">
-                <div className="first-icon">1</div>
-                <div className="first-label"><img src={overlayData.firstLabel} /></div>
-                <div className={overlayData.firstDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}</div>
-            </div>
-            <div className="second-place">
-                <div className="second-icon">2</div>
-                <div className="second-label"><img src={overlayData.secondLabel} /></div>
-                <div className={overlayData.secondDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}</div>
+            <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>
+                <div className="first-place">
+                    <div className="first-icon">1</div>
+                    <div className="first-label"><img src={overlayData.firstLabel} /></div>
+                    <div className={overlayData.firstDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}</div>
+                </div>
+                <div className="second-place">
+                    <div className="second-icon">2</div>
+                    <div className="second-label"><img src={overlayData.secondLabel} /></div>
+                    <div className={overlayData.secondDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}</div>
+                </div>
             </div>
         </div>
     );
