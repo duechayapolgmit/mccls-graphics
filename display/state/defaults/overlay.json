@@ -1,0 +1,20 @@
+{
+    "gameNumber": 1,
+    "multiplier": "x1.0",
+    "game": "DEFAULT",
+    "gameLogo": "/game_logos/Default.png",
+    "first": "",
+    "firstLabel": "/team_labels/Blank.png",
+    "firstDB": -1,
+    "second": "",
+    "secondLabel": "/team_labels/Blank.png",
+    "secondDB": -1,
+    "statusVisible": true,
+    "placementsVisible": true,
+    "config": {
+        "colours": {
+            "primary": "#b51a14",
+            "secondary": "#760804"
+        }
+    }
+}
