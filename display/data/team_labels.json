@@ -8,5 +8,6 @@
     "AQUA": "/team_labels/07-AquaAxolotls.png",
     "BLUE": "/team_labels/08-BlueBats.png",
     "PURPLE": "/team_labels/09-PurplePandas.png",
-    "PINK": "/team_labels/10-PinkParrots.png"
+    "PINK": "/team_labels/10-PinkParrots.png",
+    "NONE": "/team_labels/Blank.png"
 }
