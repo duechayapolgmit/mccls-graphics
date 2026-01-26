@@ -13,7 +13,9 @@ const config = yaml.load(fs.readFileSync("config/general.yaml", "utf8"));
 function load() {
     try {
         const raw = fs.readFileSync(statePath, "utf8");
-        return JSON.parse(raw)
+        let obj = JSON.parse(raw);
+        obj.config = config;
+        return obj
     } catch (err) {
         console.error("Can't load overlay state, trying defaults");
         return loadDefaults();
@@ -22,8 +24,10 @@ function load() {
 
 function loadDefaults() {
     try {
-        const rawDefault = fs.readFileSync(stateDefaultPath, "utf8");
-        return JSON.parse(rawDefault);
+        const raw = fs.readFileSync(stateDefaultPath, "utf8");
+        let obj = JSON.parse(raw);
+        obj.config = config;
+        return obj;
     } catch (err) {
         console.error("Can't load default overlay state.");
         return {}
@@ -39,7 +43,6 @@ function save(state) {
 }
 
 let data = load();
-data.config = config; 
 
 /* --------------
     GETTERS

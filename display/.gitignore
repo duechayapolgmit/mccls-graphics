@@ -42,3 +42,6 @@ next-env.d.ts
 
 # command prompt
 *.bat
+
+# states
+/state/
