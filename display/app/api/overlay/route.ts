@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlayInfo';
+import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlayInfo';
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -14,6 +14,7 @@ export function GET(request: NextRequest) {
     const secondDB = searchParams.get('secondDB')
     const statusVisibleUpdate = searchParams.get('status')
     const placementsVisibleUpdate = searchParams.get('placements')
+    const reset = searchParams.get('reset');
 
     // Current info
     let currentGameNo = getGameNumber();
@@ -75,6 +76,9 @@ export function GET(request: NextRequest) {
     setSecondDBPoints(currentSecondDB);
     setStatusDisplayOptions(currentStatusVisible);
     setPlacementsDisplayOptions(currentPlacementsVisible);
+
+    // RESET
+    if (reset == "true") resetOverlay();
 
     // Get the current data
     const data = getOverlayData();

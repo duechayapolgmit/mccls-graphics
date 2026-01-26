@@ -1,6 +1,6 @@
 {
-  "gameNumber": 2,
-  "multiplier": "x1.5",
+  "gameNumber": 1,
+  "multiplier": "x1.0",
   "game": "DEFAULT",
   "gameLogo": "/game_logos/Default.png",
   "first": "",

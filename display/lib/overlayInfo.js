@@ -17,13 +17,17 @@ function load() {
         return JSON.parse(raw)
     } catch (err) {
         console.error("Can't load overlay state, trying defaults");
-        try {
-            const rawDefault = fs.readFileSync(stateDefaultPath, "utf8");
-            return JSON.parse(rawDefault);
-        } catch (err) {
-            console.error("Can't load default overlay state.");
-            return {}
-        }
+        return loadDefaults();
+    }
+}
+
+function loadDefaults() {
+    try {
+        const rawDefault = fs.readFileSync(stateDefaultPath, "utf8");
+        return JSON.parse(rawDefault);
+    } catch (err) {
+        console.error("Can't load default overlay state.");
+        return {}
     }
 }
 
@@ -132,5 +136,11 @@ export function setPlacementsDisplayOptions(option) {
     if (typeof option != "boolean") return;
 
     data.placementsVisible = option;
+    save(data);
+}
+
+/* RESET */
+export function resetOverlay() {
+    data = loadDefaults();
     save(data);
 }
