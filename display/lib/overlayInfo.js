@@ -1,6 +1,8 @@
 import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
 import teamLabels from '@/data/team_labels.json';
+import yaml from 'js-yaml';
+import fs from 'fs';
 
 let data = {
     gameNumber: 1,
@@ -16,6 +18,10 @@ let data = {
     statusVisible: true,
     placementsVisible: true
 }
+
+const config = yaml.load(fs.readFileSync("config/general.yaml", "utf8"));
+
+data.config = config; 
 
 export function getOverlayData() {
     return data

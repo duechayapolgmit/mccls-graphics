@@ -15,7 +15,13 @@ export default function Page() {
         secondLabel: "/team_labels/Blank.png",
         secondDB: -1,
         statusVisible: true,
-        placementsVisible: true
+        placementsVisible: true,
+        config: {
+            colours: {
+                primary: "#b51a14",
+                secondary: "#760804"
+            }
+        }
     });
 
     useEffect(() => {
@@ -32,7 +38,7 @@ export default function Page() {
         <div className="overlay">
             <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
                 <div className="header">
-                    <div className="ls-icon"><img src={"/icon-event.png"}/></div>
+                    <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
                 </div>
                 <div className="game">
