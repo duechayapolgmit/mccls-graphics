@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlayInfo';
+import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlay/overlayInfo';
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;

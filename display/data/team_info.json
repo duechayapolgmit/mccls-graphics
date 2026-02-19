@@ -1,0 +1,42 @@
+{
+    "RED": {
+        "name": "Red Rabbits",
+        "icon": "/team_icons/01-RedRabbits.png"
+    },
+    "ORANGE": {
+        "name": "Orange Ocelots",
+        "icon":  "/team_icons/02-OrangeOcelots.png"
+    },
+    "YELLOW": {
+        "name": "Yellow Yaks",
+        "icon": "/team_icons/03-YellowYaks.png"
+    },
+    "LIME": {
+        "name": "Lime Llamas",
+        "icon": "/team_icons/04-LimeLlamas.png"
+    },
+    "GREEN": {
+        "name": "Green Geckos",
+        "icon": "/team_icons/05-GreenGeckos.png"
+    },
+    "CYAN": {
+        "name": "Cyan Coyotes",
+        "icon": "/team_icons/06-CyanCoyotes.png"
+    },
+    "AQUA": {
+        "name": "Aqua Axolotls",
+        "icon": "/team_icons/07-AquaAxolotls.png"
+    },
+    "BLUE": {
+        "name": "Blue Bats",
+        "icon": "/team_icons/08-BlueBats.png"
+    },
+    "PURPLE": {
+        "name": "Purple Pandas",
+        "icon": "/team_icons/09-PurplePandas.png"
+    },
+    "PINK": {
+        "name": "Pink Parrots",
+        "icon": "/team_icons/10-PinkParrots.png"
+    }
+}

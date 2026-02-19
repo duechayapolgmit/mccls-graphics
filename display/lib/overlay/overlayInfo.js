@@ -80,17 +80,11 @@ export function setGame(game) {
 
 export function setFirstPlace(team) {
     data.first = team;
-
-    // Check the label
-    data.firstLabel = teamLabels[data.first] || "/team_labels/Blank.png";
     save(data);
 }
 
 export function setSecondPlace(team) {
     data.second = team;
-
-    // Check the label
-    data.secondLabel = teamLabels[data.second] || "/team_labels/Blank.png";
     save(data);
 }
 

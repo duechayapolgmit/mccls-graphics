@@ -1,6 +1,9 @@
 'use client'
 
 import { useEffect, useState } from "react";
+import { getIconPath, getTeamName } from '@/lib/overlay/teamInfo';
+
+import teamInfo from '@/data/team_info.json';
 
 export default function Page() {
     const [overlayData, setOverlayData] = useState({
@@ -9,10 +12,8 @@ export default function Page() {
         game: "DEFAULT",
         gameLogo: "/game_logos/Default.png",
         first: "",
-        firstLabel: "/team_labels/Blank.png",
         firstDB: -1,
         second: "",
-        secondLabel: "/team_labels/Blank.png",
         secondDB: -1,
         statusVisible: true,
         placementsVisible: true,
@@ -25,6 +26,13 @@ export default function Page() {
     });
 
     useEffect(() => {
+        // Preload all team icons
+        Object.values(teamInfo).forEach(team => {
+            const img = new Image();
+            img.src = team.icon;
+        })
+
+        // syncing
         const fetcher = setInterval(async () => {
             const res = await fetch('/api/overlay', { cache: "no-store"});
             const json = await res.json();
@@ -48,15 +56,24 @@ export default function Page() {
             <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>
                 <div className="first-place">
                     <div className="first-icon">1</div>
-                    <div className="first-label"><img src={overlayData.firstLabel} /></div>
+                    <TeamLabel team={overlayData.first}/>
                     <div className={overlayData.firstDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}</div>
                 </div>
                 <div className="second-place">
                     <div className="second-icon">2</div>
-                    <div className="second-label"><img src={overlayData.secondLabel} /></div>
+                    <TeamLabel team={overlayData.second}/>
                     <div className={overlayData.secondDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}</div>
                 </div>
             </div>
         </div>
     );
+}
+
+// Team label component
+function TeamLabel({team} : {team : string}) {
+    return (
+        <div className="label">
+            <img src={getIconPath(team)}/> {getTeamName(team)}
+        </div>
+    )
 }

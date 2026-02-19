@@ -1,13 +1,7 @@
 @import "tailwindcss";
-@font-face {
-    font-family: Metropolis;
-    src: url("/fonts/Metropolis-Regular.otf");
-}
-
-@font-face {
-    font-family: Metropolis BL;
-    src: url("/fonts/Metropolis-Black.otf");
-}
+@font-face { font-family: "Metropolis"; src: url("/fonts/Metropolis-Regular.otf");}
+@font-face { font-family: "Metropolis Bold"; src: url("/fonts/Metropolis-Bold.otf");}
+@font-face { font-family: "Metropolis BL"; src: url("/fonts/Metropolis-Black.otf");}
 
 :root {
  /*--background: #ffffff;
@@ -28,6 +22,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  opacity: 0%
 }
 
 .overlay {
@@ -86,6 +84,29 @@ body {
 
 .game img {
   translate: 0px -25px;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 290px;
+  left: 55px;
+  top: -40px;
+
+  color: white;
+  font-family: Metropolis Bold;
+  font-size: 24px;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, .75);
+  line-height: 50px;
+}
+
+.label img {
+  height: 32px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .first-place {
@@ -182,17 +203,10 @@ body {
 
 .second-label {
   position: relative;
-  background-color: rgba(0, 0, 0, .75);
   left: 55px;
   top: -40px;
   width: 290px;
   height: 50px;
-}
-
-.second-label img {
-  height: 50px;
-  width: 290px;
-  object-fit: fill;
 }
 
 /** Animations **/
