@@ -3,21 +3,6 @@
 @font-face { font-family: "Metropolis Bold"; src: url("/fonts/Metropolis-Bold.otf");}
 @font-face { font-family: "Metropolis BL"; src: url("/fonts/Metropolis-Black.otf");}
 
-:root {
- /*--background: #ffffff;
-  --foreground: #171717;*/
-}
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -86,6 +71,7 @@ body {
   translate: 0px -25px;
 }
 
+/** PLACEMENTS **/
 .label {
   position: relative;
   display: flex;
@@ -126,26 +112,6 @@ body {
   font-size: 30px;
   text-align: center;
   line-height: 50px;
-}
-
-.first-label {
-  position: relative;
-  background-color: rgba(0, 0, 0, .75);
-  left: 55px;
-  top: -40px;
-  width: 290px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.first-label img {
-  height: 50px;
-  width: 290px;
-  object-fit: fill;
 }
 
 .finale-points {
@@ -199,14 +165,6 @@ body {
   font-size: 35px;
   text-align: center;
   line-height: 50px;
-}
-
-.second-label {
-  position: relative;
-  left: 55px;
-  top: -40px;
-  width: 290px;
-  height: 50px;
 }
 
 /** Animations **/

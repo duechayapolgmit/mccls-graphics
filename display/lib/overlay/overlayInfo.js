@@ -1,6 +1,5 @@
 import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
-import teamLabels from '@/data/team_labels.json';
 import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
