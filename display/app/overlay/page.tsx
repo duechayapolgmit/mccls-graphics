@@ -50,7 +50,7 @@ export default function Page() {
                     <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
                 </div>
                 <div className="game">
-                    <img src={overlayData.gameLogo} />
+                    <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
                 </div>
             </div>
             <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>

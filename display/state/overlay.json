@@ -13,6 +13,7 @@
     "colours": {
       "primary": "#ff00ff",
       "secondary": "#d400c3"
-    }
+    },
+    "overlay": null
   }
 }
