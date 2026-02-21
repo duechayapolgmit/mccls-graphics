@@ -89,14 +89,14 @@ export default function Page() {
 function TeamPlacement({place, name, score} : ITeamPlacement) {
     let placeIconClass = (place: number) => {
         switch (place) {
-            case 1: return "first-place-icon"
-            case 2: return "second-place-icon"
+            case 1: return "place-icon first-place-icon"
+            case 2: return "place-icon second-place-icon"
         }
     }
 
     return (
         <div className="placement">
-            <div className={placeIconClass(place) || "default-place-icon"}>{place}</div>
+            <div className={placeIconClass(place) || "place-icon"}>{place}</div>
             <TeamLabel team={name}/>
             <div className={score > 2 ? "finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
         </div>
