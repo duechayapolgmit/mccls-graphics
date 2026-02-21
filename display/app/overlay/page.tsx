@@ -34,7 +34,8 @@ export default function Page() {
                     multiplier: true,
                     game_logo: true
                 },
-                header_text: "GAME"
+                header_text: "GAME",
+                score_limit: 3
             }
         }
     });
@@ -79,7 +80,7 @@ export default function Page() {
 
     const placementsDisplay = (places: ITeamPlacement[]) => {
         const lst = places.map((place: ITeamPlacement) => {
-            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score}/>)
+            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} scoreLimit={overlayData.config.overlay.score_limit}/>)
         })
         return (
             <div className={overlayData.placementsVisible ? "placements-transition slide-in" : "placements-transition slide-out"}>
@@ -103,7 +104,7 @@ export default function Page() {
 }
 
 // Placement component
-function TeamPlacement({place, name, score} : ITeamPlacement) {
+function TeamPlacement({place, name, score, scoreLimit} : {place: number, name: string, score: number, scoreLimit: number}) {
     let placeIconClass = (place: number) => {
         switch (place) {
             case 1: return "place-icon first-place-icon"
@@ -115,7 +116,7 @@ function TeamPlacement({place, name, score} : ITeamPlacement) {
         <div className="placement">
             <div className={placeIconClass(place) || "place-icon"}>{place}</div>
             <TeamLabel team={name}/>
-            <div className={score > 2 ? "finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
+            <div className={score >= scoreLimit ? "finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
         </div>
     )
 }

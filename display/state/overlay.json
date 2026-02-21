@@ -15,6 +15,10 @@
     {
       "place": 3,
       "score": -1
+    },
+    {
+      "place": 4,
+      "score": -1
     }
   ],
   "statusVisible": true,
@@ -30,7 +34,8 @@
         "game_logo": false
       },
       "header_text": "ROUND",
-      "placements": 3
+      "placements": 4,
+      "score_limit": 99
     }
   }
 }

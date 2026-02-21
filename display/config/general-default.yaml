@@ -7,4 +7,4 @@ overlay:
     game_logo: true
   header_text: "GAME"
   placements: 2
-  #final_limit: 3
+  score_limit: 3
