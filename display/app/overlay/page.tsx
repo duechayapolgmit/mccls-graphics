@@ -116,7 +116,7 @@ function TeamPlacement({place, name, score, scoreLimit} : {place: number, name: 
         <div className="placement">
             <div className={placeIconClass(place) || "place-icon"}>{place}</div>
             <TeamLabel team={name}/>
-            <div className={score >= scoreLimit ? "finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
+            <div className={score >= scoreLimit ? "finale-points finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
         </div>
     )
 }
