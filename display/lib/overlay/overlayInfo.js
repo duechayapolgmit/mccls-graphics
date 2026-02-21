@@ -1,5 +1,7 @@
 import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
+import teamInfo from '@/data/team_info.json';
+
 import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
@@ -98,6 +100,9 @@ export function setGame(game) {
 export function setPlaceName(place, name) {
     if (typeof place != "number") return;
     if (place > data.config.overlay.placements || place < 0) return;
+
+    // Check if name is in the team_info.json - if not, return
+    if (!teamInfo[name]) return;
 
     // get the score
     let score = data.placements[place - 1].score;
