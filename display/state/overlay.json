@@ -29,6 +29,7 @@
         "multiplier": true,
         "game_logo": false
       },
+      "header_text": "ROUND",
       "placements": 3
     }
   }

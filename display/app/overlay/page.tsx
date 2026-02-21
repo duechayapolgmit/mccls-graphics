@@ -33,7 +33,8 @@ export default function Page() {
                 toggle: {
                     multiplier: true,
                     game_logo: true
-                }
+                },
+                header_text: "GAME"
             }
         }
     });
@@ -61,8 +62,7 @@ export default function Page() {
         if (overlayData.gameNumber > 8) headerClassNames = "event-status-final"
 
         // Configure the text
-        let gameText = "GAME"
-        let headerText = `${gameText} ${overlayData.gameNumber}`
+        let headerText = `${overlayData.config.overlay.header_text} ${overlayData.gameNumber}`
         if (overlayData.gameNumber > 8) headerText = "FINAL DUEL"
         else if (overlayData.config.overlay.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
 

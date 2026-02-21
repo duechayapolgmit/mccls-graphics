@@ -5,6 +5,6 @@ overlay:
   toggle:
     multiplier: true
     game_logo: false
-  #header_text: "Game"
+  header_text: "ROUND"
   placements: 3          
   #final_limit: 3
