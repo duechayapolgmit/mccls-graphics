@@ -3,16 +3,7 @@
     "multiplier": "x1.0",
     "game": "DEFAULT",
     "gameLogo": "/game_logos/Default.png",
-    "first": "",
-    "firstDB": -1,
-    "second": "",
-    "secondDB": -1,
+    "placements": [],
     "statusVisible": true,
-    "placementsVisible": true,
-    "config": {
-        "colours": {
-            "primary": "#b51a14",
-            "secondary": "#760804"
-        }
-    }
+    "placementsVisible": true
 }

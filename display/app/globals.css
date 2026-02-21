@@ -78,6 +78,11 @@ body {
 }
 
 /** PLACEMENTS **/
+.placement {
+  height: 50px;
+  margin-top: 5px
+}
+
 .label {
   position: relative;
   display: flex;
@@ -85,7 +90,7 @@ body {
   height: 50px;
   width: 290px;
   left: 55px;
-  top: -40px;
+  top: -45px;
 
   color: white;
   font-family: Metropolis Bold;
@@ -107,9 +112,9 @@ body {
   margin-bottom: 5px;
 }
 
-.first-icon {
+.first-place-icon {
   position: relative;
-  top: 10px;
+  top: 5px;
   background-color: rgba(167, 141, 0);
   width: 50px;
   height: 50px;
@@ -125,7 +130,7 @@ body {
   background-color: rgba(0, 0, 0, .75);
   width: 50px;
   height: 50px;
-  top: -90px;
+  top: -95px;
   left: 350px;
   color: white;
   font-family: Metropolis BL;
@@ -158,12 +163,26 @@ body {
 
 .second-place {
   position: relative;
+  height: 50px;
 }
 
-.second-icon {
+.second-place-icon {
   position: relative;
-  top: 10px;
-  background-color: rgba(165, 165, 165);
+  top: 5px;
+  background-color: rgba(165, 165, 165, .75);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.default-place-icon {
+  position: relative;
+  top: 5px;
+  background-color: rgba(0, 0, 0, .75);
   width: 50px;
   height: 50px;
   color: white;

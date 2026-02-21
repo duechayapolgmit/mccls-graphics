@@ -5,16 +5,23 @@ import { getIconPath, getTeamName } from '@/lib/overlay/teamInfo';
 
 import teamInfo from '@/data/team_info.json';
 
+interface ITeamPlacement {
+    place: number;
+    name: string;
+    score: number;
+}
+
 export default function Page() {
     const [overlayData, setOverlayData] = useState({
         gameNumber: 1,
         multiplier: "x1.0",
         game: "DEFAULT",
         gameLogo: "/game_logos/Default.png",
-        first: "",
-        firstDB: -1,
-        second: "",
-        secondDB: -1,
+        placements: [{
+            place: 0,
+            name: "",
+            score: -1
+        }],
         statusVisible: true,
         placementsVisible: true,
         config: {
@@ -42,6 +49,17 @@ export default function Page() {
         return () => clearInterval(fetcher);
     }, [])
 
+    const placementsDisplay = (places: ITeamPlacement[]) => {
+        const lst = places.map((place: ITeamPlacement) => {
+            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score}/>)
+        })
+        return (
+            <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>
+                {lst}
+            </div>
+        )
+    }
+
     return (
         <div className="overlay">
             <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
@@ -53,20 +71,27 @@ export default function Page() {
                     <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
                 </div>
             </div>
-            <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>
-                <div className="first-place">
-                    <div className="first-icon">1</div>
-                    <TeamLabel team={overlayData.first}/>
-                    <div className={overlayData.firstDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.firstDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.firstDB}</span>)}</div>
-                </div>
-                <div className="second-place">
-                    <div className="second-icon">2</div>
-                    <TeamLabel team={overlayData.second}/>
-                    <div className={overlayData.secondDB > 2 ? "finale-points-won" : "finale-points"}>{overlayData.secondDB == -1 ? (<img src={"/icon.png"}/>) : (<span>{overlayData.secondDB}</span>)}</div>
-                </div>
-            </div>
+            {placementsDisplay(overlayData.placements)}
         </div>
     );
+}
+
+// Placement component
+function TeamPlacement({place, name, score} : ITeamPlacement) {
+    let placeIconClass = (place: number) => {
+        switch (place) {
+            case 1: return "first-place-icon"
+            case 2: return "second-place-icon"
+        }
+    }
+
+    return (
+        <div className="placement">
+            <div className={placeIconClass(place) || "default-place-icon"}>{place}</div>
+            <TeamLabel team={name}/>
+            <div className={score > 2 ? "finale-points-won" : "finale-points"}>{score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}</div>
+        </div>
+    )
 }
 
 // Team label component
