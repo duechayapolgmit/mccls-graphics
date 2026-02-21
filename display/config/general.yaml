@@ -1,3 +1,10 @@
 colours:
-  primary: "#e1de5"     # Live Show Default: #b51a14
-  secondary: "#d400c3"  # Live Show Default: #760804
+  primary: "#ff00ff"
+  secondary: "#d400c3"
+overlay:
+  toggle:
+    multiplier: true
+    game_logo: false
+  header_text: "ROUND"
+  placements: 4          
+  score_limit: 99

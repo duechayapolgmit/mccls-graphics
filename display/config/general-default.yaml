@@ -1,0 +1,10 @@
+colours:
+  primary: "#b51a14"     
+  secondary: "#760804"   
+overlay:
+  toggle:
+    multiplier: true
+    game_logo: true
+  header_text: "GAME"
+  placements: 2
+  score_limit: 3

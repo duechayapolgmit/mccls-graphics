@@ -1,33 +1,20 @@
 @import "tailwindcss";
-@font-face {
-    font-family: Metropolis;
-    src: url("/fonts/Metropolis-Regular.otf");
-}
-
-@font-face {
-    font-family: Metropolis BL;
-    src: url("/fonts/Metropolis-Black.otf");
-}
-
-:root {
- /*--background: #ffffff;
-  --foreground: #171717;*/
-}
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  }
-}
+@font-face { font-family: "Metropolis"; src: url("/fonts/Metropolis-Regular.otf");}
+@font-face { font-family: "Metropolis Bold"; src: url("/fonts/Metropolis-Bold.otf");}
+@font-face { font-family: "Metropolis BL"; src: url("/fonts/Metropolis-Black.otf");}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.hidden {
+  opacity: 0%
+}
+
+.opacity-75 {
+  opacity: 75%
 }
 
 .overlay {
@@ -36,8 +23,14 @@ body {
   left: 51px;
 }
 
+.status {
+  position: relative;
+  margin-bottom: 5px;
+}
+
 .header {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .ls-icon {
@@ -76,9 +69,9 @@ body {
   line-height: 50px;
 }
 
+/** GAME STATUS **/
 .game {
   background-color: rgba(0, 0, 0, .75);
-  top: 5px;
   width: 400px;
   height: 160px;
   position: relative;
@@ -88,43 +81,49 @@ body {
   translate: 0px -25px;
 }
 
-.first-place {
-  top: 5px;
+/** PLACEMENTS **/
+.placement {
   height: 50px;
-  margin-bottom: 5px;
+  margin-top: 5px
 }
 
-.first-icon {
-  position: relative;
-  top: 10px;
-  background-color: rgba(167, 141, 0);
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.first-label {
+.place-icon {
   position: relative;
   background-color: rgba(0, 0, 0, .75);
-  left: 55px;
-  top: -40px;
-  width: 290px;
+  width: 50px;
   height: 50px;
+
   color: white;
   font-family: Metropolis BL;
-  font-size: 30px;
+  font-size: 35px;
   text-align: center;
   line-height: 50px;
 }
 
-.first-label img {
+.first-place-icon {background-color: rgba(167, 141, 0);}
+.second-place-icon {background-color: rgba(165, 165, 165);}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
   height: 50px;
   width: 290px;
-  object-fit: fill;
+  left: 55px;
+  top: -50px;
+
+  color: white;
+  font-family: Metropolis Bold;
+  font-size: 24px;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, .75);
+  line-height: 50px;
+}
+
+.label img {
+  height: 32px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .finale-points {
@@ -132,7 +131,7 @@ body {
   background-color: rgba(0, 0, 0, .75);
   width: 50px;
   height: 50px;
-  top: -90px;
+  top: -100px;
   left: 350px;
   color: white;
   font-family: Metropolis BL;
@@ -149,58 +148,14 @@ body {
   margin-right: auto;
 }
 
-.finale-points-won {
-  position: relative;
-  background-color: rgba(0, 0, 0, .75);
-  width: 50px;
-  height: 50px;
-  top: -90px;
-  left: 350px;
-  color: rgba(255,255,0);
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.second-place {
-  position: relative;
-}
-
-.second-icon {
-  position: relative;
-  top: 10px;
-  background-color: rgba(165, 165, 165);
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 35px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.second-label {
-  position: relative;
-  background-color: rgba(0, 0, 0, .75);
-  left: 55px;
-  top: -40px;
-  width: 290px;
-  height: 50px;
-}
-
-.second-label img {
-  height: 50px;
-  width: 290px;
-  object-fit: fill;
-}
+.finale-points-won {color: rgba(255,255,0);}
 
 /** Animations **/
-.status {
+.status-transition {
     transition: transform 1s ease;
 }
 
-.placements {
+.placements-transition {
     transition: transform 1s ease;
 }
 

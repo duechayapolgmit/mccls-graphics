@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getFirstPlace, getSecondPlace, setFirstPlace, setSecondPlace, getFirstDBPoints, getSecondDBPoints, setFirstDBPoints, setSecondDBPoints, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions} from '@/lib/overlayInfo';
+import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/overlay/overlayInfo';
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -7,11 +7,12 @@ export function GET(request: NextRequest) {
     // Read from queries
     const gameNoUpdate = searchParams.get('gameNo')
     const gameUpdate = searchParams.get('game')
-    const firstUpdate = searchParams.get('first')
-    const secondUpdate = searchParams.get('second')
+
+    const placeUpdate = searchParams.get('place')
+    const placeNameUpdate = searchParams.get('placeName')
+    const placeScoreUpdate = searchParams.get('placeScore')
+
     const dbActivateUpdate = searchParams.get('dodgebolt')
-    const firstDB = searchParams.get('firstDB')
-    const secondDB = searchParams.get('secondDB')
     const statusVisibleUpdate = searchParams.get('status')
     const placementsVisibleUpdate = searchParams.get('placements')
     const reset = searchParams.get('reset');
@@ -19,10 +20,9 @@ export function GET(request: NextRequest) {
     // Current info
     let currentGameNo = getGameNumber();
     let currentGame = getGame();
-    let currentFirstPlace = getFirstPlace();
-    let currentSecondPlace = getSecondPlace();
-    let currentFirstDB = getFirstDBPoints();
-    let currentSecondDB = getSecondDBPoints();
+
+    let currentPlacements = getPlacements();
+
     let currentStatusVisible = getStatusDisplayOptions();
     let currentPlacementsVisible = getPlacementsDisplayOptions();
     
@@ -36,29 +36,26 @@ export function GET(request: NextRequest) {
     if (gameUpdate == null || gameUpdate == undefined) currentGame = currentGame;
     else currentGame = gameUpdate;
 
-    // First Place
-    if (firstUpdate == null || firstUpdate == undefined) currentFirstPlace = currentFirstPlace;
-    else currentFirstPlace = firstUpdate;
+    // Placements
+    if (placeUpdate && placeNameUpdate) { // Name
+        setPlaceName(parseInt(placeUpdate), placeNameUpdate);
+    }
 
-    // Second Place
-    if (secondUpdate == null || secondUpdate == undefined) currentSecondPlace = currentSecondPlace;
-    else currentSecondPlace = secondUpdate;
+    if (placeUpdate && placeScoreUpdate) { // Score
+        let place = parseInt(placeUpdate)
+        if (currentPlacements[place - 1]) {
+            if (placeScoreUpdate == "increase") setPlaceScore(place, currentPlacements[place -1].score + 1);
+            else setPlaceScore(place, parseInt(placeScoreUpdate))
+        }
+    }
 
     // Dodgebolts overlay activate
     if (dbActivateUpdate == "true") {
-        currentFirstDB = 0;
-        currentSecondDB = 0;
+        let placementsCount = currentPlacements.length;
+        for (let i = 0; i < placementsCount; i++) {
+            setPlaceScore(i+1, 0)
+        }
     }
-
-    // First place DB points
-    if (firstDB == null || firstDB == undefined) currentFirstDB = currentFirstDB;
-    else if (firstDB == "increase") currentFirstDB++;
-    else currentFirstDB = parseInt(firstDB);
-
-    // Second place DB points
-    if (secondDB == null || secondDB == undefined) currentSecondDB = currentSecondDB;
-    else if (secondDB == "increase") currentSecondDB++;
-    else currentSecondDB = parseInt(secondDB);
     
     // Visibility
     if (statusVisibleUpdate == "show") currentStatusVisible = true;
@@ -70,10 +67,6 @@ export function GET(request: NextRequest) {
     // Set back
     setGameNumber(currentGameNo);
     setGame(currentGame);
-    setFirstPlace(currentFirstPlace);
-    setSecondPlace(currentSecondPlace);
-    setFirstDBPoints(currentFirstDB);
-    setSecondDBPoints(currentSecondDB);
     setStatusDisplayOptions(currentStatusVisible);
     setPlacementsDisplayOptions(currentPlacementsVisible);
 
