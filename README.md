@@ -31,13 +31,10 @@ Note that this is done due to Streamdeck's limitation of only being able to send
   * Invalid game numbers will display "x1.0" as the multiplier.
 * `?game` - changes the game logo to be displayed. All event logos and their respective keys can be found in `data/game_logos.json`.
   * Invalid game key will display the default logo of MCC Live Show.
-* `?first` - changes the team label for the team that is in first place. All team labels and their respective keys can be found in `data/team_labels.json`.
-  * Invalid team key will display the blank image.
-* `?second` - changes the team label for the team that is in first place. All team labels and their respective keys can be found in `data/team_labels.json`.
-  * Invalid team key will display the blank image.
+* `?place` - changes information about the team in the place specified, e.g. `place=1` for first place. Placements must be in the range between 1 and the number specified in the configuration file (`config/overlay.yaml`) This is to be used in conjunction with one of the following queries:
+  * `&placeName` - changes the name and icon of the team in specified place. All team labels and their respective keys can be found in `data/team_info.json`. Invalid team key will display nothing.
+  * `&placeScore` - changes the score of the team in specified place, either `increase` to increase the score by 1 or the points themselves. Default is `-1` to display the logo.
 * `?dodgebolt` - changes the "play" icons to display points in the finale instead, if the value is `true`.
-* `?firstDB` - changes the points in the finale for the team in first place, either `increase` to increase the score by 1 or the points themselves.
-* `?secondDB` - changes the points in the finale for the team in second place, either `increase` to increase the score by 1 or the points themselves.
 * `?status` - triggers the display of the status portion of the overlay (header and game logo) either `show` to show the status portion or `hide` to hide the status portion. Animations will be played if the request is sent when the overlay is still active.
 * `?placements` - triggers the display of the placements portion of the overlay (top 2 teams) either `show` to show the placements portion  or `hide` to hide the placements portion. Animations will be played if the request is sent when the overlay is still active.
 * `?reset` - when value is `true`, reset all the values of each component of the overlay to its default. The default values can be found in `state/defaults/overlay.json`
@@ -45,6 +42,8 @@ Note that this is done due to Streamdeck's limitation of only being able to send
 The overlay can also be configured via its YAML file (`config/general.yaml`)
 * `colours` - determines the colour scheme of the graphics and overlay. `primary` for brighter colour and `secondary` for darker colour.
   * `secondary` is currently being used for the overlay.
+* `overlay` - configuration details for the overlay.
+  * `placements` - the amount of placements to be shown
  
 ## Resources
 This repository uses the following resources:
