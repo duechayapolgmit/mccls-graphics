@@ -100,13 +100,8 @@ body {
   line-height: 50px;
 }
 
-.first-place-icon {
-  background-color: rgba(167, 141, 0);
-}
-
-.second-place-icon {
-  background-color: rgba(165, 165, 165, .75);
-}
+.first-place-icon {background-color: rgba(167, 141, 0);}
+.second-place-icon {background-color: rgba(165, 165, 165);}
 
 .label {
   position: relative;
@@ -153,9 +148,7 @@ body {
   margin-right: auto;
 }
 
-.finale-points-won {
-  color: rgba(255,255,0);
-}
+.finale-points-won {color: rgba(255,255,0);}
 
 /** Animations **/
 .status-transition {
