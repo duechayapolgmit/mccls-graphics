@@ -28,6 +28,11 @@ export default function Page() {
             colours: {
                 primary: "#b51a14",
                 secondary: "#760804"
+            },
+            overlay: {
+                toggle: {
+                game_logo: true
+            }
             }
         }
     });
@@ -49,12 +54,18 @@ export default function Page() {
         return () => clearInterval(fetcher);
     }, [])
 
+    const gameDisplay = (
+        <div className="game">
+            <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
+        </div>
+    )
+
     const placementsDisplay = (places: ITeamPlacement[]) => {
         const lst = places.map((place: ITeamPlacement) => {
             return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score}/>)
         })
         return (
-            <div className={overlayData.placementsVisible ? "placements slide-in" : "placements slide-out"}>
+            <div className={overlayData.placementsVisible ? "placements-transition slide-in" : "placements-transition slide-out"}>
                 {lst}
             </div>
         )
@@ -67,9 +78,7 @@ export default function Page() {
                     <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
                 </div>
-                <div className="game">
-                    <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
-                </div>
+                {overlayData.config.overlay.toggle.game_logo ? gameDisplay : null}
             </div>
             {placementsDisplay(overlayData.placements)}
         </div>

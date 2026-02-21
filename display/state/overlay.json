@@ -6,7 +6,6 @@
   "placements": [
     {
       "place": 1,
-      "name": "ORANGE",
       "score": -1
     },
     {
@@ -26,6 +25,9 @@
       "secondary": "#d400c3"
     },
     "overlay": {
+      "toggle": {
+        "game_logo": false
+      },
       "placements": 3
     }
   }

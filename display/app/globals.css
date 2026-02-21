@@ -23,8 +23,14 @@ body {
   left: 51px;
 }
 
+.status {
+  position: relative;
+  margin-bottom: 5px;
+}
+
 .header {
   display: flex;
+  margin-bottom: 5px;
 }
 
 .ls-icon {
@@ -64,10 +70,8 @@ body {
 }
 
 /** GAME STATUS **/
-
 .game {
   background-color: rgba(0, 0, 0, .75);
-  top: 5px;
   width: 400px;
   height: 160px;
   position: relative;
@@ -83,6 +87,42 @@ body {
   margin-top: 5px
 }
 
+.first-place-icon {
+  position: relative;
+  background-color: rgba(167, 141, 0);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.second-place-icon {
+  position: relative;
+  background-color: rgba(165, 165, 165, .75);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.default-place-icon {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 35px;
+  text-align: center;
+  line-height: 50px;
+}
+
 .label {
   position: relative;
   display: flex;
@@ -90,7 +130,7 @@ body {
   height: 50px;
   width: 290px;
   left: 55px;
-  top: -45px;
+  top: -50px;
 
   color: white;
   font-family: Metropolis Bold;
@@ -106,31 +146,12 @@ body {
   padding-right: 5px;
 }
 
-.first-place {
-  top: 5px;
-  height: 50px;
-  margin-bottom: 5px;
-}
-
-.first-place-icon {
-  position: relative;
-  top: 5px;
-  background-color: rgba(167, 141, 0);
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
 .finale-points {
   position: relative;
   background-color: rgba(0, 0, 0, .75);
   width: 50px;
   height: 50px;
-  top: -95px;
+  top: -100px;
   left: 350px;
   color: white;
   font-family: Metropolis BL;
@@ -161,43 +182,12 @@ body {
   line-height: 50px;
 }
 
-.second-place {
-  position: relative;
-  height: 50px;
-}
-
-.second-place-icon {
-  position: relative;
-  top: 5px;
-  background-color: rgba(165, 165, 165, .75);
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 35px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.default-place-icon {
-  position: relative;
-  top: 5px;
-  background-color: rgba(0, 0, 0, .75);
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 35px;
-  text-align: center;
-  line-height: 50px;
-}
-
 /** Animations **/
-.status {
+.status-transition {
     transition: transform 1s ease;
 }
 
-.placements {
+.placements-transition {
     transition: transform 1s ease;
 }
 

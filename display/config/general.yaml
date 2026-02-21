@@ -2,9 +2,9 @@ colours:
   primary: "#ff00ff"     # Live Show Default: #b51a14
   secondary: "#d400c3"   # Live Show Default: #760804
 overlay:
-  #toggle:
+  toggle:
   #  multiplier: true
-  #  game_logo: true
+    game_logo: false
   #header_text: "Game"
   placements: 3          
   #final_limit: 3

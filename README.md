@@ -4,6 +4,7 @@ This repository contains some of the graphics and other tools used for [MCC Live
 
 There is currently one main tool that has been developed for the live show:
 * `display` = contains a Next.JS web application, displaying all graphics associated with the live commentary streams.
+
 Each tool is located in its own separate folders.
 
 ## Features
