@@ -44,8 +44,13 @@ The overlay can also be configured via its YAML file (`config/general.yaml`)
 * `colours` - determines the colour scheme of the graphics and overlay. `primary` for brighter colour and `secondary` for darker colour.
   * `secondary` is currently being used for the overlay.
 * `overlay` - configuration details for the overlay.
+  * `toggle` - display toggles of each element on the overlay
+    * `multiplier` - toggle display the text that is beside the game text and number
+    * `game_logo` - toggle display the logos of the game
+  * `header_text` - the text to be displayed alongside the game number
   * `placements` - the amount of placements to be shown
- 
+  * `score_limit` - the score boundary that would trigger the "yellow text" for scores, signifying that the team wins
+
 ## Resources
 This repository uses the following resources:
 * [Noxcrew - MC Championship](https://noxcrew.com/) - game logos, and team icons from MC Championship event. All of them can be found in the organiser's assets folder. Most of the game logos are modified to fit within the area in the overlay.

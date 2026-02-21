@@ -1,6 +1,6 @@
 colours:
-  primary: "#ff00ff"     # Live Show Default: #b51a14
-  secondary: "#d400c3"   # Live Show Default: #760804
+  primary: "#ff00ff"
+  secondary: "#d400c3"
 overlay:
   toggle:
     multiplier: true
