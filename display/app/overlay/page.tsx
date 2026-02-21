@@ -31,8 +31,9 @@ export default function Page() {
             },
             overlay: {
                 toggle: {
-                game_logo: true
-            }
+                    multiplier: true,
+                    game_logo: true
+                }
             }
         }
     });
@@ -53,6 +54,22 @@ export default function Page() {
 
         return () => clearInterval(fetcher);
     }, [])
+
+    const headerDisplay = () => {
+        // Configure the box
+        let headerClassNames = "event-status";
+        if (overlayData.gameNumber > 8) headerClassNames = "event-status-final"
+
+        // Configure the text
+        let gameText = "GAME"
+        let headerText = `${gameText} ${overlayData.gameNumber}`
+        if (overlayData.gameNumber > 8) headerText = "FINAL DUEL"
+        else if (overlayData.config.overlay.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
+
+        return (
+            <div className={headerClassNames}>{headerText}</div>
+        )
+    }
 
     const gameDisplay = (
         <div className="game">
@@ -76,7 +93,7 @@ export default function Page() {
             <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
                 <div className="header">
                     <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
-                    <div className={overlayData.gameNumber > 8 ? "event-status-final" : "event-status"}>{overlayData.gameNumber > 8 ? (<span>FINAL DUEL</span>) : (<span>GAME {overlayData.gameNumber} ({overlayData.multiplier})</span>)}</div>
+                    {headerDisplay()}
                 </div>
                 {overlayData.config.overlay.toggle.game_logo ? gameDisplay : null}
             </div>

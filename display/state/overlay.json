@@ -26,6 +26,7 @@
     },
     "overlay": {
       "toggle": {
+        "multiplier": true,
         "game_logo": false
       },
       "placements": 3

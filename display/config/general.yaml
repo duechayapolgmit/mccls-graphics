@@ -3,7 +3,7 @@ colours:
   secondary: "#d400c3"   # Live Show Default: #760804
 overlay:
   toggle:
-  #  multiplier: true
+    multiplier: true
     game_logo: false
   #header_text: "Game"
   placements: 3          
