@@ -1,9 +1,9 @@
 colours:
   primary: "#ff00ff"
-  secondary: "#d400c3"
+  secondary: "#313131"
 overlay:
   toggle:
-    multiplier: true
+    multiplier: false
     game_logo: false
   header_text: "ROUND"
   placements: 4          

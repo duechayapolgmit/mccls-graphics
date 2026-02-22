@@ -1,42 +1,42 @@
 {
-    "RED": {
-        "name": "Red Rabbits",
-        "icon": "/team_icons/01-RedRabbits.png"
+    "AURORA": {
+        "name": "Aurora",
+        "icon": "/team_icons/01-Aurora.png"
     },
-    "ORANGE": {
-        "name": "Orange Ocelots",
-        "icon":  "/team_icons/02-OrangeOcelots.png"
+    "BUGBOI": {
+        "name": "BugBoi",
+        "icon":  "/team_icons/02-BugBoi.png"
     },
-    "YELLOW": {
-        "name": "Yellow Yaks",
-        "icon": "/team_icons/03-YellowYaks.png"
+    "EPIKGODDUDE69": {
+        "name": "Epikgoddude69",
+        "icon": "/team_icons/03-Epikgoddude.png"
     },
-    "LIME": {
-        "name": "Lime Llamas",
-        "icon": "/team_icons/04-LimeLlamas.png"
+    "GAMINGSUIT": {
+        "name": "GamingSuit",
+        "icon": "/team_icons/04-GamingSuit.png"
     },
-    "GREEN": {
-        "name": "Green Geckos",
-        "icon": "/team_icons/05-GreenGeckos.png"
+    "JAYDENBLUEMOON": {
+        "name": "JaydenBlueMoon",
+        "icon": "/team_icons/05-JaydenBlueMoon.png"
     },
-    "CYAN": {
-        "name": "Cyan Coyotes",
-        "icon": "/team_icons/06-CyanCoyotes.png"
+    "JAY_MATWR": {
+        "name": "Jay_matwr",
+        "icon": "/team_icons/06-JAY_matwr.png"
     },
-    "AQUA": {
-        "name": "Aqua Axolotls",
-        "icon": "/team_icons/07-AquaAxolotls.png"
+    "KOJX": {
+        "name": "KOJX",
+        "icon": "/team_icons/07-KOJX.png"
     },
-    "BLUE": {
-        "name": "Blue Bats",
-        "icon": "/team_icons/08-BlueBats.png"
+    "MRKVAMAN": {
+        "name": "Mrkvaman",
+        "icon": "/team_icons/08-Mrkvaman.png"
     },
-    "PURPLE": {
-        "name": "Purple Pandas",
-        "icon": "/team_icons/09-PurplePandas.png"
+    "OWENISH": {
+        "name": "Owenish",
+        "icon": "/team_icons/09-Owenish.png"
     },
-    "PINK": {
-        "name": "Pink Parrots",
-        "icon": "/team_icons/10-PinkParrots.png"
+    "RYRY": {
+        "name": "Ryry",
+        "icon": "/team_icons/10-ryry.png"
     }
 }
