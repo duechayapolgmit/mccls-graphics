@@ -8,7 +8,8 @@ export default function Page() {
     const [data, setData] = useState({
         slots: [{
             slot: 0, 
-            game: ""
+            game: "",
+            chosen: false
         }]
     });
 
@@ -23,9 +24,9 @@ export default function Page() {
         return () => clearInterval(fetcher);
     }, [])
     
-    const slotDisplay = (slots: {slot: number, game: string}[]) => {
-        const lst = slots.map((slot: {slot: number, game: string}) => {
-            return (<GameSlot key={slot.slot} game={slot.game}/>)
+    const slotDisplay = (slots: {slot: number, game: string, chosen: boolean}[]) => {
+        const lst = slots.map((slot: {slot: number, game: string, chosen: boolean}) => {
+            return (<GameSlot key={slot.slot} game={slot.game} chosen={slot.chosen}/>)
         })
         return (
             <div>
@@ -45,9 +46,9 @@ export default function Page() {
     )
 }
 
-function GameSlot({game} : {game: string}) {
+function GameSlot({game, chosen} : {game: string, chosen: boolean}) {
     return (
-        <div className={styles.game}>
+        <div className={chosen ? `${styles.game} ${styles.game_chosen}` : `${styles.game} ${styles.game_unchosen}`}>
             <img src={getGameLogoPath(game)}/>
         </div>
     )

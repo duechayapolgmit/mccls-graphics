@@ -1,12 +1,12 @@
 colours:
-  primary: "#ff00ff"
-  secondary: "#d400c3"
+  primary: "#b51a14"     
+  secondary: "#760804"   
 overlay:
   toggle:
     multiplier: true
-    game_logo: false
-  header_text: "ROUND"
-  placements: 4          
-  score_limit: 99
+    game_logo: true
+  header_text: "GAME"
+  placements: 2
+  score_limit: 3
 voting:
   slots: 8

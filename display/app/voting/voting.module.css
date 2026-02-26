@@ -10,11 +10,13 @@
 }
 
 .game {
-    background-color: rgba(0, 0, 0, .75);
     width: 297px;
     height: 114px;
     margin-bottom: 10px;
 }
+
+.game_unchosen { background-color: rgba(0, 0, 0, .75);}
+.game_chosen { background-color: rgba(141, 198, 63); }
 
 .game img {
     margin-left: auto;

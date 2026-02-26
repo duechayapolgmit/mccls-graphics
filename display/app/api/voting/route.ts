@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, setGame, setGameInSlot, resetVoting} from '@/lib/voting/votingInfo'
+import { getData, setGame, setGameInSlot, resetVoting, chooseGame} from '@/lib/voting/votingInfo'
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -8,6 +8,8 @@ export function GET(request: NextRequest) {
     const slotUpdate = searchParams.get('slot')
     const gameUpdate = searchParams.get('game')
 
+    const slotChosenUpdate = searchParams.get('slotChosen')
+
     const reset = searchParams.get('reset');
 
     // Update Game Slots
@@ -15,6 +17,9 @@ export function GET(request: NextRequest) {
         if (slotUpdate) setGameInSlot(parseInt(slotUpdate), gameUpdate);
         else setGame(gameUpdate);
     }
+
+    // Choose a slot
+    if (slotChosenUpdate) chooseGame(parseInt(slotChosenUpdate));
 
     // RESET
     if (reset == "true") resetVoting();

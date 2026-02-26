@@ -1,5 +1,7 @@
 import gameInfo from '@/data/game_logos.json'
 
+import {setGame as overlaySetGame} from '@/lib/overlay/overlayInfo'
+
 import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
@@ -13,7 +15,7 @@ const config = yaml.load(fs.readFileSync("config/general.yaml", "utf8"));
 function setupSlotsAfterLoad(slots, slotsCount) {
     for (let i = 1; i <= slotsCount; i++) {
         if (slots[i-1]) continue;
-        else slots[i-1] = {slot: i, game: ""};
+        else slots[i-1] = {slot: i, game: "NONE", chosen: false};
     }
     return slots;
 }
@@ -77,7 +79,7 @@ export function setGame(game) {
     if (!gameInfo[game]) return; // if game not exists, return
 
     data.slots.some(slot => {
-        if (slot.game == "" || slot.game == "NONE") {
+        if (slot.game == "NONE") {
             slot.game = game;
             return true;
         }
@@ -93,6 +95,31 @@ export function setGameInSlot(slot, game) {
     if (!data.slots[slot-1]) return; // if slot doesn't exist, return
 
     data.slots[slot-1].game = game;
+    save(data);
+}
+
+/* --------------
+    MISC
+----------------- */ 
+// Choose the game in specified slot
+export function chooseGame(slot) {
+    if (typeof slot != "number") return;
+    if (!data.slots[slot-1]) return; // if slot doesn't exist, return
+    if (data.slots[slot-1].game == "" || data.slots[slot-1].game == "NONE") return; // if slot doesn't contain games, return
+
+    // Set that chosen slot to be true
+    data.slots[slot-1].chosen = true;
+    let game = data.slots[slot-1].game;
+
+    // After 30 seconds, set that chosen slot to be false, clear the slot, and set the game on the overlay to the specified game
+    setTimeout(() => {
+        data.slots[slot-1].chosen = false;
+        setGameInSlot(slot, "NONE");
+
+        fetch('http://localhost:3000/api/overlay?game='+game) // hard-coding the local URL for now.....
+    }, 30000)
+
+
     save(data);
 }
 
