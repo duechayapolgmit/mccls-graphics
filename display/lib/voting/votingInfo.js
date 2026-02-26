@@ -1,3 +1,5 @@
+import gameInfo from '@/data/game_logos.json'
+
 import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
@@ -70,3 +72,32 @@ export const getData = () => data;
 /* --------------
     SETTERS
 ----------------- */ 
+// Set game in the next available slot
+export function setGame(game) {
+    if (!gameInfo[game]) return; // if game not exists, return
+
+    data.slots.some(slot => {
+        if (slot.game == "" || slot.game == "NONE") {
+            slot.game = game;
+            return true;
+        }
+    });
+    
+    save(data);
+}
+
+// Set game in a specified slot
+export function setGameInSlot(slot, game) {
+    if (typeof slot != "number") return;
+    if (!gameInfo[game] && !(game=="NONE")) return; // if game not exists, return
+    if (!data.slots[slot-1]) return; // if slot doesn't exist, return
+
+    data.slots[slot-1].game = game;
+    save(data);
+}
+
+/* RESET */
+export function resetVoting() {
+    data = loadDefaults();
+    save(data);
+}

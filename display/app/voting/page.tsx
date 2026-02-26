@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import styles from './voting.module.css'
 
+import {getGameLogoPath} from '@/lib/gameInfo';
+
 export default function Page() {
     const [data, setData] = useState({
         slots: [{
@@ -23,7 +25,7 @@ export default function Page() {
     
     const slotDisplay = (slots: {slot: number, game: string}[]) => {
         const lst = slots.map((slot: {slot: number, game: string}) => {
-            return (<GameSlot key={slot.slot}/>)
+            return (<GameSlot key={slot.slot} game={slot.game}/>)
         })
         return (
             <div>
@@ -43,10 +45,10 @@ export default function Page() {
     )
 }
 
-function GameSlot() {
+function GameSlot({game} : {game: string}) {
     return (
         <div className={styles.game}>
-            
+            <img src={getGameLogoPath(game)}/>
         </div>
     )
 }

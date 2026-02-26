@@ -1,0 +1,54 @@
+{
+  "slots": [
+    {
+      "slot": 1,
+      "game": "RSR"
+    },
+    {
+      "slot": 2,
+      "game": "TGTTOS"
+    },
+    {
+      "slot": 3,
+      "game": ""
+    },
+    {
+      "slot": 4,
+      "game": ""
+    },
+    {
+      "slot": 5,
+      "game": ""
+    },
+    {
+      "slot": 6,
+      "game": ""
+    },
+    {
+      "slot": 7,
+      "game": "AR"
+    },
+    {
+      "slot": 8,
+      "game": ""
+    }
+  ],
+  "config": {
+    "colours": {
+      "primary": "#ff00ff",
+      "secondary": "#d400c3"
+    },
+    "overlay": {
+      "toggle": {
+        "multiplier": true,
+        "game_logo": false
+      },
+      "header_text": "ROUND",
+      "placements": 4,
+      "score_limit": 99
+    },
+    "voting": {
+      "slots": 8
+    }
+  }
+}
