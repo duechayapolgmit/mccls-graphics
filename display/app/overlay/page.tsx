@@ -91,7 +91,7 @@ export default function Page() {
 
     return (
         <div className="overlay">
-            <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
+            <div className={overlayData.statusVisible ? "status-transition slide-in" : "status-transition slide-out"}>
                 <div className="header">
                     <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}
