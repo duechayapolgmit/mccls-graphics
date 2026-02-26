@@ -19,7 +19,6 @@ export function GET(request: NextRequest) {
 
     // Current info
     let currentGameNo = getGameNumber();
-    let currentGame = getGame();
 
     let currentPlacements = getPlacements();
 
@@ -33,8 +32,7 @@ export function GET(request: NextRequest) {
     else currentGameNo = parseInt(gameNoUpdate);
 
     // Game
-    if (gameUpdate == null || gameUpdate == undefined) currentGame = currentGame;
-    else currentGame = gameUpdate;
+    if (gameUpdate) setGame(gameUpdate);
 
     // Placements
     if (placeUpdate && placeNameUpdate) { // Name
@@ -66,7 +64,6 @@ export function GET(request: NextRequest) {
 
     // Set back
     setGameNumber(currentGameNo);
-    setGame(currentGame);
     setStatusDisplayOptions(currentStatusVisible);
     setPlacementsDisplayOptions(currentPlacementsVisible);
 
