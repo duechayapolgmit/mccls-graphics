@@ -1,0 +1,17 @@
+.games {
+    position: relative;
+    height: 980px;
+    width: 297px;
+    top: 50px;
+    left: 50px;
+
+    display: grid;
+    place-items: center;
+}
+
+.game {
+    background-color: rgba(0, 0, 0, .75);
+    width: 297px;
+    height: 114px;
+    margin-bottom: 10px;
+}

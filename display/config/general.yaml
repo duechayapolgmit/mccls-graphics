@@ -8,3 +8,5 @@ overlay:
   header_text: "ROUND"
   placements: 4          
   score_limit: 99
+voting:
+  slots: 8
