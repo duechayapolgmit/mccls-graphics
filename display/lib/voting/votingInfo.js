@@ -98,6 +98,13 @@ export function setGameInSlot(slot, game) {
     save(data);
 }
 
+export function setDisplayOptions(option) {
+    if (typeof option == "boolean") {
+        data.visible = option;
+        save(data);
+    } 
+}
+
 /* --------------
     MISC
 ----------------- */ 

@@ -151,6 +151,10 @@ body {
 .finale-points-won {color: rgba(255,255,0);}
 
 /** Animations **/
+.transition {
+    transition: transform 1s ease;
+}
+
 .status-transition {
     transition: transform 1s ease;
 }

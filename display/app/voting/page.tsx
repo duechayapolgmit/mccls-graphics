@@ -10,7 +10,8 @@ export default function Page() {
             slot: 0, 
             game: "",
             chosen: false
-        }]
+        }],
+        visible: true
     });
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function Page() {
 
     return (
         <div>
-            <div className={styles.games}>
+            <div className={data.visible ? `${styles.games} transition slide-in` : `${styles.games} transition ${styles.games_slide_out}`}>
                  {slotDisplay(data.slots)}
             </div>
            

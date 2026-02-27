@@ -24,3 +24,7 @@
     height: 120%;
     translate: 0px -11px;
 }
+
+.games_slide_out { 
+  transform: translateX(-120%);
+}
