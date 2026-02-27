@@ -126,7 +126,7 @@ export function chooseGame(slot) {
     setTimeout(() => {
         data.slots[slot-1].chosen = false;
         setGameInSlot(slot, "NONE");
-        notify(data); // notify that there's a change
+        notify(data, "voting"); // notify that there's a change
         fetch('http://localhost:3000/api/overlay?game='+game) // hard-coding the local URL for now.....
     }, 30000)
 
