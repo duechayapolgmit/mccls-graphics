@@ -15,14 +15,15 @@ export default function Page() {
     });
 
     useEffect(() => {
-        // syncing
-        const fetcher = setInterval(async () => {
-            const res = await fetch('/api/voting', { cache: "no-store"});
-            const json = await res.json();
-            setData(json);
-        }, 1000);
+        // Register SSE
+        const evtSrc = new EventSource('/api/voting/subscribe')
 
-        return () => clearInterval(fetcher);
+        evtSrc.onmessage = (e) => {
+            const evtData = JSON.parse(e.data)
+            setData(evtData)
+        }
+
+        return () => evtSrc.close();
     }, [])
     
     const slotDisplay = (slots: {slot: number, game: string, chosen: boolean}[]) => {

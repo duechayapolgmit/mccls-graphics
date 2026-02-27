@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/overlay/overlayInfo';
-import { Truculenta } from "next/font/google";
+import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -20,6 +20,7 @@ export function GET(request: NextRequest) {
 
     // Current info
     let currentPlacements = getPlacements();
+    let changed = false;
   
     // Game Number
     if (gameNoUpdate) {
@@ -37,22 +38,22 @@ export function GET(request: NextRequest) {
                 break;
         }
 
-        setGameNumber(currentGameNo)
+        changed = setGameNumber(currentGameNo)
     }
 
     // Game
-    if (gameUpdate) setGame(gameUpdate);
+    if (gameUpdate) changed = setGame(gameUpdate);
 
     // Placements
     if (placeUpdate && placeNameUpdate) { // Name
-        setPlaceName(parseInt(placeUpdate), placeNameUpdate);
+        changed = setPlaceName(parseInt(placeUpdate), placeNameUpdate);
     }
 
     if (placeUpdate && placeScoreUpdate) { // Score
         let place = parseInt(placeUpdate)
         if (currentPlacements[place - 1]) {
-            if (placeScoreUpdate == "increase") setPlaceScore(place, currentPlacements[place -1].score + 1);
-            else setPlaceScore(place, parseInt(placeScoreUpdate))
+            if (placeScoreUpdate == "increase") changed = setPlaceScore(place, currentPlacements[place -1].score + 1);
+            else changed = setPlaceScore(place, parseInt(placeScoreUpdate))
         }
     }
 
@@ -60,26 +61,25 @@ export function GET(request: NextRequest) {
     if (dbActivateUpdate == "true") {
         let placementsCount = currentPlacements.length;
         for (let i = 0; i < placementsCount; i++) {
-            setPlaceScore(i+1, 0)
+            changed = setPlaceScore(i+1, 0)
         }
     }
     
     // Visibility
     if (statusVisibleUpdate) {
-        if (statusVisibleUpdate == "show") setStatusDisplayOptions(true);
-        else if (statusVisibleUpdate == "hide") setStatusDisplayOptions(false);
+        if (statusVisibleUpdate == "show") changed = setStatusDisplayOptions(true);
+        else if (statusVisibleUpdate == "hide") changed = setStatusDisplayOptions(false);
     }
 
     if (placementsVisibleUpdate) {
-        if (placementsVisibleUpdate == "show") setPlacementsDisplayOptions(true);
-        else if (placementsVisibleUpdate == "hide") setPlacementsDisplayOptions(false);
+        if (placementsVisibleUpdate == "show") changed = setPlacementsDisplayOptions(true);
+        else if (placementsVisibleUpdate == "hide") changed = setPlacementsDisplayOptions(false);
     }
 
     // RESET
-    if (reset == "true") resetOverlay();
+    if (reset == "true") changed = resetOverlay();
 
-    // Get the current data
-    const data = getOverlayData();
+    if (changed) notify(getOverlayData(), "overlay");
 
-    return NextResponse.json(data);
+    return NextResponse.json(getOverlayData());
 }

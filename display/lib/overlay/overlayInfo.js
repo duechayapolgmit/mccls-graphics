@@ -88,6 +88,7 @@ export function setGameNumber(gameNo) {
     // Check the multiplier associated and attach the multiplier with that (default x1.0)
     data.multiplier = multipliers[data.gameNumber] || "x1.0"; 
     save(data);
+    return true;
 }
 
 export function setGame(game) {
@@ -95,14 +96,16 @@ export function setGame(game) {
     // Check the game logo associated
     data.gameLogo = gameLogos[data.game] || "/game_logos/Default.png";
     save(data);
+
+    return true;
 }
 
 export function setPlaceName(place, name) {
-    if (typeof place != "number") return;
-    if (place > data.config.overlay.placements || place < 0) return;
+    if (typeof place != "number") return false;
+    if (place > data.config.overlay.placements || place < 0) return false;
 
     // Check if name is in the team_info.json - if not, return
-    if (!teamInfo[name]) return;
+    if (!teamInfo[name]) return false;
 
     // get the score
     let score = data.placements[place - 1].score;
@@ -113,11 +116,13 @@ export function setPlaceName(place, name) {
     }
 
     save(data)
+
+    return true;
 }
 
 export function setPlaceScore(place, score) {
-    if (typeof place != "number") {return};
-    if (place > data.config.overlay.placements || place < 0) return;
+    if (typeof place != "number") return false;
+    if (place > data.config.overlay.placements || place < 0) return false;
 
     // get the name - if applicable
     let name = "NONE";
@@ -131,24 +136,30 @@ export function setPlaceScore(place, score) {
     }
 
     save(data)
+    return true;
 }
 
 export function setStatusDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.statusVisible = option;
         save(data);
-    } 
+        return true;
+    }
+    return false;
 }
 
 export function setPlacementsDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.placementsVisible = option;
         save(data);
-    }   
+        return true;
+    }
+    return false;
 }
 
 /* RESET */
 export function resetOverlay() {
     data = loadDefaults();
     save(data);
+    return true;
 }

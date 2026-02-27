@@ -1,10 +1,10 @@
 import gameInfo from '@/data/game_logos.json'
 
-import {setGame as overlaySetGame} from '@/lib/overlay/overlayInfo'
-
 import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
+
+import { notify } from "@/lib/transmitter/listeners";
 
 const statePath = path.join(process.cwd(), "state/voting.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/voting.json")
@@ -76,7 +76,7 @@ export const getData = () => data;
 ----------------- */ 
 // Set game in the next available slot
 export function setGame(game) {
-    if (!gameInfo[game]) return; // if game not exists, return
+    if (!gameInfo[game]) return false; // if game not exists, return
 
     data.slots.some(slot => {
         if (slot.game == "NONE") {
@@ -86,23 +86,27 @@ export function setGame(game) {
     });
     
     save(data);
+    return true;
 }
 
 // Set game in a specified slot
 export function setGameInSlot(slot, game) {
-    if (typeof slot != "number") return;
-    if (!gameInfo[game] && !(game=="NONE")) return; // if game not exists, return
-    if (!data.slots[slot-1]) return; // if slot doesn't exist, return
+    if (typeof slot != "number") return false;
+    if (!gameInfo[game] && !(game=="NONE")) return false; // if game not exists, return
+    if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
 
     data.slots[slot-1].game = game;
     save(data);
+    return true;
 }
 
 export function setDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.visible = option;
         save(data);
+        return true;
     } 
+    return false;
 }
 
 /* --------------
@@ -110,9 +114,9 @@ export function setDisplayOptions(option) {
 ----------------- */ 
 // Choose the game in specified slot
 export function chooseGame(slot) {
-    if (typeof slot != "number") return;
-    if (!data.slots[slot-1]) return; // if slot doesn't exist, return
-    if (data.slots[slot-1].game == "" || data.slots[slot-1].game == "NONE") return; // if slot doesn't contain games, return
+    if (typeof slot != "number") return false;
+    if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
+    if (data.slots[slot-1].game == "" || data.slots[slot-1].game == "NONE") return false; // if slot doesn't contain games, return
 
     // Set that chosen slot to be true
     data.slots[slot-1].chosen = true;
@@ -122,16 +126,18 @@ export function chooseGame(slot) {
     setTimeout(() => {
         data.slots[slot-1].chosen = false;
         setGameInSlot(slot, "NONE");
-
+        notify(data); // notify that there's a change
         fetch('http://localhost:3000/api/overlay?game='+game) // hard-coding the local URL for now.....
     }, 30000)
 
 
     save(data);
+    return true;
 }
 
 /* RESET */
 export function resetVoting() {
     data = loadDefaults();
     save(data);
+    return true;
 }

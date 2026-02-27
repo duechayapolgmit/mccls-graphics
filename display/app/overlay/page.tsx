@@ -47,14 +47,15 @@ export default function Page() {
             img.src = team.icon;
         })
 
-        // syncing
-        const fetcher = setInterval(async () => {
-            const res = await fetch('/api/overlay', { cache: "no-store"});
-            const json = await res.json();
-            setOverlayData(json);
-        }, 1000);
+        // Register SSE
+        const evtSrc = new EventSource('/api/overlay/subscribe')
 
-        return () => clearInterval(fetcher);
+        evtSrc.onmessage = (e) => {
+            const evtData = JSON.parse(e.data)
+            setOverlayData(evtData)
+        }
+
+        return () => evtSrc.close();
     }, [])
 
     const headerDisplay = () => {

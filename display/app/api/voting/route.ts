@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions} from '@/lib/voting/votingInfo'
+import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -14,23 +15,28 @@ export function GET(request: NextRequest) {
 
     const reset = searchParams.get('reset');
 
+    // Changes
+    let changed = false;
+
     // Update Game Slots
     if (gameUpdate) {
-        if (slotUpdate) setGameInSlot(parseInt(slotUpdate), gameUpdate);
-        else setGame(gameUpdate);
+        if (slotUpdate) changed = setGameInSlot(parseInt(slotUpdate), gameUpdate);
+        else changed = setGame(gameUpdate);
     }
 
     // Choose a slot
-    if (slotChosenUpdate) chooseGame(parseInt(slotChosenUpdate));
+    if (slotChosenUpdate) changed = chooseGame(parseInt(slotChosenUpdate));
 
     // Displays or not
     if (votingDisplayUpdate) {
-        if (votingDisplayUpdate == "show") setDisplayOptions(true);
-        else if (votingDisplayUpdate == "hide") setDisplayOptions(false);
+        if (votingDisplayUpdate == "show") changed = setDisplayOptions(true);
+        else if (votingDisplayUpdate == "hide") changed = setDisplayOptions(false);
     }
 
     // RESET
-    if (reset == "true") resetVoting();
+    if (reset == "true") changed = resetVoting();
+
+    if (changed) notify(getData(), "voting");
 
     return NextResponse.json(getData());
 }
