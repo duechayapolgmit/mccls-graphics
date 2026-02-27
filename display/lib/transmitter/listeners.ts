@@ -14,7 +14,6 @@ export function subscribe(listener: Listener, type: string) {
   return () => {
     let listenerSet = listeners.get(type) || new Set<Listener>();
     listenerSet.delete(listener);
-    console.log('deadge')
   }
 }
 
@@ -22,7 +21,6 @@ export function subscribe(listener: Listener, type: string) {
 export function notify(data: any, type: string) {
   let listenerSet = listeners.get(type) || new Set<Listener>();  // get the listener on type
 
-  console.log(listenerSet)
   for (const listener of listenerSet) {
     listener(data);
   }
