@@ -1,0 +1,44 @@
+body {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.ctrl h1 {
+    font-family: Metropolis BL;
+    font-size: xx-large;
+    text-transform: uppercase;
+}
+
+.ctrl h2 {
+    font-family: Metropolis Bold;
+    font-size: x-large;
+}
+
+.ctrl h3 {
+    font-family: Metropolis Bold;
+    font-size: large;
+}
+
+.entry {
+    display: flex;
+    font-family: Metropolis;
+    margin-bottom: 5px;
+}
+
+.entry input {
+    border-width: 1px;
+    padding: 2px;
+    margin-right: 5px;
+}
+
+.entry_heading {
+    font-family: Metropolis;
+    margin-right: 10px;
+    width: 25px;
+}
+
+.entry_heading_extended {
+    font-family: Metropolis;
+    margin-right: 10px;
+    width: 100px;
+}
