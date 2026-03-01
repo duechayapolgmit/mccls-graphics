@@ -19,6 +19,12 @@ body {
     font-size: large;
 }
 
+.ctrl hr {
+    width: 750px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .entry {
     display: flex;
     font-family: Metropolis;

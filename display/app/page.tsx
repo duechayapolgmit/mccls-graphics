@@ -18,6 +18,12 @@ export default async function Home() {
     redirect('/');
   }
 
+  async function resetOverlay(formData: FormData) {
+    'use server';
+    await fetch('http://localhost:3000/api/overlay?reset=true')
+    redirect('/')
+  }
+
   const showHide = (option: boolean) => {
     if (option) return "show";
     else return "hide";
@@ -67,6 +73,14 @@ export default async function Home() {
           <input type="text" name="placements" defaultValue={showHide(overlayData.placementsVisible)}/>
         </form>
       </div>
+
+      <h3>Reset Overlay</h3>
+      <form className={styles.entry} action={resetOverlay}>
+        <input type="submit" value="RESET OVERLAY (can't be undone)"/>
+      </form>
+
+      <hr/>
+
     </div>
   );
 }
