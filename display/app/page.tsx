@@ -1,6 +1,6 @@
 import styles from './main.module.css';
 import { redirect } from 'next/navigation';
-import ControlPanelTabber from './client';
+import ControlPanelTabber, { DelayedForm } from './client';
 
 export default async function Home() {
   
@@ -32,7 +32,18 @@ export default async function Home() {
     if (params.get('status')) params.set('status', showHideString(params.get('status')))
 
     await fetch(`http://localhost:3000/api/voting?${params.toString()}`);
-   
+
+    // Delay for slot chosen, if valid
+    if (params.get('slotChosen')) {
+      const slotChosen = parseInt(params.get('slotChosen') || "0") - 1;
+      if (slotChosen <= -1 || slotChosen > votingData.slots.length) return; // if invalid = return
+
+      const data = votingData.slots[slotChosen].game
+      if (data == "NONE") return;
+
+      await wait(30000);
+    }
+    redirect('/');
   }
 
   async function resetOverlay(formData: FormData) {
@@ -119,11 +130,11 @@ export default async function Home() {
               </form>
             </div>
           ))}
-          <h3>Choose a game based on slot (have to manually refresh to update everything on here)</h3>
-          <form className={styles.entry} action={updateVoting}>
+          <h3>Choose a game based on active game slot</h3>
+          <DelayedForm action={updateVoting} data={votingData.slots}>
             <input name="slotChosen" type="number"/>
             <button type="submit">OK</button>
-          </form>
+          </DelayedForm>
           <h3>Toggle Display (show/hide)</h3>
           <form className={styles.entry} action={updateOverlay}>
             <input type="hidden" name="status" value={"false"} />
@@ -144,3 +155,5 @@ const showHideString = (option: string | null) => {
     if (option == "true" || option == "on") return "show";
     else return "hide";
 }
+
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
