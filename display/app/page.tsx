@@ -2,13 +2,23 @@ import styles from './main.module.css';
 import { redirect } from 'next/navigation';
 import ControlPanelTabber, { DelayedForm } from './client';
 
+// CONSTANTS
+const API_URL = 'http://localhost:3000/api'
+
+// HELPERS
+const showHideString = (option: string | null) => ((option == "true" || option == "on") ? "show" : "hide")
+const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+async function apiFetch(endpoint: string, params?: URLSearchParams) {
+  const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
+  return fetch(url, {cache:'no-store'})
+}
+
 export default async function Home() {
-  
-  const overlayData = await fetch('http://localhost:3000/api/overlay', { cache: 'no-store' })
-    .then(r => r.json());
-  
-  const votingData = await fetch('http://localhost:3000/api/voting', {cache: 'no-cache'})
-    .then(r => r.json());
+
+  const [overlayData, votingData] = await Promise.all([
+    apiFetch('overlay').then(r => r.json()),
+    apiFetch('voting').then(r => r.json())
+  ]);
 
   async function updateOverlay(formData: FormData) {
     'use server';
@@ -19,7 +29,7 @@ export default async function Home() {
     if (params.get('status')) params.set('status', showHideString(params.get('status')))
     if (params.get('placements')) params.set('placements', showHideString(params.get('placements')))
 
-    await fetch(`http://localhost:3000/api/overlay?${params.toString()}`);
+    await apiFetch('overlay', params)
     redirect('/');
   }
 
@@ -31,7 +41,7 @@ export default async function Home() {
 
     if (params.get('status')) params.set('status', showHideString(params.get('status')))
 
-    await fetch(`http://localhost:3000/api/voting?${params.toString()}`);
+    await apiFetch('voting', params)
 
     // Delay for slot chosen, if valid
     if (params.get('slotChosen')) {
@@ -46,15 +56,15 @@ export default async function Home() {
     redirect('/');
   }
 
-  async function resetOverlay(formData: FormData) {
+  async function resetOverlay() {
     'use server';
-    await fetch('http://localhost:3000/api/overlay?reset=true')
+    apiFetch('overlay', new URLSearchParams({ reset: 'true' }));
     redirect('/')
   }
 
-  async function resetVoting(formData: FormData) {
+  async function resetVoting() {
     'use server';
-    await fetch('http://localhost:3000/api/voting?reset=true')
+    apiFetch('voting', new URLSearchParams({ reset: 'true' }));
     redirect('/')
   }
 
@@ -150,10 +160,3 @@ export default async function Home() {
       </div>
   );
 }
-
-const showHideString = (option: string | null) => {
-    if (option == "true" || option == "on") return "show";
-    else return "hide";
-}
-
-const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
