@@ -17,6 +17,17 @@ body {
   opacity: 75%
 }
 
+.main-screen-label {
+  font-family: Metropolis Bold;
+  padding-right:10px;
+}
+
+.main-screen-input {
+  font-family: Metropolis;
+  border-color: black;
+  border-width: 1px;
+}
+
 .overlay {
   position: relative;
   top: 51px;
@@ -151,6 +162,10 @@ body {
 .finale-points-won {color: rgba(255,255,0);}
 
 /** Animations **/
+.transition {
+    transition: transform 1s ease;
+}
+
 .status-transition {
     transition: transform 1s ease;
 }

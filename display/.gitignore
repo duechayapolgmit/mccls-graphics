@@ -44,4 +44,5 @@ next-env.d.ts
 *.bat
 
 # states
-/state/overlay.json
+state/overlay.json
+state/voting.json

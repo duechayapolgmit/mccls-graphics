@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/overlay/overlayInfo';
+import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -18,34 +19,41 @@ export function GET(request: NextRequest) {
     const reset = searchParams.get('reset');
 
     // Current info
-    let currentGameNo = getGameNumber();
-    let currentGame = getGame();
-
     let currentPlacements = getPlacements();
-
-    let currentStatusVisible = getStatusDisplayOptions();
-    let currentPlacementsVisible = getPlacementsDisplayOptions();
-    
+    let changed = false;
+  
     // Game Number
-    if (gameNoUpdate == null || gameNoUpdate == undefined) currentGameNo = currentGameNo;
-    else if (gameNoUpdate == "increase") currentGameNo++;
-    else if (gameNoUpdate == "reset") currentGameNo = 1;
-    else currentGameNo = parseInt(gameNoUpdate);
+    if (gameNoUpdate) {
+        let currentGameNo = getGameNumber();
+
+        switch(gameNoUpdate) {
+            case "increase":
+                currentGameNo++;
+                break;
+            case "reset":
+                currentGameNo = 1;
+                break;
+            default:
+                currentGameNo = parseInt(gameNoUpdate);
+                break;
+        }
+
+        changed = setGameNumber(currentGameNo)
+    }
 
     // Game
-    if (gameUpdate == null || gameUpdate == undefined) currentGame = currentGame;
-    else currentGame = gameUpdate;
+    if (gameUpdate) changed = setGame(gameUpdate);
 
     // Placements
     if (placeUpdate && placeNameUpdate) { // Name
-        setPlaceName(parseInt(placeUpdate), placeNameUpdate);
+        changed = setPlaceName(parseInt(placeUpdate), placeNameUpdate);
     }
 
     if (placeUpdate && placeScoreUpdate) { // Score
         let place = parseInt(placeUpdate)
         if (currentPlacements[place - 1]) {
-            if (placeScoreUpdate == "increase") setPlaceScore(place, currentPlacements[place -1].score + 1);
-            else setPlaceScore(place, parseInt(placeScoreUpdate))
+            if (placeScoreUpdate == "increase") changed = setPlaceScore(place, currentPlacements[place -1].score + 1);
+            else changed = setPlaceScore(place, parseInt(placeScoreUpdate))
         }
     }
 
@@ -53,28 +61,25 @@ export function GET(request: NextRequest) {
     if (dbActivateUpdate == "true") {
         let placementsCount = currentPlacements.length;
         for (let i = 0; i < placementsCount; i++) {
-            setPlaceScore(i+1, 0)
+            changed = setPlaceScore(i+1, 0)
         }
     }
     
     // Visibility
-    if (statusVisibleUpdate == "show") currentStatusVisible = true;
-    else if (statusVisibleUpdate == "hide") currentStatusVisible = false;
+    if (statusVisibleUpdate) {
+        if (statusVisibleUpdate == "show") changed = setStatusDisplayOptions(true);
+        else if (statusVisibleUpdate == "hide") changed = setStatusDisplayOptions(false);
+    }
 
-    if (placementsVisibleUpdate == "show") currentPlacementsVisible = true;
-    else if (placementsVisibleUpdate == "hide") currentPlacementsVisible = false;
-
-    // Set back
-    setGameNumber(currentGameNo);
-    setGame(currentGame);
-    setStatusDisplayOptions(currentStatusVisible);
-    setPlacementsDisplayOptions(currentPlacementsVisible);
+    if (placementsVisibleUpdate) {
+        if (placementsVisibleUpdate == "show") changed = setPlacementsDisplayOptions(true);
+        else if (placementsVisibleUpdate == "hide") changed = setPlacementsDisplayOptions(false);
+    }
 
     // RESET
-    if (reset == "true") resetOverlay();
+    if (reset == "true") changed = resetOverlay();
 
-    // Get the current data
-    const data = getOverlayData();
+    if (changed) notify(getOverlayData(), "overlay");
 
-    return NextResponse.json(data);
+    return NextResponse.json(getOverlayData());
 }

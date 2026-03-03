@@ -1,0 +1,103 @@
+body {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.ctrl h1 {
+    font-family: Metropolis BL;
+    font-size: xx-large;
+    text-transform: uppercase;
+}
+
+.ctrl h2 {
+    font-family: Metropolis Bold;
+    font-size: x-large;
+}
+
+.ctrl h3 {
+    font-family: Metropolis Bold;
+    font-size: large;
+}
+
+.ctrl hr {
+    width: 750px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tabList {
+    display: flex;
+    font-family: Metropolis Bold;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.tabList button {
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.tabList button:hover {
+    box-shadow: inset 0px -5px 10px -5px black;
+}
+
+.tabList button.activeTab {
+    box-shadow: inset 0px -5px 10px -5px black;
+}
+
+.entry {
+    display: flex;
+    font-family: Metropolis;
+    margin-bottom: 5px;
+}
+
+.entry input {
+    border-width: 1px;
+    padding: 2px;
+    margin-right: 5px;
+}
+
+.entry_heading {
+    font-family: Metropolis;
+    margin-right: 10px;
+    width: 25px;
+}
+
+.entry_heading_extended {
+    font-family: Metropolis;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.loadingOverlay {
+  position: fixed; /* covers the screen */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-size: 2rem;
+  font-family: Metropolis Black;
+  text-transform: uppercase;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid transparent;
+  border-top: 5px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

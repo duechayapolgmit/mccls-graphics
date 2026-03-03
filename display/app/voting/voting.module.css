@@ -1,0 +1,30 @@
+.games {
+    position: relative;
+    height: 980px;
+    width: 297px;
+    top: 50px;
+    left: 50px;
+
+    display: grid;
+    place-items: center;
+}
+
+.game {
+    width: 297px;
+    height: 114px;
+    margin-bottom: 10px;
+}
+
+.game_unchosen { background-color: rgba(0, 0, 0, .75);}
+.game_chosen { background-color: rgba(141, 198, 63); }
+
+.game img {
+    margin-left: auto;
+    margin-right: auto;             
+    height: 120%;
+    translate: 0px -11px;
+}
+
+.games_slide_out { 
+  transform: translateX(-120%);
+}

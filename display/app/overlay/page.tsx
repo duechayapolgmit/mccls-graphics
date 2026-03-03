@@ -47,14 +47,15 @@ export default function Page() {
             img.src = team.icon;
         })
 
-        // syncing
-        const fetcher = setInterval(async () => {
-            const res = await fetch('/api/overlay', { cache: "no-store"});
-            const json = await res.json();
-            setOverlayData(json);
-        }, 1000);
+        // Register SSE
+        const evtSrc = new EventSource('/api/overlay/subscribe')
 
-        return () => clearInterval(fetcher);
+        evtSrc.onmessage = (e) => {
+            const evtData = JSON.parse(e.data)
+            setOverlayData(evtData)
+        }
+
+        return () => evtSrc.close();
     }, [])
 
     const headerDisplay = () => {
@@ -91,7 +92,7 @@ export default function Page() {
 
     return (
         <div className="overlay">
-            <div className={overlayData.statusVisible ? "status slide-in" : "status slide-out"}>
+            <div className={overlayData.statusVisible ? "status-transition slide-in" : "status-transition slide-out"}>
                 <div className="header">
                     <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}
