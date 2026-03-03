@@ -9,7 +9,8 @@ Each tool is located in its own separate folders.
 
 ## Features
 This repository currently contains the following features:
-* [Event Overlay](https://github.com/duechayapolgmit/mccls-graphics/wiki/Event-Overlay) - displays overlay containing information about the current event. This includes the game number, point multiplier, logo of the game being played, top 2 teams and Dodgebolt scores. All of which are related to the MC Championship event.
+* [Event Overlay](https://github.com/duechayapolgmit/mccls-graphics/wiki/Event-Overlay) - displays overlay containing information about the current event. This includes the game number, point multiplier, logo of the game being played, top teams and their scores.
+* [Voting Screen](https://github.com/duechayapolgmit/mccls-graphics/wiki/Voting-Screen) - displays the voting screen, containing games that are up for voting in an event.
 
 ## Usage
 For the `display` folder, the application can be deployed by going into the folder and running the application itself.
@@ -21,8 +22,9 @@ npm run dev
 npm run build
 npm run start
 ```
-The user can then navigate to the application via `localhost:3000` address, which shows a very temporary (containing only a `hi` message) landing page. They can go to each of the following route to display each of the graphics component:
+The user can then navigate to the application via `localhost:3000` address, which shows a control panel that sends GET requests to change the data in each feature of the `display` web application. They can go to each of the following route to display each of the graphics component:
 * `localhost:3000/overlay` - displays the event overlay
+* `localhost:3000/voting` - displays the voting screen
 
 ### General Configurations
 The application can also be configured via its YAML file (`config/general.yaml`)
