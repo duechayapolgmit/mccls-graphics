@@ -13,7 +13,10 @@ export default async function Home() {
     'use server';
 
     const params = new URLSearchParams();
-    formData.forEach((value, key) => params.append(key, value.toString()));
+    formData.forEach((value, key) => params.set(key, value.toString()));
+
+    if (params.get('status')) params.set('status', showHideString(params.get('status')))
+    if (params.get('placements')) params.set('placements', showHideString(params.get('placements')))
 
     await fetch(`http://localhost:3000/api/overlay?${params.toString()}`);
     redirect('/');
@@ -25,8 +28,9 @@ export default async function Home() {
     const params = new URLSearchParams();
     formData.forEach((value, key) => params.append(key, value.toString()));
 
-    await fetch(`http://localhost:3000/api/voting?${params.toString()}`);
+    if (params.get('status')) params.set('status', showHideString(params.get('status')))
 
+    await fetch(`http://localhost:3000/api/voting?${params.toString()}`);
    
   }
 
@@ -40,11 +44,6 @@ export default async function Home() {
     'use server';
     await fetch('http://localhost:3000/api/voting?reset=true')
     redirect('/')
-  }
-
-  const showHide = (option: boolean) => {
-    if (option) return "show";
-    else return "hide";
   }
 
   return (
@@ -82,14 +81,16 @@ export default async function Home() {
       <div className={styles.entry}>
         <span className={styles.entry_heading_extended}>Status</span>
         <form action={updateOverlay}>
-          <input type="text" name="status" defaultValue={showHide(overlayData.statusVisible)}/>
+          <input type="hidden" name="status" value={"false"} />
+          <input type="checkbox" name="status" defaultChecked={overlayData.statusVisible}/>
           <button type="submit">OK</button>
         </form>
       </div>
       <div className={styles.entry}>
         <span className={styles.entry_heading_extended}>Placements</span>
         <form action={updateOverlay}>
-          <input type="text" name="placements" defaultValue={showHide(overlayData.placementsVisible)}/>
+          <input type="hidden" name="placements" value={"false"} />
+          <input type="checkbox" name="placements" defaultChecked={overlayData.placementsVisible}/>
           <button type="submit">OK</button>
         </form>
       </div>
@@ -119,7 +120,8 @@ export default async function Home() {
       </form>
       <h3>Toggle Display (show/hide)</h3>
       <form className={styles.entry} action={updateOverlay}>
-        <input type="text" name="status" defaultValue={showHide(votingData.visible)}/>
+        <input type="hidden" name="status" value={"false"} />
+        <input type="checkbox" name="status" defaultChecked={votingData.visible}/>
         <button type="submit">OK</button>
       </form>
       <h3>Reset Overlay</h3>
@@ -128,4 +130,9 @@ export default async function Home() {
       </form>
     </div>
   );
+}
+
+const showHideString = (option: string | null) => {
+    if (option == "true" || option == "on") return "show";
+    else return "hide";
 }
