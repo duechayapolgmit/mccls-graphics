@@ -11,7 +11,7 @@ export function GET(request: NextRequest) {
 
     const placeUpdate = searchParams.get('place')
     const placeNameUpdate = searchParams.get('placeName')
-    const placeScoreUpdate = searchParams.get('placeScore')
+    const placeScoreUpdate = searchParams.get('placeScore') || searchParams.get('score')
 
     const dbActivateUpdate = searchParams.get('dodgebolt')
     const statusVisibleUpdate = searchParams.get('status')
