@@ -65,6 +65,8 @@ function save(state) {
 }
 
 let data = load();
+let currentSelectedSlot;
+let currentSelectedTimeout;
 
 /* --------------
     GETTERS
@@ -118,14 +120,25 @@ export function chooseGame(slot) {
     if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
     if (data.slots[slot-1].game == "" || data.slots[slot-1].game == "NONE") return false; // if slot doesn't contain games, return
 
+    // Unselect and clear the timeout of the game that was selected, if accidentally select another one.
+    if (currentSelectedSlot) {
+        data.slots[currentSelectedSlot-1].chosen = false;
+        clearTimeout(currentSelectedTimeout);
+        notify(data, "voting"); // notify that there's a change
+    }
+
     // Set that chosen slot to be true
     data.slots[slot-1].chosen = true;
     let game = data.slots[slot-1].game;
+    currentSelectedSlot = slot
 
     // After 30 seconds, set that chosen slot to be false, clear the slot, and set the game on the overlay to the specified game
-    setTimeout(() => {
+    currentSelectedTimeout = setTimeout(() => {
         data.slots[slot-1].chosen = false;
         setGameInSlot(slot, "NONE");
+
+        currentSelectedSlot = null;
+        currentSelectedTimeout = null;
         notify(data, "voting"); // notify that there's a change
         fetch('http://localhost:3000/api/overlay?game='+game) // hard-coding the local URL for now.....
     }, 30000)

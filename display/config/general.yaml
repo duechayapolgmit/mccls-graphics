@@ -1,6 +1,6 @@
 colours:
   primary: "#b51a14"     
-  secondary: "#760804"   
+  secondary: "#0b2f67"   
 overlay:
   toggle:
     multiplier: true
