@@ -105,7 +105,7 @@ export function setPlaceName(place, name) {
     if (place > data.config.overlay.placements || place < 0) return false;
 
     // Check if name is in the team_info.json - if not, return
-    if (!teamInfo[name]) return false;
+    if (!teamInfo[name] && name != "NONE") return false;
 
     // get the score
     let score = data.placements[place - 1].score;
