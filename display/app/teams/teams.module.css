@@ -1,5 +1,5 @@
 .main {
-    background-image: url('/Orange-Backplate.png');
+    background-image: var(--bg-image);
     position: relative;
     width:1920px;
     height:1080px;

@@ -4,8 +4,11 @@ import styles from './teams.module.css'
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
 import html2canvas from 'html2canvas';
+import { getInfo, getTeamBackground } from '@/lib/client/configInfo';
 
 export default function Page() {
+    const eventInfo = getInfo();
+
     const captureRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -41,8 +44,15 @@ export default function Page() {
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
+    const getPageBackground = () => {
+        let bgPath = getTeamBackground();
+
+        if (bgPath == "none") return {} as React.CSSProperties
+        return {"--bg-image": `url(${bgPath})`} as React.CSSProperties
+    }
+
     return (
-        <div className={styles.main} ref={captureRef}>
+        <div className={styles.main} ref={captureRef} style={getPageBackground()}>
             <div className={styles.screen}>
                 <div className={styles.left}>
                     <TeamAndMembers option="left" team="RED"/>
@@ -51,7 +61,7 @@ export default function Page() {
                     <TeamAndMembers option="left" team="LIME"/>
                     <TeamAndMembers option="left" team="GREEN"/>
                     <div className={styles.event_name}>
-                        <p>MC Championship: <span className={styles.event_tagline}>Hermit Takeover</span></p>
+                        <p>{eventInfo.event_name}: <span className={styles.event_tagline}>{eventInfo.tagline}</span></p>
                     </div>
                 </div>
                 <div className={styles.right}>

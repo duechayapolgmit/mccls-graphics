@@ -1,3 +1,6 @@
+info:
+  event_name: "MC Championship"
+  tagline: "Hermit Takeover"
 colours:
   primary: "#b51a14"     
   secondary: "#760804"   
@@ -10,3 +13,5 @@ overlay:
   score_limit: 3
 voting:
   slots: 8
+teams:
+  background: none
