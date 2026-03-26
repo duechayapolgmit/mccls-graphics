@@ -1,13 +1,14 @@
 .main {
     background-image: url('/BG-Season4.png');
+    position: relative;
     width:1920px;
     height:1080px;
     /*overflow: hidden;*/
 }
 
 .screen {
-    position: relative;
-    top: 40px;
+    display: flex;
+    padding-top: 40px;
 }
 
 .team {
@@ -43,7 +44,6 @@
     
     top: -170px;
     left: 235px;
-
 }
 
 .member {
@@ -59,18 +59,24 @@
 }
 
 .nameplate {
-    position: relative;
+    position: absolute;
+    bottom: 0;
     background-color: rgba(0, 0, 0, .75);
     width: 150px;
     height:20px;
-    line-height: 22px;
-    top: 130px;
+    padding-top: 1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     font-family: Metropolis BL;
     color: white;
     text-transform: uppercase;
     text-align: center;
     font-size: 16px;
+
+    overflow: hidden;
 }
 
 .nameplate_sub { background-color: rgba(141,198,63, .75) !important}
@@ -78,8 +84,7 @@
 
 .right {
     position: relative;
-    top: -988px;
-    left: 970px;
+    margin-left:25px;
 }
 
 .team_icon_right {
@@ -97,6 +102,8 @@
     position: relative;
     background-color: rgba(0, 0, 0, .75);
     width: 945px;
+    height: 62px;
+    padding-bottom: 42px;
 
     font-family: Metropolis BL;
     color: white;
@@ -110,10 +117,11 @@
 }
 
 .remark {
-    position: relative;
+    position: absolute;
     background-color: rgba(0, 0, 0, .75);
     left: 400px;
     width: 550px;
+    height: 32px;
 
     font-family: Metropolis BL;
     color: white;
@@ -124,3 +132,16 @@
 
 .remark_sub { color: rgb(141,198,63);}
 .remark_new { color: rgb(243,206,0)}
+
+/** CAPTURING CSS - just for html2canvas **/
+.capture .nameplate {
+    padding-bottom: 18px;
+}
+
+.capture .event_name p {
+    transform: translateY(-22px)
+}
+
+.capture .remark p {
+    transform: translateY(-12px)
+}

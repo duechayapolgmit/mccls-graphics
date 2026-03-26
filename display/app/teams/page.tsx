@@ -9,20 +9,31 @@ export default function Page() {
     const captureRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const handleKey = (e: KeyboardEvent) => {
+        const handleKey = async (e: KeyboardEvent) => {
             if (e.key.toLowerCase() === 's') {
                 if (!captureRef.current) return;
 
-                html2canvas(captureRef.current, {
+                captureRef.current.classList.add(styles.capture);
+
+                await document.fonts.ready;
+
+                await new Promise(r => requestAnimationFrame(r))
+
+                const canvas = await html2canvas(captureRef.current, {
+                    scale: 1,
                     useCORS: true,
                     allowTaint: false,
-                    backgroundColor: null
-                }).then(canvas => {
-                    const link = document.createElement('a');
-                    link.download = 'teams.png';
-                    link.href = canvas.toDataURL();
-                    link.click();
+                    backgroundColor: null,
+                    width: 1920,
+                    height: 1080
                 });
+
+                captureRef.current.classList.remove(styles.capture);
+                
+                const link = document.createElement('a');
+                link.download = 'teams.png';
+                link.href = canvas.toDataURL();
+                link.click();
             }
         };
 
@@ -40,7 +51,7 @@ export default function Page() {
                     <TeamAndMembers option="left" team="LIME"/>
                     <TeamAndMembers option="left" team="GREEN"/>
                     <div className={styles.event_name}>
-                        MC Championship: <span className={styles.event_tagline}>Hermit Takeover</span>
+                        <p>MC Championship: <span className={styles.event_tagline}>Hermit Takeover</span></p>
                     </div>
                 </div>
                 <div className={styles.right}>
@@ -51,7 +62,7 @@ export default function Page() {
                     <TeamAndMembers option="right" team="PINK"/>
                     
                     <div className={styles.remark}>
-                        <span className={styles.remark_sub}>Lime = Sub-ins</span> | <span className={styles.remark_new}>Yellow = New Player</span>
+                        <p><span className={styles.remark_sub}>Lime = Sub-ins</span> | <span className={styles.remark_new}>Yellow = New Player</span></p>
                     </div>
                 </div>
             </div>
