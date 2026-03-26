@@ -115,8 +115,12 @@ function Member({team, name}: {team: string, name: string}) {
     let getBG = (name: string) => {
         let imagePath = getPlayerProfile(name);
 
-        if (name != "") return {"--profile": `url(${imagePath})`} as React.CSSProperties
-        return {"--bg-colour": getBackground(team), "--profile": `url(${imagePath})`} as React.CSSProperties
+        // If name is hannahxxrose or blank
+        if (name == "hannahxxrose" || name == "") {
+            return {"--bg-colour": getBackground(team), "--profile": `url(${imagePath})`} as React.CSSProperties
+        }
+        
+        return {"--profile": `url(${imagePath})`} as React.CSSProperties
     };
 
     let getName = (name: string) => {
