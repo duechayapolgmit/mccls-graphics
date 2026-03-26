@@ -112,6 +112,13 @@ function Team({team}: {team: string}) {
 
 function Member({team, name}: {team: string, name: string}) {
 
+    let getBG = (name: string) => {
+        let imagePath = getPlayerProfile(name);
+
+        if (name != "") return {"--profile": `url(${imagePath})`} as React.CSSProperties
+        return {"--bg-colour": getBackground(team), "--profile": `url(${imagePath})`} as React.CSSProperties
+    };
+
     let getName = (name: string) => {
         let displayName = getPlayerName(name);
         if (displayName) {
@@ -130,7 +137,7 @@ function Member({team, name}: {team: string, name: string}) {
     }
 
     return (
-        <div className={styles.member} style={{"--bg-colour": getBackground(team), "--profile": `url(${getPlayerProfile(name)})`} as React.CSSProperties}>
+        <div className={styles.member} style={getBG(name)}>
             {getName(name)}
         </div>
     )
