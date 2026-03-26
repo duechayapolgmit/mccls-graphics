@@ -1,7 +1,15 @@
 {
+    "5up": {
+        "name": "5up",
+        "profile": "/player/profile/5up.jpg"
+    },
     "Bigbst4tz": {
         "name": "Bigbst4tz",
         "profile": "/player/profile/Bigbst4tz.jpg"
+    },
+    "Couriway": {
+        "name": "Couriway",
+        "profile":"/player/profile/Couriway.jpg"
     },
     "cubfan135": {
         "name": "cubfan135",
@@ -26,6 +34,10 @@
     "impulseSV": {
         "name": "impulseSV",
         "profile": "/player/profile/ImpulseSV.jpg"
+    },
+    "InfiniteDrift": {
+        "name": "InfiniteDrift",
+        "profile": "/player/profile/InfiniteDrift.jpg"
     },
     "InTheLittleWood": {
         "name": "Martyn ITLW",
@@ -74,6 +86,10 @@
     "xBCrafted": {
         "name": "xBCrafted",
         "profile": "/player/profile/xBCrafted.jpg"
+    },
+    "Xisuma": {
+        "name": "Xisuma",
+        "profile": "/player/profile/Xisuma.jpg"
     },
     "ZombieCleo": {
         "name": "ZombieCleo",
