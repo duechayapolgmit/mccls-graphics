@@ -1,14 +1,37 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './teams.module.css'
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
+import html2canvas from 'html2canvas';
 
 export default function Page() {
+    const captureRef = useRef<HTMLDivElement>(null);
 
-    
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === 's') {
+                if (!captureRef.current) return;
+
+                html2canvas(captureRef.current, {
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: null
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'teams.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            }
+        };
+
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, []);
+
     return (
-        <div className={styles.main}>
+        <div className={styles.main} ref={captureRef}>
             <div className={styles.screen}>
                 <div className={styles.left}>
                     <TeamAndMembers option="left" team="RED"/>
