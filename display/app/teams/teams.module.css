@@ -14,11 +14,17 @@
     margin-bottom: 15px;
 }
 
-.team_icon_left {
+.team_icon {
     position: relative;
-    background-color: red;
+    background-color: var(--bg-colour);
     width:225px;
     height:170px;
+    display: grid;
+    place-items: center;
+}
+
+.team_icon img {
+    height: 125px;
 }
 
 .members_left {
@@ -38,11 +44,8 @@
 
 .team_icon_right {
     position: relative;
-    background-color: blue;
     top: -170px;
     left: 725px;
-    width:225px;
-    height:170px;
 }
 
 .members_right {

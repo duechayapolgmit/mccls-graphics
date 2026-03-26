@@ -17,7 +17,7 @@
     "LIME": {
         "name": "Lime Llamas",
         "icon": "/team_icons/04-LimeLlamas.png",
-        "colour": "86be00"
+        "colour": "#86be00"
     },
     "GREEN": {
         "name": "Green Geckos",
