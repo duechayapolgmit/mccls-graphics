@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { getIconPath, getTeamName } from '@/lib/overlay/teamInfo';
+import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
+import { getColours, getOverlayInfo } from '@/lib/client/configInfo';
 
 import teamInfo from '@/data/team_info.json';
 
@@ -23,22 +24,10 @@ export default function Page() {
             score: -1
         }],
         statusVisible: true,
-        placementsVisible: true,
-        config: {
-            colours: {
-                primary: "#b51a14",
-                secondary: "#760804"
-            },
-            overlay: {
-                toggle: {
-                    multiplier: true,
-                    game_logo: true
-                },
-                header_text: "GAME",
-                score_limit: 3
-            }
-        }
+        placementsVisible: true
     });
+
+    const config = getOverlayInfo();
 
     useEffect(() => {
         // Preload all team icons
@@ -64,9 +53,9 @@ export default function Page() {
         if (overlayData.gameNumber > 8) headerClassNames = "event-status-final"
 
         // Configure the text
-        let headerText = `${overlayData.config.overlay.header_text} ${overlayData.gameNumber}`
+        let headerText = `${config.header_text} ${overlayData.gameNumber}`
         if (overlayData.gameNumber > 8) headerText = "FINAL DUEL"
-        else if (overlayData.config.overlay.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
+        else if (config.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
 
         return (
             <div className={headerClassNames}>{headerText}</div>
@@ -81,7 +70,7 @@ export default function Page() {
 
     const placementsDisplay = (places: ITeamPlacement[]) => {
         const lst = places.map((place: ITeamPlacement) => {
-            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} scoreLimit={overlayData.config.overlay.score_limit}/>)
+            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} scoreLimit={config.score_limit}/>)
         })
         return (
             <div className={overlayData.placementsVisible ? "placements-transition slide-in" : "placements-transition slide-out"}>
@@ -94,10 +83,10 @@ export default function Page() {
         <div className="overlay">
             <div className={overlayData.statusVisible ? "status-transition slide-in" : "status-transition slide-out"}>
                 <div className="header">
-                    <div className="ls-icon" style={{"--bg-colour": overlayData.config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
+                    <div className="ls-icon" style={{"--bg-colour": getColours().secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}
                 </div>
-                {overlayData.config.overlay.toggle.game_logo ? gameDisplay : null}
+                {config.toggle.game_logo ? gameDisplay : null}
             </div>
             {placementsDisplay(overlayData.placements)}
         </div>
