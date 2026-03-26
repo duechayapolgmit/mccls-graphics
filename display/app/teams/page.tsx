@@ -1,8 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react';
 import styles from './teams.module.css'
-import { getColours } from '@/lib/client/configInfo';
-import { getBackground, getIconPath } from '@/lib/client/teamInfo';
+import { getBackground, getIconPath, getTeamMembers } from '@/lib/client/teamInfo';
+import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
 
 export default function Page() {
 
@@ -37,17 +37,29 @@ export default function Page() {
 }
 
 function TeamAndMembers({option, team}: {option: string, team: string}) {
+    const membersDisplay = (team: string) => {
+        let members = getTeamMembers(team);
+        let memberIcons = members.map( (member: string) => {
+            return <Member key={member} team={team} name={member}/>
+        })
+        return <div className={styles.members}>{memberIcons}</div>
+    }
+
     if (option == "left") {
         return (
             <div className={styles.team}>
                 <Team team={team}/>
-                <div className={styles.members_left}></div>
+                <div className={styles.members_left}>
+                    {membersDisplay(team)}
+                </div>
             </div>
         )
     } else if (option == "right") {
         return (
             <div className={styles.team}>
-                <div className={styles.members_right}></div>
+                <div className={styles.members_right}>
+                    {membersDisplay(team)}                 
+                </div>
                 <div className={styles.team_icon_right}>
                     <Team team={team}/>
                 </div>
@@ -60,6 +72,22 @@ function Team({team}: {team: string}) {
     return (
         <div className={styles.team_icon} style={{"--bg-colour": getBackground(team)} as React.CSSProperties}>
             <img src={getIconPath(team)}/>
+        </div>
+    )
+}
+
+function Member({team, name}: {team: string, name: string}) {
+
+    let getName = (name: string) => {
+        let displayName = getPlayerName(name);
+
+        if (displayName) return <div className={styles.nameplate}>{displayName}</div>
+        else return null;
+    }
+
+    return (
+        <div className={styles.member} style={{"--bg-colour": getBackground(team), "--profile": `url(${getPlayerProfile(name)})`} as React.CSSProperties}>
+            {getName(name)}
         </div>
     )
 }

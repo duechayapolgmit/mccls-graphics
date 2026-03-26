@@ -1,4 +1,6 @@
 import teamInfo from '@/data/team_info.json';
+import teamMembers from '@/data/team_members.json'
+
 import {getConfig} from '@/lib/helper/config';
 import { getColours } from './configInfo';
 
@@ -23,4 +25,8 @@ export function getBackground(team) {
 
     if (data) return data.colour;
     return getColours().secondary;
+}
+
+export function getTeamMembers(team) {
+    return teamMembers[team] || []
 }
