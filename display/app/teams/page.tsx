@@ -8,21 +8,26 @@ export default function Page() {
     return (
         <div className={styles.main}>
             <div className={styles.screen}>
-                <TeamAndMembers option="left"/>
-                <TeamAndMembers option="left"/>
-                <TeamAndMembers option="left"/>
-                <TeamAndMembers option="left"/>
-                <TeamAndMembers option="left"/>
-                <TeamAndMembers option="right"/>
-                <TeamAndMembers option="right"/>
-                <TeamAndMembers option="right"/>
-                <TeamAndMembers option="right"/>
-                <TeamAndMembers option="right"/>
-                <div className={styles.event_name}>
-                    MC Championship: <span className={styles.event_tagline}>Hermit Takeover</span>
+                <div className={styles.left}>
+                    <TeamAndMembers option="left"/>
+                    <TeamAndMembers option="left"/>
+                    <TeamAndMembers option="left"/>
+                    <TeamAndMembers option="left"/>
+                    <TeamAndMembers option="left"/>
+                    <div className={styles.event_name}>
+                        MC Championship: <span className={styles.event_tagline}>Hermit Takeover</span>
+                    </div>
                 </div>
-                <div className={styles.remark}>
-                    <span className={styles.remark_sub}>Lime = Sub-ins</span> | <span className={styles.remark_new}>Yellow = New Player</span>
+                <div className={styles.right}>
+                    <TeamAndMembers option="right"/>
+                    <TeamAndMembers option="right"/>
+                    <TeamAndMembers option="right"/>
+                    <TeamAndMembers option="right"/>
+                    <TeamAndMembers option="right"/>
+                    
+                    <div className={styles.remark}>
+                        <span className={styles.remark_sub}>Lime = Sub-ins</span> | <span className={styles.remark_new}>Yellow = New Player</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,7 +45,7 @@ function TeamAndMembers({option}: {option: string}) {
         )
     } else if (option == "right") {
         return (
-            <div className={`${styles.team} ${styles.team_right}`}>
+            <div className={styles.team}>
                 <div className={styles.members_right}></div>
                 <div className={styles.team_icon_right}></div>
             </div>

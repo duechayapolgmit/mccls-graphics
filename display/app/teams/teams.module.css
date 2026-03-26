@@ -1,5 +1,5 @@
 .main {
-   
+    background-image: url('/BG-Season4.png');
     width:1920px;
     height:1080px;
 }
@@ -30,10 +30,10 @@
     height: 170px;
 }
 
-.team_right {
+.right {
     position: relative;
-    left: 975px;
-    top: -925px;
+    top: -988px;
+    left: 970px;
 }
 
 .team_icon_right {
@@ -56,7 +56,6 @@
 .event_name {
     position: relative;
     background-color: rgba(0, 0, 0, .75);
-    top: -925px;
     width: 945px;
 
     font-family: Metropolis BL;
@@ -73,8 +72,7 @@
 .remark {
     position: relative;
     background-color: rgba(0, 0, 0, .75);
-    top: -990px;
-    left: 1375px;
+    left: 400px;
     width: 550px;
 
     font-family: Metropolis BL;
