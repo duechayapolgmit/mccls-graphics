@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, getGame, setGame, getStatusDisplayOptions, getPlacementsDisplayOptions, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/overlay/overlayInfo';
+import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/server/overlayHandler';
 import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {

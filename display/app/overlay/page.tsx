@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { getIconPath, getTeamName } from '@/lib/teamInfo';
+import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 
 import teamInfo from '@/data/team_info.json';
 
