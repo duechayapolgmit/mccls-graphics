@@ -1,12 +1,16 @@
 {
-    "RED": ["MumboJumbo", "Rendog", "Skizzleman", "VintageBeef"],
-    "ORANGE": ["cubfan135", "Docm77", "Keralis", "xBCrafted"],
-    "YELLOW": ["GeminiTay", "PearlescentMoon", "Smajor", "ZombieCleo"],
-    "LIME": ["hypnotizd", "impulseSV", "InTheLittleWood", "Taneesha"],
-    "GREEN": ["Bigbst4tz", "Grian", "SolidarityGaming", "TangoTek"],
-    "CYAN": ["","","",""],
-    "AQUA": ["","","",""],
-    "BLUE": ["","","",""],
-    "PURPLE": ["","","",""],
-    "PINK": ["","","",""]
+    "teams": {
+        "RED": ["MumboJumbo", "Rendog", "Skizzleman", "VintageBeef"],
+        "ORANGE": ["cubfan135", "Docm77", "Keralis", "xBCrafted"],
+        "YELLOW": ["GeminiTay", "PearlescentMoon", "Smajor", "ZombieCleo"],
+        "LIME": ["hypnotizd", "impulseSV", "InTheLittleWood", "Taneesha"],
+        "GREEN": ["Bigbst4tz", "Grian", "SolidarityGaming", "TangoTek"],
+        "CYAN": ["","","",""],
+        "AQUA": ["","","",""],
+        "BLUE": ["","","",""],
+        "PURPLE": ["","","",""],
+        "PINK": ["","","",""]
+    },
+    "new_players": ["MumboJumbo", "VintageBeef", "Keralis", "xBCrafted", "hypnotizd", "Bigbst4tz"],
+    "sub_players": []
 }

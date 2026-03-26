@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import styles from './teams.module.css'
-import { getBackground, getIconPath, getTeamMembers } from '@/lib/client/teamInfo';
+import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
 
 export default function Page() {
@@ -80,8 +80,18 @@ function Member({team, name}: {team: string, name: string}) {
 
     let getName = (name: string) => {
         let displayName = getPlayerName(name);
-
-        if (displayName) return <div className={styles.nameplate}>{displayName}</div>
+        if (displayName) {
+            switch (getMemberStatus(name)) { // Checks if they are a new player or not, then determine the colour
+                case "none":
+                    return <div className={styles.nameplate}>{displayName}</div>
+                case "newcomer":
+                    return <div className={`${styles.nameplate} ${styles.nameplate_new}`}>{displayName}</div>
+                case "subsitute":
+                    return <div className={`${styles.nameplate} ${styles.nameplate_sub}`}>{displayName}</div>
+                default:
+                    return <div className={styles.nameplate}>{displayName}</div>
+            }
+        }
         else return null;
     }
 

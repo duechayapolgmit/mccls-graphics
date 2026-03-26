@@ -73,6 +73,9 @@
     font-size: 16px;
 }
 
+.nameplate_sub { background-color: rgba(141,198,63, .75) !important}
+.nameplate_new { background-color: rgba(243,206,0, .75) !important; color: black;}
+
 .right {
     position: relative;
     top: -988px;
@@ -119,5 +122,5 @@
     font-size: 22px;
 }
 
-.remark_sub { color: rgb(141,198,63)}
+.remark_sub { color: rgb(141,198,63);}
 .remark_new { color: rgb(243,206,0)}
