@@ -1,17 +1,19 @@
 'use client'
 import { useEffect, useRef, useState } from 'react';
 import styles from './teams.module.css'
+
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
+
 import html2canvas from 'html2canvas';
-import { getInfo, getTeamBackground } from '@/lib/client/configInfo';
+
+import config from '@/config/general.json'
 
 export default function Page() {
-    const eventInfo = getInfo();
-
     const captureRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        // Screenshotting
         const handleKey = async (e: KeyboardEvent) => {
             if (e.key.toLowerCase() === 's') {
                 if (!captureRef.current) return;
@@ -43,9 +45,10 @@ export default function Page() {
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
+    if (!config) return null;
 
     const getPageBackground = () => {
-        let bgPath = getTeamBackground();
+        let bgPath = config.teams.background;
 
         if (bgPath == "none") return {} as React.CSSProperties
         return {"--bg-image": `url(${bgPath})`} as React.CSSProperties
@@ -61,7 +64,7 @@ export default function Page() {
                     <TeamAndMembers option="left" team="LIME"/>
                     <TeamAndMembers option="left" team="GREEN"/>
                     <div className={styles.event_name}>
-                        <p>{eventInfo.event_name}: <span className={styles.event_tagline}>{eventInfo.tagline}</span></p>
+                        <p>{config.info.event_name}: <span className={styles.event_tagline}>{config.info.tagline}</span></p>
                     </div>
                 </div>
                 <div className={styles.right}>

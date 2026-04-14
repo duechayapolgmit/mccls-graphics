@@ -1,10 +1,7 @@
+import config from '@/config/general.json'
+
 import teamInfo from '@/data/team_info.json';
 import membersInfo from '@/data/team_members.json'
-
-import {getConfig} from '@/lib/helper/config';
-import { getColours } from './configInfo';
-
-const config = await getConfig();
 
 export function getTeamName(team) {
     let data = teamInfo[team];
@@ -24,7 +21,7 @@ export function getBackground(team) {
     let data = teamInfo[team]
 
     if (data) return data.colour;
-    return getColours().secondary;
+    return config.colours.secondary;
 }
 
 export function getTeamMembers(team) {
