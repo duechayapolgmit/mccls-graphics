@@ -2,14 +2,11 @@ import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
 import teamInfo from '@/data/team_info.json';
 
-import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
 
 const statePath = path.join(process.cwd(), "state/overlay.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/overlay.json")
-
-const config = yaml.load(fs.readFileSync("config/general.yaml", "utf8"));
 
 // Pre-occupy the placement based on the config give
 function setupPlacementsAfterLoad(placements, placementsCount) {
@@ -25,7 +22,6 @@ function load() {
     try {
         const raw = fs.readFileSync(statePath, "utf8");
         let obj = JSON.parse(raw);
-        obj.config = config;
 
         // Setting up
         let placements = setupPlacementsAfterLoad(obj.placements, obj.config.overlay.placements)
@@ -43,7 +39,6 @@ function loadDefaults() {
     try {
         const raw = fs.readFileSync(stateDefaultPath, "utf8");
         let obj = JSON.parse(raw);
-        obj.config = config;
         
         // Setting up
         let placements = setupPlacementsAfterLoad(obj.placements, obj.config.overlay.placements)

@@ -1,3 +1,4 @@
+import config from '@/config/general.json'
 import gameInfo from '@/data/game_logos.json'
 
 import yaml from 'js-yaml';
@@ -8,8 +9,6 @@ import { notify } from "@/lib/transmitter/listeners";
 
 const statePath = path.join(process.cwd(), "state/voting.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/voting.json")
-
-const config = yaml.load(fs.readFileSync("config/general.yaml", "utf8"));
 
 // Pre-occupy the slots based on the config give
 function setupSlotsAfterLoad(slots, slotsCount) {
@@ -25,10 +24,9 @@ function load() {
     try {
         const raw = fs.readFileSync(statePath, "utf8");
         let obj = JSON.parse(raw);
-        obj.config = config;
 
         // Setting up
-        let slots = setupSlotsAfterLoad(obj.slots, obj.config.voting.slots)
+        let slots = setupSlotsAfterLoad(obj.slots, config.voting.slots)
         obj.slots = slots;
 
         return obj
@@ -43,10 +41,9 @@ function loadDefaults() {
     try {
         const raw = fs.readFileSync(stateDefaultPath, "utf8");
         let obj = JSON.parse(raw);
-        obj.config = config;
 
         // Setting up
-        let slots = setupSlotsAfterLoad(obj.slots, obj.config.voting.slots)
+        let slots = setupSlotsAfterLoad(obj.slots, config.voting.slots)
         obj.slots = slots;
 
         return obj;
