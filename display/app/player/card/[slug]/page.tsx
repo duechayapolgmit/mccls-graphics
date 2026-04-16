@@ -28,14 +28,17 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                     useCORS: true,
                     allowTaint: false,
                     backgroundColor: null,
-                    width: 1920,
-                    height: 1080
+                    width: 500,
+                    height: 550
                 });
 
                 captureRef.current.classList.remove(styles.capture);
+
+                // get the wins count
+                const wins = getPlayerWins(slug);
                 
                 const link = document.createElement('a');
-                link.download = `${slug}.png`;
+                link.download = `${wins}-${slug}.png`;
                 link.href = canvas.toDataURL();
                 link.click();
             }

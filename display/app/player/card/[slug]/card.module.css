@@ -61,3 +61,11 @@
 .capture .name_small {
     transform: translateY(-22px)
 }
+
+.capture .wins {
+    transform: translateY(-34px)
+}
+
+.capture .x {
+    transform: translateY(18px)
+}
