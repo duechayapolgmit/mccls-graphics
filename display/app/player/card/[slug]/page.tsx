@@ -3,7 +3,7 @@ import { use, useEffect, useRef, useState } from 'react';
 
 import styles from './card.module.css'
 import html2canvas from 'html2canvas';
-import { getPlayerAvatar, getPlayerWins } from '@/lib/client/playerInfo';
+import { getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
 import { getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
@@ -55,7 +55,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                 <Wins player={slug}/>
             </div>
             <div className={slug == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
-                <div>{slug}</div>
+                <div>{getPlayerFullName(slug)}</div>
             </div>
         </div>
     )

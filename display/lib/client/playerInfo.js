@@ -7,6 +7,13 @@ export function getPlayerName(name) {
     return name;
 }
 
+export function getPlayerFullName(name) {
+    let data = playerInfo[name]
+
+    if (data) return data.full_name || data.name; // if no full name listed, use their name in data.name
+    return name;
+}
+
 export function getPlayerProfile(name) {
     let data = playerInfo[name]
 

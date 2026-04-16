@@ -9,7 +9,14 @@
     },
     "AnthonyToczek": {
         "name": "Anthony",
+        "full_name": "Anthony Toczek",
         "profile": "/player/profile/AnthonyToczek.jpg"
+    },
+    "apokuna": {
+        "name": "Apokuna",
+        "profile": "/player/profile/apokuna.jpg",
+        "avatar": "/player/avatar/apokuna.png",
+        "wins": 0
     },
     "BdoubleO100": {
         "name": "BdoubleO100",
@@ -61,6 +68,7 @@
     },
     "GoodTimesWithScar": {
         "name": "GTWScar",
+        "full_name": "GoodTimesWithScar",
         "profile": "/player/profile/GoodTimesWithScar.jpg"
     },
     "Grian": {
@@ -89,6 +97,7 @@
     },
     "InTheLittleWood": {
         "name": "Martyn ITLW",
+        "full_name": "InTheLittleWood",
         "profile": "/player/profile/InTheLittleWood.jpg"
     },
     "Jamal": {
@@ -125,6 +134,7 @@
     },
     "PearlescentMoon": {
         "name": "Pearl",
+        "full_name": "PearlescentMoon",
         "profile": "/player/profile/PearlescentMoon.png"
     },
     "Pixlriffs": {
