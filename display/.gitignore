@@ -46,3 +46,6 @@ next-env.d.ts
 # states
 state/overlay.json
 state/voting.json
+
+# player stuff
+public/player
