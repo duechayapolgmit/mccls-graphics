@@ -1,0 +1,97 @@
+'use client'
+import { use, useEffect, useRef, useState } from 'react';
+
+import styles from './card.module.css'
+import html2canvas from 'html2canvas';
+import { getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
+import { checkTeam, getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
+import { useSearchParams } from 'next/navigation';
+
+export default function Page({params}: {params: Promise<{ slug: string }>}) {
+    const { slug } = use(params)
+    const searchParams = useSearchParams()
+
+    const captureRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // Screenshotting
+        const handleKey = async (e: KeyboardEvent) => {
+            if (e.key.toLowerCase() === 's') {
+                if (!captureRef.current) return;
+
+                captureRef.current.classList.add(styles.capture);
+
+                await document.fonts.ready;
+
+                await new Promise(r => requestAnimationFrame(r))
+
+                const canvas = await html2canvas(captureRef.current, {
+                    scale: 1,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: null,
+                    width: 500,
+                    height: 550
+                });
+
+                captureRef.current.classList.remove(styles.capture);
+
+                // get the wins count
+                const wins = getPlayerWins(slug);
+                
+                const link = document.createElement('a');
+                link.download = `${wins}-${slug}.png`;
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        };
+
+        window.addEventListener('keydown', handleKey);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, []);
+
+    const getBackground = (player: string) => {
+        let override = searchParams.get('team');
+        let url = ""
+
+        if (override && checkTeam(override)) url = getCardBackground(override)
+        else url = getCardBackground(getTeamFromMember(player))
+
+        return {"--bg-image": `url(${url})`} as React.CSSProperties
+    }
+
+    return (
+        <div className={styles.main} ref={captureRef} style={getBackground(slug)}>
+            <div className={styles.avatar} style={{"--avatar-image": `url(${getPlayerAvatar(slug)})`} as React.CSSProperties}>
+                <PlayerStatus player={slug}/>
+                <Wins player={slug}/>
+            </div>
+            <div className={slug == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
+                <div>{getPlayerFullName(slug)}</div>
+            </div>
+        </div>
+    )
+}
+
+function Wins({player} : {player:string}) {
+    const wins = getPlayerWins(player)
+
+    if (wins <= 0) return;
+    else return (
+        <div className={styles.wins_box}>
+            <div className={styles.wins}><span className={styles.x}>X</span>{wins}</div>
+            <img src={"/crown-shadow.png"}/>
+        </div>
+    )
+}
+
+function PlayerStatus({player}: {player:string}) {
+    const status = getMemberStatus(player)
+
+    if (status == "newcomer") return (
+        <div className={styles.status}>
+            <div className={styles.status_text}>NEWCOMER</div>
+        </div>
+    )
+    else return "";
+}

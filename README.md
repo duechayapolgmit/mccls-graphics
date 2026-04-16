@@ -36,3 +36,5 @@ All other configuration details are located in each functionality's wiki page.
 This repository uses the following resources:
 * [Noxcrew - MC Championship](https://noxcrew.com/) - game logos, and team icons from MC Championship event. All of them can be found in the organiser's assets folder. Most of the game logos are modified to fit within the area in the overlay.
 * [Metropolis Font](https://www.1001fonts.com/metropolis-font.html) - the main font used for the display application as well as in MCC Live Show
+
+Profile pictures and player avatars are not provided in this repository. They can manually be inserted in `/display/public/player` folder, with `/profile` for profile pictures (1:1 ratio only) and `/avatar` for player avatars (500x450 size)

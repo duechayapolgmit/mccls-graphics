@@ -1,0 +1,93 @@
+.main {
+    background-image: var(--bg-image);
+    position: relative;
+    width:500px;
+    height:550px;
+}
+
+.avatar {
+    background-image: var(--avatar-image);
+    width:500px;
+    height:450px;
+
+    display: flex;
+    justify-content: right;
+    align-items: end;
+}
+
+.name {
+    font-family: Metropolis BL;
+    color: white;
+    text-transform: uppercase;
+    font-size: 45px;
+
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name_small {
+    font-size: 40px;
+}
+
+.x {
+    font-size: 40px;
+    transform: translateY(-15px)
+}
+
+.wins_box {
+    display: flex;
+    align-items: end;
+    font-family: Minecrafter;
+    
+    margin-right: -2px;
+    margin-bottom: -2px;
+}
+
+.wins {
+    color: rgb(255, 239, 0);
+    text-shadow: 1px 2px 10px black;
+    font-size: 64pt;
+    margin-bottom: -10pt;
+    margin-right: -5px;
+}
+
+.status {
+    background-color: rgb(241, 210, 50);
+
+    height: 38px;
+    width: 500px;
+    padding-top: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status_text {
+    font-family: Metropolis BL;
+    font-size: 30px;
+}
+
+/** CAPTURING CSS - just for html2canvas **/
+.capture .name {
+    transform: translateY(-22px)
+}
+
+.capture .name_small {
+    transform: translateY(-22px)
+}
+
+.capture .wins {
+    transform: translateY(-34px)
+}
+
+.capture .x {
+    transform: translateY(18px)
+}
+
+.capture .status_text {
+    transform: translateY(-16px)
+}

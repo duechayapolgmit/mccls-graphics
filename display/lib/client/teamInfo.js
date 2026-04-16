@@ -3,6 +3,11 @@ import config from '@/config/general.json'
 import teamInfo from '@/data/team_info.json';
 import membersInfo from '@/data/team_members.json'
 
+export function checkTeam(team) {
+    if (teamInfo[team]) return true;
+    return false;
+}
+
 export function getTeamName(team) {
     let data = teamInfo[team];
 
@@ -24,11 +29,31 @@ export function getBackground(team) {
     return config.colours.secondary;
 }
 
+export function getCardBackground(team) {
+    let data = teamInfo[team]
+
+    if (data) return data.card;
+    return "/team/card/Default.png";
+}
+
 export function getTeamMembers(team) {
     let data = membersInfo.teams[team]
 
     if (data) return data
     return []
+}
+
+export function getTeamFromMember(name) {
+    let teams = membersInfo.teams;
+
+    for (let teamKey of Object.keys(teams)) { // Search all teams
+        let team = teams[teamKey]
+        let searchRes = team.find((member) => member == name)
+
+        if (searchRes) return teamKey
+    }
+
+    return "DEFAULT";
 }
 
 export function getMemberStatus(name) {
