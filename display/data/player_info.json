@@ -24,7 +24,9 @@
     },
     "bekyamon": {
         "name": "bekyamon",
-        "profile": "/player/profile/Bekyamon.jpg"
+        "profile": "/player/profile/Bekyamon.jpg",
+        "avatar": "/player/avatar/bekyamon.png",
+        "wins": 2
     },
     "Bigbst4tz2": {
         "name": "Bigbst4tz2",

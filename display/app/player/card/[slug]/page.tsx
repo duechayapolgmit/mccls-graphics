@@ -4,10 +4,12 @@ import { use, useEffect, useRef, useState } from 'react';
 import styles from './card.module.css'
 import html2canvas from 'html2canvas';
 import { getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
-import { getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
+import { checkTeam, getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
+import { useSearchParams } from 'next/navigation';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)
+    const searchParams = useSearchParams()
 
     const captureRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +50,18 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
+    const getBackground = (player: string) => {
+        let override = searchParams.get('team');
+        let url = ""
+
+        if (override && checkTeam(override)) url = getCardBackground(override)
+        else url = getCardBackground(getTeamFromMember(player))
+
+        return {"--bg-image": `url(${url})`} as React.CSSProperties
+    }
+
     return (
-        <div className={styles.main} ref={captureRef} style={{"--bg-image": `url(${getCardBackground(getTeamFromMember(slug))})`} as React.CSSProperties}>
+        <div className={styles.main} ref={captureRef} style={getBackground(slug)}>
             <div className={styles.avatar} style={{"--avatar-image": `url(${getPlayerAvatar(slug)})`} as React.CSSProperties}>
                 <PlayerStatus player={slug}/>
                 <Wins player={slug}/>
