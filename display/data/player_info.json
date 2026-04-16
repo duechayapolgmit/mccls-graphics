@@ -149,7 +149,9 @@
     },
     "Smajor": {
         "name": "Smajor",
-        "profile": "/player/profile/Smajor.jpg"
+        "profile": "/player/profile/Smajor.jpg",
+        "avatar": "/player/avatar/Smajor.png",
+        "wins": 9
     },
     "Smallishbeans": {
         "name": "Smallishbeans",

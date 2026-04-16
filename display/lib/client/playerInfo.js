@@ -14,3 +14,16 @@ export function getPlayerProfile(name) {
     return "/player/profile/default.png";
 }
 
+export function getPlayerAvatar(name) {
+    let data = playerInfo[name]
+
+    if (data) return data.avatar;
+    return "";
+}
+
+export function getPlayerWins(name) {
+    let data = playerInfo[name]
+
+    if (data) return data.wins || 0; // undefined = 0
+    return 0;
+}

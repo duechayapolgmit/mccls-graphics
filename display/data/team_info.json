@@ -1,52 +1,59 @@
 {
     "RED": {
         "name": "Red Rabbits",
-        "icon": "/team_icons/01-RedRabbits.png",
+        "icon": "/team/icon/01-RedRabbits.png",
         "colour": "#ff3c38"
     },
     "ORANGE": {
         "name": "Orange Ocelots",
-        "icon":  "/team_icons/02-OrangeOcelots.png",
+        "icon":  "/team/icon/02-OrangeOcelots.png",
         "colour": "#f68422"
     },
     "YELLOW": {
         "name": "Yellow Yaks",
-        "icon": "/team_icons/03-YellowYaks.png",
-        "colour": "#ffba0f"
+        "colour": "#ffba0f",
+        "icon": "/team/icon/03-YellowYaks.png",
+        "card": "/team/card/03-Yellow.png"
     },
     "LIME": {
         "name": "Lime Llamas",
-        "icon": "/team_icons/04-LimeLlamas.png",
+        "icon": "/team/icon/04-LimeLlamas.png",
         "colour": "#86be00"
     },
     "GREEN": {
         "name": "Green Geckos",
-        "icon": "/team_icons/05-GreenGeckos.png",
+        "icon": "/team/icon/05-GreenGeckos.png",
         "colour": "#00971e"
     },
     "CYAN": {
         "name": "Cyan Coyotes",
-        "icon": "/team_icons/06-CyanCoyotes.png",
+        "icon": "/team/icon/06-CyanCoyotes.png",
         "colour": "#009d8d"
     },
     "AQUA": {
         "name": "Aqua Axolotls",
-        "icon": "/team_icons/07-AquaAxolotls.png",
+        "icon": "/team/icon/07-AquaAxolotls.png",
         "colour": "#008fc4"
     },
     "BLUE": {
         "name": "Blue Bats",
-        "icon": "/team_icons/08-BlueBats.png",
+        "icon": "/team/icon/08-BlueBats.png",
         "colour": "#0043e9"
     },
     "PURPLE": {
         "name": "Purple Pandas",
-        "icon": "/team_icons/09-PurplePandas.png",
+        "icon": "/team/icon/09-PurplePandas.png",
         "colour": "#7d03d4"
     },
     "PINK": {
         "name": "Pink Parrots",
-        "icon": "/team_icons/10-PinkParrots.png",
+        "icon": "/team/icon/10-PinkParrots.png",
         "colour": "#ff1ee6"
+    },
+    "DEFAULT": {
+        "name": "No Team",
+        "colour": "#333333",
+        "icon": "/icon.png",
+        "card": "/team/card/Default.png"
     }
 }
