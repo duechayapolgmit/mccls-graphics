@@ -4,7 +4,7 @@ import { use, useEffect, useRef, useState } from 'react';
 import styles from './card.module.css'
 import html2canvas from 'html2canvas';
 import { getPlayerAvatar, getPlayerWins } from '@/lib/client/playerInfo';
-import { getCardBackground, getTeamFromMember } from '@/lib/client/teamInfo';
+import { getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)
@@ -51,6 +51,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
     return (
         <div className={styles.main} ref={captureRef} style={{"--bg-image": `url(${getCardBackground(getTeamFromMember(slug))})`} as React.CSSProperties}>
             <div className={styles.avatar} style={{"--avatar-image": `url(${getPlayerAvatar(slug)})`} as React.CSSProperties}>
+                <PlayerStatus player={slug}/>
                 <Wins player={slug}/>
             </div>
             <div className={slug == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
@@ -70,4 +71,15 @@ function Wins({player} : {player:string}) {
             <img src={"/crown-shadow.png"}/>
         </div>
     )
+}
+
+function PlayerStatus({player}: {player:string}) {
+    const status = getMemberStatus(player)
+
+    if (status == "newcomer") return (
+        <div className={styles.status}>
+            <div className={styles.status_text}>NEWCOMER</div>
+        </div>
+    )
+    else return "";
 }

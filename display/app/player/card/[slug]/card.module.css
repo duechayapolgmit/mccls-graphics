@@ -12,6 +12,7 @@
 
     display: flex;
     justify-content: right;
+    align-items: end;
 }
 
 .name {
@@ -53,6 +54,23 @@
     margin-right: -5px;
 }
 
+.status {
+    background-color: rgb(241, 210, 50);
+
+    height: 38px;
+    width: 500px;
+    padding-top: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status_text {
+    font-family: Metropolis BL;
+    font-size: 30px;
+}
+
 /** CAPTURING CSS - just for html2canvas **/
 .capture .name {
     transform: translateY(-22px)
@@ -68,4 +86,8 @@
 
 .capture .x {
     transform: translateY(18px)
+}
+
+.capture .status_text {
+    transform: translateY(-16px)
 }
