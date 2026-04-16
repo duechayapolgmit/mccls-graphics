@@ -11,8 +11,8 @@ Each tool is located in its own separate folders.
 This repository currently contains the following features:
 * [Event Overlay](https://github.com/duechayapolgmit/mccls-graphics/wiki/Event-Overlay) - displays overlay containing information about the current event. This includes the game number, point multiplier, logo of the game being played, top teams and their scores.
 * [Voting Screen](https://github.com/duechayapolgmit/mccls-graphics/wiki/Voting-Screen) - displays the voting screen, containing games that are up for voting in an event.
-* Teams Overview - displays the teams overview screen, consisting of all teams and players in an event.
-* Player Cards - displays player's name, avatar, amount of wins, and team colour they are in.
+* [Teams Overview](https://github.com/duechayapolgmit/mccls-graphics/wiki/Teams-Overview) - displays the teams overview screen, consisting of all teams and players in an event.
+* [Player Cards](https://github.com/duechayapolgmit/mccls-graphics/wiki/Player-Cards) - displays player's name, avatar, amount of wins, and team colour they are in.
 
 ## Usage
 For the `display` folder, the application can be deployed by going into the folder and running the application itself.
