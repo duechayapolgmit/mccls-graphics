@@ -1,16 +1,16 @@
 {
     "teams": {
-        "RED": ["MumboJumbo", "Rendog", "Skizzleman", "VintageBeef"],
-        "ORANGE": ["cubfan135", "Docm77", "Keralis", "xBCrafted"],
-        "YELLOW": ["GeminiTay", "PearlescentMoon", "Smajor", "ZombieCleo"],
-        "LIME": ["hypnotizd", "impulseSV", "InTheLittleWood", "Taneesha"],
-        "GREEN": ["Bigbst4tz2", "Grian", "SolidarityGaming", "TangoTek"],
-        "CYAN": ["GoodTimesWithScar","iJevin","Pixlriffs","Tubbo"],
-        "AQUA": ["fWhip","MythicalSausage","Welsknight","Zedaph"],
-        "BLUE": ["AnthonyToczek","FalseSymmetry","Shubble","Xisuma"],
-        "PURPLE": ["Cambam010","Jamal","JoeHills","TheOrionSound"],
-        "PINK": ["BdoubleO100","Etho","Smallishbeans","soupforeloise"]
+        "RED": ["", "", "", ""],
+        "ORANGE": ["", "", "", ""],
+        "YELLOW": ["", "", "", ""],
+        "LIME": ["", "", "", ""],
+        "GREEN": ["", "", "", ""],
+        "CYAN": ["","","",""],
+        "AQUA": ["","","",""],
+        "BLUE": ["","","",""],
+        "PURPLE": ["","","",""],
+        "PINK": ["","","",""]
     },
-    "new_players": ["Docm77", "Bigbst4tz2", "MumboJumbo", "VintageBeef", "Keralis", "xBCrafted", "hypnotizd", "Bigbst4tz", "Pixlriffs", "Welsknight", "Zedaph", "AnthonyToczek","Jamal","JoeHills"],
+    "new_players": ["DuncanMassink", "Rosannatxt"],
     "sub_players": []
 }

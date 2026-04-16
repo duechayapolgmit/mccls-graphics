@@ -1,4 +1,10 @@
 {
+    "4CVIT": {
+        "name": "4CVIT",
+        "profile": "/player/profile/4CVIT.jpg",
+        "avatar": "/player/avatar/4CVIT.png",
+        "wins": 2
+    },
     "5up": {
         "name": "5up",
         "profile": "/player/profile/5up.jpg"
@@ -7,10 +13,21 @@
         "name": "aimsey",
         "profile": "/player/profile/Aimsey.jpg"
     },
+    "Antfrost": {
+        "name": "Antfrost",
+        "profile": "/player/profile/Antfrost.jpg",
+        "avatar": "/player/avatar/Antfrost.png",
+        "wins": 3
+    },
     "AnthonyToczek": {
         "name": "Anthony",
         "full_name": "Anthony Toczek",
         "profile": "/player/profile/AnthonyToczek.jpg"
+    },
+    "AntVenom": {
+        "name": "AntVenom",
+        "profile": "/player/profile/AntVenom.jpg",
+        "avatar": "/player/avatar/AntVenom.png"
     },
     "apokuna": {
         "name": "Apokuna",
@@ -20,7 +37,9 @@
     },
     "BdoubleO100": {
         "name": "BdoubleO100",
-        "profile": "/player/profile/Bdubs.jpg"
+        "profile": "/player/profile/Bdubs.jpg",
+        "avatar": "/player/avatar/BdoubleO100.png",
+        "wins": 1
     },
     "bekyamon": {
         "name": "bekyamon",
@@ -34,7 +53,9 @@
     },
     "Cambam010": {
         "name": "Cambam010",
-        "profile": "/player/profile/Cambam010.jpg"
+        "profile": "/player/profile/Cambam010.jpg",
+        "avatar": "/player/avatar/Cambam010.png",
+        "wins": 1
     },
     "Couriway": {
         "name": "Couriway",
@@ -42,19 +63,42 @@
     },
     "cubfan135": {
         "name": "cubfan135",
-        "profile": "/player/profile/cubfan135.jpg"
+        "profile": "/player/profile/cubfan135.jpg",
+        "avatar": "/player/avatar/cubfan135.png",
+        "wins": 3
     },
     "Docm77": {
         "name": "Docm77",
         "profile": "/player/profile/Docm77.png"
     },
+    "DuncanMassink": {
+        "name": "Duncan",
+        "full_name": "Duncan Massink",
+        "profile": "/player/profile/DuncanMassink.jpg",
+        "avatar": "/player/avatar/DuncanMassink.png"
+    },
+    "ElainaExe": {
+        "name": "ElainaExe",
+        "profile": "/player/profile/ElainaExe.jpg",
+        "avatar": "/player/avatar/ElainaExe.png",
+        "wins": 2
+    },
     "Etho": {
         "name": "Etho",
-        "profile":"/player/profile/Etho.png"
+        "profile":"/player/profile/Etho.png",
+        "avatar": "/player/avatar/Etho.png"
     },
     "FalseSymmetry": {
         "name": "FalseSymmetry",
-        "profile": "/player/profile/FalseSymmetry.jpg"
+        "profile": "/player/profile/FalseSymmetry.jpg",
+        "avatar": "/player/avatar/FalseSymmetry.png",
+        "wins": 5
+    },
+    "fruitberries": {
+        "name": "fruitberries",
+        "profile": "/player/profile/fruitberries.jpg",
+        "avatar": "/player/avatar/fruitberries.png",
+        "wins": 5
     },
     "fWhip": {
         "name": "fWhip",
@@ -66,20 +110,34 @@
     },
     "GeminiTay": {
         "name": "GeminiTay",
-        "profile": "/player/profile/GeminiTay.jpg"
+        "profile": "/player/profile/GeminiTay.jpg",
+        "avatar": "/player/avatar/GeminiTay.png",
+        "wins": 4
     },
     "GoodTimesWithScar": {
         "name": "GTWScar",
         "full_name": "GoodTimesWithScar",
-        "profile": "/player/profile/GoodTimesWithScar.jpg"
+        "profile": "/player/profile/GoodTimesWithScar.jpg",
+        "avatar": "/player/avatar/GTWScar.png",
+        "wins": 3
     },
     "Grian": {
         "name": "Grian",
-        "profile": "/player/profile/Grian.jpg"
+        "profile": "/player/profile/Grian.jpg",
+        "avatar": "/player/avatar/Grian.png",
+        "wins": 2
+    },
+    "hannahxxrose": {
+        "name": "hannahxxrose",
+        "profile": "/player/profile/hannahxxrose.png",
+        "avatar": "/player/avatar/hannahxxrose.png",
+        "wins": 3
     },
     "HBomb94": {
         "name": "HBomb94",
-        "profile": "/player/profile/HBomb94.jpg"
+        "profile": "/player/profile/HBomb94.jpg",
+        "avatar": "/player/avatar/HBomb94.png",
+        "wins": 6
     },
     "hypnotizd": {
         "name": "Hypnotizd",
@@ -87,7 +145,8 @@
     },
     "iJevin": {
         "name": "iJevin",
-        "profile":"/player/profile/iJevin.jpg"
+        "profile":"/player/profile/iJevin.jpg",
+        "avatar": "/player/avatar/iJevin.png"
     },
     "impulseSV": {
         "name": "impulseSV",
@@ -95,16 +154,31 @@
     },
     "InfiniteDrift": {
         "name": "InfiniteDrift",
-        "profile": "/player/profile/InfiniteDrift.jpg"
+        "profile": "/player/profile/InfiniteDrift.jpg",
+        "avatar": "/player/avatar/InfiniteDrift.png"
     },
     "InTheLittleWood": {
         "name": "Martyn ITLW",
         "full_name": "InTheLittleWood",
-        "profile": "/player/profile/InTheLittleWood.jpg"
+        "profile": "/player/profile/InTheLittleWood.jpg",
+        "avatar": "/player/avatar/InTheLittleWood.png",
+        "wins": 3
+    },
+    "ish13c": {
+        "name": "ish13c",
+        "profile": "/player/profile/ish13c.jpg",
+        "avatar": "/player/avatar/ish13c.png",
+        "wins": 1
     },
     "Jamal": {
         "name": "Jamal",
         "profile": "/player/profile/JamalMC.jpg"
+    },
+    "JeremyFrieser": {
+        "name": "Jeremy Frieser",
+        "profile": "/player/profile/JeremyFrieser.jpg",
+        "avatar": "/player/avatar/JeremyFrieser.png",
+        "wins": 1
     },
     "JoeHills": {
         "name": "JoeHills",
@@ -116,11 +190,28 @@
     },
     "KaraCorvus": {
         "name": "KaraCorvus",
-        "profile": "/player/profile/KaraCorvus.jpg"
+        "profile": "/player/profile/KaraCorvus.jpg",
+        "avatar": "/player/avatar/KaraCorvus.png",
+        "wins": 2
     },
     "Keralis": {
         "name": "Keralis",
         "profile": "/player/profile/Keralis.jpg"
+    },
+    "Legundo": {
+        "name": "Legundo",
+        "profile": "/player/profile/Legundo.jpg",
+        "avatar": "/player/avatar/Legundo.png"
+    },
+    "Michela": {
+        "name": "Michela",
+        "profile": "/player/profile/Michela.jpg",
+        "avatar": "/player/avatar/Michela.png"
+    },
+    "millkberry": {
+        "name": "millkberry",
+        "profile": "/player/profile/millkberry.jpg",
+        "avatar": "/player/avatar/millkberry.png"
     },
     "Mogswamp": {
         "name": "Mogswamp",
@@ -130,22 +221,70 @@
         "name": "MumboJumbo",
         "profile": "/player/profile/MumboJumbo.jpg"
     },
+    "Mysticat": {
+        "name": "Mysticat",
+        "profile": "/player/profile/Mysticat.jpg",
+        "avatar": "/player/avatar/Mysticat.png",
+        "wins": 1
+    },
     "MythicalSausage": {
         "name": "Sausage",
+        "full_name": "Mythical Sausage",
         "profile": "/player/profile/MythicalSausage.jpg"
+    },
+    "Nominalgravy": {
+        "name": "Nominalgravy",
+        "profile": "/player/profile/Nominalgravy.jpg",
+        "avatar": "/player/avatar/Nominalgravy.png"
+    },
+    "Pangi": {
+        "name": "Pangi",
+        "profile": "/player/profile/Pangi.jpg",
+        "avatar": "/player/avatar/Pangi.png",
+        "wins": 1
     },
     "PearlescentMoon": {
         "name": "Pearl",
         "full_name": "PearlescentMoon",
-        "profile": "/player/profile/PearlescentMoon.png"
+        "profile": "/player/profile/PearlescentMoon.png",
+        "avatar": "/player/avatar/PearlescentMoon.png",
+        "wins": 2
+    },
+    "PeteZahHutt": {
+        "name": "PeteZahHutt",
+        "profile": "/player/profile/PeteZahHutt.jpg",
+        "avatar": "/player/avatar/PeteZahHutt.png",
+        "wins": 4
+    },
+    "Ph1LzA": {
+        "name": "Ph1LzA",
+        "profile": "/player/profile/Ph1LzA.jpg",
+        "avatar": "/player/avatar/Ph1LzA.png",
+        "wins": 4
     },
     "Pixlriffs": {
         "name": "Pixlriffs",
         "profile": "/player/profile/Pixlriffs.jpg"
     },
+    "Purpled": {
+        "name": "Purpled",
+        "profile": "/player/profile/Purpled.jpg",
+        "avatar": "/player/avatar/Purpled.png",
+        "wins": 2
+    },
+    "Pyroscythe": {
+        "name": "Pyroscythe",
+        "profile": "/player/profile/Pyroscythe.jpg",
+        "avatar": "/player/avatar/Pyroscythe.png"
+    },
     "Rendog": {
         "name": "Rendog",
         "profile": "/player/profile/Rendog.jpg"
+    },
+    "Rosannatxt": {
+        "name": "Rosannatxt",
+        "profile": "/player/profile/Rosannatxt.jpg",
+        "avatar": "/player/avatar/Rosannatxt.png"
     },
     "Shadoune666": {
         "name": "Shadoune666",
@@ -157,7 +296,8 @@
     },
     "Skizzleman": {
         "name": "Skizzleman",
-        "profile": "/player/profile/Skizzleman.jpg"
+        "profile": "/player/profile/Skizzleman.jpg",
+        "avatar": "/player/avatar/Skizzleman.png"
     },
     "Smajor": {
         "name": "Smajor",
@@ -167,7 +307,9 @@
     },
     "Smallishbeans": {
         "name": "Smallishbeans",
-        "profile": "/player/profile/Smallishbeans.jpg"
+        "profile": "/player/profile/Smallishbeans.jpg",
+        "avatar": "/player/avatar/Smallishbeans.png",
+        "wins": 3
     },
     "Sneegsnag": {
         "name": "Sneegsnag",
@@ -175,11 +317,14 @@
     },
     "SolidarityGaming": {
         "name": "Solidarity",
-        "profile": "/player/profile/Solidarity.jpg"
+        "profile": "/player/profile/Solidarity.jpg",
+        "avatar": "/player/avatar/Solidarity.png",
+        "wins": 3
     },
     "soupforeloise": {
         "name": "soupforeloise",
-        "profile": "/player/profile/soupforeloise.jpg"
+        "profile": "/player/profile/soupforeloise.jpg",
+        "avatar": "/player/avatar/soupforeloise.png"
     },
     "Taneesha": {
         "name": "Taneesha",
@@ -187,11 +332,14 @@
     },
     "TangoTek": {
         "name": "TangoTek",
-        "profile": "/player/profile/TangoTek.png"
+        "profile": "/player/profile/TangoTek.png",
+        "avatar": "/player/avatar/TangoTek.png"
     },
     "TheOrionSound": {
         "name": "TheOrionSound",
-        "profile": "/player/profile/TheOrionSound.jpg"
+        "profile": "/player/profile/TheOrionSound.jpg",
+        "avatar": "/player/avatar/TheOrionSound.png",
+        "wins": 3
     },
     "Tubbo": {
         "name": "Tubbo",
@@ -205,13 +353,19 @@
         "name": "Welsknight",
         "profile": "/player/profile/Welsknight.jpg"
     },
+    "WithMayX": {
+        "name": "WithMayX",
+        "profile": "/player/profile/WithMayX.jpg",
+        "avatar": "/player/avatar/WithMayX.png"
+    },
     "xBCrafted": {
         "name": "xBCrafted",
         "profile": "/player/profile/xBCrafted.jpg"
     },
     "Xisuma": {
         "name": "Xisuma",
-        "profile": "/player/profile/Xisuma.jpg"
+        "profile": "/player/profile/Xisuma.jpg",
+        "avatar": "/player/avatar/Xisuma.png"
     },
     "Zedaph": {
         "name": "Zedaph",
@@ -219,6 +373,7 @@
     },
     "ZombieCleo": {
         "name": "ZombieCleo",
-        "profile": "/player/profile/ZombieCleo.png"
+        "profile": "/player/profile/ZombieCleo.png",
+        "avatar": "/player/avatar/ZombieCleo.png"
     }
 }
