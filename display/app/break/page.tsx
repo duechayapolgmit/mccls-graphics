@@ -13,7 +13,7 @@ export default function Page() {
                 <div className={styles.header_text}>TESTTESTTESTTEST</div>
             </div>
             <div className={styles.body}>
-                
+                <CardGrid lst={getCardGridList("no_wins")}/>
             </div>
             <div className={styles.footer}>
                 <div className={styles.header_icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>

@@ -1,0 +1,21 @@
+{
+  "columns": [
+    { "max": 5,  "value": "n" },
+    { "max": 14, "value": "n/2" },
+    { "eq": 16,  "value": "n/2" },
+    { "max": 21, "value": "n/3" },
+    { "max": 999, "value": "n/4" }
+  ],
+  
+  "scale": [
+    { "max": 3,  "value": "1" },
+    { "eq": 4,  "value": "0.8" },
+    { "max": 10, "value": "0.65" },
+    { "max": 12, "value": "0.525" },
+    { "max": 14, "value": "0.465" },
+    { "eq": 16,  "value": "0.4" },
+    { "max": 21, "value": "0.465" },
+    { "max": 32, "value": "0.365" },
+    { "max": 999, "value": "1" }
+  ]
+}
