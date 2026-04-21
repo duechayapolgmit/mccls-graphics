@@ -1,15 +1,18 @@
 'use client'
 import { use, useEffect, useRef, useState } from 'react';
 
-import styles from './card.module.css'
+import styles from '@/components/player/card.module.css'
 import html2canvas from 'html2canvas';
-import { getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
-import { checkTeam, getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
+import { getPlayerWins } from '@/lib/client/playerInfo';
+import { checkTeam, getCardBackground, getTeamFromMember } from '@/lib/client/teamInfo';
 import { useSearchParams } from 'next/navigation';
+import Card from '@/components/player/card';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)
+    
     const searchParams = useSearchParams()
+    const team = searchParams.get('team') || "DEFAULT";
 
     const captureRef = useRef<HTMLDivElement>(null);
 
@@ -61,37 +64,8 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
     }
 
     return (
-        <div className={styles.main} ref={captureRef} style={getBackground(slug)}>
-            <div className={styles.avatar} style={{"--avatar-image": `url(${getPlayerAvatar(slug)})`} as React.CSSProperties}>
-                <PlayerStatus player={slug}/>
-                <Wins player={slug}/>
-            </div>
-            <div className={slug == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
-                <div>{getPlayerFullName(slug)}</div>
-            </div>
+        <div ref={captureRef}>
+            <Card player={slug} team={team}/>
         </div>
     )
-}
-
-function Wins({player} : {player:string}) {
-    const wins = getPlayerWins(player)
-
-    if (wins <= 0) return;
-    else return (
-        <div className={styles.wins_box}>
-            <div className={styles.wins}><span className={styles.x}>X</span>{wins}</div>
-            <img src={"/crown-shadow.png"}/>
-        </div>
-    )
-}
-
-function PlayerStatus({player}: {player:string}) {
-    const status = getMemberStatus(player)
-
-    if (status == "newcomer") return (
-        <div className={styles.status}>
-            <div className={styles.status_text}>NEWCOMER</div>
-        </div>
-    )
-    else return "";
 }
