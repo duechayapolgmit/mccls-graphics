@@ -1,5 +1,5 @@
 import styles from './card.module.css'
-import { getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
+import { getNotes, getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
 import { checkTeam, getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
 
 export default function Card({player, team}: {player: string, team: string}) {
@@ -22,6 +22,7 @@ export default function Card({player, team}: {player: string, team: string}) {
             <div className={player == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
                 <div>{getPlayerFullName(player)}</div>
             </div>
+            <div className={styles.notes}>{getNotes(player)}</div>
         </div>
     )
 }

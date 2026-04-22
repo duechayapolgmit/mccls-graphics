@@ -11,7 +11,9 @@
     },
     "aimsey": {
         "name": "aimsey",
-        "profile": "/player/profile/Aimsey.jpg"
+        "profile": "/player/profile/Aimsey.jpg",
+        "avatar": "/player/avatar/aimsey.png",
+        "wins": 3
     },
     "Antfrost": {
         "name": "Antfrost",
@@ -33,6 +35,13 @@
         "name": "Apokuna",
         "profile": "/player/profile/apokuna.jpg",
         "avatar": "/player/avatar/apokuna.png",
+        "wins": 0
+    },
+    "aypierre": {
+        "name": "aypierre",
+        "profile": "/player/profile/aypierre.jpg",
+        "avatar": "/player/avatar/aypierre.png",
+        "notes": "© SK Gaming",
         "wins": 0
     },
     "BdoubleO100": {

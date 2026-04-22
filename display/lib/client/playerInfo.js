@@ -34,3 +34,10 @@ export function getPlayerWins(name) {
     if (data) return data.wins || 0; // undefined = 0
     return 0;
 }
+
+export function getNotes(name) {
+    let data = playerInfo[name]
+
+    if (data) return data.notes || "";
+    return "";
+}

@@ -72,6 +72,15 @@
     font-size: 30px;
 }
 
+.notes {
+    font-family: Metropolis;
+    color: rgba(255, 255, 255, 0.65);
+    width: 500px;
+    padding-left: 0.5em;
+    font-size: 1.25em;
+    transform: translateY(-6.5em)
+}
+
 /** CAPTURING CSS - just for html2canvas **/
 .capture .name {
     transform: translateY(-22px)
@@ -90,5 +99,9 @@
 }
 
 .capture .status_text {
-    transform: translateY(-16px)
+    transform: translateY(18px)
+}
+
+.capture .notes {
+    transform: translateY(-7em)
 }
