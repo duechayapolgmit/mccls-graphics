@@ -44,15 +44,18 @@
     width: 1700px;
     height: 850px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     overflow: hidden;
+}
+
+.body_content {
+    transform: scale(var(--scale));
 }
 
 .footer {
     margin-top: 10px;
     display: flex;
-}
-
-.width_90 {
-    transform: scale(0.5);
-    transform-origin: center;
 }
