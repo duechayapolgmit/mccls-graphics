@@ -7,5 +7,5 @@ export function getCardGridList(key) {
     if (!data) return;
     if (data.type != "card_grid") return;
 
-    return data.list;
+    return data.list || [];
 }
