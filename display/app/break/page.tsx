@@ -72,7 +72,7 @@ export default function Page() {
             <div className={styles.footer}>
                 <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>
                 <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": config.colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
-                <div className={styles.right_text}>MCC Live Show</div>
+                <div className={styles.right_logo}><img src={"/logo-long.png"}/></div>
                 <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>        
             </div>
         </div>
