@@ -5,7 +5,8 @@
     },
     "colours": {
         "primary": "#b51a14",
-        "secondary": "#0b2f67"
+        "secondary": "#0b2f67",
+        "highlight": "#f3ce00"
     },
     "overlay": {
         "toggle": {
