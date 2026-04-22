@@ -2,7 +2,11 @@
     "no_wins": {
         "title": "No Wins",
         "type": "card_grid",
-        "list": ["Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor", "Smajor"
-        ]
+        "list": ["Smajor", "Grian", "apokuna", "BdoubleO100"]
+    },
+    "perspectives": {
+        "title": "Perspectives",
+        "type": "card_grid",
+        "list": ["WithMayX", "HBomb94"]
     }
 }
