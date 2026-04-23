@@ -60,7 +60,7 @@
 
     height: 38px;
     width: 500px;
-    padding-top: 2px;
+    padding-top: 0.25em;
 
     display: flex;
     align-items: center;
