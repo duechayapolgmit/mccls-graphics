@@ -7,8 +7,9 @@ import config from '@/config/general.json'
 import configBreakCardList from '@/config/break-card_list.json'
 
 import CardGrid from '@/components/break/card_grid';
-import { getCardGridList, getTitle, getType } from '@/lib/client/breakInfo';
+import { getCardGridList, getSubtitle, getTitle, getType } from '@/lib/client/breakInfo';
 import { resolveRule } from '@/lib/utils';
+import WinsLeaderboard from '@/components/break/wins_leaderboard';
 
 
 export default function Page() {
@@ -44,6 +45,8 @@ export default function Page() {
             case "card_grid":
                 if (!cardLst) return null; // prevents error
                 return <CardGrid key={state.currentScreen} lst={cardLst}/>
+            case "wins_leaderboard":
+                return <WinsLeaderboard key={state.currentScreen} lst={cardLst}/>
             default:
                 return null;
         }
@@ -60,7 +63,7 @@ export default function Page() {
         <div className={styles.main}>
             <div className={styles.header}>
                 <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
-                <div className={styles.header_text}>{getTitle(state.currentScreen)}</div>
+                <div className={styles.header_text}>{getTitle(state.currentScreen)} <span className={styles.subtitle}>{getSubtitle(state.currentScreen)}</span></div>
                 <div className={styles.right_text}>1:00</div>
                 <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>
             </div>

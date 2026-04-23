@@ -73,6 +73,10 @@
     text-transform: uppercase;
 }
 
+.subtitle {
+    font-family: Metropolis;
+}
+
 .event_tagline {
     color: rgb(243,206,0);
 }

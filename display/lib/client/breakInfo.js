@@ -10,6 +10,13 @@ export function getTitle(key) {
     return data.title || "";
 }
 
+export function getSubtitle(key) {
+    let data = breakInfo[key]
+    if (!data) return;
+
+    return data.subtitle || "";
+}
+
 export function getType(key) {
     let data = breakInfo[key]
     if (!data) return;

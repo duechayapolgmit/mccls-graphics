@@ -1,4 +1,9 @@
 {
+    "wins_leaderboard": {
+        "title": "Wins Leaderboard",
+        "subtitle": "(Current Event - 3+ wins)",
+        "type": "wins_leaderboard"
+    },
     "no_wins": {
         "title": "No Wins",
         "type": "card_grid"
