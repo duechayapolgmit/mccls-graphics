@@ -18,7 +18,7 @@ export function getPlayerProfile(name) {
     let data = playerInfo[name]
 
     if (data) return data.profile;
-    return "/player/profile/default.png";
+    return "/default-profile.png";
 }
 
 export function getPlayerAvatar(name) {
