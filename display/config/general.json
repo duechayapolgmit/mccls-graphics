@@ -22,5 +22,8 @@
     },
     "teams": {
         "background": "none"
+    },
+    "break_screen": {
+        "minimum_wins": 3
     }
 }

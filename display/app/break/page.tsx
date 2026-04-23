@@ -10,6 +10,7 @@ import CardGrid from '@/components/break/card_grid';
 import { getCardGridList, getSubtitle, getTitle, getType } from '@/lib/client/breakInfo';
 import { resolveRule } from '@/lib/utils';
 import WinsLeaderboard from '@/components/break/wins_leaderboard';
+import { getWinsLeaderboard, getWinsLeaderboardFromAmount } from '@/lib/server/wins';
 
 
 export default function Page() {
@@ -32,7 +33,6 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-
         const lst = getCardGridList(state.currentScreen);
         setCardLst(lst);
         
@@ -46,7 +46,7 @@ export default function Page() {
                 if (!cardLst) return null; // prevents error
                 return <CardGrid key={state.currentScreen} lst={cardLst}/>
             case "wins_leaderboard":
-                return <WinsLeaderboard key={state.currentScreen} lst={cardLst}/>
+                return <WinsLeaderboard key={state.currentScreen} playersWins={getWinsLeaderboardFromAmount(config.break_screen.minimum_wins)}/>
             default:
                 return null;
         }

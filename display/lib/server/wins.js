@@ -3,18 +3,40 @@ import { getPlayerWins } from '../client/playerInfo';
 
 import { sortNoCase } from '../utils';
 
-let noWins = initNoWins();
+let playerWinsMap = initWinsLeaderboard();
 
-export const getNoWins = () => noWins;
+export const getWinsLeaderboard = () => playerWinsMap;
+export const getNoWins = () => playerWinsMap.get(0);
 
-function initNoWins() {
+export function getWinsLeaderboardFromAmount(min) {
+    let result = new Map();
+    for (let winKey of playerWinsMap.keys()) {
+        if (winKey >= min) result.set(winKey, playerWinsMap.get(winKey))
+    }
+    return result;
+}
+
+function initWinsLeaderboard() {
     const roster = getRoster();
-    let result = [];
+    let map = new Map();
 
+    // get wins for each player and insert to a map of wins key and values of players
     for (let player of roster) {
         let win = getPlayerWins(player);
-        if (win == 0) result.push(player); 
+        let entry = map.get(win);
+        if (!entry) {
+            map.set(win, [player])
+            continue;
+        }
+
+        entry.push(player)
+        map.set(win, entry)
     }
 
-    return sortNoCase(result);
+    // sort each row
+    for (let winKey of map.keys()) {
+        map.set(winKey,sortNoCase(map.get(winKey)));
+    }
+
+    return map;
 }
