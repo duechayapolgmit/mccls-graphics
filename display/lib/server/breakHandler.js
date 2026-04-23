@@ -3,8 +3,6 @@ import breakInfo from '@/data/break_screens';
 import fs from 'fs';
 import path from "path";
 
-import { notify } from "@/lib/transmitter/listeners";
-
 const statePath = path.join(process.cwd(), "state/break.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/break.json")
 

@@ -1,8 +1,7 @@
 {
     "no_wins": {
         "title": "No Wins",
-        "type": "card_grid",
-        "list": ["Smajor", "Grian", "apokuna", "BdoubleO100"]
+        "type": "card_grid"
     },
     "perspectives": {
         "title": "Perspectives",
