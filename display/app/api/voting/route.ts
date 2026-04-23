@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions} from '@/lib/server/votingHandler'
+import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions } from '@/lib/server/votingHandler'
 import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {

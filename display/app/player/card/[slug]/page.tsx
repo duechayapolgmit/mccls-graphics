@@ -1,5 +1,5 @@
 'use client'
-import { use, useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef } from 'react';
 
 import styles from '@/components/player/card.module.css'
 import html2canvas from 'html2canvas';
