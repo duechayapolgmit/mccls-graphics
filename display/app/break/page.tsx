@@ -31,15 +31,44 @@ export default function Page() {
             <div className={styles.header}>
                 <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                 <Title title={getTitle(state.currentScreen)} subtitle={getSubtitle(state.currentScreen)}/>
-                <div className={styles.right_text}>1:00</div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>
+                {/* PHASE 2 STUFF */}
+                {/*<div className={styles.right_text}>1:00</div>
+                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>*/}
             </div>
-            <BreakScreenBody screen={state.currentScreen} />
+            <Body screen={state.currentScreen}/>
             <div className={styles.footer}>
                 <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>
                 <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": config.colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
                 <div className={styles.right_logo}><img src={"/logo-long.png"}/></div>
                 <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>        
+            </div>
+        </div>
+    )
+}
+
+function Body({screen}: {screen: string}) {
+    const [prev, setPrev] = useState("");
+    const [out, setOut] = useState(false);
+
+    useLayoutEffect(() => {
+        setOut(true);
+
+        const timeout = setTimeout(() => {
+            setOut(false);
+            const anotherTimeout = setTimeout(() => {setPrev(screen)}, 1000)
+            return () => clearTimeout(anotherTimeout)
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, [screen])
+
+    return (
+        <div className={styles.body}>
+            <div className={`${styles.body_mask} ${out ? 'mask-static' : 'transition-wipe mask-up'}`}>
+                <BreakScreenBody screen={prev} />
+            </div>
+            <div className={`${styles.body_mask} ${out ? 'mask-down' : 'transition-wipe mask-static'}`}>
+                <BreakScreenBody screen={screen} />
             </div>
         </div>
     )
@@ -59,29 +88,32 @@ function Title({title, subtitle}: {title: string, subtitle: string}) {
         // Measure widths
         const textWidth = measureRef.current?.offsetWidth || 0;
         const styles = getComputedStyle(wrapperRef.current);
-        const paddingLeft = parseFloat(styles.paddingLeft) + 1; // +1 because silly overflows
+        const paddingLeft = parseFloat(styles.paddingLeft) + 0.5; // +1 because silly overflows
         const paddingRight = parseFloat(styles.paddingRight);
 
         const newWidth = textWidth + paddingLeft + paddingRight;
         const oldWidth = wrapperRef.current.offsetWidth;
 
-        if (newWidth > oldWidth) { // if new text is longer than the old text, expand the width first then slide
-            wrapperRef.current.style.width = newWidth + "px";
-            setOut(true);
-        } else { // Else, slide first then reduce width
-            setOut(true);
-            setTimeout(() => {
-                if (!wrapperRef.current) return;
-                wrapperRef.current.style.width = newWidth + "px";
-            }, 1500) // 1.5s to offset the transition.
-        }
+        // if new text is longer than the old text, expand the width first then slide
+        if (newWidth > oldWidth) wrapperRef.current.style.width = newWidth + "px";
+
+        // starts the animation
+        setOut(true);
 
         // set back
         const timeout = setTimeout(() => {
             setOut(false);
+
+            // if new text shorter than the old text, shrink after the slide and when it's visible
+            if (newWidth <= oldWidth && wrapperRef.current) {
+                setTimeout(() => {
+                    wrapperRef.current!.style.width = newWidth + "px";
+                }, 1000)
+            }
+
             const anotherTimeout = setTimeout(() => {setPrev({title, subtitle})}, 1000)
             return () => clearTimeout(anotherTimeout)
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(timeout);
     }, [title, subtitle]);
@@ -89,11 +121,11 @@ function Title({title, subtitle}: {title: string, subtitle: string}) {
     return (
         <div className={`${styles.header_text} transition-width-fast`} ref={wrapperRef}>
             {/* PREVIOUS */}
-            <div className={out ? '' : '.transition-transform-fast slide-up-out'}>
+            <div className={out ? '' : 'transition-transform-fast slide-up-out'}>
                 {prev.title} <span className={styles.subtitle}>{prev.subtitle}</span>
             </div>
             {/* CURRENT */}
-            <div className={out ? 'slide-up-ready' : '.transition-transform-fast slide-up-out' } ref={nextRef}>
+            <div className={out ? 'slide-up-ready' : 'transition-transform-fast slide-up-out' } ref={nextRef}>
                 {title} <span className={styles.subtitle}>{subtitle}</span>
             </div>
             {/* MEASURE CURRENT TEXT */}

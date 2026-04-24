@@ -165,7 +165,7 @@ body {
 
 .finale-points-won {color: rgba(255,255,0);}
 
-/** Animations **/
+/** ANIMATIONS **/
 .transition {
     transition: transform 1s ease;
 }
@@ -178,12 +178,20 @@ body {
     transition: transform 1s ease;
 }
 
+.transition-wipe { transition: clip-path 1s ease;}
+
 .transition-transform-fast { transition: transform 0.5s ease; }
 .transition-width-fast { transition: width 0.5s ease; }
 
+/* Slides */
 .slide-right-in { transform: translateX(0); } 
 .slide-left-out { transform: translateX(-50%); }
 
 .slide-up-out { transform: translateY(-100%); }
 .slide-up-in { transform: translateY(0); }
 .slide-up-ready { transform: translateY(100%)}
+
+/* Mask Wipe */
+.mask-static { clip-path: inset(0 0 0 0)};
+.mask-up { clip-path: inset(100% 0 0 0)};
+.mask-down { clip-path: inset(0 0 100% 0)};

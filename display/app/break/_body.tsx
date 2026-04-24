@@ -50,10 +50,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
     }
 
     return (
-        <div className={styles.body}>
-            <div key={screen} className={styles.content_cards} style={{"--scale": scale} as React.CSSProperties}>
-                {getContent()}
-            </div>
+        <div key={screen} className={styles.content_cards} style={{"--scale": scale} as React.CSSProperties}>
+            {getContent()}
         </div>
     )
 }
