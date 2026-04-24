@@ -1,3 +1,5 @@
+import config from '@/config/general.json'
+
 import multipliers from '@/data/game_multipliers.json';
 import gameLogos from '@/data/game_logos.json';
 import teamInfo from '@/data/team_info.json';
@@ -24,7 +26,7 @@ function load() {
         let obj = JSON.parse(raw);
 
         // Setting up
-        let placements = setupPlacementsAfterLoad(obj.placements, obj.config.overlay.placements)
+        let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
         obj.placements = placements;
 
         return obj
@@ -41,7 +43,7 @@ function loadDefaults() {
         let obj = JSON.parse(raw);
         
         // Setting up
-        let placements = setupPlacementsAfterLoad(obj.placements, obj.config.overlay.placements)
+        let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
         obj.placements = placements;
 
         return obj;
@@ -97,7 +99,7 @@ export function setGame(game) {
 
 export function setPlaceName(place, name) {
     if (typeof place != "number") return false;
-    if (place > data.config.overlay.placements || place < 0) return false;
+    if (place > config.overlay.placements || place < 0) return false;
 
     // Check if name is in the team_info.json - if not, return
     if (!teamInfo[name] && name != "NONE") return false;
@@ -117,7 +119,7 @@ export function setPlaceName(place, name) {
 
 export function setPlaceScore(place, score) {
     if (typeof place != "number") return false;
-    if (place > data.config.overlay.placements || place < 0) return false;
+    if (place > config.overlay.placements || place < 0) return false;
 
     // get the name - if applicable
     let name = "NONE";

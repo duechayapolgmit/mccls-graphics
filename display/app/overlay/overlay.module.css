@@ -1,0 +1,108 @@
+.main {
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.status {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.status_icon {
+    background-color: var(--bg-colour);
+    width: 100px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.status_icon img {
+    width: 75px;
+    translate: 0px -12.5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.status_event {
+    background-color: rgba(0, 0, 0, .75);
+    width: 295px;
+    height: 50px;
+    color: white;
+    font-family: Metropolis BL;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.status_game {
+    background-color: rgba(0, 0, 0, .75);
+    width: 400px;
+    height: 160px;
+    position: relative;
+}
+
+.status_game img {
+    translate: 0px -25px;
+}
+
+.place {
+    height: 50px;
+    margin-top: 5px
+}
+
+.place_icon {
+    position: relative;
+    background-color: rgba(0, 0, 0, .75);
+    width: 50px;
+    height: 50px;
+
+    color: white;
+    font-family: Metropolis BL;
+    font-size: 35px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.place_label {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 290px;
+    left: 55px;
+    top: -50px;
+
+    color: white;
+    font-family: Metropolis Bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, .75);
+    line-height: 50px;
+}
+
+.place_label img {
+    height: 32px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.place_points {
+  position: relative;
+  background-color: rgba(0, 0, 0, .75);
+  width: 50px;
+  height: 50px;
+  top: -100px;
+  left: 350px;
+  color: white;
+  font-family: Metropolis BL;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.place_points img {
+  width: 40px;
+  height: 40px;
+  translate: 0px 5px;
+  margin-left: auto;
+  margin-right: auto;
+}

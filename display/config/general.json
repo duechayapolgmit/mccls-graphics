@@ -1,12 +1,16 @@
 {
     "info": {
         "event_name": "MC Championship",
-        "tagline": "Project G.L.O.P."
+        "tagline": "Project G.L.O.P.",
+        "game_amount": 8
     },
     "colours": {
         "primary": "#b51a14",
         "secondary": "#0b2f67",
-        "highlight": "#f3ce00"
+        "highlight": "#f3ce00",
+        "gold": "#a78d00",
+        "silver": "#a5a5a5",
+        "black": "#000000"
     },
     "overlay": {
         "toggle": {

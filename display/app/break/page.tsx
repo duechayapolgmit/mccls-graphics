@@ -121,11 +121,11 @@ function Title({title, subtitle}: {title: string, subtitle: string}) {
     return (
         <div className={`${styles.header_text} transition-width-fast`} ref={wrapperRef}>
             {/* PREVIOUS */}
-            <div className={out ? '' : 'transition-transform-fast slide-up-out'}>
+            <div className={out ? '' : 'transition-slide-fast slide-up-out'}>
                 {prev.title} <span className={styles.subtitle}>{prev.subtitle}</span>
             </div>
             {/* CURRENT */}
-            <div className={out ? 'slide-up-ready' : 'transition-transform-fast slide-up-out' } ref={nextRef}>
+            <div className={out ? 'slide-up-ready' : 'transition-slide-fast slide-up-out' } ref={nextRef}>
                 {title} <span className={styles.subtitle}>{subtitle}</span>
             </div>
             {/* MEASURE CURRENT TEXT */}

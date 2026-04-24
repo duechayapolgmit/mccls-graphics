@@ -13,13 +13,8 @@ body {
 .text-colour {color: var(--text-colour) !important;}
 .bg-colour {background-color: var(--bg-colour) !important;}
 
-.hidden {
-  opacity: 0%
-}
-
-.opacity-75 {
-  opacity: 75%
-}
+.hidden { opacity: 0% }
+.opacity-75 { opacity: 75% }
 
 .main-screen-label {
   font-family: Metropolis Bold;
@@ -32,155 +27,12 @@ body {
   border-width: 1px;
 }
 
-.overlay {
-  position: relative;
-  top: 51px;
-  left: 51px;
-}
-
-.status {
-  position: relative;
-  margin-bottom: 5px;
-}
-
-.header {
-  display: flex;
-  margin-bottom: 5px;
-}
-
-.ls-icon {
-  background-color: var(--bg-colour);
-  width: 100px;
-  height: 50px;
-  margin-right: 5px;
-}
-
-.ls-icon img {
-  width: 75px;
-  translate: 0px -12.5px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.event-status {
-  background-color: rgba(0, 0, 0, .75);
-  width: 295px;
-  height: 50px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.event-status-final {
-  background-color: rgba(0, 0, 0, .75);
-  width: 295px;
-  height: 50px;
-  color: rgba(255,255,0);
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-/** GAME STATUS **/
-.game {
-  background-color: rgba(0, 0, 0, .75);
-  width: 400px;
-  height: 160px;
-  position: relative;
-}
-
-.game img {
-  translate: 0px -25px;
-}
-
-/** PLACEMENTS **/
-.placement {
-  height: 50px;
-  margin-top: 5px
-}
-
-.place-icon {
-  position: relative;
-  background-color: rgba(0, 0, 0, .75);
-  width: 50px;
-  height: 50px;
-
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 35px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.first-place-icon {background-color: rgba(167, 141, 0);}
-.second-place-icon {background-color: rgba(165, 165, 165);}
-
-.label {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  width: 290px;
-  left: 55px;
-  top: -50px;
-
-  color: white;
-  font-family: Metropolis Bold;
-  font-size: 24px;
-  text-transform: uppercase;
-  background-color: rgba(0, 0, 0, .75);
-  line-height: 50px;
-}
-
-.label img {
-  height: 32px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.finale-points {
-  position: relative;
-  background-color: rgba(0, 0, 0, .75);
-  width: 50px;
-  height: 50px;
-  top: -100px;
-  left: 350px;
-  color: white;
-  font-family: Metropolis BL;
-  font-size: 30px;
-  text-align: center;
-  line-height: 50px;
-}
-
-.finale-points img {
-  width: 40px;
-  height: 40px;
-  translate: 0px 5px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.finale-points-won {color: rgba(255,255,0);}
-
 /** ANIMATIONS **/
-.transition {
-    transition: transform 1s ease;
-}
-
-.status-transition {
-    transition: transform 1s ease;
-}
-
-.placements-transition {
-    transition: transform 1s ease;
-}
+.transition-slide { transition: transform 1s ease; }
+.transition-slide-fast { transition: transform 0.5s ease; }
 
 .transition-wipe { transition: clip-path 1s ease;}
 
-.transition-transform-fast { transition: transform 0.5s ease; }
 .transition-width-fast { transition: width 0.5s ease; }
 
 /* Slides */
