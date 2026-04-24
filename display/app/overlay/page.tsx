@@ -75,7 +75,7 @@ export default function Page() {
             return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} scoreLimit={config.overlay.score_limit}/>)
         })
         return (
-            <div className={overlayData.placementsVisible ? "placements-transition slide-in" : "placements-transition slide-out"}>
+            <div className={overlayData.placementsVisible ? "placements-transition slide-right-in" : "placements-transition slide-left-out"}>
                 {lst}
             </div>
         )
@@ -83,7 +83,7 @@ export default function Page() {
 
     return (
         <div className="overlay">
-            <div className={overlayData.statusVisible ? "status-transition slide-in" : "status-transition slide-out"}>
+            <div className={overlayData.statusVisible ? "status-transition slide-right-in" : "status-transition slide-left-out"}>
                 <div className="header">
                     <div className="ls-icon" style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}

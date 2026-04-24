@@ -39,7 +39,7 @@ export default function Page() {
 
     return (
         <div>
-            <div className={data.visible ? `${styles.games} transition slide-in` : `${styles.games} transition ${styles.games_slide_out}`}>
+            <div className={data.visible ? `${styles.games} transition slide-right-in` : `${styles.games} transition ${styles.games_slide_out}`}>
                  {slotDisplay(data.slots)}
             </div>
            
