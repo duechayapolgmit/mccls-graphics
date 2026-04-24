@@ -1,6 +1,6 @@
 import styles from './card_grid.module.css'
 
-import config from '@/config/break-card_list.json'
+import config from '@/config/break.json'
 
 import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
@@ -20,7 +20,6 @@ export default function CardGrid({lst} : {lst: string[]}){
 
         return Number(rule);
     }
-
 
     const divList = lst.map((player: string) => {
         return (<div key={player}><Card player={player} team={getTeamFromMember(player)}/></div>)

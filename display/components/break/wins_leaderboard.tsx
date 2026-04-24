@@ -1,42 +1,61 @@
 import styles from './wins_leaderboard.module.css'
 
-import config from '@/config/break-card_list.json'
+import config from '@/config/general.json'
+import configBreak from '@/config/break.json'
 
 import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
-import { resolveRule } from '@/lib/utils';
-import { getWinsLeaderboard } from '@/lib/server/wins';
+import { hexToRGBA, resolveRule } from '@/lib/utils/utils';
+import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
 
 const ROWS = 3;
-export default function WinsLeaderboard({playersWins} : {playersWins: Map<number, string[]>}){
+export default function WinsLeaderboard({playersWins}: {playersWins: Map<number, string[]>}){
 
-    const getColumnFormat = () => {
-        // sort the keys in decreasing order first
-        let keys = playersWins.keys().toArray();
-        keys.sort((a, b) => b - a);
-
-        // for each key, get the number of players in each array
-        let playerAmount = [];
-        for (let key of keys) {
-            playerAmount.push(playersWins.get(key)?.length || 0)
-        }
-
-        // determine columns needed by divide them by 3 (CONCRETE) then ceiling them, and then fraction them
-        let columns = [];
-        for (let amount of playerAmount) {
-            columns.push(`${Math.ceil(amount / ROWS)}fr`)
-        }
-
-        return columns.join(" ")
-    }
-
+    let wins: any[] = playersWins.keys().toArray();
+    wins.sort((a,b) => b - a);
+    let divList = wins.map((key: number) => {return <WinsGridItem key={key} amount={key} players={playersWins.get(key) || []}/>})
 
     return (
-        <div className={styles.grid} style={{"--column-format": getColumnFormat()} as React.CSSProperties}>
-            <div>1232323232323</div>
-            <div>2232323232323</div>
-            <div>32323232323</div>
-            <div>42323232323</div>
+        <div className={styles.grid} style={{"--column-format": getGridColumnFormatFromMap(playersWins, ROWS)} as React.CSSProperties}>
+            {divList}
+        </div> 
+    )
+}
+
+function WinsGridItem({amount, players}: {amount: number, players: string[]}){
+
+    const getColumns = () => {
+        return Math.ceil(players.length / ROWS)
+    }
+
+    const getHeader = () => {
+        if (config.break_screen.highlight_wins_amounts.find((ele) => amount == ele)) { // if it's marked to be highlighted
+            return <div className={`${styles.header} bg-colour text-colour`} 
+                        style={{"--bg-colour": hexToRGBA(config.colours.highlight, 0.75), "--text-colour:": "black"} as React.CSSProperties}>
+                        {amount} WINS</div>
+        }
+        return <div className={styles.header}>{amount} WINS</div>
+    }
+
+    const getItems = () => {
+        let divList = players.map((player: string) => {
+                return (<div key={player}><Card player={player} team={getTeamFromMember(player)}/></div>)
+            })
+        if (config.break_screen.highlight_wins_amounts.find((ele) => amount == ele)) { // if it's marked to be highlighted
+            return (<div className={`${styles.items} bg-colour`} 
+                        style={{"--columns": getColumns(), "--bg-colour": hexToRGBA(config.colours.highlight, 0.75)} as React.CSSProperties}>
+                        {divList}
+                    </div>)
+        }
+        return <div className={`${styles.items}`} 
+                        style={{"--columns": getColumns()} as React.CSSProperties}>
+                       {divList} 
+                </div>
+    }
+    return (
+        <div className={styles.entry}>
+            {getHeader()}
+            {getItems()}
         </div>
     )
 }

@@ -24,6 +24,7 @@
         "background": "none"
     },
     "break_screen": {
-        "minimum_wins": 3
+        "minimum_wins": 3,
+        "highlight_wins_amounts": [5]
     }
 }

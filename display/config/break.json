@@ -7,7 +7,7 @@
     { "max": 999, "value": "n/4" }
   ],
   
-  "scale": [
+  "grid_list_scale": [
     { "max": 3,  "value": "1" },
     { "eq": 4,  "value": "0.8" },
     { "max": 10, "value": "0.65" },
@@ -18,5 +18,9 @@
     { "max": 32, "value": "0.365" },
     { "max": 40, "value": "0.325"},
     { "max": 999, "value": "1" }
+  ],
+
+  "wins_leaderboard_scale": [
+    {"max": 7, "value": "0.45"}
   ]
 }

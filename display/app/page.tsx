@@ -1,6 +1,6 @@
 import styles from './main.module.css';
 import { redirect } from 'next/navigation';
-import ControlPanelTabber, { DelayedForm } from './client';
+import ControlPanelTabber, { DelayedForm } from './_client';
 
 // CONSTANTS
 const API_URL = 'http://localhost:3000/api'

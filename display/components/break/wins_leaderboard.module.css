@@ -4,3 +4,25 @@
     grid-template-rows: 1fr;
     gap:10px;
 }
+
+.header {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    text-align: center;
+    font-family: Metropolis BL;
+    font-size: 5em;
+    background-color: rgba(0,0,0,.75);
+    color: white;
+}
+
+.items {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(var(--columns), 1fr);
+
+    padding: 15px;
+    margin-top: 15px;
+    
+    background-color: rgba(0,0,0,.75);
+}
