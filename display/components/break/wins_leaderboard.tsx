@@ -1,11 +1,10 @@
 import styles from './wins_leaderboard.module.css'
 
 import config from '@/config/general.json'
-import configBreak from '@/config/break.json'
 
 import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
-import { hexToRGBA, resolveRule } from '@/lib/utils/utils';
+import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
 
 const ROWS = 3;
