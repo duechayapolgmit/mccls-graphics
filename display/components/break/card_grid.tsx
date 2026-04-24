@@ -4,7 +4,7 @@ import config from '@/config/break-card_list.json'
 
 import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
-import { resolveRule } from '@/lib/utils';
+import { resolveRule } from '@/lib/utils/utils';
 
 export default function CardGrid({lst} : {lst: string[]}){
 

@@ -8,7 +8,7 @@ import configBreakCardList from '@/config/break-card_list.json'
 
 import CardGrid from '@/components/break/card_grid';
 import { getCardGridList, getSubtitle, getTitle, getType } from '@/lib/client/breakInfo';
-import { resolveRule } from '@/lib/utils';
+import { resolveRule } from '@/lib/utils/utils';
 import WinsLeaderboard from '@/components/break/wins_leaderboard';
 import { getWinsLeaderboard, getWinsLeaderboardFromAmount } from '@/lib/server/wins';
 

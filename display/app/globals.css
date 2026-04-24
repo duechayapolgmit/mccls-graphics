@@ -10,9 +10,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.text-colour {
-    color: var(--text-colour) !important;
-}
+.text-colour {color: var(--text-colour) !important;}
+.bg-colour {background-color: var(--bg-colour) !important;}
 
 .hidden {
   opacity: 0%
