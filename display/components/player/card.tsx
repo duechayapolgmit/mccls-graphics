@@ -7,6 +7,7 @@ export default function Card({player, team}: {player: string, team: string}) {
     const getBackground = (player: string) => {
         let url = ""
 
+        console.log(team)
         if (team && checkTeam(team)) url = getCardBackground(team)
         else url = getCardBackground(getTeamFromMember(player))
 

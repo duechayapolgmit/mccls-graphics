@@ -12,7 +12,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)
     
     const searchParams = useSearchParams()
-    const team = searchParams.get('team') || "DEFAULT";
+    const team = searchParams.get('team') || getTeamFromMember(slug) || "DEFAULT";
 
     const captureRef = useRef<HTMLDivElement>(null);
 
@@ -52,16 +52,6 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
-
-    const getBackground = (player: string) => {
-        let override = searchParams.get('team');
-        let url = ""
-
-        if (override && checkTeam(override)) url = getCardBackground(override)
-        else url = getCardBackground(getTeamFromMember(player))
-
-        return {"--bg-image": `url(${url})`} as React.CSSProperties
-    }
 
     return (
         <div ref={captureRef}>
