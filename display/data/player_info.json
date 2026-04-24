@@ -216,6 +216,12 @@
         "avatar": "/player/avatar/KaraCorvus.png",
         "wins": 2
     },
+    "KatieGoBrr": {
+        "name": "KatieGoBrr",
+        "profile": "/player/profile/KatieGoBrr.jpg",
+        "avatar": "/player/avatar/KatieGoBrr.png",
+        "wins": 0
+    },
     "Keralis": {
         "name": "Keralis",
         "profile": "/player/profile/Keralis.jpg"
