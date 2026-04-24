@@ -1,7 +1,7 @@
 import { getRoster } from '../client/teamInfo';
 import { getPlayerWins } from '../client/playerInfo';
 
-import { sortNoCase } from '../utils';
+import { sortNoCase } from '../utils/utils';
 
 let playerWinsMap = initWinsLeaderboard();
 
