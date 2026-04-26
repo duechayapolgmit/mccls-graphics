@@ -13,7 +13,7 @@ export default function MVPTable ({screen}: {screen: string}) {
 
     const getHeadings = () => {
         let divList = headings.map((col: string) => {
-            return <Heading col={col}/>
+            return <Heading key={col} col={col}/>
         })
 
         return divList;
@@ -74,8 +74,10 @@ function Heading({col}: {col:string}) {
     return (
         <div className={`${styles.heading} bg-colour text-colour`} 
             style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
-            <span className={styles.heading_title}>{getTitle(col)}</span><br/>
-            <span className={styles.heading_subtitle}>{getSubtitle(col)}</span>
+            <div className={styles.heading_text}>
+                <span className={styles.heading_title}>{getTitle(col)}</span><br/>
+                <span className={styles.heading_subtitle}>{getSubtitle(col)}</span>
+            </div>
         </div>
     )
 }
@@ -91,7 +93,11 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             }
         }
         
-        return <div className={`${styles.position} bg-colour`} style={{'--bg-colour': getColour()} as React.CSSProperties}>{rank}</div>
+        return (
+            <div className={`${styles.position} bg-colour`} style={{'--bg-colour': getColour()} as React.CSSProperties}>
+                <span className={styles.rank_text}>{rank}</span>
+            </div>
+        )
     };
 
     const getData = (player: string) => {
@@ -113,7 +119,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             return (
                 <div className={`${styles.entry_data} bg-colour text-colour`} 
                     style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
-                    {getPlayerData(player, screen, col)}{screen == "mvp_event" ? "%": ""}
+                    <div className={styles.entry_data_text}>{getPlayerData(player, screen, col)}{screen == "mvp_event" ? "%": ""}</div>
                 </div>
             )
         })
@@ -125,7 +131,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
         <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length} as React.CSSProperties}>
             {getRank(rank)}
             <div className={styles.entry_name}>
-                <img src={getPlayerAvatar(player)}/>{player}
+                <img src={getPlayerAvatar(player)}/><span className={styles.entry_name_text}>{player}</span>
             </div>
             {getData(player)}
         </div>

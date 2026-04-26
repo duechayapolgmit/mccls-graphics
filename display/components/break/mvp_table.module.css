@@ -1,7 +1,7 @@
 .grid {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 70px 3fr repeat(var(--columns), 175px)
+    grid-template-columns: 70px 600px repeat(var(--columns), 175px)
 }
 
 .heading {
@@ -75,4 +75,21 @@
     color: white;
 
     align-items: center;
+}
+
+/** SCREENSHOTTING **/
+.capture .heading_text {
+    transform: translateY(-0.5em)
+}
+
+.capture .entry_data_text {
+    transform: translateY(-0.5em)
+}
+
+.capture .entry_name_text {
+    transform: translateY(-0.5em)
+}
+
+.capture .rank_text {
+    transform: translateY(-0.45em)
 }
