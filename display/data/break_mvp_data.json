@@ -3,8 +3,8 @@
         "columns": ["public", "event", "weighted"],
         "players": {
             "Smallishbeans": {"public": 63.4, "event": 100, "weighted": 68.9},
-            "Taneesha": {"public": 55.4, "event": 88.8, "weighted": 60.4},
             "PearlescentMoon": {"public": 51.8, "event": 95.2, "weighted": 58.3},
+            "Taneesha": {"public": 55.4, "event": 88.8, "weighted": 60.4},
             "InTheLittleWood": {"public": 45.5, "event": 94.1, "weighted": 52.8},
             "Grian": {"public": 37.5, "event": 75.8, "weighted": 43.2}
         }

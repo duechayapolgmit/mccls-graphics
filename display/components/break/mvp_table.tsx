@@ -27,19 +27,19 @@ export default function MVPTable ({screen}: {screen: string}) {
         }
         playerData = sortPlayerAndData(playerData, "descending")
 
-        let divList = players.map((player: string) => {
+        let divList = playerData.map((ele: {player: string, data1: number}) => {
             // get rank position
             let rank = 1;
             let prev = {player: "", data1: 0};
             for (let data of playerData) {
-                if (data.player == player) {
+                if (data.player == ele.player) {
                     if (prev.data1 == data.data1) rank--;
                     break;
                 }
                 rank++;
                 prev = data;
             }
-            return <PlayerMvpEntry key={player} rank={rank} player={player} screen={screen} headings={headings}/>
+            return <PlayerMvpEntry key={ele.player} rank={rank} player={ele.player} screen={screen} headings={headings}/>
         })
 
         return divList;
@@ -67,6 +67,11 @@ function Heading({col}: {col:string}) {
 }
 
 function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player: string, screen: string, headings: string[]}) {
+    const getRank = (rank: number) => {
+        let colour = "rgba(0, 0, 0, 0.75)"
+
+    };
+
     const getData = (player: string) => {
         let columnData = [];
         for (let col of headings) {
