@@ -117,7 +117,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             }
 
             return (
-                <div className={`${styles.entry_data} bg-colour text-colour`} 
+                <div key={col} className={`${styles.entry_data} bg-colour text-colour`} 
                     style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
                     <div className={styles.entry_data_text}>{getPlayerData(player, screen, col)}{screen == "mvp_event" ? "%": ""}</div>
                 </div>
