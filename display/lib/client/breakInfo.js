@@ -24,6 +24,14 @@ export function getType(key) {
     return data.type || "";
 }
 
+export function getDisplayOption(key, option) {
+    let data = breakInfo[key]
+    if (!data) return true;
+    if (!data.display) return true;
+
+    return data.display[option];
+}
+
 export function getCardGridList(key) {
     let data = breakInfo[key]
     // Checks if it exists and it's a card_grid

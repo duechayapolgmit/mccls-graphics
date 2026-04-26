@@ -27,3 +27,15 @@ export const resolveRule = (rules: IRule[], n: number) => {
     }
     return n.toString();
 }
+
+/** SORT STUFF - PLAYER AND DATA (1 data point only) */
+interface IPlayerData {
+    player: string;
+    data1: number;
+}
+export const sortPlayerAndData = (data: IPlayerData[], option: string) => {
+    if (option == "ascending") data.sort((a, b) => a.data1 - b.data1)
+    if (option == "descending") data.sort((a, b) => b.data1 - a.data1)
+
+    return data;
+}

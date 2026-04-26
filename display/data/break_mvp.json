@@ -1,0 +1,8 @@
+{
+    "columns": {
+        "public": {"title": "Public", "subtitle": "(85%)"},
+        "event": {"title": "Event", "subtitle": "(15%)"},
+        "weighted": {"title": "Weighted", "subtitle": "Average"},
+        "average": {"title": "Average", "subtitle": "Score"}
+    }
+}

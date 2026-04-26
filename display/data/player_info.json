@@ -115,6 +115,12 @@
         "notes": "© SK Gaming",
         "wins": 0
     },
+    "Feinberg": {
+        "name": "Feinberg",
+        "profile": "/player/profile/Feinberg.jpg",
+        "avatar": "/player/avatar/Feinberg.png",
+        "wins": 2
+    },
     "fruitberries": {
         "name": "fruitberries",
         "profile": "/player/profile/fruitberries.jpg",
@@ -208,7 +214,9 @@
     },
     "jojosolos": {
         "name": "jojosolos",
-        "profile": "/player/profile/jojosolos.jpg"
+        "profile": "/player/profile/jojosolos.jpg",
+        "avatar": "/player/avatar/jojosolos.png",
+        "wins": 3
     },
     "KaraCorvus": {
         "name": "KaraCorvus",
@@ -394,7 +402,9 @@
     },
     "Taneesha": {
         "name": "Taneesha",
-        "profile": "/player/profile/Taneesha.jpg"
+        "profile": "/player/profile/Taneesha.jpg",
+        "avatar": "/player/avatar/Taneesha.png",
+        "wins": 1
     },
     "TangoTek": {
         "name": "TangoTek",

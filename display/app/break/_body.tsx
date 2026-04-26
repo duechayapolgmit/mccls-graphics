@@ -10,6 +10,7 @@ import { getCardGridList, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
+import MVPTable from '@/components/break/mvp_table';
 
 interface IRule {
     eq?: number;
@@ -44,6 +45,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <CardGrid lst={lst}/>
             case "wins_leaderboard": 
                 return <WinsLeaderboard playersWins={leaderboard}/>
+            case "mvp_table":
+                return <MVPTable screen={screen}/>
             default: 
                 return null;
         }

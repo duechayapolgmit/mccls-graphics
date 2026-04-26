@@ -1,0 +1,78 @@
+.grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 70px 3fr repeat(var(--columns), 175px)
+}
+
+.heading {
+    background-color: rgba(0,0,0,.75);
+    padding: 0.25em;
+
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    line-height: 25px;
+
+    text-transform: uppercase;
+}
+
+.heading_title {font-family: Metropolis BL}
+.heading_subtitle {font-family: Metropolis}
+.heading_padding { grid-column: span 2}
+
+.body { 
+    padding-top: 10px;
+
+    display: grid;
+    grid-row-gap: 35px;
+}
+
+.position {
+    background-color: rgba(0, 0, 0, .75);
+    width: 70px;
+
+    font-family: Metropolis BL;
+    font-size: 50px;
+    text-align: center;
+    line-height: 70px;
+    color: white;
+
+    align-items: center;
+}
+
+.entry_name {
+    display: flex;
+
+    background-color: rgba(0,0,0,.75);
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-right: 0.5em;
+    padding-left: 0;
+    height: 70px;
+
+    font-family: Metropolis BL;
+    font-size: 40px;
+    text-align: center;
+    line-height: 35px;
+    color: white;
+
+    text-transform: uppercase;
+}
+
+.entry_name > img {
+    width: 125px;
+    height: 100px;
+    transform: translateY(-50px)
+}
+
+.entry_data {
+    background-color: rgba(0, 0, 0, .75);
+
+    font-family: Metropolis BL;
+    font-size: 40px;
+    line-height: 70px;
+    text-align: center;
+    color: white;
+
+    align-items: center;
+}
