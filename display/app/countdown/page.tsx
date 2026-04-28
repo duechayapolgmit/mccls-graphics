@@ -1,7 +1,9 @@
 'use client'
 import config from '@/config/general.json'
 
-import { useEffect, useState } from "react"
+import styles from './countdown.module.css'
+
+import { useEffect, useLayoutEffect, useState } from "react"
 
 export default function Page(){
     const [cdTime, setCdTime] = useState({
@@ -9,7 +11,7 @@ export default function Page(){
     })
     const [finish, setFinish] = useState(false);
 
-    useEffect(() => countdown());
+    useLayoutEffect(() => countdown());
 
     const countdown = () => {
         const interval = setInterval(() => {
@@ -46,9 +48,12 @@ export default function Page(){
     }
 
     return (
-        <div>
-            <div></div>
-            <div>{finish ? 'Soon' : getTime()}</div>
+        <div className={styles.main}>
+            <div className={styles.header}>
+                <div className={styles.header_logo} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
+                <div className={styles.header_text}>NEXT MCC</div>
+            </div>
+            <div className={styles.countdown}>{finish ? 'Soon' : getTime()}</div>
         </div>
     )
 }

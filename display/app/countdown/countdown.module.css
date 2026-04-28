@@ -1,0 +1,57 @@
+.main {
+    margin-top: 50px;
+}
+
+.header {
+    display: flex;
+}
+
+.header_logo {
+    display: flex;
+    background-color: var(--bg-colour);
+    height: 50px;
+    width: fit-content;
+
+    color: white;
+    font-family: Metropolis BL;
+    font-size: 30px;
+
+    align-items: center;
+}
+
+.header_logo img {
+    width: 75px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header_text {
+    margin-left: 5px;
+    background-color: rgba(0,0,0,.75);
+    width: fit-content;
+
+    width: 200px;
+
+    color: white;
+    font-family: Metropolis BL;
+    font-size: 30px;
+    line-height: 50px;
+
+    text-align: center;
+}
+
+.countdown {
+    width: 200px;
+
+    margin-top: 5px;
+    margin-left: 100px;
+    
+    background-color: rgba(0,0,0,.75);
+
+    color: white;
+    font-family: Metropolis;
+    font-size: 30px;
+
+    text-align: center;
+
+}
