@@ -28,10 +28,13 @@ npm run build
 npm run start
 ```
 The user can then navigate to the application via `localhost:3000` address, which shows a control panel that sends GET requests to change the data in each feature of the `display` web application. They can go to each of the following route to display each of the graphics component:
+* `localhost:3000/break` - displays the break screen
+* `localhost:3000/countdown` - displays the countdown to the event
+* `localhost:3000/mvp/[type]` - displays the MVP voting statistics for the event (used on MCC Live Show) `type` includes `event` and `season`
 * `localhost:3000/overlay` - displays the event overlay
-* `localhost:3000/voting` - displays the voting screen
-* `localhost:3000/teams` - displays the teams overview screen
 * `localhost:3000/player/card/[name]` - displays the player card of a player via `[name]`
+* `localhost:3000/teams` - displays the teams overview screen
+* `localhost:3000/voting` - displays the voting screen
 
 ### General Configurations
 The application can also be configured via its JSON file (`config/general.json`)
