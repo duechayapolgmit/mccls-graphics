@@ -1,4 +1,5 @@
 <img src="MCCLS-Logo-Long-Condensed.png" height="50" width="auto"/>
+
 > Version 0.4.0 | Release Date: 28th April 2026
 
 This repository contains some of the graphics and other tools used for [MCC Live Show](https://www.youtube.com/@mccliveshow_) in its live commentary streams and development. This is a recoding of the earlier [legacy version](https://github.com/duechayapolgmit/mccls-graphics-legacy) of the project.
