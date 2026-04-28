@@ -1,0 +1,31 @@
+{
+    "mvp_event": {
+        "title": "Top 5 MVPs of the Event",
+        "subtitle": "(MCC: Hermit Takeover)",
+        "type": "mvp_table",
+        "display": {
+            "footer_event_name": false
+        }
+    },
+    "mvp_season": {
+        "title": "Overall MVP Leaderboard",
+        "type": "mvp_table",
+        "display": {
+            "footer_event_name": false
+        }
+    },
+    "wins_leaderboard": {
+        "title": "Wins Leaderboard",
+        "subtitle": "(Current Event - 3+ wins)",
+        "type": "wins_leaderboard"
+    },
+    "no_wins": {
+        "title": "No Wins",
+        "type": "card_grid"
+    },
+    "perspectives": {
+        "title": "Perspectives",
+        "type": "card_grid",
+        "list": ["WithMayX", "aypierre"]
+    }
+}

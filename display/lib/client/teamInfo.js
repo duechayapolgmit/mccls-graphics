@@ -36,6 +36,20 @@ export function getCardBackground(team) {
     return "/team/card/Default.png";
 }
 
+export function getRoster() {
+    let teams = membersInfo.teams;
+    let roster = [];
+
+    for (let teamKey of Object.keys(teams)) { // For all teams
+        let team = teams[teamKey];
+        team.forEach(element => {
+            if (element !== "") roster.push(element);
+        });
+    }
+
+    return roster;
+}
+
 export function getTeamMembers(team) {
     let data = membersInfo.teams[team]
 

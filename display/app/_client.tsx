@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './main.module.css';
-import { useFormStatus } from 'react-dom';
 
 export default function ControlPanelTabber({overlay, voting}: { overlay: React.ReactNode, voting: React.ReactNode}) {
   const [activeTab, setActiveTab] = useState('overlay');

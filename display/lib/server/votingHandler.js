@@ -1,7 +1,6 @@
 import config from '@/config/general.json'
 import gameInfo from '@/data/game_logos.json'
 
-import yaml from 'js-yaml';
 import fs from 'fs';
 import path from "path";
 

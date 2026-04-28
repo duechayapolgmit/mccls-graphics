@@ -1,20 +1,15 @@
 'use client'
 import { use, useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation';
+
+import styles from '@/components/break/mvp_table.module.css'
 import html2canvas from 'html2canvas';
-
-import styles from '@/components/player/card.module.css'
-import Card from '@/components/player/card';
-
 import { getPlayerWins } from '@/lib/client/playerInfo';
-import { getTeamFromMember } from '@/lib/client/teamInfo';
+import MVPTable from '@/components/break/mvp_table';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)
-    
-    const searchParams = useSearchParams()
-    const team = searchParams.get('team') || getTeamFromMember(slug) || "DEFAULT";
 
+    const screen = "mvp_"+slug;
     const captureRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -34,8 +29,8 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                     useCORS: true,
                     allowTaint: false,
                     backgroundColor: null,
-                    width: 500,
-                    height: 550
+                    width: 1300,
+                    height: 750
                 });
 
                 captureRef.current.classList.remove(styles.capture);
@@ -44,7 +39,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                 const wins = getPlayerWins(slug);
                 
                 const link = document.createElement('a');
-                link.download = `${wins}-${slug}.png`;
+                link.download = `${screen}.png`;
                 link.href = canvas.toDataURL();
                 link.click();
             }
@@ -54,9 +49,13 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
 
-    return (
-        <div ref={captureRef}>
-            <Card player={slug} team={team}/>
-        </div>
-    )
+    if (screen == "mvp_event" || screen == "mvp_season") {
+        return (
+            <div ref={captureRef}>
+                <MVPTable screen={screen}/>
+            </div>
+        )
+    }
+
+    return <div>Not a valid value!</div>
 }
