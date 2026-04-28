@@ -1,8 +1,7 @@
 import config from '@/config/general.json'
-
-import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import styles from './mvp_table.module.css'
 
+import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from '@/lib/client/breakMVPInfo';
 import { hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
 

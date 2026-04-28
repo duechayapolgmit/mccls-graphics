@@ -1,9 +1,8 @@
 'use client'
+import { useLayoutEffect, useState } from "react"
+
 import config from '@/config/general.json'
-
 import styles from './countdown.module.css'
-
-import { useEffect, useLayoutEffect, useState } from "react"
 
 export default function Page(){
     const [cdTime, setCdTime] = useState({

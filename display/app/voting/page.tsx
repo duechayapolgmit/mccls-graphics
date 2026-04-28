@@ -1,8 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react';
+
 import styles from './voting.module.css'
 
-import {getGameLogoPath} from '@/lib/gameInfo';
+import { getGameLogoPath } from '@/lib/gameInfo';
 
 export default function Page() {
     const [data, setData] = useState({

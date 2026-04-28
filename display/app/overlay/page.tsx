@@ -2,14 +2,15 @@
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-import styles from './overlay.module.css'
-
 import { useEffect, useState } from "react";
-import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 
 import config from '@/config/general.json'
-import teamInfo from '@/data/team_info.json';
+import styles from './overlay.module.css'
+
+import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
+
+import teamInfo from '@/data/team_info.json';
 
 interface ITeamPlacement {
     place: number;

@@ -1,12 +1,13 @@
 'use client'
 import { use, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import html2canvas from 'html2canvas';
 
 import styles from '@/components/player/card.module.css'
-import html2canvas from 'html2canvas';
-import { getPlayerWins } from '@/lib/client/playerInfo';
-import { checkTeam, getCardBackground, getTeamFromMember } from '@/lib/client/teamInfo';
-import { useSearchParams } from 'next/navigation';
 import Card from '@/components/player/card';
+
+import { getPlayerWins } from '@/lib/client/playerInfo';
+import { getTeamFromMember } from '@/lib/client/teamInfo';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)

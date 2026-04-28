@@ -2,7 +2,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import config from '@/config/general.json'
-
 import styles from './break.module.css'
 
 import BreakScreenBody from './_body';

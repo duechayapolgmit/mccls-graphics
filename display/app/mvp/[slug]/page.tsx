@@ -4,9 +4,6 @@ import { use, useEffect, useRef } from 'react';
 import styles from '@/components/break/mvp_table.module.css'
 import html2canvas from 'html2canvas';
 import { getPlayerWins } from '@/lib/client/playerInfo';
-import { checkTeam, getCardBackground, getTeamFromMember } from '@/lib/client/teamInfo';
-import { useSearchParams } from 'next/navigation';
-import Card from '@/components/player/card';
 import MVPTable from '@/components/break/mvp_table';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {

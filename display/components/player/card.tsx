@@ -1,4 +1,5 @@
 import styles from './card.module.css'
+
 import { getNotes, getPlayerAvatar, getPlayerFullName, getPlayerWins } from '@/lib/client/playerInfo';
 import { checkTeam, getCardBackground, getMemberStatus, getTeamFromMember } from '@/lib/client/teamInfo';
 

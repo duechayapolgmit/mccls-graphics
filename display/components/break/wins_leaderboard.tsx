@@ -1,8 +1,8 @@
+import config from '@/config/general.json'
 import styles from './wins_leaderboard.module.css'
 
-import config from '@/config/general.json'
-
 import Card from "../player/card";
+
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';

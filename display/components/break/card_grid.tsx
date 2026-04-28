@@ -1,8 +1,8 @@
+import config from '@/config/break.json'
 import styles from './card_grid.module.css'
 
-import config from '@/config/break.json'
-
 import Card from "../player/card";
+
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { resolveRule } from '@/lib/utils/utils';
 
