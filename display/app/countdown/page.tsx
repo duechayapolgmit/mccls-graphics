@@ -10,7 +10,7 @@ export default function Page(){
     })
     const [finish, setFinish] = useState(false);
 
-    useLayoutEffect(() => countdown());
+    useLayoutEffect(() => countdown(), []);
 
     const countdown = () => {
         const interval = setInterval(() => {
@@ -31,6 +31,8 @@ export default function Page(){
                 setFinish(true);
             }
         }, 1000);
+
+        return () => clearInterval(interval);
     }
 
     const leadingZero = (time: number) => (time > 9) ? time : `0${time}`
