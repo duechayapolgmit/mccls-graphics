@@ -99,7 +99,7 @@
 }
 
 .capture .status_text {
-    transform: translateY(18px)
+    transform: translateY(-17px)
 }
 
 .capture .notes {
