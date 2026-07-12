@@ -56,7 +56,7 @@ export default function Page() {
     const headerDisplay = () => {
         // Configure the text
         let headerText = `${config.overlay.header_text} ${overlayData.gameNumber}`
-        if (overlayData.gameNumber > 8) headerText = "FINAL DUEL"
+        if (overlayData.gameNumber > config.info.game_amount) headerText = config.overlay.finale_text
         else if (config.overlay.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
 
         // based on game number, configure the box

@@ -20,7 +20,7 @@ export default function Card({player, team}: {player: string, team: string}) {
                 <PlayerStatus player={player}/>
                 <Wins player={player}/>
             </div>
-            <div className={player == "GoodTimesWithScar" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
+            <div className={player == "GoodTimesWithScar" || player == "vintage_applesauce" ? `${styles.name} ${styles.name_small}` : `${styles.name}`}>
                 <div>{getPlayerFullName(player)}</div>
             </div>
             <div className={styles.notes}>{getNotes(player)}</div>
