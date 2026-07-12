@@ -1,7 +1,8 @@
-import breakInfo from '@/data/break_screens';
-
 import fs from 'fs';
 import path from "path";
+import { getData } from '../utils/dataHelper';
+
+const breakInfo = await getData('/api/break_data/screens')
 
 const statePath = path.join(process.cwd(), "state/break.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/break.json")
@@ -45,7 +46,7 @@ let data = load();
 /* --------------
     GETTERS
 ----------------- */ 
-export const getData = () => data;
+export const getStateData = () => data;
 
 /* --------------
     SETTERS

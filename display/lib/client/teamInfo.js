@@ -4,10 +4,7 @@ import { getData } from '../utils/dataHelper';
 const teamInfo = await getData('/api/teams/info')
 const teamData = await getData('/api/teams/data')
 
-export function checkTeam(team) {
-    if (teamInfo?.[team]) return true;
-    return false;
-}
+export const checkTeam = (team) => teamInfo?.[team] ? true : false;
 
 export function getTeamName(team) {
     let data = teamInfo?.[team];

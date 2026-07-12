@@ -1,11 +1,9 @@
 import config from '@/config/general.json'
 
-import multipliers from '@/data/game_multipliers.json';
-import gameLogos from '@/data/game_logos.json';
-import teamInfo from '@/data/team_info.json';
-
 import fs from 'fs';
 import path from "path";
+
+import { checkTeam } from '../client/teamInfo';
 
 const statePath = path.join(process.cwd(), "state/overlay.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/overlay.json")
@@ -83,15 +81,13 @@ export const getPlacementsDisplayOptions = () => data.placementsVisible;
 export function setGameNumber(gameNo) {
     data.gameNumber = gameNo
     // Check the multiplier associated and attach the multiplier with that (default x1.0)
-    data.multiplier = multipliers[data.gameNumber] || "x1.0"; 
+    data.multiplier = config.event.multipliers[data.gameNumber] || "x1.0"; 
     save(data);
     return true;
 }
 
 export function setGame(game) {
     data.game = game
-    // Check the game logo associated
-    data.gameLogo = gameLogos[data.game] || "/game_logos/Default.png";
     save(data);
 
     return true;
@@ -102,7 +98,7 @@ export function setPlaceName(place, name) {
     if (place > config.overlay.placements || place < 0) return false;
 
     // Check if name is in the team_info.json - if not, return
-    if (!teamInfo[name] && name != "NONE") return false;
+    if (!checkTeam(name)) return false;
 
     // get the score
     let score = data.placements[place - 1].score;

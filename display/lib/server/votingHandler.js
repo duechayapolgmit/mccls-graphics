@@ -1,9 +1,9 @@
 import config from '@/config/general.json'
-import gameInfo from '@/data/game_logos.json'
 
 import fs from 'fs';
 import path from "path";
 
+import { checkGame } from '../client/gameInfo';
 import { notify } from "@/lib/transmitter/listeners";
 
 const statePath = path.join(process.cwd(), "state/voting.json");
@@ -74,7 +74,7 @@ export const getData = () => data;
 ----------------- */ 
 // Set game in the next available slot
 export function setGame(game) {
-    if (!gameInfo[game]) return false; // if game not exists, return
+    if (!checkGame(game)) return false; // if game not exists, return
 
     data.slots.some(slot => {
         if (slot.game == "NONE") {
@@ -90,7 +90,7 @@ export function setGame(game) {
 // Set game in a specified slot
 export function setGameInSlot(slot, game) {
     if (typeof slot != "number") return false;
-    if (!gameInfo[game] && !(game=="NONE")) return false; // if game not exists, return
+    if (!checkGame(game)) return false; // if game not exists, return
     if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
 
     data.slots[slot-1].game = game;

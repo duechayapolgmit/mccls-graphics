@@ -11,6 +11,7 @@ import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 
 import teamInfo from '@/data/team_info.json';
+import { getGameLogoPath } from "@/lib/client/gameInfo";
 
 interface ITeamPlacement {
     place: number;
@@ -72,7 +73,7 @@ export default function Page() {
 
     const gameDisplay = (
         <div className={styles.status_game}>
-            <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
+            <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={getGameLogoPath(overlayData.game)} />
         </div>
     )
 

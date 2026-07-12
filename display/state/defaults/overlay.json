@@ -2,7 +2,6 @@
     "gameNumber": 1,
     "multiplier": "x1.0",
     "game": "DEFAULT",
-    "gameLogo": "/game_logos/Default.png",
     "placements": [],
     "statusVisible": true,
     "placementsVisible": true
