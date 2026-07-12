@@ -3,7 +3,7 @@ import styles from './mvp_table.module.css'
 
 import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from '@/lib/client/breakMVPInfo';
-import { hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
+import { formatValue, hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
 
 // there's some hardcoded values, but will be sorted out later on.
 export default function MVPTable ({screen}: {screen: string}) {
@@ -118,13 +118,18 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             return (
                 <div key={col} className={`${styles.entry_data} bg-colour text-colour`} 
                     style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
-                    <div className={styles.entry_data_text}>{getPlayerData(player, screen, col)}{screen == "mvp_event" ? "%": ""}</div>
+                    <div className={styles.entry_data_text}>{formatData(getPlayerData(player, screen, col))}</div>
                 </div>
             )
         })
 
         return divList
     };
+
+    const formatData = (data: string) => {
+        if (screen == "mvp_event") return formatValue(data) + "%";
+        return formatValue(data)
+    }
 
     return (
         <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length} as React.CSSProperties}>

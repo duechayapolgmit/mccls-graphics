@@ -39,3 +39,11 @@ export const sortPlayerAndData = (data: IPlayerData[], option: string) => {
 
     return data;
 }
+
+/** VALUE FORMATTING - HAVE A TRAILING .0 IF NOT 100 AND DOESN'T HAVE DECIMALS*/
+export const formatValue = (val: any) => {
+    if (val == 100) return val;
+    if (val % 1 == 0) return val + ".0";
+    
+    return val
+}

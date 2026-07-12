@@ -2,21 +2,21 @@
     "mvp_event": {
         "columns": ["public", "event", "weighted"],
         "players": {
-            "Smallishbeans": {"public": 63.4, "event": 100, "weighted": 68.9},
-            "PearlescentMoon": {"public": 51.8, "event": 95.2, "weighted": 58.3},
-            "Taneesha": {"public": 55.4, "event": 88.8, "weighted": 60.4},
-            "InTheLittleWood": {"public": 45.5, "event": 94.1, "weighted": 52.8},
-            "Grian": {"public": 37.5, "event": 75.8, "weighted": 43.2}
+            "Grian": {"public": 64.5, "event": 82.3, "weighted": 67.2},
+            "Shubble": {"public": 66.1, "event": 70.8, "weighted": 66.1},
+            "Feinberg": {"public": 53.2, "event": 100, "weighted": 60.2},
+            "Purpled": {"public": 29.0, "event": 99.6, "weighted": 39.6},
+            "jojosolos": {"public": 32.3, "event": 77.2, "weighted": 39.0}
         }
     },
     "mvp_season": {
         "columns": ["average"],
         "players": {
-            "fruitberries": {"average": 6.7},
-            "Smallishbeans": {"average": 6.0},
-            "Feinberg": {"average": 5.0},
-            "jojosolos": {"average": 5.0},
-            "Grian": {"average": 3.3}
+            "fruitberries": {"average": 5.0},
+            "Feinberg": {"average": 4.6},
+            "Grian": {"average": 4.2},
+            "jojosolos": {"average": 4.2},
+            "Smallishbeans": {"average": 3.6}
         }
     }
 }

@@ -1,7 +1,7 @@
 {
     "mvp_event": {
         "title": "Top 5 MVPs of the Event",
-        "subtitle": "(MCC: Hermit Takeover)",
+        "subtitle": "(MCC: Project G.L.O.P.)",
         "type": "mvp_table",
         "display": {
             "footer_event_name": false
@@ -26,6 +26,11 @@
     "perspectives": {
         "title": "Perspectives",
         "type": "card_grid",
-        "list": ["WithMayX", "aypierre"]
+        "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
+    },
+    "roster": {
+        "title": "Roster",
+        "type": "card_grid",
+        "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
     }
 }

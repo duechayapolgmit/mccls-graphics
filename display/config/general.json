@@ -1,13 +1,13 @@
 {
     "info": {
         "event_name": "MC Championship",
-        "tagline": "Project G.L.O.P.",
-        "date_time": "31 May 2026 13:00:00 GMT+1",
-        "game_amount": 6
+        "tagline": "Pride 26",
+        "date_time": "27 June 2026 20:00:00 GMT+1",
+        "game_amount": 8
     },
     "colours": {
         "primary": "#b51a14",
-        "secondary": "#ba00ab",
+        "secondary": "#760804",
         "highlight": "#f3ce00",
         "gold": "#a78d00",
         "silver": "#a5a5a5",
