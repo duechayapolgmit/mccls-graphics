@@ -36,8 +36,10 @@ body {
 .transition-width-fast { transition: width 0.5s ease; }
 
 /* Slides */
+.slide-left-in { transform: translateX(0); } 
 .slide-right-in { transform: translateX(0); } 
 .slide-left-out { transform: translateX(-50%); }
+.slide-right-out { transform: translateX(150%); }
 
 .slide-up-out { transform: translateY(-100%); }
 .slide-up-in { transform: translateY(0); }

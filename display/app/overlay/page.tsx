@@ -12,6 +12,7 @@ import { hexToRGBA } from '@/lib/utils/utils';
 import teamInfo from '@/data/team_info.json';
 import { getGameLogoPath } from "@/lib/client/gameInfo";
 import { getConfig, getConfigColours } from "@/lib/client/config";
+import { useSearchParams } from "next/navigation";
 
 const config = await getConfig();
 const colours = await getConfigColours();
@@ -23,11 +24,13 @@ interface ITeamPlacement {
 }
 
 export default function Page() {
+    const searchParams = useSearchParams();
+    const displayOption = searchParams.get('display');
+
     const [overlayData, setOverlayData] = useState({
         gameNumber: 1,
         multiplier: "x1.0",
         game: "DEFAULT",
-        gameLogo: "/game_logos/Default.png",
         placements: [{
             place: 0,
             name: "",
@@ -55,7 +58,15 @@ export default function Page() {
         return () => evtSrc.close();
     }, []);
 
-    if (!config) return null;
+    const transitionClassNames = (status: boolean) => {
+        if (status) {
+            if (displayOption == "right") return "transition-slide slide-left-in"
+            return "transition-slide slide-right-in"
+        }
+
+        if (displayOption == "right") return "transition-slide slide-right-out"
+        return "transition-slide slide-left-out"
+    }
 
     const headerDisplay = () => {
         // Configure the text
@@ -85,15 +96,15 @@ export default function Page() {
             return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} scoreLimit={config.overlay.score_limit}/>)
         })
         return (
-            <div className={overlayData.placementsVisible ? "transition-slide slide-right-in" : "transition-slide slide-left-out"}>
+            <div className={transitionClassNames(overlayData.placementsVisible)}>
                 {lst}
             </div>
         )
     }
 
     return (
-        <div className={styles.main}>
-            <div className={overlayData.statusVisible ? "transition-slide slide-right-in" : "transition-slide slide-left-out"}>
+        <div className={displayOption == "right" ? styles.main_right : styles.main}>
+            <div className={transitionClassNames(overlayData.statusVisible)}>
                 <div className={styles.status}>
                     <div className={styles.status_icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}
