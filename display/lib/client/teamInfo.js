@@ -1,4 +1,4 @@
-import config from '@/config/general.json'
+import colours from '@/config/colours.json'
 import { getData } from '../utils/dataHelper';
 
 const teamInfo = await getData('/api/teams/info')
@@ -24,7 +24,7 @@ export function getBackground(team) {
     let data = teamInfo?.[team]
 
     if (data) return data.colour;
-    return config.colours.secondary;
+    return colours.secondary;
 }
 
 export function getCardBackground(team) {

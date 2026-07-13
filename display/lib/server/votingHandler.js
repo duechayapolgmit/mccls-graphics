@@ -1,11 +1,11 @@
-import config from '@/config/general.json'
-
-import fs from 'fs';
 import path from "path";
 
 import { load, save } from '../utils/localDataManager';
 import { checkGame } from '../client/gameInfo';
 import { notify } from "@/lib/transmitter/listeners";
+import { getConfig } from "../client/config";
+
+const config = await getConfig();
 
 const statePath = path.join(process.cwd(), "state/voting.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/voting.json")

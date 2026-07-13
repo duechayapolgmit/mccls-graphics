@@ -5,15 +5,6 @@
         "date_time": "27 June 2026 20:00:00 GMT+1",
         "game_amount": 8
     },
-    "colours": {
-        "primary": "#b51a14",
-        "secondary": "#760804",
-        "highlight": "#f3ce00",
-        "gold": "#a78d00",
-        "silver": "#a5a5a5",
-        "bronze": "#ce8946",
-        "black": "#000000"
-    },
     "overlay": {
         "toggle": {
             "multiplier": true,
@@ -25,17 +16,7 @@
         "score_limit": 3
     },
     "event": {
-        "multipliers": {
-            "1": "x1.0",
-            "2": "x1.5",
-            "3": "x1.5",
-            "4": "x2.0",
-            "5": "x2.0",
-            "6": "x2.5",
-            "7": "x2.5",
-            "8": "x3.0",
-            "9": "x1.0"
-        }
+        "multipliers": ["x1.0", "x1.5", "x1.5", "x2.0", "x2.0", "x2.5", "x2.5", "x3.0"]
     },
     "voting": {
         "slots": 8
@@ -43,7 +24,7 @@
     "teams": {
         "background": "none"
     },
-    "break_screen": {
+    "break_screens": {
         "minimum_wins": 3,
         "highlight_wins_amounts": [5]
     }

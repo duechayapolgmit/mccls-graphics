@@ -2,11 +2,13 @@
 import { useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
-import config from '@/config/general.json'
 import styles from './teams.module.css'
 
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
+import { getConfig } from '@/lib/client/config';
+
+const config = await getConfig();
 
 export default function Page() {
     const captureRef = useRef<HTMLDivElement>(null);

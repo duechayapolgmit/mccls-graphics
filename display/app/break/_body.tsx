@@ -1,6 +1,3 @@
-import config from '@/config/general.json';
-import configBreak from '@/config/break.json';
-
 import styles from './break.module.css'
 
 import CardGrid from "@/components/break/card_grid";
@@ -11,12 +8,16 @@ import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
+import { getConfig, getConfigBreak } from '@/lib/client/config';
 
 interface IRule {
     eq?: number;
     max?: number;
     value: string
 }
+
+const config = await getConfig();
+const configBreak = await getConfigBreak();
 
 const WINS_LEADERBOARD_ROWS = 3;
 export default function BreakScreenBody({screen}: {screen: string}) {

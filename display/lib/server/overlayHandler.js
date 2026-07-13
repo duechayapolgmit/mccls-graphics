@@ -1,13 +1,13 @@
-import config from '@/config/general.json'
-
-import fs from 'fs';
 import path from "path";
 
 import { load, save } from '../utils/localDataManager';
 import { checkTeam } from '../client/teamInfo';
+import { getConfig } from '../client/config';
 
 const statePath = path.join(process.cwd(), "state/overlay.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/overlay.json")
+
+const config = await getConfig();
 
 // Pre-occupy the placement based on the config give
 function setupPlacementsAfterLoad(placements, placementsCount) {
@@ -46,7 +46,7 @@ export const getPlacementsDisplayOptions = () => data.placementsVisible;
 export function setGameNumber(gameNo) {
     data.gameNumber = gameNo
     // Check the multiplier associated and attach the multiplier with that (default x1.0)
-    data.multiplier = config.event.multipliers[data.gameNumber] || "x1.0"; 
+    data.multiplier = config.event.multipliers[data.gameNumber - 1] || "x1.0"; 
     save(statePath, data);
     return true;
 }
