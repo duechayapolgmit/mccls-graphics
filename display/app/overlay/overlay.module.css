@@ -3,6 +3,12 @@
     margin-top: 50px;
 }
 
+.main_right {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
 .status {
     display: flex;
     margin-bottom: 5px;
