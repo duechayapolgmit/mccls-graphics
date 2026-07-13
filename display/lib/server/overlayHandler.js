@@ -23,7 +23,7 @@ let data = load(statePath);
 if (!data) data = loadDefaults(stateDefaultPath);
 
 // Setup Placements
-let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
+let placements = setupPlacementsAfterLoad(data.placements, config.overlay.placements)
 data.placements = placements;
 
 /* --------------
