@@ -37,7 +37,8 @@ export default function Page() {
             score: -1
         }],
         statusVisible: true,
-        placementsVisible: true
+        placementsVisible: true,
+        forcedSide: "none"
     });
 
     useEffect(() => {
@@ -58,13 +59,18 @@ export default function Page() {
         return () => evtSrc.close();
     }, []);
 
+    const getSide = () => {
+        if (overlayData.forcedSide != "none") return overlayData.forcedSide;
+        return displayOption || "left";
+    }
+
     const transitionClassNames = (status: boolean) => {
         if (status) {
-            if (displayOption == "right") return "transition-slide slide-left-in"
+            if (getSide() == "right") return "transition-slide slide-left-in"
             return "transition-slide slide-right-in"
         }
 
-        if (displayOption == "right") return "transition-slide slide-right-out"
+        if (getSide() == "right") return "transition-slide slide-right-out"
         return "transition-slide slide-left-out"
     }
 
@@ -103,7 +109,7 @@ export default function Page() {
     }
 
     return (
-        <div className={displayOption == "right" ? styles.main_right : styles.main}>
+        <div className={getSide() == "right" ? styles.main_right : styles.main}>
             <div className={transitionClassNames(overlayData.statusVisible)}>
                 <div className={styles.status}>
                     <div className={styles.status_icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>

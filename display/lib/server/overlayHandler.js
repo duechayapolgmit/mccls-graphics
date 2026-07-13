@@ -37,6 +37,8 @@ export const getGame = () => data.game;
 export const getPlacements = () => data.placements;
 export const getPlacementInfo = (place) => data.placements[place] || {};
 
+export const getForcedSideOptions = () => data.forcedSide;
+
 export const getStatusDisplayOptions = () => data.statusVisible;
 export const getPlacementsDisplayOptions = () => data.placementsVisible;
 
@@ -113,6 +115,14 @@ export function setPlacementsDisplayOptions(option) {
         return true;
     }
     return false;
+}
+
+export function setForcedSideOptions(option) {
+    if (option == "left" || option == "right") data.forcedSide = option;
+    else data.forcedSide = "none";
+
+    save(statePath, data);
+    return true;
 }
 
 /* RESET */

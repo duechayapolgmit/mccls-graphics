@@ -1,11 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore} from '@/lib/server/overlayHandler';
+import {resetOverlay, setGameNumber, getGameNumber, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, getPlacements, setPlaceName, setPlaceScore, setForcedSideOptions} from '@/lib/server/overlayHandler';
 import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     
     // Read from queries
+    const forceOverlaySide = searchParams.get('forcedSide')
     const gameNoUpdate = searchParams.get('gameNo')
     const gameUpdate = searchParams.get('game')
 
@@ -18,9 +19,13 @@ export function GET(request: NextRequest) {
     const placementsVisibleUpdate = searchParams.get('placements')
     const reset = searchParams.get('reset');
 
+
     // Current info
     let currentPlacements = getPlacements();
     let changed = false;
+
+    // Forced Overlay Sides
+    if (forceOverlaySide) changed = setForcedSideOptions(forceOverlaySide);
   
     // Game Number
     if (gameNoUpdate) {

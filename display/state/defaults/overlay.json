@@ -4,5 +4,6 @@
     "game": "DEFAULT",
     "placements": [],
     "statusVisible": true,
-    "placementsVisible": true
+    "placementsVisible": true,
+    "forcedSide": "none"
 }
