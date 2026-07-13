@@ -1,4 +1,3 @@
-import config from '@/config/general.json'
 import styles from './wins_leaderboard.module.css'
 
 import Card from "../player/card";
@@ -6,6 +5,10 @@ import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
+import { getConfig, getConfigColours } from '@/lib/client/config';
+
+const config = await getConfig();
+const colours = await getConfigColours();
 
 const ROWS = 3;
 export default function WinsLeaderboard({playersWins}: {playersWins: Map<number, string[]>}){
@@ -28,9 +31,9 @@ function WinsGridItem({amount, players}: {amount: number, players: string[]}){
     }
 
     const getHeader = () => {
-        if (config.break_screen.highlight_wins_amounts.find((ele) => amount == ele)) { // if it's marked to be highlighted
+        if (config.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
             return <div className={`${styles.header} bg-colour text-colour`} 
-                        style={{"--bg-colour": hexToRGBA(config.colours.highlight, 0.75), "--text-colour:": "black"} as React.CSSProperties}>
+                        style={{"--bg-colour": hexToRGBA(colours.highlight, 0.75), "--text-colour:": "black"} as React.CSSProperties}>
                         {amount} WINS</div>
         }
         return <div className={styles.header}>{amount} WINS</div>
@@ -40,9 +43,9 @@ function WinsGridItem({amount, players}: {amount: number, players: string[]}){
         let divList = players.map((player: string) => {
                 return (<div key={player}><Card player={player} team={getTeamFromMember(player)}/></div>)
             })
-        if (config.break_screen.highlight_wins_amounts.find((ele) => amount == ele)) { // if it's marked to be highlighted
+        if (config.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
             return (<div className={`${styles.items} bg-colour`} 
-                        style={{"--columns": getColumns(), "--bg-colour": hexToRGBA(config.colours.highlight, 0.75)} as React.CSSProperties}>
+                        style={{"--columns": getColumns(), "--bg-colour": hexToRGBA(colours.highlight, 0.75)} as React.CSSProperties}>
                         {divList}
                     </div>)
         }

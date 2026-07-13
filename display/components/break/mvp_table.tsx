@@ -1,4 +1,4 @@
-import config from '@/config/general.json'
+import colours from '@/config/colours.json'
 import styles from './mvp_table.module.css'
 
 import { getPlayerAvatar } from '@/lib/client/playerInfo';
@@ -61,8 +61,8 @@ export default function MVPTable ({screen}: {screen: string}) {
 
 function Heading({col}: {col:string}) {
     const getBgColour = () => {
-        if (col == "weighted") return hexToRGBA(config.colours.highlight, 0.75);
-        else return hexToRGBA(config.colours.black, 0.75)
+        if (col == "weighted") return hexToRGBA(colours.highlight, 0.75);
+        else return hexToRGBA(colours.black, 0.75)
     }
 
     const getTextColour = () => {
@@ -85,10 +85,10 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
     const getRank = (rank: number) => {
         const getColour = () => {
             switch(rank) {
-                case 1: return hexToRGBA(config.colours.gold, 0.75)
-                case 2: return hexToRGBA(config.colours.silver, 0.75)
-                case 3: return hexToRGBA(config.colours.bronze, 0.75)
-                default: return hexToRGBA(config.colours.black, 0.75)
+                case 1: return hexToRGBA(colours.gold, 0.75)
+                case 2: return hexToRGBA(colours.silver, 0.75)
+                case 3: return hexToRGBA(colours.bronze, 0.75)
+                default: return hexToRGBA(colours.black, 0.75)
             }
         }
         
@@ -107,8 +107,8 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
 
         let divList = columnData.map((col) => {
             const getBgColour = () => {
-                if (col == "weighted") return hexToRGBA(config.colours.highlight, 0.75);
-                else return hexToRGBA(config.colours.black, 0.75)
+                if (col == "weighted") return hexToRGBA(colours.highlight, 0.75);
+                else return hexToRGBA(colours.black, 0.75)
             }
             const getTextColour = () => {
                 if (col == "weighted") return "black"

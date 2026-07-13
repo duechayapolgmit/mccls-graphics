@@ -4,13 +4,17 @@ export const fetchCache = "force-no-store";
 
 import { useEffect, useState } from "react";
 
-import config from '@/config/general.json'
 import styles from './overlay.module.css'
 
 import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 
 import teamInfo from '@/data/team_info.json';
+import { getGameLogoPath } from "@/lib/client/gameInfo";
+import { getConfig, getConfigColours } from "@/lib/client/config";
+
+const config = await getConfig();
+const colours = await getConfigColours();
 
 interface ITeamPlacement {
     place: number;
@@ -64,7 +68,7 @@ export default function Page() {
         
         return (
             <div className={`${styles.status_event} ${isHighlight ? "text-colour" : ""}`}
-                style={isHighlight ? {"--text-colour": config.colours.highlight} as React.CSSProperties : undefined}>
+                style={isHighlight ? {"--text-colour": colours.highlight} as React.CSSProperties : undefined}>
                     {headerText}
                 </div>
         )
@@ -72,7 +76,7 @@ export default function Page() {
 
     const gameDisplay = (
         <div className={styles.status_game}>
-            <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={overlayData.gameLogo} />
+            <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={getGameLogoPath(overlayData.game)} />
         </div>
     )
 
@@ -91,7 +95,7 @@ export default function Page() {
         <div className={styles.main}>
             <div className={overlayData.statusVisible ? "transition-slide slide-right-in" : "transition-slide slide-left-out"}>
                 <div className={styles.status}>
-                    <div className={styles.status_icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
+                    <div className={styles.status_icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}
                 </div>
                 {config.overlay.toggle.game_logo ? gameDisplay : null}
@@ -105,9 +109,9 @@ export default function Page() {
 function TeamPlacement({place, name, score, scoreLimit} : {place: number, name: string, score: number, scoreLimit: number}) {
     let placeIconColour = (place: number) => {
         switch (place) {
-            case 1: return hexToRGBA(config.colours.gold, 0.75)
-            case 2: return hexToRGBA(config.colours.silver, 0.75)
-            default: return hexToRGBA(config.colours.black, 0.75);
+            case 1: return hexToRGBA(colours.gold, 0.75)
+            case 2: return hexToRGBA(colours.silver, 0.75)
+            default: return hexToRGBA(colours.black, 0.75);
         }
     }
 
@@ -118,7 +122,7 @@ function TeamPlacement({place, name, score, scoreLimit} : {place: number, name: 
             </div>
             <TeamLabel team={name}/>
             <div className={`${styles.place_points} ${score >= scoreLimit ? "text-colour" : ""}`}
-                style={score >= scoreLimit ? {'--text-colour': config.colours.highlight} as React.CSSProperties: undefined}>
+                style={score >= scoreLimit ? {'--text-colour': colours.highlight} as React.CSSProperties: undefined}>
                 {score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}
             </div>
         </div>

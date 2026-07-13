@@ -1,12 +1,15 @@
 'use client'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import config from '@/config/general.json'
 import styles from './break.module.css'
 
 import BreakScreenBody from './_body';
 
 import { getDisplayOption, getSubtitle, getTitle } from '@/lib/client/breakInfo';
+import { getConfig, getConfigColours } from '@/lib/client/config';
+
+const config = await getConfig();
+const colours = await getConfigColours();
 
 export default function Page() {
     const [state, setState] = useState({
@@ -28,20 +31,20 @@ export default function Page() {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
-                <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
+                <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                 <Title title={getTitle(state.currentScreen)} subtitle={getSubtitle(state.currentScreen)}/>
                 {/* PHASE 2 STUFF */}
                 {/*<div className={styles.right_text}>1:00</div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>*/}
+                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>*/}
             </div>
             <Body screen={state.currentScreen}/>
             <div className={styles.footer}>
                 <div className={`${styles.left_text} ${getDisplayOption(state.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
-                    <div className={styles.icon} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>
-                    <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": config.colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
+                    <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
+                    <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
                 </div>
                 <div className={styles.right_logo}><img src={"/logo-long.png"}/></div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": config.colours.secondary} as React.CSSProperties}></div>        
+                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>        
             </div>
         </div>
     )

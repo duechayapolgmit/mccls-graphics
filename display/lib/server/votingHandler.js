@@ -1,10 +1,11 @@
-import config from '@/config/general.json'
-import gameInfo from '@/data/game_logos.json'
-
-import fs from 'fs';
 import path from "path";
 
+import { load, save } from '../utils/localDataManager';
+import { checkGame } from '../client/gameInfo';
 import { notify } from "@/lib/transmitter/listeners";
+import { getConfig } from "../client/config";
+
+const config = await getConfig();
 
 const statePath = path.join(process.cwd(), "state/voting.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/voting.json")
@@ -18,49 +19,14 @@ function setupSlotsAfterLoad(slots, slotsCount) {
     return slots;
 }
 
-// Load from saved data
-function load() {
-    try {
-        const raw = fs.readFileSync(statePath, "utf8");
-        let obj = JSON.parse(raw);
+// Setup
+let data = load(statePath);
+if (!data) data = loadDefaults(stateDefaultPath);
 
-        // Setting up
-        let slots = setupSlotsAfterLoad(obj.slots, config.voting.slots)
-        obj.slots = slots;
+// Setup voting slots
+let slots = setupSlotsAfterLoad(data.slots, config.voting.slots)
+data.slots = slots;
 
-        return obj
-    } catch (err) {
-        console.error("Can't load voting state, trying defaults");
-        return loadDefaults();
-    }
-}
-
-// Load from default state file
-function loadDefaults() {
-    try {
-        const raw = fs.readFileSync(stateDefaultPath, "utf8");
-        let obj = JSON.parse(raw);
-
-        // Setting up
-        let slots = setupSlotsAfterLoad(obj.slots, config.voting.slots)
-        obj.slots = slots;
-
-        return obj;
-    } catch (err) {
-        console.error("Can't load default voting state.");
-        return {}
-    }
-}
-
-function save(state) {
-    try {
-        fs.writeFileSync(statePath, JSON.stringify(state, null, 2), "utf8");
-    } catch (err) {
-        console.error("Can't write voting state", error);
-    }
-}
-
-let data = load();
 let currentSelectedSlot;
 let currentSelectedTimeout;
 
@@ -74,7 +40,7 @@ export const getData = () => data;
 ----------------- */ 
 // Set game in the next available slot
 export function setGame(game) {
-    if (!gameInfo[game]) return false; // if game not exists, return
+    if (!checkGame(game)) return false; // if game not exists, return
 
     data.slots.some(slot => {
         if (slot.game == "NONE") {
@@ -90,7 +56,7 @@ export function setGame(game) {
 // Set game in a specified slot
 export function setGameInSlot(slot, game) {
     if (typeof slot != "number") return false;
-    if (!gameInfo[game] && !(game=="NONE")) return false; // if game not exists, return
+    if (!checkGame(game)) return false; // if game not exists, return
     if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
 
     data.slots[slot-1].game = game;

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, resetBreakScreen, setBreakScreen } from '@/lib/server/breakHandler'
+import { getStateData, resetBreakScreen, setBreakScreen } from '@/lib/server/breakHandler'
 import { notify } from "@/lib/transmitter/listeners";
 
 export function GET(request: NextRequest) {
@@ -18,7 +18,7 @@ export function GET(request: NextRequest) {
     // RESET
     if (reset == "true") changed = resetBreakScreen();
 
-    if (changed) notify(getData(), "break");
+    if (changed) notify(getStateData(), "break");
 
-    return NextResponse.json(getData());
+    return NextResponse.json(getStateData());
 }

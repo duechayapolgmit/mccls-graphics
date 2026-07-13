@@ -22,5 +22,12 @@
 
   "wins_leaderboard_scale": [
     {"max": 7, "value": "0.45"}
-  ]
+  ],
+
+  "mvp_columns": {
+        "public": {"title": "Public", "subtitle": "(85%)"},
+        "event": {"title": "Event", "subtitle": "(15%)"},
+        "weighted": {"title": "Weighted", "subtitle": "Average"},
+        "average": {"title": "Average", "subtitle": "Score"}
+    }
 }

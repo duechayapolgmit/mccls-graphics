@@ -1,10 +1,12 @@
-import config from '@/config/break.json'
 import styles from './card_grid.module.css'
 
 import Card from "../player/card";
 
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { resolveRule } from '@/lib/utils/utils';
+import { getConfig } from '@/lib/client/config';
+
+const config = await getConfig();
 
 export default function CardGrid({lst} : {lst: string[]}){
 

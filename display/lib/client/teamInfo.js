@@ -1,43 +1,41 @@
-import config from '@/config/general.json'
+import colours from '@/config/colours.json'
+import { getData } from '../utils/dataHelper';
 
-import teamInfo from '@/data/team_info.json';
-import membersInfo from '@/data/team_members.json'
+const teamInfo = await getData('/api/teams/info')
+const teamData = await getData('/api/teams/data')
 
-export function checkTeam(team) {
-    if (teamInfo[team]) return true;
-    return false;
-}
+export const checkTeam = (team) => teamInfo?.[team] ? true : false;
 
 export function getTeamName(team) {
-    let data = teamInfo[team];
+    let data = teamInfo?.[team];
 
     if (data) return data.name;
     return "";
 }
 
 export function getIconPath(team) {
-    let data = teamInfo[team];
+    let data = teamInfo?.[team];
 
     if (data) return data.icon
     return null;
 }
 
 export function getBackground(team) {
-    let data = teamInfo[team]
+    let data = teamInfo?.[team]
 
     if (data) return data.colour;
-    return config.colours.secondary;
+    return colours.secondary;
 }
 
 export function getCardBackground(team) {
-    let data = teamInfo[team]
+    let data = teamInfo?.[team]
 
     if (data) return data.card;
     return "/team/card/Default.png";
 }
 
 export function getRoster() {
-    let teams = membersInfo.teams;
+    let teams = teamData.teams;
     let roster = [];
 
     for (let teamKey of Object.keys(teams)) { // For all teams
@@ -51,14 +49,14 @@ export function getRoster() {
 }
 
 export function getTeamMembers(team) {
-    let data = membersInfo.teams[team]
+    let data = teamData?.teams?.[team]
 
     if (data) return data
     return []
 }
 
 export function getTeamFromMember(name) {
-    let teams = membersInfo.teams;
+    let teams = teamData.teams;
 
     for (let teamKey of Object.keys(teams)) { // Search all teams
         let team = teams[teamKey]
@@ -73,8 +71,8 @@ export function getTeamFromMember(name) {
 export function getMemberStatus(name) {
     let status = "none";
 
-    if (membersInfo.new_players.find((member) => member == name)) status = "newcomer";
-    else if (membersInfo.sub_players.find((member) => member == name)) status = "substitute";
+    if (teamData?.new_players.find((member) => member == name)) status = "newcomer";
+    else if (teamData?.sub_players.find((member) => member == name)) status = "substitute";
 
     return status;
 }
