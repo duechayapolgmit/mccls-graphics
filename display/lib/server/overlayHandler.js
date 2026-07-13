@@ -3,6 +3,7 @@ import config from '@/config/general.json'
 import fs from 'fs';
 import path from "path";
 
+import { load } from '../utils/localDataManager';
 import { checkTeam } from '../client/teamInfo';
 
 const statePath = path.join(process.cwd(), "state/overlay.json");
@@ -17,49 +18,13 @@ function setupPlacementsAfterLoad(placements, placementsCount) {
     return placements;
 }
 
-// Load from saved data
-function load() {
-    try {
-        const raw = fs.readFileSync(statePath, "utf8");
-        let obj = JSON.parse(raw);
+// Setup
+let data = load(statePath);
+if (!data) data = loadDefaults(stateDefaultPath);
 
-        // Setting up
-        let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
-        obj.placements = placements;
-
-        return obj
-    } catch (err) {
-        console.error("Can't load overlay state, trying defaults");
-        return loadDefaults();
-    }
-}
-
-// Load from default state file
-function loadDefaults() {
-    try {
-        const raw = fs.readFileSync(stateDefaultPath, "utf8");
-        let obj = JSON.parse(raw);
-        
-        // Setting up
-        let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
-        obj.placements = placements;
-
-        return obj;
-    } catch (err) {
-        console.error("Can't load default overlay state.");
-        return {}
-    }
-}
-
-function save(state) {
-    try {
-        fs.writeFileSync(statePath, JSON.stringify(state, null, 2), "utf8");
-    } catch (err) {
-        console.error("Can't write overlay state", error);
-    }
-}
-
-let data = load();
+// Setup Placements
+let placements = setupPlacementsAfterLoad(obj.placements, config.overlay.placements)
+data.placements = placements;
 
 /* --------------
     GETTERS
@@ -82,13 +47,13 @@ export function setGameNumber(gameNo) {
     data.gameNumber = gameNo
     // Check the multiplier associated and attach the multiplier with that (default x1.0)
     data.multiplier = config.event.multipliers[data.gameNumber] || "x1.0"; 
-    save(data);
+    save(statePath, data);
     return true;
 }
 
 export function setGame(game) {
     data.game = game
-    save(data);
+    save(statePath, data);
 
     return true;
 }
@@ -108,7 +73,7 @@ export function setPlaceName(place, name) {
         place: place, name: name, score: score
     }
 
-    save(data)
+    save(statePath, data);
 
     return true;
 }
@@ -128,14 +93,14 @@ export function setPlaceScore(place, score) {
         place: place, name: name, score: score
     }
 
-    save(data)
+    save(statePath, data);
     return true;
 }
 
 export function setStatusDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.statusVisible = option;
-        save(data);
+        save(statePath, data);
         return true;
     }
     return false;
@@ -144,7 +109,7 @@ export function setStatusDisplayOptions(option) {
 export function setPlacementsDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.placementsVisible = option;
-        save(data);
+        save(statePath, data);
         return true;
     }
     return false;
@@ -153,6 +118,6 @@ export function setPlacementsDisplayOptions(option) {
 /* RESET */
 export function resetOverlay() {
     data = loadDefaults();
-    save(data);
+    save(statePath, data);
     return true;
 }
