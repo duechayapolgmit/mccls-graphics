@@ -4,6 +4,13 @@
 @font-face { font-family: "Metropolis BL"; src: url("/fonts/Metropolis-Black.otf");}
 @font-face { font-family: "Minecrafter"; src: url("/fonts/Minecrafter-Reg.ttf")}
 
+@theme inline {
+  --font-metropolis: Metropolis;
+  --font-metropolis-bold: "Metropolis Bold";
+  --font-metropolis-black: "Metropolis BL";
+  --font-minecrafter: "Minecrafter";
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -25,6 +32,32 @@ body {
   font-family: Metropolis;
   border-color: black;
   border-width: 1px;
+
+}
+
+/** CAPTURE STUFF **/
+.capture .card-name {
+    transform: translateY(-22px)
+}
+
+.capture .card-name-small {
+    transform: translateY(-22px)
+}
+
+.capture .card-wins {
+    transform: translateY(-34px)
+}
+
+.capture .card-x {
+    transform: translateY(18px)
+}
+
+.capture .card-status-text {
+    transform: translateY(-17px)
+}
+
+.capture .card-notes {
+    transform: translateY(-7em)
 }
 
 /** ANIMATIONS **/
