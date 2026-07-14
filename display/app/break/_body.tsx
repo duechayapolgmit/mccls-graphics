@@ -3,13 +3,14 @@ import styles from './break.module.css'
 import CardGrid from "@/components/break/card_grid";
 import WinsLeaderboard from "@/components/break/wins_leaderboard";
 
-import { getCardGridList, getType } from "@/lib/client/breakInfo";
+import { getCardGridList, getExplainerContent, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
 import { getConfig, getConfigBreak } from '@/lib/client/config';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Explainer from '@/components/break/explainer';
 
 interface IRule {
     eq?: number;
@@ -51,6 +52,7 @@ export default function BreakScreenBody({screen}: {screen: string}) {
             const cols = getGridColumnAmountFromMap(leaderboard, WINS_LEADERBOARD_ROWS);
             console.log("cols:", cols);
             scale = getScaleSize(configBreak.wins_leaderboard_scale, cols);
+            break;
     }
 
     const getContent = () => {
@@ -61,6 +63,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <WinsLeaderboard playersWins={leaderboard}/>
             case "mvp_table":
                 return <MVPTable screen={screen}/>
+            case "explainer":
+                return <Explainer screen={screen}/>
             default: 
                 return null;
         }

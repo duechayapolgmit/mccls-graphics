@@ -51,6 +51,8 @@ export default function Page() {
 }
 
 function Body({screen}: {screen: string}) {
+    const bodyDivRef = useRef<HTMLDivElement>(null);
+
     const [prev, setPrev] = useState("");
     const [out, setOut] = useState(false);
 
@@ -67,7 +69,7 @@ function Body({screen}: {screen: string}) {
     }, [screen])
 
     return (
-        <div className={styles.body}>
+        <div ref={bodyDivRef} className={styles.body}>
             <div className={`${styles.body_mask} ${out ? 'mask-static' : 'transition-wipe mask-up'}`}>
                 <BreakScreenBody screen={prev} />
             </div>
