@@ -1,12 +1,9 @@
-import styles from './card_grid.module.css'
-
 import Card from "../player/card";
 
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { resolveRule } from '@/lib/utils/utils';
-import { getConfig } from '@/lib/client/config';
 
-const config = await getConfig();
+import config from '@/config/break.json' // hardcoding this as there's not really a solution to this
 
 export default function CardGrid({lst} : {lst: string[]}){
 
@@ -28,7 +25,7 @@ export default function CardGrid({lst} : {lst: string[]}){
     })
 
     return (
-        <div className={styles.grid} style={{"--columns": getColumns()} as React.CSSProperties}>
+        <div className="grid gap-2.5" style={{gridTemplateColumns: `repeat(${getColumns()}, 1fr)`} as React.CSSProperties}>
             {divList}
         </div>
     )

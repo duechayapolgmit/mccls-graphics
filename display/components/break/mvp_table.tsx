@@ -1,13 +1,14 @@
-import colours from '@/config/colours.json'
 import styles from './mvp_table.module.css'
 
 import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from '@/lib/client/breakMVPInfo';
 import { formatValue, hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
+import { getConfigColours } from '@/lib/client/config';
+
+const colours = await getConfigColours();
 
 // there's some hardcoded values, but will be sorted out later on.
 export default function MVPTable ({screen}: {screen: string}) {
-
     const headings = getColumnKeys(screen)
 
     const getHeadings = () => {

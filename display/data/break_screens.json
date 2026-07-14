@@ -32,5 +32,15 @@
         "title": "Roster",
         "type": "card_grid",
         "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
+    },
+    "explainer_event_format": {
+        "title": "Event Format",
+        "type": "explainer",
+        "content": [
+            "10 teams of 4 competing in {info.game_amount} different minigames to earn coins for their team",
+            "As the event progresses, the coin multiplier increases",
+            "Top 2 teams with the highest amount of coins goes to a final game to decide the winners of the event"
+        ],
+        "picture": "/break_screens/explainers/event_format.png"
     }
 }

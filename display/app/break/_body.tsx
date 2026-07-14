@@ -9,6 +9,7 @@ import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
 import { getConfig, getConfigBreak } from '@/lib/client/config';
+import { useEffect, useState } from 'react';
 
 interface IRule {
     eq?: number;
@@ -16,13 +17,24 @@ interface IRule {
     value: string
 }
 
-const config = await getConfig();
-const configBreak = await getConfigBreak();
-
 const WINS_LEADERBOARD_ROWS = 3;
-export default function BreakScreenBody({screen}: {screen: string}) {
-    const getScaleSize = (rules: IRule[], amount: number) => Number(resolveRule(rules, amount));
 
+export default function BreakScreenBody({screen}: {screen: string}) {
+    const [config, setConfig] = useState<any>(null);
+    const [configBreak, setConfigBreak] = useState<any>(null);
+
+    useEffect(() => {
+        (async () => {
+            setConfig(await getConfig());
+            setConfigBreak(await getConfigBreak());
+        })();
+    }, []);
+
+    if (!config || !configBreak) {
+        return null;
+    }
+
+    const getScaleSize = (rules: IRule[], amount: number) => Number(resolveRule(rules, amount));
     const type = getType(screen);
 
     let lst: string[] = [];
@@ -35,8 +47,9 @@ export default function BreakScreenBody({screen}: {screen: string}) {
             scale = getScaleSize(configBreak.grid_list_scale, lst.length);
             break;
         case "wins_leaderboard":
-            leaderboard = getWinsLeaderboardFromAmount(config.break_screen.minimum_wins);
+            leaderboard = getWinsLeaderboardFromAmount(config.break_screens.minimum_wins);
             const cols = getGridColumnAmountFromMap(leaderboard, WINS_LEADERBOARD_ROWS);
+            console.log("cols:", cols);
             scale = getScaleSize(configBreak.wins_leaderboard_scale, cols);
     }
 
@@ -54,7 +67,7 @@ export default function BreakScreenBody({screen}: {screen: string}) {
     }
 
     return (
-        <div key={screen} className={styles.content_cards} style={{"--scale": scale} as React.CSSProperties}>
+        <div key={screen} className="scale-(--scale)" style={{"--scale": scale} as React.CSSProperties}>
             {getContent()}
         </div>
     )
