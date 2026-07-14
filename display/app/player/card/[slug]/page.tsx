@@ -3,7 +3,6 @@ import { use, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import html2canvas from 'html2canvas';
 
-import styles from '@/components/player/card.module.css'
 import Card from '@/components/player/card';
 
 import { getPlayerWins } from '@/lib/client/playerInfo';
@@ -23,7 +22,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
             if (e.key.toLowerCase() === 's') {
                 if (!captureRef.current) return;
 
-                captureRef.current.classList.add(styles.capture);
+                captureRef.current.classList.add("capture");
 
                 await document.fonts.ready;
 
@@ -38,7 +37,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                     height: 550
                 });
 
-                captureRef.current.classList.remove(styles.capture);
+                captureRef.current.classList.remove("capture");
 
                 // get the wins count
                 const wins = getPlayerWins(slug);
