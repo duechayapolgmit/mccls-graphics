@@ -45,9 +45,12 @@
     },
     "explainer_game_ace_race": {
         "title": "Ace Race",
-        "type": "explainer",
+        "type": "game_explainer",
+        "game": "AR",
         "content": [
-            "A racing g"
-        ]
+            "A racing game through a huge map of obstacles",
+            "<b>Goal:</b> Be the fastest of everyone<br/><b>Scoring:</b><br/>- Final placement of player<br/>- Bonuses for 1st to 19th place"
+        ],
+        "picture": "/break_screens/explainers/game_ace_race.png"
     }
 }

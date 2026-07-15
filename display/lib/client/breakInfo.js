@@ -5,6 +5,11 @@ const breakInfo = await getData('/api/break_data/screens')
 
 export const getAvailableKeys = () => Object.keys(breakInfo)
 
+export function getBreakScreenDetails(key) {
+    let data = breakInfo[key]
+    if (data) return data || "";
+}
+
 export function getTitle(key) {
     let data = breakInfo[key]
     if (!data) return;
@@ -56,7 +61,7 @@ export function getExplainerContent(key) {
     let data = breakInfo[key]
     // Checks if it exists and it's an explainer
     if (!data) return;
-    if (data.type != "explainer") return;
+    if (data.type != "explainer" && data.type != "game_explainer") return;
 
     return data.content;
 }
@@ -65,7 +70,7 @@ export function getExplainerPicture(key) {
     let data = breakInfo[key]
     // Checks if it exists and it's an explainer
     if (!data) return;
-    if (data.type != "explainer") return;
+    if (data.type != "explainer" && data.type != "game_explainer") return;
 
     return data.picture;
 }

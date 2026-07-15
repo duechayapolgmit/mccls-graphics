@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { getExplainerContent, getExplainerPicture } from "@/lib/client/breakInfo"
+import { getBreakScreenDetails, getExplainerContent, getExplainerPicture } from "@/lib/client/breakInfo"
 import { getConfigColours } from "@/lib/client/config";
+import { getGameLogoPath } from "@/lib/client/gameInfo";
 
 const colours = getConfigColours();
 
-export default function Explainer({screen}: {screen: string}) {
+export default function Explainer({screen, isGame}: {screen: string, isGame?: boolean}) {
+    const data = getBreakScreenDetails(screen);
+
     const getText = () => {
         const content = getExplainerContent(screen);
         
@@ -27,6 +30,9 @@ export default function Explainer({screen}: {screen: string}) {
             <div className="font-metropolis text-white text-6xl self-start">
                 {getText()}
             </div>
+            {!isGame ? "" :
+                <Image className="absolute right-0 bottom-65 pointer-events-none"
+                        alt={data?.game} width={400} height={150} src={getGameLogoPath(data?.game)}/>}
             <Image className="h-65 object-cover" loading="eager"
                    alt={screen} width={1920} height={1080} src={getExplainerPicture(screen)}/>
             
@@ -35,7 +41,7 @@ export default function Explainer({screen}: {screen: string}) {
 }
 
 function ExplainerText({text}: {text: string}) {
-    const tokens = text.split(/(<\/?b>|<\/?h>)/g);
+    const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
 
     let bold = false;
     let highlight = false;
@@ -54,6 +60,8 @@ function ExplainerText({text}: {text: string}) {
             case "</h>":
                 highlight = false;
                 return;
+            case "<br/>":
+                return <br key={`br-${idx}`}/>
         }
 
         let element: React.ReactNode = token;

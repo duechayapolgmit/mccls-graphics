@@ -65,6 +65,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <MVPTable screen={screen}/>
             case "explainer":
                 return <Explainer screen={screen}/>
+            case "game_explainer":
+                return <Explainer screen={screen} isGame={true}/>
             default: 
                 return null;
         }
