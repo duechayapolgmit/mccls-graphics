@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getBreakScreenDetails, getExplainerContent, getExplainerPicture } from "@/lib/client/breakInfo"
+import { getBreakScreenDetails } from "@/lib/client/breakInfo"
 import { getConfigColours } from "@/lib/client/config";
 import { getGameLogoPath } from "@/lib/client/gameInfo";
 
@@ -9,7 +9,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
     const data = getBreakScreenDetails(screen);
 
     const getText = () => {
-        const content = getExplainerContent(screen);
+        const content = data?.content;
         
         const map = content.map((ele: string) => {
             return (
@@ -34,7 +34,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
                 <Image className="absolute right-0 bottom-65 pointer-events-none"
                         alt={data?.game} width={400} height={150} src={getGameLogoPath(data?.game)}/>}
             <Image className="h-65 object-cover" loading="eager"
-                   alt={screen} width={1920} height={1080} src={getExplainerPicture(screen)}/>
+                   alt={screen} width={1920} height={1080} src={data?.picture}/>
             
         </div>
     )
