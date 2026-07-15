@@ -1,12 +1,22 @@
 import Image from "next/image";
 import { getBreakScreenDetails } from "@/lib/client/breakInfo"
 import { getConfigColours } from "@/lib/client/config";
-import { getGameLogoPath } from "@/lib/client/gameInfo";
+import { useEffect, useState } from "react";
+import { apiFetch } from "@/lib/utils/utils";
 
 const colours = getConfigColours();
 
 export default function Explainer({screen, isGame}: {screen: string, isGame?: boolean}) {
+    const [gameData, setGameData] = useState<any>(null);
+    
     const data = getBreakScreenDetails(screen);
+
+    useEffect(() => {
+        apiFetch('games').then(async res => {
+            const json = await res.json();
+            setGameData(json);
+        });
+    }, [])
 
     const getText = () => {
         const content = data?.content;
@@ -32,7 +42,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
             </div>
             {!isGame ? "" :
                 <Image className="absolute right-0 bottom-65 pointer-events-none"
-                        alt={data?.game} width={400} height={150} src={getGameLogoPath(data?.game)}/>}
+                        alt={data?.game} width={400} height={150} src={gameData?.[data?.game]}/>}
             <Image className="h-65 object-cover" loading="eager"
                    alt={screen} width={1920} height={1080} src={data?.picture}/>
             

@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:3000/api"
+
 /* SORT ALPHABETICALLY (IGNORE-CASE) */
 export const sortNoCase = (array: []) => {
     array.sort((a : string, b : string) => a.localeCompare(b, 'en', {'sensitivity': 'base'}))
@@ -46,4 +48,10 @@ export const formatValue = (val: any) => {
     if (val % 1 == 0) return val + ".0";
     
     return val
+}
+
+/* FETCHING DATA */
+export async function apiFetch(endpoint: string, params?: URLSearchParams) {
+  const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
+  return fetch(url, {cache:'no-store'})
 }
