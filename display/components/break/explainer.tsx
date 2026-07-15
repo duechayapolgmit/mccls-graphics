@@ -14,7 +14,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
         const map = content.map((ele: string) => {
             return (
                 <div key={ele.length} className="mb-10">
-                    <ExplainerText text={ele}/>
+                    <ExplainerFormatter text={ele}/>
                 </div>)
         })
 
@@ -28,7 +28,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
     return (
         <div className="flex flex-col justify-between h-212.5">
             <div className="font-metropolis text-white text-6xl self-start">
-                {getText()}
+                {!isGame ? getText() : <ExplainerGameText text={data?.content}/>}
             </div>
             {!isGame ? "" :
                 <Image className="absolute right-0 bottom-65 pointer-events-none"
@@ -40,7 +40,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
     )
 }
 
-function ExplainerText({text}: {text: string}) {
+function ExplainerFormatter({text}: {text: string}) {
     const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
 
     let bold = false;
@@ -86,4 +86,25 @@ function ExplainerText({text}: {text: string}) {
     })
 
     return <>{output}</>
+}
+
+function ExplainerGameText({text}: {text: any}) {
+    
+    const summary = <div className="mb-9">{text.summary}</div>;
+    const goal = <div><span className="font-metropolis-black">Goal: </span><ExplainerFormatter text={text.goal}/></div>
+    const scoring = text.scoring == null ? "" :
+                    <div>
+                        <span className="font-metropolis-black">Scoring: </span>
+                        {text.scoring.map((ele: any) => <div>- <ExplainerFormatter text={ele}/></div>)}
+                    </div>
+                    
+    
+    
+    return (
+        <div className="m-9">
+            {summary}
+            {goal}
+            {scoring}
+        </div>
+    )
 }

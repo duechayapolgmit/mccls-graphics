@@ -1,9 +1,7 @@
-import styles from './break.module.css'
-
 import CardGrid from "@/components/break/card_grid";
 import WinsLeaderboard from "@/components/break/wins_leaderboard";
 
-import { getCardGridList, getExplainerContent, getType } from "@/lib/client/breakInfo";
+import { getCardGridList, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";

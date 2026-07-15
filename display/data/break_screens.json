@@ -43,14 +43,232 @@
         ],
         "picture": "/break_screens/explainers/event_format.png"
     },
-    "explainer_game_ace_race": {
+    "game_ace_race": {
         "title": "Ace Race",
         "type": "game_explainer",
         "game": "AR",
-        "content": [
-            "A racing game through a huge map of obstacles",
-            "<b>Goal:</b> Be the fastest of everyone<br/><b>Scoring:</b><br/>- Final placement of player<br/>- Bonuses for 1st to 19th place"
-        ],
-        "picture": "/break_screens/explainers/game_ace_race.png"
+        "content": {
+            "summary": "A racing game through a huge map of obstacles",
+            "goal": "Be the fastest of everyone",
+            "scoring": [
+                "Final placement of player",
+                "Top 19 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_ace_race.png"
+    },
+    "game_battle_box": {
+        "title": "Battle Box",
+        "type": "game_explainer",
+        "game": "BB",
+        "content": {
+            "summary": "A team-versus-team deathmatch game",
+            "goal": "Capture the centre objective and eliminate players",
+            "scoring": [
+                "Wins (objective captured/most amount of blocks",
+                "Eliminations"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_battle_box.png"
+    },
+    "game_bingo_but_fast": {
+        "title": "Bingo but Fast",
+        "type": "game_explainer",
+        "game": "BBF",
+        "content": {
+            "summary": "A scavenger hunt for items and objectives",
+            "goal": "Complete objectives on the bingo card as fast and as many as possible",
+            "scoring": [
+                "Objective completions (scaled based on number of completions)",
+                "Completing lines"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_bingo_but_fast.png"
+    },
+    "game_build_mart": {
+        "title": "Big Sales at Build Mart",
+        "type": "game_explainer",
+        "game": "BM",
+        "content": {
+            "summary": "A team-based building and communicative game",
+            "goal": "Complete as many builds as possible, and as fast as possible",
+            "scoring": [
+                "Stars (coins per star increases throughout)",
+                "Top 3 Employee of the Month bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_build_mart.png"
+    },
+    "game_dodgebolt": {
+        "title": "Dodgebolt",
+        "type": "game_explainer",
+        "game": "DB",
+        "content": {
+            "summary": "The final game of MC Championship, determining the winners of the event",
+            "goal": "Shoot other players and avoid getting shot<br/><br/>First team to get 3 out of 5 wins, <b>wins the event</b>"
+        },
+        "picture": "/break_screens/game_explainers/game_dodgebolt.png"
+    },
+    "game_grid_runners": {
+        "title": "Grid Runners",
+        "type": "game_explainer",
+        "game": "GR",
+        "content": {
+            "summary": "A team-based cooperation game",
+            "goal": "Complete each challenge room and course as fast as possible",
+            "scoring": [
+                "Room completion time",
+                "Course completion time"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_grid_runners.png"
+    },
+    "game_hole_in_the_wall": {
+        "title": "Hole in the Wall",
+        "type": "game_explainer",
+        "game": "HITW",
+        "content": {
+            "summary": "A movement and reaction time based game",
+            "goal": "Dodge as many incoming walls as possible",
+            "scoring": [
+                "Survival",
+                "Dodging walls",
+                "Top 3 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_hole_in_the_wall.png"
+    },
+    "game_meltdown": {
+        "title": "Meltdown",
+        "type": "game_explainer",
+        "game": "MD",
+        "content": {
+            "summary": "A ranged PVP game with coordination and strategies",
+            "goal": "Collect coin crates, freeze players, and be the last team standing",
+            "scoring": [
+                "Coin crate",
+                "Permanent freezes",
+                "Team placement"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_meltdown.png"
+    },
+    "game_parkour_tag": {
+        "title": "Parkour Tag",
+        "type": "game_explainer",
+        "game": "PT",
+        "content": {
+            "summary": "A classic tag game in a huge arena",
+            "goal": "Hunt as fast as possible, or stay alive as long as possible",
+            "scoring": [
+                "Hunters: Speed for hunting + bonuses for catching everyone first",
+                "Runners: Survival time + bonuses for full<br/>survival"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_parkour_tag.png"
+    },
+    "game_parkour_warrior": {
+        "title": "Parkour Warrior",
+        "type": "game_explainer",
+        "game": "PW",
+        "content": {
+            "summary": "A parkour game that test everyone's movement skills to the maximum",
+            "goal": "Complete as many parkour challenges as possible and reach the end",
+            "scoring": [
+                "Medals from challenge completions",
+                "Multiplier from final ending<br/>(difficulty-based)"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_parkour_warrior.png"
+    },
+    "game_railroad_rush": {
+        "title": "Railroad Rush",
+        "type": "game_explainer",
+        "game": "RRR",
+        "content": {
+            "summary": "A puzzle and rail-building game with explosives and all about gold",
+            "goal": "Build the longest straight track",
+            "scoring": [
+                "Track length",
+                "Track vs other teams (and efficiency)",
+                "Checkpoints",
+                "Emeralds"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_railroad_rush.png"
+    },
+    "game_rocket_spleef_rush": {
+        "title": "Rocket Spleef Rush",
+        "type": "game_explainer",
+        "game": "RSR",
+        "content": {
+            "summary": "A classic Spleef game with rockets and moving arenas",
+            "goal": "Be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Top 10 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_rocket_spleef_rush.png"
+    },
+    "game_sky_battle": {
+        "title": "Sky Battle",
+        "type": "game_explainer",
+        "game": "SB",
+        "content": {
+            "summary": "A PVP battle royale in the skies",
+            "goal": "Eliminate other players and be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Team placement"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_sky_battle.png"
+    },
+    "game_survival_games": {
+        "title": "Survival Games",
+        "type": "game_explainer",
+        "game": "SG",
+        "content": {
+            "summary": "A classic Battle Royale game and a classic Minecraft staple",
+            "goal": "Eliminate other players and be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Team placement",
+                "Coin crates"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_survival_games.png"
+    },
+    "game_sands_of_time": {
+        "title": "Sands of Time",
+        "type": "game_explainer",
+        "game": "SOT",
+        "content": {
+            "summary": "A time-oriented exploration game",
+            "goal": "Collect as many coins as possible",
+            "scoring": [
+                "Coins collected in the dungeon"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_sands_of_time.png"
+    },
+    "game_tgttos": {
+        "title": "To Get to the Other Side and Whack a Fan",
+        "type": "game_explainer",
+        "game": "TGTTOS",
+        "content": {
+            "summary": "A movement game in different scenarios",
+            "goal": "Get to the end as fast as possible",
+            "scoring": [
+                "Individual placement",
+                "Top 10 individual bonuses",
+                "Top 4 team bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_tgttos.png"
     }
 }
