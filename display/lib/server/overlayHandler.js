@@ -20,7 +20,7 @@ function setupPlacementsAfterLoad(placements, placementsCount) {
 
 // Setup
 let data = load(statePath);
-if (!data) data = loadDefaults(stateDefaultPath);
+if (!data) data = load(stateDefaultPath);
 
 // Setup Placements
 let placements = setupPlacementsAfterLoad(data.placements, config.overlay.placements)
@@ -127,7 +127,7 @@ export function setForcedSideOptions(option) {
 
 /* RESET */
 export function resetOverlay() {
-    data = loadDefaults();
+    data = load(stateDefaultPath);
     save(statePath, data);
     return true;
 }

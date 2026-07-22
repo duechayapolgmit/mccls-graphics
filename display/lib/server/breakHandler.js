@@ -10,7 +10,7 @@ const statePath = path.join(process.cwd(), "state/break.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/break.json")
 
 let data = load(statePath);
-if (!data) data = loadDefaults(stateDefaultPath);
+if (!data) data = load(stateDefaultPath);
 
 /* --------------
     GETTERS
@@ -34,7 +34,7 @@ export function setBreakScreen(key) {
 
 /* RESET */
 export function resetBreakScreen() {
-    data = loadDefaults();
+    data = load(stateDefaultPath);
     save(statePath, data);
     return true;
 }
