@@ -128,6 +128,9 @@ export function setForcedSideOptions(option) {
 /* RESET */
 export function resetOverlay() {
     data = load(stateDefaultPath);
+    let placements = setupPlacementsAfterLoad(data.placements, config.overlay.placements)
+    data.placements = placements;
+    
     save(statePath, data);
     return true;
 }
