@@ -1,4 +1,8 @@
 {
+  "scales": {
+    "teams_overview": 0.8
+  },
+
   "columns": [
     { "max": 5,  "value": "n" },
     { "max": 14, "value": "n/2" },

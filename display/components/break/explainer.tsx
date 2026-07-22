@@ -40,9 +40,10 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
             <div className="font-metropolis text-white text-6xl self-start">
                 {!isGame ? getText() : <ExplainerGameText text={data?.content}/>}
             </div>
-            {!isGame ? "" :
-                <Image className="absolute right-0 bottom-65 pointer-events-none"
-                        alt={data?.game} width={400} height={150} src={gameData?.[data?.game]}/>}
+            {isGame && gameData?.[data.game] ? (
+                <Image className="absolute right-0 bottom-65 pointer-events-none" alt={data?.game}
+                    width={400} height={150} src={gameData[data.game]} />
+            ) : null}
             <Image className="h-65 object-cover" loading="eager"
                    alt={screen} width={1920} height={1080} src={data?.picture}/>
             
@@ -105,11 +106,9 @@ function ExplainerGameText({text}: {text: any}) {
     const scoring = text.scoring == null ? "" :
                     <div>
                         <span className="font-metropolis-black">Scoring: </span>
-                        {text.scoring.map((ele: any) => <div>- <ExplainerFormatter text={ele}/></div>)}
+                        {text.scoring.map((ele: any, idx: number) => <div key={idx}>- <ExplainerFormatter text={ele}/></div>)}
                     </div>
                     
-    
-    
     return (
         <div className="m-9">
             {summary}

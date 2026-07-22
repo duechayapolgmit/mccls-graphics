@@ -36,29 +36,16 @@ body {
 }
 
 /** CAPTURE STUFF **/
-.capture .card-name {
-    transform: translateY(-22px)
-}
+.capture .teams-overview-nameplate { padding-bottom: 18px; }
+.capture .teams-overview-event-name p { transform: translateY(-22px) }
+.capture .teams-overview-remark p { transform: translateY(-12px) }
 
-.capture .card-name-small {
-    transform: translateY(-22px)
-}
-
-.capture .card-wins {
-    transform: translateY(-34px)
-}
-
-.capture .card-x {
-    transform: translateY(18px)
-}
-
-.capture .card-status-text {
-    transform: translateY(-17px)
-}
-
-.capture .card-notes {
-    transform: translateY(-7em)
-}
+.capture .card-name { transform: translateY(-22px) }
+.capture .card-name-small { transform: translateY(-22px) }
+.capture .card-wins { transform: translateY(-34px) }
+.capture .card-x { transform: translateY(18px) }
+.capture .card-status-text { transform: translateY(-17px) }
+.capture .card-notes { transform: translateY(-7em) }
 
 /** ANIMATIONS **/
 .transition-slide { transition: transform 1s ease; }

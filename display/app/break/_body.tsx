@@ -7,8 +7,9 @@ import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
 import { getConfig, getConfigBreak } from '@/lib/client/config';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Explainer from '@/components/break/explainer';
+import TeamsOverview from "@/components/team/teams_overview";
 
 interface IRule {
     eq?: number;
@@ -48,8 +49,10 @@ export default function BreakScreenBody({screen}: {screen: string}) {
         case "wins_leaderboard":
             leaderboard = getWinsLeaderboardFromAmount(config.break_screens.minimum_wins);
             const cols = getGridColumnAmountFromMap(leaderboard, WINS_LEADERBOARD_ROWS);
-            console.log("cols:", cols);
             scale = getScaleSize(configBreak.wins_leaderboard_scale, cols);
+            break;
+        case "teams_overview":
+            scale = configBreak.scales.teams_overview;
             break;
     }
 
@@ -65,6 +68,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <Explainer screen={screen}/>
             case "game_explainer":
                 return <Explainer screen={screen} isGame={true}/>
+            case "teams_overview":
+                return <TeamsOverview />
             default: 
                 return null;
         }

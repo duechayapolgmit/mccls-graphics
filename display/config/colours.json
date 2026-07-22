@@ -2,6 +2,10 @@
     "primary": "#b51a14",
     "secondary": "#760804",
     "highlight": "#f3ce00",
+
+    "newcomer": "#f3ce00",
+    "substitute": "#8dc63f",
+
     "gold": "#a78d00",
     "silver": "#a5a5a5",
     "bronze": "#ce8946",

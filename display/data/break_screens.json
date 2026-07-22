@@ -33,6 +33,10 @@
         "type": "card_grid",
         "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
     },
+    "teams_overview": {
+        "title": "Teams Overview",
+        "type": "teams_overview"
+    },
     "explainer_event_format": {
         "title": "Event Format",
         "type": "explainer",
