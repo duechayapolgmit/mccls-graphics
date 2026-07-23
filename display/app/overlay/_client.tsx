@@ -36,6 +36,7 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
         placementsVisible: true,
         forcedSide: "none"
     });
+    const [placementsData, setPlacementsData] = useState<any>(null);
     const [gameData, setGameData] = useState<any>(null);
 
     useEffect(() => {
@@ -51,6 +52,19 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
         evtSrc.onmessage = (e) => {
             const evtData = JSON.parse(e.data)
             setOverlayData(evtData)
+        }
+
+        return () => evtSrc.close();
+    }, []);
+
+    // API Subscribe -> Event Placements
+    useEffect(() => {
+        // Register SSE
+        const evtSrc = new EventSource('/api/event/placements/subscribe')
+
+        evtSrc.onmessage = (e) => {
+            const evtData = JSON.parse(e.data)
+            setPlacementsData(evtData)
         }
 
         return () => evtSrc.close();
@@ -104,10 +118,15 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
     }
 
     const placementsDisplay = (places: ITeamPlacement[]) => {
-        const lst = places.map((place: ITeamPlacement) => {
-            return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} 
-                                   scoreLimit={config.overlay.score_limit} colours={colours}/>)
-        })
+        if (!places) return;
+
+        const lst = places
+            .slice(0, config.overlay.placements)
+            .map((place: ITeamPlacement) => {
+                return (<TeamPlacement key={place.place} place={place.place} name={place.name} score={place.score} 
+                                       scoreLimit={config.overlay.score_limit} colours={colours}/>)
+            })
+
         return (
             <div className={transitionClassNames(overlayData.placementsVisible)}>
                 {lst}
@@ -124,7 +143,7 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
                 </div>
                 {config.overlay.toggle.game_logo ? gameDisplay() : null}
             </div>
-            {placementsDisplay(overlayData.placements)}
+            {placementsDisplay(placementsData)}
         </div>
     );
 }
