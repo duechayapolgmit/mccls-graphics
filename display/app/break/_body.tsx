@@ -10,6 +10,7 @@ import { getConfig, getConfigBreak } from '@/lib/client/config';
 import { useEffect, useState } from 'react';
 import Explainer from '@/components/break/explainer';
 import TeamsOverview from "@/components/team/teams_overview";
+import CurrentStandings from "@/components/break/current_standings";
 
 interface IRule {
     eq?: number;
@@ -54,6 +55,9 @@ export default function BreakScreenBody({screen}: {screen: string}) {
         case "teams_overview":
             scale = configBreak.scales.teams_overview;
             break;
+        case "current_standings":
+            scale = configBreak.scales.current_standings;
+            break;
     }
 
     const getContent = () => {
@@ -70,6 +74,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <Explainer screen={screen} isGame={true}/>
             case "teams_overview":
                 return <TeamsOverview />
+            case "current_standings":
+                return <CurrentStandings />
             default: 
                 return null;
         }

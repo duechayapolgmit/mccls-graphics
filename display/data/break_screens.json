@@ -37,6 +37,10 @@
         "title": "Teams Overview",
         "type": "teams_overview"
     },
+    "current_standings": {
+        "title": "Current Standings",
+        "type": "current_standings"
+    },
     "explainer_event_format": {
         "title": "Event Format",
         "type": "explainer",

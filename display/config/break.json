@@ -1,6 +1,7 @@
 {
   "scales": {
-    "teams_overview": 0.8
+    "teams_overview": 0.8,
+    "current_standings": 1.15
   },
 
   "columns": [

@@ -6,14 +6,13 @@ import { useEffect, useState } from "react";
 
 import styles from './overlay.module.css'
 
-import { getIconPath, getTeamName } from '@/lib/client/teamInfo';
 import { apiFetch, hexToRGBA } from '@/lib/utils/utils';
 
 import teamInfo from '@/data/team_info.json';
 import { useSearchParams } from "next/navigation";
 import { TeamLabel } from "@/components/team/team_label";
 
-interface ITeamPlacement {
+export interface ITeamPlacement {
     place: number;
     name: string;
     score: number;
@@ -163,8 +162,8 @@ function TeamPlacement({place, name, score, scoreLimit, colours} : {place: numbe
             <div className={`${styles.place_icon} bg-colour`} style={{"--bg-colour": placeIconColour(place)} as React.CSSProperties}>
                 {place}
             </div>
-            <div className="relative flex items-center h-[50px] w-[290px] left-[55px] top-[-50px] text-white
-                        text-[24px] uppercase bg-black/75">
+            <div className="relative flex items-center h-12.5 w-72.5 left-13.75 -top-12.5 
+                        text-[24px] bg-black/75">
                 <TeamLabel team={name}/>
             </div>
             <div className={`${styles.place_points} ${score >= scoreLimit ? "text-colour" : ""}`}

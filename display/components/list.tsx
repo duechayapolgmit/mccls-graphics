@@ -5,14 +5,22 @@ import styles from '@/components/list.module.css'
 
 const colours = await getConfigColours();
 
-export function ListEntry({rank, body}: {rank: number, body: any}) {
+export function ListEntry({rank, body, currentStandings = false}: {rank: number, body: any, currentStandings?: boolean}) {
     const getRank = (rank: number) => {
         const getColour = () => {
             switch(rank) {
-                case 1: return hexToRGBA(colours.gold, 0.75)
-                case 2: return hexToRGBA(colours.silver, 0.75)
-                case 3: return hexToRGBA(colours.bronze, 0.75)
-                default: return hexToRGBA(colours.black, 0.75)
+                case 1: 
+                    if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
+                    return hexToRGBA(colours.gold, 0.75)
+                case 2: 
+                    if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
+                    return hexToRGBA(colours.silver, 0.75)
+                case 3: 
+                    if (currentStandings) return hexToRGBA(colours.primary, 0.75)
+                    return hexToRGBA(colours.bronze, 0.75)
+                default: 
+                    if (currentStandings) return hexToRGBA(colours.primary, 0.75)
+                    return hexToRGBA(colours.black, 0.75)
             }
         }
         
