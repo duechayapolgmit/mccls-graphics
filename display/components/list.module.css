@@ -18,12 +18,11 @@
 
 .heading_title {font-family: Metropolis BL}
 .heading_subtitle {font-family: Metropolis}
-.heading_padding { grid-column: span 1}
+.heading_padding { grid-column: span 2}
 
 .body { 
     padding-top: 10px;
 
-    display: grid;
     grid-row-gap: 35px;
 }
 

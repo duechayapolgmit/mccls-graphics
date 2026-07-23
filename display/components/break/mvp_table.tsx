@@ -4,6 +4,7 @@ import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from '@/lib/client/breakMVPInfo';
 import { formatValue, hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
 import { getConfigColours } from '@/lib/client/config';
+import { ListEntry } from '../list';
 
 const colours = await getConfigColours();
 
@@ -50,7 +51,7 @@ export default function MVPTable ({screen}: {screen: string}) {
 
     return (
         <div className={styles.main}>
-            <div className={styles.grid} style={{"--columns": headings.length} as React.CSSProperties}>
+            <div className={styles.grid} style={{"--columns": headings.length + 1} as React.CSSProperties}>
                 <div className={styles.heading_padding}/>{getHeadings()}
             </div>
             <div className={`${styles.body}`}>
@@ -83,23 +84,6 @@ function Heading({col}: {col:string}) {
 }
 
 function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player: string, screen: string, headings: string[]}) {
-    const getRank = (rank: number) => {
-        const getColour = () => {
-            switch(rank) {
-                case 1: return hexToRGBA(colours.gold, 0.75)
-                case 2: return hexToRGBA(colours.silver, 0.75)
-                case 3: return hexToRGBA(colours.bronze, 0.75)
-                default: return hexToRGBA(colours.black, 0.75)
-            }
-        }
-        
-        return (
-            <div className={`${styles.position} bg-colour`} style={{'--bg-colour': getColour()} as React.CSSProperties}>
-                <span className={styles.rank_text}>{rank}</span>
-            </div>
-        )
-    };
-
     const getData = (player: string) => {
         let columnData = [];
         for (let col of headings) {
@@ -117,7 +101,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             }
 
             return (
-                <div key={col} className={`${styles.entry_data} bg-colour text-colour`} 
+                <div key={col} className={`h-[70px] ${styles.entry_data} self-end bg-colour text-colour`} 
                     style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
                     <div className={styles.entry_data_text}>{formatData(getPlayerData(player, screen, col))}</div>
                 </div>
@@ -133,11 +117,11 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
     }
 
     return (
-        <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length} as React.CSSProperties}>
-            {getRank(rank)}
-            <div className={styles.entry_name}>
-                <img src={getPlayerAvatar(player)}/><span className={styles.entry_name_text}>{player}</span>
-            </div>
+        <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length + 1} as React.CSSProperties}>
+            <ListEntry rank={rank} body={
+                <div className={`w-[700px] ${styles.entry_name}`}>
+                    <img src={getPlayerAvatar(player)}/><span className={styles.entry_name_text}>{player}</span>
+                </div>}/>
             {getData(player)}
         </div>
     )

@@ -11,6 +11,7 @@ import { apiFetch, hexToRGBA } from '@/lib/utils/utils';
 
 import teamInfo from '@/data/team_info.json';
 import { useSearchParams } from "next/navigation";
+import { TeamLabel } from "@/components/team/team_label";
 
 interface ITeamPlacement {
     place: number;
@@ -143,20 +144,14 @@ function TeamPlacement({place, name, score, scoreLimit, colours} : {place: numbe
             <div className={`${styles.place_icon} bg-colour`} style={{"--bg-colour": placeIconColour(place)} as React.CSSProperties}>
                 {place}
             </div>
-            <TeamLabel team={name}/>
+            <div className="relative flex items-center h-[50px] w-[290px] left-[55px] top-[-50px] text-white
+                        text-[24px] uppercase bg-black/75">
+                <TeamLabel team={name}/>
+            </div>
             <div className={`${styles.place_points} ${score >= scoreLimit ? "text-colour" : ""}`}
                 style={score >= scoreLimit ? {'--text-colour': colours.highlight} as React.CSSProperties: undefined}>
                 {score == -1 ? (<img src={"/icon.png"}/>) : (<span>{score}</span>)}
             </div>
-        </div>
-    )
-}
-
-// Team label component
-function TeamLabel({team} : {team : string}) {
-    return (
-        <div className={styles.place_label}>
-            <img src={getIconPath(team)}/> {getTeamName(team)}
         </div>
     )
 }

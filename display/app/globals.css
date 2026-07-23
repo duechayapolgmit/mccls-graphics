@@ -47,6 +47,8 @@ body {
 .capture .card-status-text { transform: translateY(-17px) }
 .capture .card-notes { transform: translateY(-7em) }
 
+.capture .list-rank-text { transform: translateY(-0.45em) }
+
 /** ANIMATIONS **/
 .transition-slide { transition: transform 1s ease; }
 .transition-slide-fast { transition: transform 0.5s ease; }
