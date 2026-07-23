@@ -25,8 +25,8 @@ export function ListEntry({rank, body, currentStandings = false}: {rank: number,
         }
         
         return (
-            <div className="flex w-[70px] bg-black/75 justify-center
-                            font-metropolis-black text-[50px] text-white text-center leading-[70px] bg-colour"
+            <div className="flex w-17.5 bg-black/75 justify-center
+                            font-metropolis-black text-[50px] text-white text-center leading-17.5 bg-colour"
                  style={{'--bg-colour': getColour()} as React.CSSProperties}>
                 <span className="list-rank-text">{rank}</span>
             </div>
@@ -34,7 +34,7 @@ export function ListEntry({rank, body, currentStandings = false}: {rank: number,
     };
 
     return (
-        <div className={`flex flex-row gap-[10px] ${styles.body}`}>
+        <div className={`flex flex-row gap-2.5 ${styles.body}`}>
             {getRank(rank)}
             {body}
         </div>

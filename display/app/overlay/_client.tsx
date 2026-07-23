@@ -26,11 +26,6 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
         gameNumber: 1,
         multiplier: "x1.0",
         game: "DEFAULT",
-        placements: [{
-            place: 0,
-            name: "",
-            score: -1
-        }],
         statusVisible: true,
         placementsVisible: true,
         forcedSide: "none"
@@ -56,7 +51,7 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
         return () => evtSrc.close();
     }, []);
 
-    // API Subscribe -> Event Placements
+    // API Subscribe -> Event Team Placements
     useEffect(() => {
         // Register SSE
         const evtSrc = new EventSource('/api/event/placements/subscribe')

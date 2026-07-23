@@ -4,7 +4,7 @@ export function TeamLabel({team, picSize = "32px"} : {team : string, picSize?: s
     return (
         <div className="flex items-center 
                         font-metropolis-bold uppercase text-white">
-            <img className="h-(--pic-size) px-[5px]" 
+            <img className="h-(--pic-size) px-1.25" 
                  style={{"--pic-size": picSize} as React.CSSProperties}
                  src={getIconPath(team)}/>{getTeamName(team)}
         </div>

@@ -14,7 +14,7 @@ export default function TeamsOverview() {
     return (
         <div className={styles.main}>
             <div className="flex">
-                <div className="w-[945px]">
+                <div className="w-236.25">
                     <TeamAndMembers option="left" team="RED"/>
                     <TeamAndMembers option="left" team="ORANGE"/>
                     <TeamAndMembers option="left" team="YELLOW"/>
@@ -28,7 +28,7 @@ export default function TeamsOverview() {
                     <TeamAndMembers option="right" team="PURPLE"/>
                     <TeamAndMembers option="right" team="PINK"/>
                     
-                    <div className="teams-overview-remark absolute bg-black/75 left-[400px] w-[550px] h-[32px]
+                    <div className="teams-overview-remark absolute bg-black/75 left-100 w-137.5 h-8
                                     font-metropolis-black text-white uppercase text-center text-[22px]">
                         <p>
                             <span style={{color: colours.substitute}}>Lime = Sub-ins</span>
@@ -118,7 +118,7 @@ function Member({team, name}: {team: string, name: string}) {
     let getName = (name: string) => {
         let displayName = getPlayerName(name);
         if (displayName) return (
-            <div className="teams-overview-nameplate absolute bottom-0 w-[150px] h-[20px] pt-[1px] flex items-center justify-center 
+            <div className="teams-overview-nameplate absolute bottom-0 w-37.5 h-5 pt-px flex items-center justify-center 
                             font-metropolis-black uppercase text-center text-[16px] overflow-hidden
                             bg-(--bg-colour)/75 text-(--text-colour)"
                  style={getNameplateStyle(getMemberStatus(name))}>

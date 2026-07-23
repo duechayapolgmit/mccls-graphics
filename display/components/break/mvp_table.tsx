@@ -101,7 +101,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
             }
 
             return (
-                <div key={col} className={`h-[70px] ${styles.entry_data} self-end bg-colour text-colour`} 
+                <div key={col} className={`h-17.5 ${styles.entry_data} self-end bg-colour text-colour`} 
                     style={{"--bg-colour": getBgColour(), "--text-colour": getTextColour()} as React.CSSProperties}>
                     <div className={styles.entry_data_text}>{formatData(getPlayerData(player, screen, col))}</div>
                 </div>
@@ -119,7 +119,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
     return (
         <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length + 1} as React.CSSProperties}>
             <ListEntry rank={rank} body={
-                <div className={`w-[700px] ${styles.entry_name}`}>
+                <div className={`w-175 ${styles.entry_name}`}>
                     <img src={getPlayerAvatar(player)}/><span className={styles.entry_name_text}>{player}</span>
                 </div>}/>
             {getData(player)}
