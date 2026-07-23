@@ -2,28 +2,36 @@
 import { useState } from 'react';
 import styles from './main.module.css';
 
-export default function ControlPanelTabber({overlay, voting}: { overlay: React.ReactNode, voting: React.ReactNode}) {
-  const [activeTab, setActiveTab] = useState('overlay');
+export default function ControlPanelTabber({event, overlay, voting}: { event: React.ReactNode, overlay: React.ReactNode, voting: React.ReactNode}) {
+  const [activeTab, setActiveTab] = useState('event');
+
+  const getActiveTab = (tab: string) => {
+    switch (tab) {
+      case "event": return event;
+      case "overlay": return overlay;
+      case "voting": return voting;
+    }
+  }
 
   return (
     <div>
       <div className={styles.tabList}>
-        <button 
-          className={activeTab === 'overlay' ? styles.activeTab : ''} 
-          onClick={() => setActiveTab('overlay')}
-        >
+        <button className={activeTab === 'event' ? styles.activeTab : ''} 
+                onClick={() => setActiveTab('event')}>
+          Event
+        </button>
+        <button className={activeTab === 'overlay' ? styles.activeTab : ''} 
+                onClick={() => setActiveTab('overlay')}>
           Overlay
         </button>
-        <button 
-          className={activeTab === 'voting' ? styles.activeTab : ''} 
-          onClick={() => setActiveTab('voting')}
-        >
+        <button className={activeTab === 'voting' ? styles.activeTab : ''} 
+                onClick={() => setActiveTab('voting')}>
           Voting
         </button>
       </div>
 
       <div className={styles.tabContent}>
-        {activeTab === 'overlay' ? overlay : voting}
+        {getActiveTab(activeTab)}
       </div>
       
     </div>
