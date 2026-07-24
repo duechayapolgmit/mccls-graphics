@@ -51,7 +51,7 @@ export default function MVPTable ({screen}: {screen: string}) {
 
     return (
         <div className={styles.main}>
-            <div className={styles.grid} style={{"--columns": headings.length + 1} as React.CSSProperties}>
+            <div className={styles.grid} style={{"--columns": headings.length} as React.CSSProperties}>
                 <div className={styles.heading_padding}/>{getHeadings()}
             </div>
             <div className={`${styles.body}`}>
@@ -117,7 +117,7 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
     }
 
     return (
-        <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length + 1} as React.CSSProperties}>
+        <div className={`${styles.grid} ${styles.body}`} style={{"--columns": headings.length} as React.CSSProperties}>
             <ListEntry rank={rank} body={
                 <div className={`w-175 ${styles.entry_name}`}>
                     <img src={getPlayerAvatar(player)}/><span className={styles.entry_name_text}>{player}</span>
