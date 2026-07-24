@@ -41,6 +41,12 @@
         "title": "Current Standings",
         "type": "current_standings"
     },
+    "games_overview": {
+        "title": "Games Overview",
+        "type": "games_overview",
+        "header_text": "Games in the <b>Decision Dome</b> in tonight's event",
+        "games": ["AR", "BB", "BBF", "PT", "RRR", "RSR", "SG", "SOT", "TGTTOS"]
+    },
     "explainer_event_format": {
         "title": "Event Format",
         "type": "explainer",

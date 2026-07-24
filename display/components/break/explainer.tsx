@@ -3,8 +3,7 @@ import { getBreakScreenDetails } from "@/lib/client/breakInfo"
 import { getConfigColours } from "@/lib/client/config";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/utils/utils";
-
-const colours = getConfigColours();
+import { TextFormatter } from "@/lib/utils/utilsComp";
 
 export default function Explainer({screen, isGame}: {screen: string, isGame?: boolean}) {
     const [gameData, setGameData] = useState<any>(null);
@@ -24,7 +23,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
         const map = content.map((ele: string) => {
             return (
                 <div key={ele.length} className="mb-10">
-                    <ExplainerFormatter text={ele}/>
+                    <TextFormatter text={ele}/>
                 </div>)
         })
 
@@ -51,62 +50,14 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
     )
 }
 
-function ExplainerFormatter({text}: {text: string}) {
-    const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
-
-    let bold = false;
-    let highlight = false;
-
-    const output = tokens.map((token, idx) => {
-        switch (token) {
-            case "<b>":
-                bold = true;
-                return;
-            case "</b>":
-                bold = false;
-                return;
-            case "<h>":
-                highlight = true;
-                return;
-            case "</h>":
-                highlight = false;
-                return;
-            case "<br/>":
-                return <br key={`br-${idx}`}/>
-        }
-
-        let element: React.ReactNode = token;
-
-        if (highlight) {
-            element = (
-                <span key={`h-${idx}`} style={{ color: colours.highlight }}>
-                    {element}
-                </span>
-            );
-        }
-
-        if (bold) {
-            element = (
-                <span key={`b-${idx}`} className="font-metropolis-black">
-                    {element}
-                </span>
-            );
-        }
-
-        return element;
-    })
-
-    return <>{output}</>
-}
-
 function ExplainerGameText({text}: {text: any}) {
     
     const summary = <div className="mb-9">{text.summary}</div>;
-    const goal = <div><span className="font-metropolis-black">Goal: </span><ExplainerFormatter text={text.goal}/></div>
+    const goal = <div><span className="font-metropolis-black">Goal: </span><TextFormatter text={text.goal}/></div>
     const scoring = text.scoring == null ? "" :
                     <div>
                         <span className="font-metropolis-black">Scoring: </span>
-                        {text.scoring.map((ele: any, idx: number) => <div key={idx}>- <ExplainerFormatter text={ele}/></div>)}
+                        {text.scoring.map((ele: any, idx: number) => <div key={idx}>- <TextFormatter text={ele}/></div>)}
                     </div>
                     
     return (

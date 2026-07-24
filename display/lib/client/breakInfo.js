@@ -56,3 +56,23 @@ export function getCardGridList(key) {
             return [];
     }
 }
+
+export function getGamesFeatured(key) {
+    let data = breakInfo[key]
+    if (!data) return;
+    if (data.type != "games_overview") return;
+
+    if (data.games) return data.games;
+
+    return [];
+}
+
+export function getGamesOverviewHeader(key) {
+    let data = breakInfo[key]
+    if (!data) return;
+    if (data.type != "games_overview") return;
+
+    if (data.header_text) return data.header_text;
+
+    return "";
+}

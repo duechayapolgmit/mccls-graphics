@@ -1,7 +1,7 @@
 import CardGrid from "@/components/break/card_grid";
 import WinsLeaderboard from "@/components/break/wins_leaderboard";
 
-import { getCardGridList, getType } from "@/lib/client/breakInfo";
+import { getCardGridList, getGamesFeatured, getGamesOverviewHeader, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import Explainer from '@/components/break/explainer';
 import TeamsOverview from "@/components/team/teams_overview";
 import CurrentStandings from "@/components/break/current_standings";
+import { GamesOverview } from "@/components/break/games_overview";
 
 interface IRule {
     eq?: number;
@@ -76,6 +77,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <TeamsOverview />
             case "current_standings":
                 return <CurrentStandings />
+            case "games_overview":
+                return <GamesOverview title={getGamesOverviewHeader(screen)} lst={getGamesFeatured(screen)}/>
             default: 
                 return null;
         }
