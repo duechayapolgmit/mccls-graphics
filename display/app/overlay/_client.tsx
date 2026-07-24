@@ -106,7 +106,7 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
     const gameDisplay = () => {
         return (
             <div className={styles.status_game}>
-                <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={gameData?.[overlayData.game]} />
+                <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={gameData?.[overlayData.game].logo} />
             </div>
         )
     }

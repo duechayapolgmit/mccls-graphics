@@ -1,20 +1,74 @@
 {
-    "AR": "/game_logos/AceRace.png",
-    "BB": "/game_logos/BattleBox.png",
-    "BBF": "/game_logos/BingoButFast.png",
-    "BC": "/game_logos/BuildersGuild.png",
-    "BM": "/game_logos/BuildMart.png",
-    "DB": "/game_logos/Dodgebolt.png",
-    "GR": "/game_logos/GridRunners.png",
-    "HITW": "/game_logos/HoleInTheWall.png",
-    "MD": "/game_logos/Meltdown.png",
-    "PT": "/game_logos/ParkourTag.png",
-    "PW": "/game_logos/ParkourWarrior.png",
-    "RRR": "/game_logos/RailroadRush.png",
-    "RSR": "/game_logos/RocketSpleefRush.png",
-    "SOT": "/game_logos/SandsOfTime.png",
-    "SB": "/game_logos/SkyBattle.png",
-    "SG": "/game_logos/SurvivalGames.png",
-    "TGTTOS": "/game_logos/TGTTOSAWAF.png",
-    "DEFAULT": "/game_logos/Default.png"
+    "AR": {
+        "name": "Ace Race",
+        "logo": "/game_logos/AceRace.png"
+    },
+    "BB": {
+        "name": "Battle Box",
+        "logo": "/game_logos/BattleBox.png"
+    },
+    "BBF": {
+        "name": "Bingo but Fast",
+        "logo": "/game_logos/BingoButFast.png"
+    },
+    "BC": {
+        "name": "Build Challenge",
+        "logo": "/game_logos/BuildersGuild.png"
+    },
+    "BM": {
+        "name": "Big Sales at Build Mart",
+        "logo": "/game_logos/BuildMart.png"
+    },
+    "DB": {
+        "name": "Dodgebolt",
+        "logo": "/game_logos/Dodgebolt.png"
+    },
+    "GR": {
+        "name": "Grid Runners",
+        "logo": "/game_logos/GridRunners.png"
+    },
+    "HITW": {
+        "name": "Hole in the Wall",
+        "logo": "/game_logos/HoleInTheWall.png"
+    },
+    "MD": {
+        "name": "Meltdown",
+        "logo": "/game_logos/Meltdown.png"
+    },
+    "PT": {
+        "name": "Parkour Tag",
+        "logo": "/game_logos/ParkourTag.png"
+    },
+    "PW": {
+        "name": "Parkour Warrior",
+        "logo": "/game_logos/ParkourWarrior.png"
+    },
+    "RRR": {
+        "name": "Railroad Rush",
+        "logo": "/game_logos/RailroadRush.png"
+    },
+    "RSR": {
+        "name": "Rocket Spleef Rush",
+        "logo": "/game_logos/RocketSpleefRush.png"
+    },
+    "SOT": {
+        "name": "Sands of Time",
+        "logo": "/game_logos/SandsOfTime.png"
+    },
+    "SB": {
+        "name": "Sky Battle",
+        "logo": "/game_logos/SkyBattle.png"
+    },
+    "SG": {
+        "name": "Survival Games",
+        "logo": "/game_logos/SurvivalGames.png"
+    },
+    "TGTTOS": {
+        "name": "TGTTOSAWAF",
+        "logo": "/game_logos/TGTTOSAWAF.png"
+    },
+    "DEFAULT": {
+        "name": "Unknown",
+        "logo": "/game_logos/Default.png"
+    }
 }

@@ -18,7 +18,7 @@ export function GamesOverview({title, lst}: {title: string, lst: string[]}) {
         const lstDiv = lst.map((ele) => {
             return (
                 <div key={ele} className="flex bg-black/50 w-125 h-40 align-middle items-center justify-center">
-                    <img className="h-50" src={gameData?.[ele]}/>
+                    <img className="h-50" src={gameData?.[ele].logo}/>
                 </div>
             )
         })

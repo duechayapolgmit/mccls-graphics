@@ -1,5 +1,7 @@
 import { getConfigColours } from "../client/config";
 
+const API_URL = "http://localhost:3000/api"
+
 const colours = getConfigColours();
 
 export function TextFormatter({text}: {text: string}) {
@@ -48,4 +50,9 @@ export function TextFormatter({text}: {text: string}) {
     })
 
     return <>{output}</>
+}
+
+export async function apiFetch(endpoint: string, params?: URLSearchParams) {
+  const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
+  return fetch(url, {cache:'no-store'})
 }
