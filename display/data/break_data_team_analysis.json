@@ -1,0 +1,17 @@
+{
+    "RED": {
+        "overall": {
+            "placement": "4th",
+            "average": "4.4"
+        },
+        "games": {
+            "AR": "4th", 
+            "BB": "7th", 
+            "BBF": "1st",
+            "BM": "1st",
+            "MD": "7th",
+            "PT": "5th",
+            "RRR": "6th"
+        }
+    }
+}

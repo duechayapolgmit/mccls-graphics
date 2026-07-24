@@ -2,6 +2,7 @@ import { getNoWins } from '../server/wins';
 import { getData } from '../utils/dataHelper';
 
 const breakInfo = await getData('/api/break_data/screens')
+const gameInfo = await getData('/api/games')
 
 export const getAvailableKeys = () => Object.keys(breakInfo)
 
@@ -14,7 +15,11 @@ export function getTitle(key) {
     let data = breakInfo[key]
     if (!data) return;
 
-    return data.title || "";
+    // Order: Title > Game (for explainers) > key
+    if (data.title) return data.title;
+    if (data.type == "game_explainer") return gameInfo[data.game].name || key;
+
+    return key;
 }
 
 export function getSubtitle(key) {

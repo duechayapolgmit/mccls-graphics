@@ -41,7 +41,7 @@ export default function Explainer({screen, isGame}: {screen: string, isGame?: bo
             </div>
             {isGame && gameData?.[data.game] ? (
                 <Image className="absolute right-0 bottom-65 pointer-events-none" alt={data?.game}
-                    width={400} height={150} src={gameData[data.game]} />
+                    width={400} height={150} src={gameData[data.game].logo} />
             ) : null}
             <Image className="h-65 object-cover" loading="eager"
                    alt={screen} width={1920} height={1080} src={data?.picture}/>
