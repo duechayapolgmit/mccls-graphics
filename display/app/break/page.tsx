@@ -5,10 +5,12 @@ import styles from './break.module.css'
 
 import BreakScreenBody from './_body';
 
-import { getDisplayOption, getSubtitle, getTitle } from '@/lib/client/breakInfo';
-import { getConfig, getConfigColours } from '@/lib/client/config';
+import { getDisplayOption, getSubtitle, getTitle, getType } from '@/lib/client/breakInfo';
+import { getConfig, getConfigBreak, getConfigColours } from '@/lib/client/config';
+import { TextFormatter } from '@/lib/utils/utilsComp';
 
 const config = await getConfig();
+const configBreak = await getConfigBreak();
 const colours = await getConfigColours();
 
 export default function Page() {
@@ -56,6 +58,15 @@ function Body({screen}: {screen: string}) {
     const [prev, setPrev] = useState("");
     const [out, setOut] = useState(false);
 
+    const getRemarks = (key: string) => {
+        return (
+            !configBreak.remarks[getType(key)] ? "" : 
+            <div className="absolute font-metropolis text-3xl text-white text-right right-3 bottom-2">
+                <TextFormatter text={configBreak.remarks[getType(key)]}/>           
+            </div>
+        )
+    }
+
     useLayoutEffect(() => {
         setOut(true);
 
@@ -72,9 +83,11 @@ function Body({screen}: {screen: string}) {
         <div ref={bodyDivRef} className={styles.body}>
             <div className={`${styles.body_mask} ${out ? 'mask-static' : 'transition-wipe mask-up'}`}>
                 <BreakScreenBody screen={prev} />
+                {getRemarks(prev)}
             </div>
             <div className={`${styles.body_mask} ${out ? 'mask-down' : 'transition-wipe mask-static'}`}>
                 <BreakScreenBody screen={screen} />
+                {getRemarks(screen)}
             </div>
         </div>
     )

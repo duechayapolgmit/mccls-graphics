@@ -49,7 +49,7 @@ export function TextFormatter({text}: {text: string}) {
         return element;
     })
 
-    return <>{output}</>
+    return <span>{output}</span>
 }
 
 export async function apiFetch(endpoint: string, params?: URLSearchParams) {

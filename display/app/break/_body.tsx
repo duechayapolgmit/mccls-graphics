@@ -1,7 +1,7 @@
 import CardGrid from "@/components/break/card_grid";
 import WinsLeaderboard from "@/components/break/wins_leaderboard";
 
-import { getCardGridList, getGamesFeatured, getGamesOverviewHeader, getType } from "@/lib/client/breakInfo";
+import { getCardGridList, getGamesFeatured, getGamesOverviewHeader, getTeamFromTeamAnalysis, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
@@ -12,6 +12,7 @@ import Explainer from '@/components/break/explainer';
 import TeamsOverview from "@/components/team/teams_overview";
 import CurrentStandings from "@/components/break/current_standings";
 import { GamesOverview } from "@/components/break/games_overview";
+import { TeamAnalysis } from "@/components/break/team_analysis";
 
 interface IRule {
     eq?: number;
@@ -42,6 +43,7 @@ export default function BreakScreenBody({screen}: {screen: string}) {
     let lst: string[] = [];
     let leaderboard = new Map<number, string[]>();
     let scale = 1;
+    let remarks = "";
 
     switch (type) {
         case "card_grid":
@@ -58,6 +60,9 @@ export default function BreakScreenBody({screen}: {screen: string}) {
             break;
         case "current_standings":
             scale = configBreak.scales.current_standings;
+            break;
+        case "team_analysis":
+            remarks = configBreak.remarks.team_analysis;
             break;
     }
 
@@ -79,6 +84,8 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <CurrentStandings />
             case "games_overview":
                 return <GamesOverview title={getGamesOverviewHeader(screen)} lst={getGamesFeatured(screen)}/>
+            case "team_analysis":
+                return <TeamAnalysis team={getTeamFromTeamAnalysis(screen)}/>
             default: 
                 return null;
         }

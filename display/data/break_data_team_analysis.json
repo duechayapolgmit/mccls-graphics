@@ -1,17 +1,152 @@
 {
     "RED": {
         "overall": {
-            "placement": "4th",
-            "average": "4.4"
+            "placement": 4,
+            "average": 4.4
         },
         "games": {
-            "AR": "4th", 
-            "BB": "7th", 
-            "BBF": "1st",
-            "BM": "1st",
-            "MD": "7th",
-            "PT": "5th",
-            "RRR": "6th"
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "ORANGE": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "YELLOW": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "LIME": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "GREEN": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "CYAN": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "AQUA": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "BLUE": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "PURPLE": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
+        }
+    },
+    "PINK": {
+        "overall": {
+            "placement": 4,
+            "average": 4.4
+        },
+        "games": {
+            "AR": 4, 
+            "BB": 7, 
+            "BBF": 1,
+            "BM": 2,
+            "MD": 7,
+            "PT": 5,
+            "RRR": 6
         }
     }
 }

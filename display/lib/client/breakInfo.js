@@ -64,20 +64,24 @@ export function getCardGridList(key) {
 
 export function getGamesFeatured(key) {
     let data = breakInfo[key]
-    if (!data) return;
-    if (data.type != "games_overview") return;
+    if (!data) return [];
+    if (data.type != "games_overview") return [];
 
-    if (data.games) return data.games;
-
-    return [];
+    return data.games || [];
 }
 
 export function getGamesOverviewHeader(key) {
     let data = breakInfo[key]
-    if (!data) return;
-    if (data.type != "games_overview") return;
+    if (!data) return "";
+    if (data.type != "games_overview") return "";
 
-    if (data.header_text) return data.header_text;
+    return data.header_text || "";
+}
 
-    return "";
+export function getTeamFromTeamAnalysis(key) {
+    let data = breakInfo[key]
+    if (!data) return "DEFAULT";
+    if (data.type != "team_analysis") return "DEFAULT";
+
+    return data.team || "DEFAULT";    
 }

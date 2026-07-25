@@ -55,3 +55,18 @@ export async function apiFetch(endpoint: string, params?: URLSearchParams) {
   const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
   return fetch(url, {cache:'no-store'})
 }
+
+/** RANK FORMATTING */
+export const getOrdinal = (n: number) => {
+    const rem10 = n % 10;
+    const rem100 = n % 100;
+
+    if (rem100 >= 11 && rem100 <= 13) return `${n}th`;
+
+    switch (rem10) {
+        case 1: return `${n}st`;
+        case 2: return `${n}nd`;
+        case 3: return `${n}rd`;
+        default: return `${n}th`;
+    }
+}
