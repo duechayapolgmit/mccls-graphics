@@ -18,7 +18,7 @@ export function TeamAnalysis({team}: {team: string}){
     }, [])
 
     return (
-        <div className="flex flex-row gap-[100px]">
+        <div className="flex flex-row gap-25">
             <img src={teamData?.[team].icon}/>
             <TeamDetails team={team} gameData={gameData}/>
         </div>
@@ -78,7 +78,7 @@ function TeamDetails({team, gameData}: {team: string, gameData: any}) {
                 <TextFormatter text={`<b>OVERALL</b>: ${getOrdinal(teamData?.[team].overall.placement)} (${teamData?.[team].overall.average})`}/>
                 <TextFormatter text={`<b>BEST GAME(S)</b>: ${getBestGames(teamData?.[team].games)}`}/>
             </div>
-            <div className="w-[850px] border-t-2 border-white pt-5">
+            <div className="w-212.5 border-t-2 border-white pt-5">
                 {getGameDetails(teamData?.[team].games)}
             </div>
         </div>
