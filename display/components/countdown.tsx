@@ -1,0 +1,52 @@
+import { useLayoutEffect, useState } from "react";
+
+export function Countdown({time}: {time: any}) {
+
+    const [cdTime, setCdTime] = useState({
+        days: 0, hours: 0, mins: 0, secs: 0
+    })
+    const [finish, setFinish] = useState(false);
+
+    useLayoutEffect(() => countdown(), []);
+
+    const countdown = () => {
+        const interval = setInterval(() => {
+            let targetTime;
+            if (typeof time == "number") targetTime = new Date().getTime() + (time * 1000);
+            else targetTime = new Date(time).getTime();
+            
+            const currentTime = new Date().getTime();
+            const remaining = targetTime - currentTime;
+
+            const days = Math.floor(remaining / (1000 * 60 * 60 * 24))
+            const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((remaining % (1000 * 60)) / 1000)
+
+            const running = {days: days, hours: hours, mins: mins, secs: secs};
+            setCdTime(running)
+
+            if (remaining < 0) {
+                clearInterval(interval);
+                setFinish(true);
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }
+
+    const leadingZero = (time: number) => (time > 9) ? time : `0${time}`
+
+    const getTime = () => {
+        return (
+            <span>
+                {cdTime.days > 0 ? `${cdTime.days}:` : ""}
+                {cdTime.hours > 0 ? `${leadingZero(cdTime.hours)}:` : (cdTime.days > 0 ? "00:" : "")}
+                {cdTime.mins > 0 ? `${leadingZero(cdTime.mins)}:` : (cdTime.hours > 0 ? "00:" : "")}
+                {cdTime.secs > 0 ? `${leadingZero(cdTime.secs)}` : (cdTime.mins > 0 ? "00" : "00")}
+            </span>
+        )
+    }
+
+    return <>{finish ? "Soon" : getTime()}</>
+}
