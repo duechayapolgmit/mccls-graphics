@@ -60,7 +60,7 @@ export default function Page() {
 function GameSlot({gameData, game, chosen} : {gameData: any, game: string, chosen: boolean}) {
     return (
         <div className={chosen ? `${styles.game} ${styles.game_chosen}` : `${styles.game} ${styles.game_unchosen}`}>
-            <img src={gameData?.[game].logo}/>
+            <img src={gameData?.[game]?.logo}/>
         </div>
     )
 }
