@@ -5,17 +5,21 @@ import styles from './break.module.css'
 
 import BreakScreenBody from './_body';
 
-import { getDisplayOption, getSubtitle, getTitle } from '@/lib/client/breakInfo';
-import { getConfig, getConfigColours } from '@/lib/client/config';
+import { getDisplayOption, getType } from '@/lib/client/breakInfo';
+import { getConfig, getConfigBreak, getConfigColours } from '@/lib/client/config';
+import { TextFormatter } from '@/lib/utils/utilsComp';
+import { Countdown } from '@/components/countdown';
+import { apiFetch } from '@/lib/utils/utils';
 
 const config = await getConfig();
+const configBreak = await getConfigBreak();
 const colours = await getConfigColours();
 
 export default function Page() {
-    const [state, setState] = useState({
-        currentScreen: ""
-    })
+    const [breakData, setBreakData] = useState<any>(null);
+    const [state, setState] = useState<any>(null)
 
+    // Set up SSE
     useEffect(() => {
         // Register SSE
         const evtSrc = new EventSource('/api/break/subscribe')
@@ -28,18 +32,57 @@ export default function Page() {
         return () => evtSrc.close();
     }, []);
 
+    // Set up data
+    useEffect(() => {
+        apiFetch('break_data/screens').then(async res => {
+            const json = await res.json();
+            setBreakData(json);
+        });
+    }, [])
+
+    // Screen change
+    useEffect(() => {
+        if (!state?.rotating) return;
+        if (!config) return;
+
+        const screens = config?.break_screens.rotation.in_rotation;
+
+        const interval = setInterval(() => {
+            let nextScreen;
+
+            if (config?.break_screens.rotation.random) {
+                const availableScreens = screens.filter((s: any) => s != state?.currentScreen)
+                const target = Math.floor(Math.random() * (availableScreens.length));
+                nextScreen = availableScreens[target];
+            } else {
+                const index = screens.indexOf(state?.currentScreen);
+                nextScreen = screens[(index + 1) % screens.length]
+            }
+            
+            const params = new URLSearchParams();
+            params.set("current", nextScreen);
+            apiFetch("/break", params)
+        }, config?.break_screens.rotation.rotate_time * 1000);
+
+        return () => clearInterval(interval);
+    }, [state?.rotating, state?.currentScreen])
+
+    if (!breakData) return null;
     return (
         <div className={styles.main}>
             <div className={styles.header}>
                 <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
-                <Title title={getTitle(state.currentScreen)} subtitle={getSubtitle(state.currentScreen)}/>
-                {/* PHASE 2 STUFF */}
-                {/*<div className={styles.right_text}>1:00</div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>*/}
+                <Title screenData={breakData?.[state?.currentScreen]}/>
+                {!state?.timeVisible ? "" :
+                    <>
+                        <div className={styles.right_text}><Countdown key={state?.time} time={state?.time} showMinutes={true} warning={true}/></div>
+                        <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
+                    </>
+                }
             </div>
-            <Body screen={state.currentScreen}/>
+            <Body screen={state?.currentScreen}/>
             <div className={styles.footer}>
-                <div className={`${styles.left_text} ${getDisplayOption(state.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
+                <div className={`${styles.left_text} ${getDisplayOption(state?.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
                     <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
                     <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
                 </div>
@@ -51,8 +94,19 @@ export default function Page() {
 }
 
 function Body({screen}: {screen: string}) {
+    const bodyDivRef = useRef<HTMLDivElement>(null);
+
     const [prev, setPrev] = useState("");
     const [out, setOut] = useState(false);
+
+    const getRemarks = (key: string) => {
+        return (
+            !configBreak.remarks[getType(key)] ? "" : 
+            <div className="absolute font-metropolis text-3xl text-white text-right right-3 bottom-2">
+                <TextFormatter text={configBreak.remarks[getType(key)]}/>           
+            </div>
+        )
+    }
 
     useLayoutEffect(() => {
         setOut(true);
@@ -67,19 +121,21 @@ function Body({screen}: {screen: string}) {
     }, [screen])
 
     return (
-        <div className={styles.body}>
+        <div ref={bodyDivRef} className={styles.body}>
             <div className={`${styles.body_mask} ${out ? 'mask-static' : 'transition-wipe mask-up'}`}>
                 <BreakScreenBody screen={prev} />
+                {getRemarks(prev)}
             </div>
             <div className={`${styles.body_mask} ${out ? 'mask-down' : 'transition-wipe mask-static'}`}>
                 <BreakScreenBody screen={screen} />
+                {getRemarks(screen)}
             </div>
         </div>
     )
 }
 
-function Title({title, subtitle}: {title: string, subtitle: string}) {
-    const [prev, setPrev] = useState({title: "‎", subtitle});
+function Title({screenData}: {screenData: any}) {
+    const [prev, setPrev] = useState<any>({title: "‎", subtitle: ""});
     const [out, setOut] = useState(false);
 
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -115,12 +171,12 @@ function Title({title, subtitle}: {title: string, subtitle: string}) {
                 }, 1000)
             }
 
-            const anotherTimeout = setTimeout(() => {setPrev({title, subtitle})}, 1000)
+            const anotherTimeout = setTimeout(() => {setPrev({title: screenData?.title, subtitle: screenData?.subtitle})}, 1000)
             return () => clearTimeout(anotherTimeout)
         }, 500);
 
         return () => clearTimeout(timeout);
-    }, [title, subtitle]);
+    }, [screenData?.title, screenData?.subtitle]);
 
     return (
         <div className={`${styles.header_text} transition-width-fast`} ref={wrapperRef}>
@@ -130,11 +186,11 @@ function Title({title, subtitle}: {title: string, subtitle: string}) {
             </div>
             {/* CURRENT */}
             <div className={out ? 'slide-up-ready' : 'transition-slide-fast slide-up-out' } ref={nextRef}>
-                {title} <span className={styles.subtitle}>{subtitle}</span>
+                {screenData?.title} <span className={styles.subtitle}>{screenData?.subtitle}</span>
             </div>
             {/* MEASURE CURRENT TEXT */}
             <div className={styles.measure} ref={measureRef}>
-                {title} <span className={styles.subtitle}>{subtitle}</span>
+                {screenData?.title} <span className={styles.subtitle}>{screenData?.subtitle}</span>
             </div>
 
         </div>

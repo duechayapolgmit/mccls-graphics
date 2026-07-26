@@ -47,6 +47,7 @@ next-env.d.ts
 state/break.json
 state/overlay.json
 state/voting.json
+state/event.json
 
 # player stuff
 public/player

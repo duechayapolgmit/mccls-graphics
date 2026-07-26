@@ -68,29 +68,6 @@
     line-height: 50px;
 }
 
-.place_label {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 50px;
-    width: 290px;
-    left: 55px;
-    top: -50px;
-
-    color: white;
-    font-family: Metropolis Bold;
-    font-size: 24px;
-    text-transform: uppercase;
-    background-color: rgba(0, 0, 0, .75);
-    line-height: 50px;
-}
-
-.place_label img {
-    height: 32px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
 .place_points {
   position: relative;
   background-color: rgba(0, 0, 0, .75);

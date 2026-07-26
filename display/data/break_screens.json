@@ -32,5 +32,292 @@
         "title": "Roster",
         "type": "card_grid",
         "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
+    },
+    "teams_overview": {
+        "title": "Teams Overview",
+        "type": "teams_overview"
+    },
+    "current_standings": {
+        "title": "Current Standings",
+        "type": "current_standings"
+    },
+    "games_overview": {
+        "title": "Games Overview",
+        "type": "games_overview",
+        "header_text": "Games in the <b>Decision Dome</b> in tonight's event",
+        "games": ["AR", "BB", "BBF", "PT", "RRR", "RSR", "SG", "SOT", "TGTTOS"]
+    },
+    "explainer_event_format": {
+        "title": "Event Format",
+        "type": "explainer",
+        "content": [
+            "<b>10</b> teams of <b>4</b> competing in 8 different minigames to earn <b><h>coins</h></b> for their team",
+            "As the event progresses, the <b><h>coin multiplier</h></b> increases",
+            "<b>Top 2</b> teams with the <h><b>highest amount of coins</b></h> goes to a <b>final game</b> to decide the <b><h>winners</h></b> of the event"
+        ],
+        "picture": "/break_screens/explainers/event_format.png"
+    },
+    "game_ace_race": {
+        "type": "game_explainer",
+        "game": "AR",
+        "content": {
+            "summary": "A racing game through a huge map of obstacles",
+            "goal": "Be the fastest of everyone",
+            "scoring": [
+                "Final placement of player",
+                "Top 19 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_ace_race.png"
+    },
+    "game_battle_box": {
+        "type": "game_explainer",
+        "game": "BB",
+        "content": {
+            "summary": "A team-versus-team deathmatch game",
+            "goal": "Capture the centre objective and eliminate players",
+            "scoring": [
+                "Wins (objective captured/most amount of blocks",
+                "Eliminations"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_battle_box.png"
+    },
+    "game_bingo_but_fast": {
+        "type": "game_explainer",
+        "game": "BBF",
+        "content": {
+            "summary": "A scavenger hunt for items and objectives",
+            "goal": "Complete objectives on the bingo card as fast and as many as possible",
+            "scoring": [
+                "Objective completions (scaled based on number of completions)",
+                "Completing lines"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_bingo_but_fast.png"
+    },
+    "game_build_mart": {
+        "type": "game_explainer",
+        "game": "BM",
+        "content": {
+            "summary": "A team-based building and communicative game",
+            "goal": "Complete as many builds as possible, and as fast as possible",
+            "scoring": [
+                "Stars (coins per star increases throughout)",
+                "Top 3 Employee of the Month bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_build_mart.png"
+    },
+    "game_dodgebolt": {
+        "type": "game_explainer",
+        "game": "DB",
+        "content": {
+            "summary": "The final game of MC Championship, determining the winners of the event",
+            "goal": "Shoot other players and avoid getting shot<br/><br/>First team to get 3 out of 5 wins, <b>wins the event</b>"
+        },
+        "picture": "/break_screens/game_explainers/game_dodgebolt.png"
+    },
+    "game_grid_runners": {
+        "type": "game_explainer",
+        "game": "GR",
+        "content": {
+            "summary": "A team-based cooperation game",
+            "goal": "Complete each challenge room and course as fast as possible",
+            "scoring": [
+                "Room completion time",
+                "Course completion time"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_grid_runners.png"
+    },
+    "game_hole_in_the_wall": {
+        "type": "game_explainer",
+        "game": "HITW",
+        "content": {
+            "summary": "A movement and reaction time based game",
+            "goal": "Dodge as many incoming walls as possible",
+            "scoring": [
+                "Survival",
+                "Dodging walls",
+                "Top 3 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_hole_in_the_wall.png"
+    },
+    "game_meltdown": {
+        "type": "game_explainer",
+        "game": "MD",
+        "content": {
+            "summary": "A ranged PVP game with coordination and strategies",
+            "goal": "Collect coin crates, freeze players, and be the last team standing",
+            "scoring": [
+                "Coin crate",
+                "Permanent freezes",
+                "Team placement"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_meltdown.png"
+    },
+    "game_parkour_tag": {
+        "type": "game_explainer",
+        "game": "PT",
+        "content": {
+            "summary": "A classic tag game in a huge arena",
+            "goal": "Hunt as fast as possible, or stay alive as long as possible",
+            "scoring": [
+                "Hunters: Speed for hunting + bonuses for catching everyone first",
+                "Runners: Survival time + bonuses for full<br/>survival"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_parkour_tag.png"
+    },
+    "game_parkour_warrior": {
+        "type": "game_explainer",
+        "game": "PW",
+        "content": {
+            "summary": "A parkour game that test everyone's movement skills to the maximum",
+            "goal": "Complete as many parkour challenges as possible and reach the end",
+            "scoring": [
+                "Medals from challenge completions",
+                "Multiplier from final ending<br/>(difficulty-based)"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_parkour_warrior.png"
+    },
+    "game_railroad_rush": {
+        "type": "game_explainer",
+        "game": "RRR",
+        "content": {
+            "summary": "A puzzle and rail-building game with explosives and all about gold",
+            "goal": "Build the longest straight track",
+            "scoring": [
+                "Track length",
+                "Track vs other teams (and efficiency)",
+                "Checkpoints",
+                "Emeralds"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_railroad_rush.png"
+    },
+    "game_rocket_spleef_rush": {
+        "type": "game_explainer",
+        "game": "RSR",
+        "content": {
+            "summary": "A classic Spleef game with rockets and moving arenas",
+            "goal": "Be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Top 10 bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_rocket_spleef_rush.png"
+    },
+    "game_sky_battle": {
+        "type": "game_explainer",
+        "game": "SB",
+        "content": {
+            "summary": "A PVP battle royale in the skies",
+            "goal": "Eliminate other players and be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Team placement"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_sky_battle.png"
+    },
+    "game_survival_games": {
+        "type": "game_explainer",
+        "game": "SG",
+        "content": {
+            "summary": "A classic Battle Royale game and a classic Minecraft staple",
+            "goal": "Eliminate other players and be the last team standing",
+            "scoring": [
+                "Eliminations",
+                "Survival",
+                "Team placement",
+                "Coin crates"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_survival_games.png"
+    },
+    "game_sands_of_time": {
+        "type": "game_explainer",
+        "game": "SOT",
+        "content": {
+            "summary": "A time-oriented exploration game",
+            "goal": "Collect as many coins as possible",
+            "scoring": [
+                "Coins collected in the dungeon"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_sands_of_time.png"
+    },
+    "game_tgttos": {
+        "title": "To Get to the Other Side and Whack a Fan",
+        "type": "game_explainer",
+        "game": "TGTTOS",
+        "content": {
+            "summary": "A movement game in different scenarios",
+            "goal": "Get to the end as fast as possible",
+            "scoring": [
+                "Individual placement",
+                "Top 10 individual bonuses",
+                "Top 4 team bonuses"
+            ]
+        },
+        "picture": "/break_screens/game_explainers/game_tgttos.png"
+    },
+    "team_red_rabbits": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "RED"
+    },
+    "team_orange_ocelots": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "ORANGE"
+    },
+    "team_yellow_yaks": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "YELLOW"
+    },
+    "team_lime_llamas": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "LIME"
+    },
+    "team_green_geckos": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "GREEN"
+    },
+    "team_cyan_coyotes": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "CYAN"
+    },
+    "team_aqua_axolotls": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "AQUA"
+    },
+    "team_blue_bats": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "BLUE"
+    },
+    "team_purple_pandas": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "PURPLE"
+    },
+    "team_pink_parrots": {
+        "title": "Team Statistics",
+        "type": "team_analysis",
+        "team": "PINK"
     }
 }

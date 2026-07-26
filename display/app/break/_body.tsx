@@ -1,14 +1,18 @@
-import styles from './break.module.css'
-
 import CardGrid from "@/components/break/card_grid";
 import WinsLeaderboard from "@/components/break/wins_leaderboard";
 
-import { getCardGridList, getType } from "@/lib/client/breakInfo";
+import { getCardGridList, getGamesFeatured, getGamesOverviewHeader, getTeamFromTeamAnalysis, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
 import { getConfig, getConfigBreak } from '@/lib/client/config';
+import { useEffect, useState } from 'react';
+import Explainer from '@/components/break/explainer';
+import TeamsOverview from "@/components/team/teams_overview";
+import CurrentStandings from "@/components/break/current_standings";
+import { GamesOverview } from "@/components/break/games_overview";
+import { TeamAnalysis } from "@/components/break/team_analysis";
 
 interface IRule {
     eq?: number;
@@ -16,18 +20,30 @@ interface IRule {
     value: string
 }
 
-const config = await getConfig();
-const configBreak = await getConfigBreak();
-
 const WINS_LEADERBOARD_ROWS = 3;
-export default function BreakScreenBody({screen}: {screen: string}) {
-    const getScaleSize = (rules: IRule[], amount: number) => Number(resolveRule(rules, amount));
 
+export default function BreakScreenBody({screen}: {screen: string}) {
+    const [config, setConfig] = useState<any>(null);
+    const [configBreak, setConfigBreak] = useState<any>(null);
+
+    useEffect(() => {
+        (async () => {
+            setConfig(await getConfig());
+            setConfigBreak(await getConfigBreak());
+        })();
+    }, []);
+
+    if (!config || !configBreak) {
+        return null;
+    }
+
+    const getScaleSize = (rules: IRule[], amount: number) => Number(resolveRule(rules, amount));
     const type = getType(screen);
 
     let lst: string[] = [];
     let leaderboard = new Map<number, string[]>();
     let scale = 1;
+    let remarks = "";
 
     switch (type) {
         case "card_grid":
@@ -35,9 +51,19 @@ export default function BreakScreenBody({screen}: {screen: string}) {
             scale = getScaleSize(configBreak.grid_list_scale, lst.length);
             break;
         case "wins_leaderboard":
-            leaderboard = getWinsLeaderboardFromAmount(config.break_screen.minimum_wins);
+            leaderboard = getWinsLeaderboardFromAmount(config.break_screens.minimum_wins);
             const cols = getGridColumnAmountFromMap(leaderboard, WINS_LEADERBOARD_ROWS);
             scale = getScaleSize(configBreak.wins_leaderboard_scale, cols);
+            break;
+        case "teams_overview":
+            scale = configBreak.scales.teams_overview;
+            break;
+        case "current_standings":
+            scale = configBreak.scales.current_standings;
+            break;
+        case "team_analysis":
+            remarks = configBreak.remarks.team_analysis;
+            break;
     }
 
     const getContent = () => {
@@ -48,13 +74,25 @@ export default function BreakScreenBody({screen}: {screen: string}) {
                 return <WinsLeaderboard playersWins={leaderboard}/>
             case "mvp_table":
                 return <MVPTable screen={screen}/>
+            case "explainer":
+                return <Explainer screen={screen}/>
+            case "game_explainer":
+                return <Explainer screen={screen} isGame={true}/>
+            case "teams_overview":
+                return <TeamsOverview />
+            case "current_standings":
+                return <CurrentStandings />
+            case "games_overview":
+                return <GamesOverview title={getGamesOverviewHeader(screen)} lst={getGamesFeatured(screen)}/>
+            case "team_analysis":
+                return <TeamAnalysis team={getTeamFromTeamAnalysis(screen)}/>
             default: 
                 return null;
         }
     }
 
     return (
-        <div key={screen} className={styles.content_cards} style={{"--scale": scale} as React.CSSProperties}>
+        <div key={screen} className="scale-(--scale)" style={{"--scale": scale} as React.CSSProperties}>
             {getContent()}
         </div>
     )

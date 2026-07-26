@@ -1,0 +1,69 @@
+.main {
+    position: relative;
+    width:1920px;
+    /*overflow: hidden;*/
+}
+
+.team {
+    height: 170px;
+    margin-bottom: 15px;
+}
+
+.team_icon {
+    position: relative;
+    background-color: var(--bg-colour);
+    width:225px;
+    height:170px;
+    display: grid;
+    place-items: center;
+}
+
+.team_icon img {
+    height: 125px;
+}
+
+.members {
+    background-color: rgba(0, 0, 0, .75);
+    width: 710px;
+    height: 170px;
+
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.members_left {
+    position: relative;
+    
+    top: -170px;
+    left: 235px;
+}
+
+.member {
+    position: relative;
+    width: 150px;
+    height: 150px;
+
+    background-color: var(--bg-colour);
+    background-image: var(--profile);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150px;
+}
+
+.right {
+    position: relative;
+    margin-left:25px;
+    right: 0px;
+}
+
+.team_icon_right {
+    position: relative;
+    top: -170px;
+    left: 725px;
+}
+
+.members_right {
+    position: relative;
+    top: 0px;
+}

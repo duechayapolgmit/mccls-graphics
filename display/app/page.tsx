@@ -15,10 +15,24 @@ async function apiFetch(endpoint: string, params?: URLSearchParams) {
 
 export default async function Home() {
 
-  const [overlayData, votingData] = await Promise.all([
+  const [overlayData, votingData, eventPlacementsData] = await Promise.all([
     apiFetch('overlay').then(r => r.json()),
-    apiFetch('voting').then(r => r.json())
+    apiFetch('voting').then(r => r.json()),
+    apiFetch('event/placements').then(r => r.json()),
   ]);
+
+  async function updateEventPlacements(formData: FormData) {
+    'use server';
+
+    const params = new URLSearchParams();
+    formData.forEach((value, key) => params.set(key, value.toString()));
+
+    if (params.get('status')) params.set('status', showHideString(params.get('status')))
+    if (params.get('placements')) params.set('placements', showHideString(params.get('placements')))
+
+    await apiFetch('event/placements', params)
+    redirect('/');
+  }
 
   async function updateOverlay(formData: FormData) {
     'use server';
@@ -73,6 +87,23 @@ export default async function Home() {
       <h1>MCC Live Show - Graphics Control Panel</h1>
 
       <ControlPanelTabber
+        event={
+          <section>
+            <h2>Event Info</h2>
+            <h3>Placements (name - score)</h3>
+              {eventPlacementsData.map((place: any, i: number) => (
+                <div key={i} className={styles.entry}>
+                  <span className={styles.entry_heading}>{i + 1}</span>
+                  <form action={updateEventPlacements}>
+                    <input type="hidden" name="place" value={i + 1} />
+                    <input type="text" name="placeName" defaultValue={place.name} required />
+                    <input type="number" name="placeScore" defaultValue={place.score} />
+                    <button type="submit">OK</button>
+                  </form>
+                </div>
+              ))}
+          </section>
+        }
         overlay={
           <section>
             <h2>Overlay</h2>
@@ -88,19 +119,6 @@ export default async function Home() {
               <input type="text" name="game" defaultValue={overlayData.game} />
               <button type="submit">OK</button>
             </form>
-
-            <h3>Placements (name - score)</h3>
-            {overlayData.placements.map((place: any, i: number) => (
-              <div key={i} className={styles.entry}>
-                <span className={styles.entry_heading}>{i + 1}</span>
-                <form action={updateOverlay}>
-                  <input type="hidden" name="place" value={i + 1} />
-                  <input type="text" name="placeName" defaultValue={place.name} required />
-                  <input type="number" name="placeScore" defaultValue={place.score} />
-                  <button type="submit">OK</button>
-                </form>
-              </div>
-            ))}
 
             <h3>Toggle Display (show/hide)</h3>
             <div className={styles.entry}>

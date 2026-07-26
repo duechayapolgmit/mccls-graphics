@@ -2,8 +2,13 @@
     "info": {
         "event_name": "MC Championship",
         "tagline": "Pride 26",
-        "date_time": "27 June 2026 20:00:00 GMT+1",
-        "game_amount": 8
+        "date_time": "1 August 2026 20:00:00 GMT+1",
+        "game_amount": 8,
+        "teams": 10
+    },
+    "countdown": {
+        "warning_starts": 15,
+        "warning_tick_sound": "/sounds/ding.mp3"
     },
     "overlay": {
         "toggle": {
@@ -26,6 +31,11 @@
     },
     "break_screens": {
         "minimum_wins": 3,
-        "highlight_wins_amounts": [5]
+        "highlight_wins_amounts": [5],
+        "rotation": {
+            "rotate_time": 15,
+            "random": true,
+            "in_rotation": ["explainer_event_format", "teams_overview", "games_overview", "game_dodgebolt", "game_ace_race", "game_battle_box"]
+        }
     }
 }

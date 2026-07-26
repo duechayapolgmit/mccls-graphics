@@ -2,21 +2,13 @@ import { getNoWins } from '../server/wins';
 import { getData } from '../utils/dataHelper';
 
 const breakInfo = await getData('/api/break_data/screens')
+const gameInfo = await getData('/api/games')
 
 export const getAvailableKeys = () => Object.keys(breakInfo)
 
-export function getTitle(key) {
+export function getBreakScreenDetails(key) {
     let data = breakInfo[key]
-    if (!data) return;
-
-    return data.title || "";
-}
-
-export function getSubtitle(key) {
-    let data = breakInfo[key]
-    if (!data) return;
-
-    return data.subtitle || "";
+    if (data) return data || "";
 }
 
 export function getType(key) {
@@ -50,4 +42,28 @@ export function getCardGridList(key) {
         default:
             return [];
     }
+}
+
+export function getGamesFeatured(key) {
+    let data = breakInfo[key]
+    if (!data) return [];
+    if (data.type != "games_overview") return [];
+
+    return data.games || [];
+}
+
+export function getGamesOverviewHeader(key) {
+    let data = breakInfo[key]
+    if (!data) return "";
+    if (data.type != "games_overview") return "";
+
+    return data.header_text || "";
+}
+
+export function getTeamFromTeamAnalysis(key) {
+    let data = breakInfo[key]
+    if (!data) return "DEFAULT";
+    if (data.type != "team_analysis") return "DEFAULT";
+
+    return data.team || "DEFAULT";    
 }

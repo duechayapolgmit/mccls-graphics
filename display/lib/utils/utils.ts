@@ -1,3 +1,5 @@
+const API_URL = "http://localhost:3000/api"
+
 /* SORT ALPHABETICALLY (IGNORE-CASE) */
 export const sortNoCase = (array: []) => {
     array.sort((a : string, b : string) => a.localeCompare(b, 'en', {'sensitivity': 'base'}))
@@ -46,4 +48,25 @@ export const formatValue = (val: any) => {
     if (val % 1 == 0) return val + ".0";
     
     return val
+}
+
+/* FETCHING DATA */
+export async function apiFetch(endpoint: string, params?: URLSearchParams) {
+  const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
+  return fetch(url, {cache:'no-store'})
+}
+
+/** RANK FORMATTING */
+export const getOrdinal = (n: number) => {
+    const rem10 = n % 10;
+    const rem100 = n % 100;
+
+    if (rem100 >= 11 && rem100 <= 13) return `${n}th`;
+
+    switch (rem10) {
+        case 1: return `${n}st`;
+        case 2: return `${n}nd`;
+        case 3: return `${n}rd`;
+        default: return `${n}th`;
+    }
 }

@@ -19,6 +19,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                 if (!captureRef.current) return;
 
                 captureRef.current.classList.add(styles.capture);
+                captureRef.current.classList.add("capture");
 
                 await document.fonts.ready;
 
@@ -34,6 +35,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                 });
 
                 captureRef.current.classList.remove(styles.capture);
+                captureRef.current.classList.remove("capture");
 
                 // get the wins count
                 const wins = getPlayerWins(slug);

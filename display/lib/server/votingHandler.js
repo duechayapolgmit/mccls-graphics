@@ -23,7 +23,7 @@ function setupSlotsAfterLoad(slots, slotsCount) {
 let data = load(statePath);
 if (!data) data = loadDefaults(stateDefaultPath);
 
-// Setup voting slots
+// Setup
 let slots = setupSlotsAfterLoad(data.slots, config.voting.slots)
 data.slots = slots;
 
@@ -49,7 +49,7 @@ export function setGame(game) {
         }
     });
     
-    save(data);
+    save(statePath, data);
     return true;
 }
 
@@ -60,14 +60,14 @@ export function setGameInSlot(slot, game) {
     if (!data.slots[slot-1]) return false; // if slot doesn't exist, return
 
     data.slots[slot-1].game = game;
-    save(data);
+    save(statePath, data);
     return true;
 }
 
 export function setDisplayOptions(option) {
     if (typeof option == "boolean") {
         data.visible = option;
-        save(data);
+        save(statePath, data);
         return true;
     } 
     return false;
@@ -106,13 +106,15 @@ export function chooseGame(slot) {
     }, 30000)
 
 
-    save(data);
+    save(statePath, data);
     return true;
 }
 
 /* RESET */
 export function resetVoting() {
-    data = loadDefaults();
-    save(data);
+    data = load(stateDefaultPath)
+    let slot = setupSlotsAfterLoad(slots, config.voting.slots)
+    data.slot = slot;
+    save(statePath, data);
     return true;
 }

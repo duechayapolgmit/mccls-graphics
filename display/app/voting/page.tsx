@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import styles from './voting.module.css'
 
-import { getGameLogoPath } from '@/lib/client/gameInfo';
+import { apiFetch } from '@/lib/utils/utils';
 
 export default function Page() {
     const [data, setData] = useState({
@@ -14,6 +14,7 @@ export default function Page() {
         }],
         visible: true
     });
+    const [gameData, setGameData] = useState<any>(null);
 
     useEffect(() => {
         // Register SSE
@@ -27,9 +28,16 @@ export default function Page() {
         return () => evtSrc.close();
     }, [])
     
+    useEffect(() => {
+        apiFetch('games').then(async res => {
+            const json = await res.json();
+            setGameData(json);
+        });
+    }, [])
+
     const slotDisplay = (slots: {slot: number, game: string, chosen: boolean}[]) => {
         const lst = slots.map((slot: {slot: number, game: string, chosen: boolean}) => {
-            return (<GameSlot key={slot.slot} game={slot.game} chosen={slot.chosen}/>)
+            return (<GameSlot key={slot.slot} gameData={gameData} game={slot.game} chosen={slot.chosen}/>)
         })
         return (
             <div>
@@ -49,10 +57,10 @@ export default function Page() {
     )
 }
 
-function GameSlot({game, chosen} : {game: string, chosen: boolean}) {
+function GameSlot({gameData, game, chosen} : {gameData: any, game: string, chosen: boolean}) {
     return (
         <div className={chosen ? `${styles.game} ${styles.game_chosen}` : `${styles.game} ${styles.game_unchosen}`}>
-            <img src={getGameLogoPath(game)}/>
+            <img src={gameData?.[game]?.logo}/>
         </div>
     )
 }
