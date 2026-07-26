@@ -11,24 +11,6 @@ export function getBreakScreenDetails(key) {
     if (data) return data || "";
 }
 
-export function getTitle(key) {
-    let data = breakInfo[key]
-    if (!data) return;
-
-    // Order: Title > Game (for explainers) > key
-    if (data.title) return data.title;
-    if (data.type == "game_explainer") return gameInfo[data.game].name || key;
-
-    return key;
-}
-
-export function getSubtitle(key) {
-    let data = breakInfo[key]
-    if (!data) return;
-
-    return data.subtitle || "";
-}
-
 export function getType(key) {
     let data = breakInfo[key]
     if (!data) return;
