@@ -1,5 +1,6 @@
 {
     "currentScreen": "",
     "time": 0,
-    "timeVisible": false
+    "timeVisible": false,
+    "rotating": false
 }

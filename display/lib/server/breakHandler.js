@@ -52,6 +52,13 @@ export function setTimeVisible(visible) {
     return true;
 }
 
+export function setRotating(option) {
+    if (option) data.rotating = true;
+    else data.rotating = false
+
+    return true;
+}
+
 /* RESET */
 export function resetBreakScreen() {
     data = load(stateDefaultPath);

@@ -9,6 +9,7 @@ import { getDisplayOption, getSubtitle, getTitle, getType } from '@/lib/client/b
 import { getConfig, getConfigBreak, getConfigColours } from '@/lib/client/config';
 import { TextFormatter } from '@/lib/utils/utilsComp';
 import { Countdown } from '@/components/countdown';
+import { apiFetch } from '@/lib/utils/utils';
 
 const config = await getConfig();
 const configBreak = await getConfigBreak();
@@ -28,6 +29,32 @@ export default function Page() {
 
         return () => evtSrc.close();
     }, []);
+
+    // Screen change
+    useEffect(() => {
+        if (!state?.rotating) return;
+
+        const screens = config?.break_screens.rotation.in_rotation;
+
+        const interval = setInterval(() => {
+            let nextScreen;
+
+            if (config?.break_screens.rotation.random) {
+                const availableScreens = screens.filter((s: any) => s != state?.currentScreen)
+                const target = Math.floor(Math.random() * (availableScreens.length));
+                nextScreen = availableScreens[target];
+            } else {
+                const index = screens.indexOf(state?.currentScreen);
+                nextScreen = screens[(index + 1) % screens.length]
+            }
+            
+            const params = new URLSearchParams();
+            params.set("current", nextScreen);
+            apiFetch("/break", params)
+        }, config?.break_screens.rotation.rotate_time * 1000);
+
+        return () => clearInterval(interval);
+    }, [state?.rotating])
 
     return (
         <div className={styles.main}>
