@@ -1,3 +1,5 @@
 {
-    "currentScreen": ""
+    "currentScreen": "",
+    "time": 0,
+    "timeVisible": false
 }

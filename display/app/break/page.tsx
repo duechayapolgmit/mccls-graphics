@@ -8,15 +8,14 @@ import BreakScreenBody from './_body';
 import { getDisplayOption, getSubtitle, getTitle, getType } from '@/lib/client/breakInfo';
 import { getConfig, getConfigBreak, getConfigColours } from '@/lib/client/config';
 import { TextFormatter } from '@/lib/utils/utilsComp';
+import { Countdown } from '@/components/countdown';
 
 const config = await getConfig();
 const configBreak = await getConfigBreak();
 const colours = await getConfigColours();
 
 export default function Page() {
-    const [state, setState] = useState({
-        currentScreen: ""
-    })
+    const [state, setState] = useState<any>(null)
 
     useEffect(() => {
         // Register SSE
@@ -34,14 +33,17 @@ export default function Page() {
         <div className={styles.main}>
             <div className={styles.header}>
                 <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
-                <Title title={getTitle(state.currentScreen)} subtitle={getSubtitle(state.currentScreen)}/>
-                {/* PHASE 2 STUFF */}
-                {/*<div className={styles.right_text}>1:00</div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>*/}
+                <Title title={getTitle(state?.currentScreen)} subtitle={getSubtitle(state?.currentScreen)}/>
+                {!state?.timeVisible ? "" :
+                    <>
+                        <div className={styles.right_text}><Countdown key={state?.time} time={state?.time} showMinutes={true}/></div>
+                        <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
+                    </>
+                }
             </div>
-            <Body screen={state.currentScreen}/>
+            <Body screen={state?.currentScreen}/>
             <div className={styles.footer}>
-                <div className={`${styles.left_text} ${getDisplayOption(state.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
+                <div className={`${styles.left_text} ${getDisplayOption(state?.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
                     <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
                     <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
                 </div>

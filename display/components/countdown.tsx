@@ -1,20 +1,20 @@
 import { useLayoutEffect, useState } from "react";
 
-export function Countdown({time}: {time: any}) {
+export function Countdown({time, showMinutes = false}: {time: any, showMinutes?: boolean}) {
 
     const [cdTime, setCdTime] = useState({
         days: 0, hours: 0, mins: 0, secs: 0
     })
     const [finish, setFinish] = useState(false);
 
-    useLayoutEffect(() => countdown(), []);
+    useLayoutEffect(() => countdown(), [time]);
 
     const countdown = () => {
+        const targetTime = typeof time == "number" 
+                ? new Date().getTime() + time * 1000
+                : new Date(time).getTime();
+
         const interval = setInterval(() => {
-            let targetTime;
-            if (typeof time == "number") targetTime = new Date().getTime() + (time * 1000);
-            else targetTime = new Date(time).getTime();
-            
             const currentTime = new Date().getTime();
             const remaining = targetTime - currentTime;
 
@@ -26,9 +26,10 @@ export function Countdown({time}: {time: any}) {
             const running = {days: days, hours: hours, mins: mins, secs: secs};
             setCdTime(running)
 
-            if (remaining < 0) {
+            if (remaining <= 0) {
                 clearInterval(interval);
                 setFinish(true);
+                return;
             }
         }, 1000);
 
@@ -41,9 +42,9 @@ export function Countdown({time}: {time: any}) {
         return (
             <span>
                 {cdTime.days > 0 ? `${cdTime.days}:` : ""}
-                {cdTime.hours > 0 ? `${leadingZero(cdTime.hours)}:` : (cdTime.days > 0 ? "00:" : "")}
-                {cdTime.mins > 0 ? `${leadingZero(cdTime.mins)}:` : (cdTime.hours > 0 ? "00:" : "")}
-                {cdTime.secs > 0 ? `${leadingZero(cdTime.secs)}` : (cdTime.mins > 0 ? "00" : "00")}
+                {cdTime.hours > 0 ? (cdTime.days > 0 ? `${leadingZero(cdTime.hours)}:` : `${cdTime.hours}:`) : (cdTime.days > 0 ? "00:" : "")}
+                {cdTime.mins > 0 ? (cdTime.hours > 0 ? `${leadingZero(cdTime.mins)}:` : `${cdTime.mins}:`) : (cdTime.hours > 0 ? "00:" : (showMinutes ? "0:" : ""))}
+                {cdTime.secs > 0 ? (cdTime.mins > 0 ? `${leadingZero(cdTime.secs)}` : (showMinutes ? leadingZero(cdTime.secs) : `${cdTime.secs}`)) : (cdTime.mins > 0 || showMinutes ? "00" : "0")}
             </span>
         )
     }
