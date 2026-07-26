@@ -45,7 +45,8 @@ export function setPlaceName(place, name) {
     if (place > config.info.teams || place < 0) return false;
 
     // Check if name is in the team_info.json - if not, return
-    if (!checkTeam(name)) return false;
+    if (!checkTeam(name) && name != "NONE") return false;
+    if (name == "NONE") name = "";
 
     // get the score
     let score = data.placements[place - 1].score;
