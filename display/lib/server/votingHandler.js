@@ -113,7 +113,7 @@ export function chooseGame(slot) {
 /* RESET */
 export function resetVoting() {
     data = load(stateDefaultPath)
-    let slot = setupSlotsAfterLoad(slots, slotsCount)
+    let slot = setupSlotsAfterLoad(slots, config.voting.slots)
     data.slot = slot;
     save(statePath, data);
     return true;

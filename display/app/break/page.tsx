@@ -54,7 +54,7 @@ export default function Page() {
         }, config?.break_screens.rotation.rotate_time * 1000);
 
         return () => clearInterval(interval);
-    }, [state?.rotating])
+    }, [state?.rotating, state?.currentScreen])
 
     return (
         <div className={styles.main}>
@@ -63,7 +63,7 @@ export default function Page() {
                 <Title title={getTitle(state?.currentScreen)} subtitle={getSubtitle(state?.currentScreen)}/>
                 {!state?.timeVisible ? "" :
                     <>
-                        <div className={styles.right_text}><Countdown key={state?.time} time={state?.time} showMinutes={true}/></div>
+                        <div className={styles.right_text}><Countdown key={state?.time} time={state?.time} showMinutes={true} warning={true}/></div>
                         <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
                     </>
                 }

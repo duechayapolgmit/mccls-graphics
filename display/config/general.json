@@ -6,6 +6,10 @@
         "game_amount": 8,
         "teams": 10
     },
+    "countdown": {
+        "warning_starts": 15,
+        "warning_tick_sound": "/sounds/ding.mp3"
+    },
     "overlay": {
         "toggle": {
             "multiplier": true,

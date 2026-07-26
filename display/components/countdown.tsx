@@ -1,6 +1,9 @@
+import { getConfig } from "@/lib/client/config";
 import { useLayoutEffect, useState } from "react";
 
-export function Countdown({time, showMinutes = false}: {time: any, showMinutes?: boolean}) {
+const config = await getConfig();
+
+export function Countdown({time, showMinutes = false, warning = false}: {time: any, showMinutes?: boolean, warning?: boolean}) {
 
     const [cdTime, setCdTime] = useState({
         days: 0, hours: 0, mins: 0, secs: 0
@@ -25,6 +28,13 @@ export function Countdown({time, showMinutes = false}: {time: any, showMinutes?:
 
             const running = {days: days, hours: hours, mins: mins, secs: secs};
             setCdTime(running)
+
+            // warning ticks - only plays in OBS!
+            const warningTime = (config?.countdown.warning_starts + 1) * 1000
+            if (warning && (remaining < warningTime && remaining > 0)) {
+                const audio = new Audio(config?.countdown.warning_tick_sound)
+                audio.play();
+            }
 
             if (remaining <= 0) {
                 clearInterval(interval);
