@@ -17,7 +17,6 @@ if (!data) data = load(stateDefaultPath);
 ----------------- */ 
 export const getOverlayData = () => data;
 
-export const getGameNumber = () => data.gameNumber;
 export const getGame = () => data.game;
 
 export const getForcedSideOptions = () => data.forcedSide;

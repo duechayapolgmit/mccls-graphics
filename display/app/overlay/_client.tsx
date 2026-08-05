@@ -23,14 +23,13 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
     const displayOption = searchParams.get('display');
 
     const [overlayData, setOverlayData] = useState({
-        gameNumber: 1,
-        multiplier: "x1.0",
         game: "DEFAULT",
         statusVisible: true,
         placementsVisible: true,
         forcedSide: "none"
     });
     const [placementsData, setPlacementsData] = useState<any>(null);
+    const [statusData, setStatusData] = useState<any>(null);
     const [gameData, setGameData] = useState<any>(null);
 
     useEffect(() => {
@@ -64,6 +63,19 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
         return () => evtSrc.close();
     }, []);
 
+    // API Subscribe -> Event Status
+    useEffect(() => {
+        // Register SSE
+        const evtSrc = new EventSource('/api/event/status/subscribe')
+
+        evtSrc.onmessage = (e) => {
+            const evtData = JSON.parse(e.data)
+            setStatusData(evtData)
+        }
+
+        return () => evtSrc.close();
+    }, []);
+
     useEffect(() => {
         apiFetch('games').then(async res => {
             const json = await res.json();
@@ -88,12 +100,12 @@ export default function OverlayClient({config, colours}: {config: any, colours: 
 
     const headerDisplay = () => {
         // Configure the text
-        let headerText = `${config.overlay.header_text} ${overlayData.gameNumber}`
-        if (overlayData.gameNumber > config.info.game_amount) headerText = config.overlay.finale_text
-        else if (config.overlay.toggle.multiplier) headerText += ` (${overlayData.multiplier})`
+        let headerText = `${config.overlay.header_text} ${statusData?.game_number || 1}`
+        if (statusData?.game_number > config.info.game_amount) headerText = config.overlay.finale_text
+        else if (config.overlay.toggle.multiplier) headerText += ` (${statusData?.current_multiplier})`
 
         // based on game number, configure the box
-        const isHighlight = overlayData.gameNumber > config.info.game_amount
+        const isHighlight = statusData?.game_number > config.info.game_amount
         
         return (
             <div className={`${styles.status_event} ${isHighlight ? "text-colour" : ""}`}

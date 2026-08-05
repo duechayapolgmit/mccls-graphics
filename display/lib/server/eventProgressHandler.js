@@ -20,13 +20,29 @@ function setupPlacementsAfterLoad(placements, placementsCount) {
     return placements;
 }
 
+// Pre-occupy the event rundown based on the config
+function setupEventRundownAfterLoad(rundown, rundownSlots) {
+    if (!rundown) rundown = []
+
+    for (let i = 1; i <= rundownSlots; i++) {
+        if (rundown[i-1]) continue;
+        else rundown[i-1] = "";
+    }
+    return rundown;
+}
+
+function setup(data) {
+    data.placements = setupPlacementsAfterLoad(data.placements, config.info.teams)
+    data.rundown = setupEventRundownAfterLoad(data.rundown, config.info.game_amount)
+    return data;
+}
+
 // Setup
 let data = load(statePath);
 if (!data) data = load(stateDefaultPath);
 
 // Setup Placements
-let placements = setupPlacementsAfterLoad(data.placements, config.info.teams)
-data.placements = placements;
+data = setup(data);
 save(statePath, data)
 
 /* --------------
@@ -34,12 +50,25 @@ save(statePath, data)
 ----------------- */ 
 export const getStateData = () => data;
 
+export const getEventStatus = () => data.status;
+export const getGameNumber = () => data.status.game_number;
+export const getGameMultiplier = () => data.status.current_multiplier;
+
 export const getPlacements = () => data.placements;
 export const getPlacementInfo = (place) => data.placements[place] || {};
 
 /* --------------
     SETTERS
 ----------------- */ 
+// Handle game number and multiplier
+export function setGameNumber(gameNo) {
+    data.status.game_number = gameNo
+    // Check the multiplier associated and attach the multiplier with that (default x1.0)
+    data.status.current_multiplier = config.event.multipliers[data.status.game_number - 1] || "x1.0"; 
+    save(statePath, data);
+    return true;
+}
+
 export function setPlaceName(place, name) {
     if (typeof place != "number") return false;
     if (place > config.info.teams || place < 0) return false;
@@ -80,11 +109,19 @@ export function setPlaceScore(place, score) {
     return true;
 }
 
+// Handle event's rundown progress bar
+export function addGameToRundown(game) {
+    if (data.game_number < 1) return false;
+
+    data.rundown[data.game_number - 1] = game
+    save(statePath, data);
+    return true;
+}
+
 /* RESET */
 export function resetEvent() {
     data = load(stateDefaultPath);
-    let placements = setupPlacementsAfterLoad(data.placements, config.info.teams)
-    data.placements = placements;
+    data = setup(data);
     
     save(statePath, data);
     return true;

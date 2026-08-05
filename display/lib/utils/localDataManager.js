@@ -24,14 +24,15 @@ export function loadFolder(folder) {
 
 // Load data from local file
 export function load(file) {
+    // console.log("[IO] Trying to read from file: "+file);
     try {
         const raw = fs.readFileSync(file, "utf8");
         let obj = JSON.parse(raw);
 
         return obj
     } catch (err) {
-        console.error("Can't load a file: "+file);
-        return {}
+        console.error("[IO] Can't load a file: "+file);
+        return null;
     }
 }
 
@@ -40,6 +41,6 @@ export function save(path, data) {
     try {
         fs.writeFileSync(path, JSON.stringify(data, null, 2), "utf8");
     } catch (err) {
-        console.error("Can't save a file: "+path, err);
+        console.error("[IO] Can't save a file: "+path, err);
     }
 }
