@@ -1,66 +1,12 @@
-'use client'
-import { useEffect, useState } from 'react';
-
-import styles from './voting.module.css'
-
 import { apiFetch } from '@/lib/utils/utils';
 
-export default function Page() {
-    const [data, setData] = useState({
-        slots: [{
-            slot: 0, 
-            game: "",
-            chosen: false
-        }],
-        visible: true
-    });
-    const [gameData, setGameData] = useState<any>(null);
+import VotingClient from './_client';
 
-    useEffect(() => {
-        // Register SSE
-        const evtSrc = new EventSource('/api/voting/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setData(evtData)
-        }
-
-        return () => evtSrc.close();
-    }, [])
-    
-    useEffect(() => {
-        apiFetch('games').then(async res => {
-            const json = await res.json();
-            setGameData(json);
-        });
-    }, [])
-
-    const slotDisplay = (slots: {slot: number, game: string, chosen: boolean}[]) => {
-        const lst = slots.map((slot: {slot: number, game: string, chosen: boolean}) => {
-            return (<GameSlot key={slot.slot} gameData={gameData} game={slot.game} chosen={slot.chosen}/>)
-        })
-        return (
-            <div>
-                {lst}
-            </div>
-        )
-    }
+export default async function Page() {
+    const res = await apiFetch('games');
+    const gameData = await res.json();
 
     return (
-        <div>
-            <div className={data.visible ? `${styles.games} transition slide-right-in` : `${styles.games} transition ${styles.games_slide_out}`}>
-                 {slotDisplay(data.slots)}
-            </div>
-           
-        </div>
-        
-    )
-}
-
-function GameSlot({gameData, game, chosen} : {gameData: any, game: string, chosen: boolean}) {
-    return (
-        <div className={chosen ? `${styles.game} ${styles.game_chosen}` : `${styles.game} ${styles.game_unchosen}`}>
-            <img src={gameData?.[game]?.logo}/>
-        </div>
-    )
+        <VotingClient gameData={gameData} />
+    )   
 }
