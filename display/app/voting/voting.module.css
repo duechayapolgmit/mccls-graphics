@@ -1,9 +1,6 @@
 .games {
     position: relative;
-    height: 980px;
     width: 297px;
-    top: 50px;
-    left: 50px;
 
     display: grid;
     place-items: center;

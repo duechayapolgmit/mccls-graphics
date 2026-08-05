@@ -1,74 +1,92 @@
 {
     "AR": {
         "name": "Ace Race",
-        "logo": "/game_logos/AceRace.png"
+        "icon": "/games/icons/Icon-AR.png",
+        "logo": "/games/logos/AceRace.png"
     },
     "BB": {
         "name": "Battle Box",
-        "logo": "/game_logos/BattleBox.png"
+        "icon": "/games/icons/Icon-BB.png",
+        "logo": "/games/logos/BattleBox.png"
     },
     "BBF": {
         "name": "Bingo but Fast",
-        "logo": "/game_logos/BingoButFast.png"
+        "icon": "/games/icons/Icon-BBF.png",
+        "logo": "/games/logos/BingoButFast.png"
     },
     "BC": {
         "name": "Build Challenge",
-        "logo": "/game_logos/BuildersGuild.png"
+        "icon": "/icon.png",
+        "logo": "/games/logos/BuildersGuild.png"
     },
     "BM": {
         "name": "Big Sales at Build Mart",
-        "logo": "/game_logos/BuildMart.png"
+        "icon": "/games/icons/Icon-BM.png",
+        "logo": "/games/logos/BuildMart.png"
     },
     "DB": {
         "name": "Dodgebolt",
-        "logo": "/game_logos/Dodgebolt.png"
+        "icon": "/games/icons/Icon-DB.png",
+        "logo": "/games/logos/Dodgebolt.png"
     },
     "GR": {
         "name": "Grid Runners",
-        "logo": "/game_logos/GridRunners.png"
+        "icon": "/games/icons/Icon-GR.png",
+        "logo": "/games/logos/GridRunners.png"
     },
     "HITW": {
         "name": "Hole in the Wall",
-        "logo": "/game_logos/HoleInTheWall.png"
+        "icon": "/games/icons/Icon-HITW.png",
+        "logo": "/games/logos/HoleInTheWall.png"
     },
     "MD": {
         "name": "Meltdown",
-        "logo": "/game_logos/Meltdown.png"
+        "icon": "/games/icons/Icon-MD.png",
+        "logo": "/games/logos/Meltdown.png"
     },
     "PT": {
         "name": "Parkour Tag",
-        "logo": "/game_logos/ParkourTag.png"
+        "icon": "/games/icons/Icon-PT.png",
+        "logo": "/games/logos/ParkourTag.png"
     },
     "PW": {
         "name": "Parkour Warrior",
-        "logo": "/game_logos/ParkourWarrior.png"
+        "icon": "/games/icons/Icon-PW.png",
+        "logo": "/games/logos/ParkourWarrior.png"
     },
     "RRR": {
         "name": "Railroad Rush",
-        "logo": "/game_logos/RailroadRush.png"
+        "icon": "/games/icons/Icon-RRR.png",
+        "logo": "/games/logos/RailroadRush.png"
     },
     "RSR": {
         "name": "Rocket Spleef Rush",
-        "logo": "/game_logos/RocketSpleefRush.png"
+        "icon": "/games/icons/Icon-RSR.png",
+        "logo": "/games/logos/RocketSpleefRush.png"
     },
     "SOT": {
         "name": "Sands of Time",
-        "logo": "/game_logos/SandsOfTime.png"
+        "icon": "/games/icons/Icon-SOT.png",
+        "logo": "/games/logos/SandsOfTime.png"
     },
     "SB": {
         "name": "Sky Battle",
-        "logo": "/game_logos/SkyBattle.png"
+        "icon": "/games/icons/Icon-SB.png",
+        "logo": "/games/logos/SkyBattle.png"
     },
     "SG": {
-        "name": "Survival Games",
-        "logo": "/game_logos/SurvivalGames.png"
+        "name": "Survival gamess",
+        "icon": "/games/icons/Icon-SG.png",
+        "logo": "/games/logos/Survivalgamess.png"
     },
     "TGTTOS": {
         "name": "TGTTOSAWAF",
-        "logo": "/game_logos/TGTTOSAWAF.png"
+        "icon": "/games/icons/Icon-TGTTOS.png",
+        "logo": "/games/logos/TGTTOSAWAF.png"
     },
     "DEFAULT": {
         "name": "Unknown",
-        "logo": "/game_logos/Default.png"
+        "icon": "icon.png",
+        "logo": "/games/logos/Default.png"
     }
 }

@@ -102,7 +102,9 @@ export function chooseGame(slot) {
         currentSelectedSlot = null;
         currentSelectedTimeout = null;
         notify(data, "voting"); // notify that there's a change
-        fetch('http://localhost:3000/api/overlay?game='+game) // hard-coding the local URL for now.....
+        // hard-coding the local URLs for now.....
+        fetch('http://localhost:3000/api/overlay?game='+game)
+        fetch('http://localhost:3000/api/event/games?game='+game)
     }, 30000)
 
 

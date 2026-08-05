@@ -3,6 +3,6 @@
         "game_number": 1,
         "current_multiplier": "x1.0"
     },
-    "rundown": [],
+    "games": [],
     "placements": []
 }

@@ -54,6 +54,8 @@ export const getEventStatus = () => data.status;
 export const getGameNumber = () => data.status.game_number;
 export const getGameMultiplier = () => data.status.current_multiplier;
 
+export const getGames = () => data.games;
+
 export const getPlacements = () => data.placements;
 export const getPlacementInfo = (place) => data.placements[place] || {};
 
@@ -110,10 +112,10 @@ export function setPlaceScore(place, score) {
 }
 
 // Handle event's rundown progress bar
-export function addGameToRundown(game) {
-    if (data.game_number < 1) return false;
+export function addGameToHistory(game) {
+    if (data.status.game_number < 1) return false;
 
-    data.rundown[data.game_number - 1] = game
+    data.games[data.status.game_number - 1] = game
     save(statePath, data);
     return true;
 }

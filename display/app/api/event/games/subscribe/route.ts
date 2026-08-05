@@ -1,0 +1,9 @@
+export const dynamic = "force-dynamic"; 
+export const fetchCache = "force-no-store";
+
+import { newStream } from '@/lib/transmitter/helper';
+import { getGames } from '@/lib/server/eventProgressHandler';
+
+export async function GET() {
+  return newStream(getGames(), "event_games");
+}
