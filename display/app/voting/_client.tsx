@@ -69,7 +69,7 @@ export default function VotingClient({gameData}: {gameData: any}) {
                  {slotDisplay(data.slots)}
             </div>
             <div className='flex flex-col justify-end items-center w-[1900px]'>
-                <EventProgress games={gameHistoryData} currentGameNumber={statusData?.current_game_number}/>
+                <EventProgress games={gameHistoryData} currentGameNumber={statusData?.game_number}/>
             </div>
         </div>
         
