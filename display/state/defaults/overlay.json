@@ -1,6 +1,4 @@
 {
-    "gameNumber": 1,
-    "multiplier": "x1.0",
     "game": "DEFAULT",
     "statusVisible": true,
     "placementsVisible": true,

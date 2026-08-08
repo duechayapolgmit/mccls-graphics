@@ -24,7 +24,8 @@
         "multipliers": ["x1.0", "x1.5", "x1.5", "x2.0", "x2.0", "x2.5", "x2.5", "x3.0"]
     },
     "voting": {
-        "slots": 8
+        "slots": 8,
+        "update_delay_ms": 1000
     },
     "teams": {
         "background": "none"

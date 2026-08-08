@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { notify } from "@/lib/transmitter/listeners";
 import { getEventStatus, getGameNumber, setGameNumber } from "@/lib/server/eventProgressHandler";
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     
     // Read from queries
@@ -27,7 +27,7 @@ export function GET(request: NextRequest) {
                 break;
         }
 
-        changed = setGameNumber(currentGameNo)
+        changed = await setGameNumber(currentGameNo)
     }
 
     if (changed) notify(getEventStatus(), "event_status");

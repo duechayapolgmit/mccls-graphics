@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getStateData, resetBreakScreen, setBreakScreen, setBreakTimeRemaining, setRotating, setTimeVisible } from '@/lib/server/breakHandler'
 import { notify } from "@/lib/transmitter/listeners";
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
 
     // read from queries
@@ -18,7 +18,7 @@ export function GET(request: NextRequest) {
     // Changes
     let changed = false;
 
-    if (currentScreen) changed = setBreakScreen(currentScreen);
+    if (currentScreen) changed = await setBreakScreen(currentScreen);
 
     if (timeRemaining) changed = setBreakTimeRemaining(parseInt(timeRemaining));
     if (timeDisplay) {

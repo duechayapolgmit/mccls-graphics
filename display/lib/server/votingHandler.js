@@ -73,6 +73,11 @@ export function setDisplayOptions(option) {
     return false;
 }
 
+export function setGameNumber(gameNumber) {
+    data.voting_game_number = gameNumber;
+    return true;
+}
+
 /* --------------
     MISC
 ----------------- */ 

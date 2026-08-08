@@ -18,21 +18,24 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
     const getGames = () => {
         const gamesDivList = games?.map( (game, index) => {
             // Configures highlighting
-            let bgColour = hexToRGBA(colours.black, 0.75)
-            let textColour = colours.white;
-            if (index == currentGameNumber - 1) {
-                bgColour = hexToRGBA(colours.highlight, 0.75);
-                textColour = colours.black;
-            }
+            const highlighted = index == currentGameNumber - 1;
+
+            const bgColour = highlighted ? hexToRGBA(colours.highlight, 0.75) : hexToRGBA(colours.black, 0.75);
+            const textColour = highlighted ? colours.black : colours.white;
 
             return (
                 <div key={index} className="flex flex-col gap-1 w-[60px]
-                                            font-metropolis-black text-white text-center text-3xl">
-                    <div className="bg-colour text-colour" style={{'--bg-colour': bgColour, '--text-colour': textColour} as React.CSSProperties}>{index + 1}</div>
-                    {game ? 
-                        <img className="h-[60px] p-1 bg-colour" style={{'--bg-colour': bgColour} as React.CSSProperties} src={gameData?.[game]?.icon} /> : 
-                        <div className="h-[60px] bg-colour" style={{'--bg-colour': bgColour} as React.CSSProperties}>{" "}</div>}
-                    <div className="bg-colour text-colour text-2xl" style={{'--bg-colour': bgColour, '--text-colour': textColour} as React.CSSProperties}>{config?.event.multipliers[index]}</div>
+                                            font-metropolis-black text-center text-3xl"
+                                 style={{'--bg-colour': bgColour, '--text-colour': textColour} as React.CSSProperties}>
+                     <FadeBox active={highlighted}>
+                        {index + 1}
+                    </FadeBox>
+                     <FadeBox active={highlighted}>
+                        <img className="h-[60px] p-1" src={gameData?.[game]?.icon} />
+                     </FadeBox>
+                     <FadeBox active={highlighted} className="text-2xl">
+                        {config?.event.multipliers[index]}
+                     </FadeBox>
                 </div>
             )
         })
@@ -45,6 +48,30 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
     return (
         <div className="">
             {getGames()}
+        </div>
+    )
+}
+
+// TODO: Refactor this to support multiple colours (probably for team labels)
+function FadeBox({active, className = "", children}: {active: boolean, className?: string, children: React.ReactNode}) {
+    const activeBg = hexToRGBA(colours.highlight, 0.75);
+    const inactiveBg = hexToRGBA(colours.black, 0.75);
+
+    const activeText = colours.black;
+    const inactiveText = colours.white;
+
+    return (
+        <div className={`relative ${className}`}>
+            <div className="absolute inset-0 transition-opacity duration-500"
+                 style={{backgroundColor: activeBg, opacity: active ? 1 : 0}}/>
+            <div className="absolute inset-0 transition-opacity duration-500"
+                 style={{backgroundColor: inactiveBg, opacity: active ? 0 : 1}}/>
+            <div className="relative z-10 font-metropolis-black">
+                <div className="transition-opacity duration-500 font-metropolis-black"
+                     style={{color: activeText, opacity: active ? 1 : 0}}>{children}</div>
+                <div className="absolute transition-opacity inset-0 duration-500 font-metropolis-black"
+                     style={{color: inactiveText, opacity: active ? 0 : 1}}>{children}</div>                
+            </div>
         </div>
     )
 }

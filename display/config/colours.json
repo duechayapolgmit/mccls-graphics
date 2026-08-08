@@ -9,5 +9,6 @@
     "gold": "#a78d00",
     "silver": "#a5a5a5",
     "bronze": "#ce8946",
-    "black": "#000000"
+    "black": "#000000",
+    "white": "#ffffff"
 }

@@ -1,12 +1,9 @@
 import path from "path";
 
 import { load, save } from '../utils/localDataManager';
-import { getConfig } from '../client/config';
 
 const statePath = path.join(process.cwd(), "state/overlay.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/overlay.json")
-
-const config = await getConfig();
 
 // Setup
 let data = load(statePath);
@@ -27,14 +24,6 @@ export const getPlacementsDisplayOptions = () => data.placementsVisible;
 /* --------------
     SETTERS
 ----------------- */ 
-export function setGameNumber(gameNo) {
-    data.gameNumber = gameNo
-    // Check the multiplier associated and attach the multiplier with that (default x1.0)
-    data.multiplier = config.event.multipliers[data.gameNumber - 1] || "x1.0"; 
-    save(statePath, data);
-    return true;
-}
-
 export function setGame(game) {
     data.game = game
     save(statePath, data);

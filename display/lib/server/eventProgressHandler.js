@@ -7,8 +7,6 @@ import { getConfig } from '../client/config';
 const statePath = path.join(process.cwd(), "state/event.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/event.json")
 
-const config = await getConfig();
-
 // Pre-occupy the placement based on the config give
 function setupPlacementsAfterLoad(placements, placementsCount) {
     if (!placements) placements = []
@@ -21,29 +19,34 @@ function setupPlacementsAfterLoad(placements, placementsCount) {
 }
 
 // Pre-occupy the event rundown based on the config
-function setupEventRundownAfterLoad(rundown, rundownSlots) {
-    if (!rundown) rundown = []
+function setupEventRundownAfterLoad(games, rundownSlots) {
+    if (!games) games = []
 
     for (let i = 1; i <= rundownSlots; i++) {
-        if (rundown[i-1]) continue;
-        else rundown[i-1] = "";
+        if (games[i-1]) continue;
+        else games[i-1] = "";
     }
-    return rundown;
+    return games;
 }
 
-function setup(data) {
+async function setup(data) {
+    const config = await getConfig();
+
     data.placements = setupPlacementsAfterLoad(data.placements, config.info.teams)
-    data.rundown = setupEventRundownAfterLoad(data.rundown, config.info.game_amount)
+    data.games = setupEventRundownAfterLoad(data.games, config.info.game_amount)
     return data;
 }
 
 // Setup
-let data = load(statePath);
-if (!data) data = load(stateDefaultPath);
+let data;
+async () => {
+    data = load(statePath);
+    if (!data) data = load(stateDefaultPath);
 
-// Setup Placements
-data = setup(data);
-save(statePath, data)
+    // Additional setup
+    data = await setup(data);
+    save(statePath, data)
+}
 
 /* --------------
     GETTERS
@@ -63,7 +66,9 @@ export const getPlacementInfo = (place) => data.placements[place] || {};
     SETTERS
 ----------------- */ 
 // Handle game number and multiplier
-export function setGameNumber(gameNo) {
+export async function setGameNumber(gameNo) {
+    const config = await getConfig();
+
     data.status.game_number = gameNo
     // Check the multiplier associated and attach the multiplier with that (default x1.0)
     data.status.current_multiplier = config.event.multipliers[data.status.game_number - 1] || "x1.0"; 
@@ -71,7 +76,9 @@ export function setGameNumber(gameNo) {
     return true;
 }
 
-export function setPlaceName(place, name) {
+export async function setPlaceName(place, name) {
+    const config = await getConfig();
+
     if (typeof place != "number") return false;
     if (place > config.info.teams || place < 0) return false;
 
@@ -92,7 +99,9 @@ export function setPlaceName(place, name) {
     return true;
 }
 
-export function setPlaceScore(place, score) {
+export async function setPlaceScore(place, score) {
+    const config = await getConfig();
+
     if (typeof place != "number") return false;
     if (place > config.info.teams || place < 0) return false;
 

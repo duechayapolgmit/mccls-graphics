@@ -5,14 +5,7 @@ import styles from './voting.module.css'
 import { EventProgress } from '@/components/event/progress';
 
 export default function VotingClient({gameData}: {gameData: any}) {
-    const [data, setData] = useState({
-        slots: [{
-            slot: 0, 
-            game: "",
-            chosen: false
-        }],
-        visible: true
-    });
+    const [data, setData] = useState<any>(null);
     const [statusData, setStatusData] = useState<any>(null);
     const [gameHistoryData, setGameHistoryData] = useState<any>(null);
 
@@ -53,6 +46,7 @@ export default function VotingClient({gameData}: {gameData: any}) {
     }, [])
 
     const slotDisplay = (slots: {slot: number, game: string, chosen: boolean}[]) => {
+        if (!slots) return;
         const lst = slots.map((slot: {slot: number, game: string, chosen: boolean}) => {
             return (<GameSlot key={slot.slot} gameData={gameData} game={slot.game} chosen={slot.chosen}/>)
         })
@@ -65,11 +59,11 @@ export default function VotingClient({gameData}: {gameData: any}) {
 
     return (
         <div className='flex pt-12.5 pl-12.5'>
-            <div className={data.visible ? `${styles.games} transition slide-right-in flex-none h-[980px]` : `${styles.games} transition ${styles.games_slide_out} flex-none h-[980px]`}>
-                 {slotDisplay(data.slots)}
+            <div className={data?.visible ? `${styles.games} transition slide-right-in flex-none h-[980px]` : `${styles.games} transition ${styles.games_slide_out} flex-none h-[980px]`}>
+                 {slotDisplay(data?.slots)}
             </div>
             <div className='flex flex-col justify-end items-center w-[1900px]'>
-                <EventProgress games={gameHistoryData} currentGameNumber={statusData?.game_number}/>
+                <EventProgress games={gameHistoryData} currentGameNumber={data?.voting_game_number}/>
             </div>
         </div>
         

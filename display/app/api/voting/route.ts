@@ -1,8 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions } from '@/lib/server/votingHandler'
+import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber } from '@/lib/server/votingHandler'
 import { notify } from "@/lib/transmitter/listeners";
+import { getConfig } from "@/lib/client/config";
 
-export function GET(request: NextRequest) {
+const config = getConfig();
+
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
 
     // read from queries
@@ -12,6 +15,8 @@ export function GET(request: NextRequest) {
     const slotChosenUpdate = searchParams.get('slotChosen')
 
     const votingDisplayUpdate = searchParams.get('display')
+
+    const updateGameHistory = searchParams.get('updateGameNo')
 
     const reset = searchParams.get('reset');
 
@@ -31,6 +36,20 @@ export function GET(request: NextRequest) {
     if (votingDisplayUpdate) {
         if (votingDisplayUpdate == "show") changed = setDisplayOptions(true);
         else if (votingDisplayUpdate == "hide") changed = setDisplayOptions(false);
+    }
+
+    // update game number based on the event status
+    if (updateGameHistory === "true") {
+        const delay = config.voting?.update_delay_ms ?? 0;
+
+        if (delay > 0) {
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+
+        const statusRes = await fetch(`${request.nextUrl.origin}/api/event/status`);
+        const statusJson = await statusRes.json();
+
+        if (statusJson?.game_number) changed = setGameNumber(statusJson.game_number)
     }
 
     // RESET

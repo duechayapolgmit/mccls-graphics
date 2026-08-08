@@ -1,10 +1,7 @@
-import fs from 'fs';
 import path from "path";
 
 import { load, save } from '../utils/localDataManager';
 import { getData } from '../utils/dataHelper';
-
-const breakInfo = await getData('/api/break_data/screens')
 
 const statePath = path.join(process.cwd(), "state/break.json");
 const stateDefaultPath = path.join(process.cwd(), "state/defaults/break.json")
@@ -20,7 +17,9 @@ export const getStateData = () => data;
 /* --------------
     SETTERS
 ----------------- */ 
-export function setBreakScreen(key) {
+export async function setBreakScreen(key) {
+    // get information from break screens first
+    const breakInfo = await getData('/api/break_data/screens')
     let breakData = breakInfo[key]
 
     if (breakData) {
