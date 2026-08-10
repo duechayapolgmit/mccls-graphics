@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {resetOverlay, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, setForcedSideOptions} from '@/lib/server/overlayHandler';
 import { notify } from "@/lib/transmitter/listeners";
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     
     // Read from queries
@@ -33,7 +33,7 @@ export function GET(request: NextRequest) {
     }
 
     // RESET
-    if (reset == "true") changed = resetOverlay();
+    if (reset == "true") changed = await resetOverlay();
 
     if (changed) notify(getOverlayData(), "overlay");
 

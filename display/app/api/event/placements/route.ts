@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const reset = searchParams.get('reset');
 
     // Current info
-    let currentPlacements = getPlacements();
+    let currentPlacements = await getPlacements();
     let changed = false;
 
     // Placements
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     }
 
     // RESET
-    if (reset == "true") changed = resetEvent();
+    if (reset == "true") changed = await resetEvent();
 
     if (changed) notify(getPlacements(), "event_placements");
 

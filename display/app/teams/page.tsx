@@ -4,7 +4,7 @@ import html2canvas from 'html2canvas-pro';
 
 import styles from './teams.module.css'
 
-import { getConfig } from '@/lib/client/config';
+import { getConfig } from '@/lib/server/config';
 import TeamsOverview from '@/components/team/teams_overview';
 
 const config = await getConfig();

@@ -1,6 +1,6 @@
 import { getData } from "@/lib/server/storage";
 import { NextRequest, NextResponse } from "next/server";
 
-export function GET(request: NextRequest) {
-    return NextResponse.json(getData("team_members"));
+export async function GET(request: NextRequest) {
+    return NextResponse.json(await getData("team_members"));
 }

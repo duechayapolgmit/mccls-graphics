@@ -1,9 +1,9 @@
-import { getConfig, getConfigColours } from "@/lib/client/config";
+import { getConfig } from "@/lib/server/config";
 import { apiFetch, hexToRGBA } from "@/lib/utils/utils";
 import { useEffect, useState } from "react";
 
 const config = await getConfig();
-const colours = await getConfigColours();
+const colours = await getConfig("colours");
 
 export function EventProgress({games, currentGameNumber}: {games: string[], currentGameNumber: number}) {
     const [gameData, setGameData] = useState<any>();

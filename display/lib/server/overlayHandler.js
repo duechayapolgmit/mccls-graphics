@@ -2,12 +2,12 @@ import path from "path";
 
 import { load, save } from '../utils/localDataManager';
 
-const statePath = path.join(process.cwd(), "state/overlay.json");
-const stateDefaultPath = path.join(process.cwd(), "state/defaults/overlay.json")
+const statePath = "state/overlay.json"
+const stateDefaultPath = "state/defaults/overlay.json"
 
 // Setup
-let data = load(statePath);
-if (!data) data = load(stateDefaultPath);
+let data = await load(statePath);
+if (!data) data = await load(stateDefaultPath);
 
 /* --------------
     GETTERS
@@ -58,8 +58,8 @@ export function setForcedSideOptions(option) {
 }
 
 /* RESET */
-export function resetOverlay() {
-    data = load(stateDefaultPath);
+export async function resetOverlay() {
+    data = await load(stateDefaultPath);
     save(statePath, data);
     return true;
 }

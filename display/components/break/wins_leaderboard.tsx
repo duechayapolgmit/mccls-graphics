@@ -5,10 +5,10 @@ import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
-import { getConfig, getConfigColours } from '@/lib/client/config';
+import { getConfig } from '@/lib/server/config';
 
 const config = await getConfig();
-const colours = await getConfigColours();
+const colours = await getConfig("colours");
 
 const ROWS = 3;
 export default function WinsLeaderboard({playersWins}: {playersWins: Map<number, string[]>}){

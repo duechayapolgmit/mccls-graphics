@@ -6,14 +6,14 @@ import styles from './break.module.css'
 import BreakScreenBody from './_body';
 
 import { getDisplayOption, getType } from '@/lib/client/breakInfo';
-import { getConfig, getConfigBreak, getConfigColours } from '@/lib/client/config';
+import { getConfig} from '@/lib/server/config';
 import { TextFormatter } from '@/lib/utils/utilsComp';
 import { Countdown } from '@/components/countdown';
 import { apiFetch } from '@/lib/utils/utils';
 
-const config = await getConfig();
-const configBreak = await getConfigBreak();
-const colours = await getConfigColours();
+const config = await getConfig("general");
+const configBreak = await getConfig("break");
+const colours = await getConfig("colours");
 
 export default function Page() {
     const [breakData, setBreakData] = useState<any>(null);

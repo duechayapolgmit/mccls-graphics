@@ -2,11 +2,11 @@
 import { useLayoutEffect, useState } from "react"
 
 import styles from './countdown.module.css'
-import { getConfig, getConfigColours } from "@/lib/client/config"
+import { getConfig } from "@/lib/server/config"
 import { Countdown } from "@/components/countdown";
 
-const config = await getConfig();
-const colours = await getConfigColours();
+const config = await getConfig("general");
+const colours = await getConfig("colours");
 
 export default function Page(){
     return (

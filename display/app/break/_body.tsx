@@ -6,7 +6,7 @@ import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
 import MVPTable from '@/components/break/mvp_table';
-import { getConfig, getConfigBreak } from '@/lib/client/config';
+import { getConfig } from '@/lib/server/config';
 import { useEffect, useState } from 'react';
 import Explainer from '@/components/break/explainer';
 import TeamsOverview from "@/components/team/teams_overview";
@@ -29,7 +29,7 @@ export default function BreakScreenBody({screen}: {screen: string}) {
     useEffect(() => {
         (async () => {
             setConfig(await getConfig());
-            setConfigBreak(await getConfigBreak());
+            setConfigBreak(await getConfig("break"));
         })();
     }, []);
 

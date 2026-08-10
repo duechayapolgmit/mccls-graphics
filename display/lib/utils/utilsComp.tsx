@@ -1,8 +1,8 @@
-import { getConfigColours } from "../client/config";
+import { getConfig } from "../server/config";
 
 const API_URL = "http://localhost:3000/api"
 
-const colours = getConfigColours();
+const colours = await getConfig("colours");
 
 export function TextFormatter({text}: {text: string}) {
     const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
@@ -32,7 +32,7 @@ export function TextFormatter({text}: {text: string}) {
 
         if (highlight) {
             element = (
-                <span key={`h-${idx}`} style={{ color: colours.highlight }}>
+                <span key={`h-${idx}`} style={{ color: colours?.highlight }}>
                     {element}
                 </span>
             );

@@ -3,11 +3,11 @@ import path from "path";
 import { load, save } from '../utils/localDataManager';
 import { getData } from '../utils/dataHelper';
 
-const statePath = path.join(process.cwd(), "state/break.json");
-const stateDefaultPath = path.join(process.cwd(), "state/defaults/break.json")
+const statePath = "state/break.json"
+const stateDefaultPath = "state/defaults/break.json"
 
-let data = load(statePath);
-if (!data) data = load(stateDefaultPath);
+let data = await load(statePath);
+if (!data) data = await load(stateDefaultPath);
 
 /* --------------
     GETTERS

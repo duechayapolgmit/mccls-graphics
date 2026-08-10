@@ -1,4 +1,4 @@
-import { getConfig } from "@/lib/client/config";
+import { getConfig } from "@/lib/server/config";
 import { useLayoutEffect, useState } from "react";
 
 const config = await getConfig();

@@ -3,10 +3,10 @@ import styles from './teams.module.css'
 
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
-import { getConfig, getConfigColours } from '@/lib/client/config';
+import { getConfig } from '@/lib/server/config';
 
 const config = await getConfig();
-const colours = await getConfigColours();
+const colours = await getConfig("colours");
 
 export default function TeamsOverview() {
     if (!config) return null;

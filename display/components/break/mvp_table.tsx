@@ -3,10 +3,10 @@ import styles from './mvp_table.module.css'
 import { getPlayerAvatar } from '@/lib/client/playerInfo';
 import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from '@/lib/client/breakMVPInfo';
 import { formatValue, hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
-import { getConfigColours } from '@/lib/client/config';
+import { getConfig } from '@/lib/server/config';
 import { ListEntry } from '../list';
 
-const colours = await getConfigColours();
+const colours = await getConfig("colours");
 
 // there's some hardcoded values, but will be sorted out later on.
 export default function MVPTable ({screen}: {screen: string}) {

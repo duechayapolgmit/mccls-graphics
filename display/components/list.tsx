@@ -1,9 +1,9 @@
-import { getConfigColours } from "@/lib/client/config";
+import { getConfig } from "@/lib/server/config";
 import { hexToRGBA } from "@/lib/utils/utils";
 
 import styles from '@/components/list.module.css'
 
-const colours = await getConfigColours();
+const colours = await getConfig("colours");
 
 export function ListEntry({rank, body, currentStandings = false}: {rank: number, body: any, currentStandings?: boolean}) {
     const getRank = (rank: number) => {

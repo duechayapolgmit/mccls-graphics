@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getBreakScreenDetails } from "@/lib/client/breakInfo"
-import { getConfigColours } from "@/lib/client/config";
+import { getConfig } from "@/lib/server/config";
 import { useEffect, useState } from "react";
 import { apiFetch } from "@/lib/utils/utils";
 import { TextFormatter } from "@/lib/utils/utilsComp";

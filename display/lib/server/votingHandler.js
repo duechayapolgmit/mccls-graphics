@@ -3,12 +3,12 @@ import path from "path";
 import { load, save } from '../utils/localDataManager';
 import { checkGame } from '../client/gameInfo';
 import { notify } from "@/lib/transmitter/listeners";
-import { getConfig } from "../client/config";
+import { getConfig } from "./config";
 
 const config = await getConfig();
 
-const statePath = path.join(process.cwd(), "state/voting.json");
-const stateDefaultPath = path.join(process.cwd(), "state/defaults/voting.json")
+const statePath = "state/voting.json"
+const stateDefaultPath = "state/defaults/voting.json"
 
 // Pre-occupy the slots based on the config give
 function setupSlotsAfterLoad(slots, slotsCount) {
@@ -20,8 +20,8 @@ function setupSlotsAfterLoad(slots, slotsCount) {
 }
 
 // Setup
-let data = load(statePath);
-if (!data) data = loadDefaults(stateDefaultPath);
+let data = await load(statePath);
+if (!data) data = await load(stateDefaultPath);
 
 // Setup
 let slots = setupSlotsAfterLoad(data.slots, config.voting.slots)

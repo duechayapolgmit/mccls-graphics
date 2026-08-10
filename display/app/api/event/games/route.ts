@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { notify } from "@/lib/transmitter/listeners";
-import { getPlacements, addGameToHistory, getGames } from "@/lib/server/eventProgressHandler";
+import { addGameToHistory, getGames } from "@/lib/server/eventProgressHandler";
 
-export function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     
     // Read from queries
@@ -13,7 +13,9 @@ export function GET(request: NextRequest) {
     // Game
     if (gameUpdate) changed = addGameToHistory(gameUpdate);
 
-    if (changed) notify(getGames(), "event_games");
+    const games = await getGames();
 
-    return NextResponse.json(getGames());
+    if (changed) notify(games, "event_games");
+
+    return NextResponse.json(games);
 }
