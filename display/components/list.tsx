@@ -2,25 +2,30 @@ import { getConfig } from "@/lib/server/config";
 import { hexToRGBA } from "@/lib/utils/utils";
 
 import styles from '@/components/list.module.css'
-
-const colours = await getConfig("colours");
+import { useEffect, useState } from "react";
 
 export function ListEntry({rank, body, currentStandings = false}: {rank: number, body: any, currentStandings?: boolean}) {
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     const getRank = (rank: number) => {
         const getColour = () => {
             switch(rank) {
                 case 1: 
                     if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
-                    return hexToRGBA(colours.gold, 0.75)
+                    return hexToRGBA(colours?.gold, 0.75)
                 case 2: 
                     if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
-                    return hexToRGBA(colours.silver, 0.75)
+                    return hexToRGBA(colours?.silver, 0.75)
                 case 3: 
                     if (currentStandings) return hexToRGBA(colours.primary, 0.75)
-                    return hexToRGBA(colours.bronze, 0.75)
+                    return hexToRGBA(colours?.bronze, 0.75)
                 default: 
                     if (currentStandings) return hexToRGBA(colours.primary, 0.75)
-                    return hexToRGBA(colours.black, 0.75)
+                    return hexToRGBA(colours?.black, 0.75)
             }
         }
         

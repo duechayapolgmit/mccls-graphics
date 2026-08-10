@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas-pro';
 
 import styles from './teams.module.css'
@@ -7,9 +7,9 @@ import styles from './teams.module.css'
 import { getConfig } from '@/lib/server/config';
 import TeamsOverview from '@/components/team/teams_overview';
 
-const config = await getConfig();
-
 export default function Page() {
+    const [config, setConfig] = useState<any>(null);
+    
     const captureRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -45,10 +45,12 @@ export default function Page() {
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
-    if (!config) return null;
+    useEffect(() => {
+        getConfig(config).then(data => setConfig(data));
+    }, [])
 
     const getPageBackground = () => {
-        let bgPath = config.teams.background;
+        let bgPath = config?.teams.background;
 
         if (bgPath == "none") return {} as React.CSSProperties
         return {"--bg-image": `url(${bgPath})`} as React.CSSProperties
@@ -60,7 +62,7 @@ export default function Page() {
                 <TeamsOverview />
                 <div className="teams-overview-event-name relative bg-black/75 w-236.25 h-15.5 pb-10.5
                                 font-metropolis-black text-white uppercase text-center text-[42px]">
-                    <p>{config.info.event_name}: <span className={styles.event_tagline}>{config.info.tagline}</span></p>
+                    <p>{config?.info.event_name}: <span className={styles.event_tagline}>{config?.info.tagline}</span></p>
                 </div>
             </div>
         </div>

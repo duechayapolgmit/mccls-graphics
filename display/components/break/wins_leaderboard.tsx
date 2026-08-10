@@ -6,9 +6,8 @@ import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
 import { getConfig } from '@/lib/server/config';
+import { useEffect, useState } from 'react';
 
-const config = await getConfig();
-const colours = await getConfig("colours");
 
 const ROWS = 3;
 export default function WinsLeaderboard({playersWins}: {playersWins: Map<number, string[]>}){
@@ -25,13 +24,20 @@ export default function WinsLeaderboard({playersWins}: {playersWins: Map<number,
 }
 
 function WinsGridItem({amount, players}: {amount: number, players: string[]}){
+    const [config, setConfig] = useState<any>(null);
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig().then(data => setConfig(data));
+        getConfig("colours").then(data => setColours(data));
+    }, [])
 
     const getColumns = () => {
         return Math.ceil(players.length / ROWS)
     }
 
     const getHeader = () => {
-        if (config.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
+        if (config?.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
             return <div className={`${styles.header} bg-colour text-colour`} 
                         style={{"--bg-colour": hexToRGBA(colours.highlight, 0.75), "--text-colour:": "black"} as React.CSSProperties}>
                         {amount} WINS</div>
@@ -43,7 +49,7 @@ function WinsGridItem({amount, players}: {amount: number, players: string[]}){
         let divList = players.map((player: string) => {
                 return (<div key={player}><Card player={player} team={getTeamFromMember(player)}/></div>)
             })
-        if (config.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
+        if (config?.break_screens.highlight_wins_amounts.find((ele: number) => amount == ele)) { // if it's marked to be highlighted
             return (<div className={`${styles.items} bg-colour`} 
                         style={{"--columns": getColumns(), "--bg-colour": hexToRGBA(colours.highlight, 0.75)} as React.CSSProperties}>
                         {divList}

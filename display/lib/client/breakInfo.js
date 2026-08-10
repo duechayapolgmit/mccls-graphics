@@ -2,7 +2,6 @@ import { getNoWins } from '../server/wins';
 import { getData } from '../utils/dataHelper';
 
 const breakInfo = await getData('/api/break_data/screens')
-const gameInfo = await getData('/api/games')
 
 export const getAvailableKeys = () => Object.keys(breakInfo)
 

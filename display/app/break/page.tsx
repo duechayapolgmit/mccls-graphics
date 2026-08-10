@@ -11,11 +11,16 @@ import { TextFormatter } from '@/lib/utils/utilsComp';
 import { Countdown } from '@/components/countdown';
 import { apiFetch } from '@/lib/utils/utils';
 
-const config = await getConfig("general");
-const configBreak = await getConfig("break");
-const colours = await getConfig("colours");
 
 export default function Page() {
+    const [config, setConfig] = useState<any>(null);
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig().then(data => setConfig(data));
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     const [breakData, setBreakData] = useState<any>(null);
     const [state, setState] = useState<any>(null)
 
@@ -43,7 +48,6 @@ export default function Page() {
     // Screen change
     useEffect(() => {
         if (!state?.rotating) return;
-        if (!config) return;
 
         const screens = config?.break_screens.rotation.in_rotation;
 
@@ -71,23 +75,23 @@ export default function Page() {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
-                <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
+                <div className={styles.icon} style={{"--bg-colour": colours?.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                 <Title screenData={breakData?.[state?.currentScreen]}/>
                 {!state?.timeVisible ? "" :
                     <>
                         <div className={styles.right_text}><Countdown key={state?.time} time={state?.time} showMinutes={true} warning={true}/></div>
-                        <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
+                        <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours?.secondary} as React.CSSProperties}></div>
                     </>
                 }
             </div>
             <Body screen={state?.currentScreen}/>
             <div className={styles.footer}>
                 <div className={`${styles.left_text} ${getDisplayOption(state?.currentScreen, "footer_event_name") ? "" : "hidden"}`}>
-                    <div className={styles.icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>
-                    <div className={styles.header_text}>{config.info.event_name}: <span className='text-colour' style={{"--text-colour": colours.highlight} as React.CSSProperties}>{config.info.tagline}</span></div>
+                    <div className={styles.icon} style={{"--bg-colour": colours?.secondary} as React.CSSProperties}></div>
+                    <div className={styles.header_text}>{config?.info.event_name}: <span className='text-colour' style={{"--text-colour": colours?.highlight} as React.CSSProperties}>{config?.info.tagline}</span></div>
                 </div>
                 <div className={styles.right_logo}><img src={"/logo-long.png"}/></div>
-                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours.secondary} as React.CSSProperties}></div>        
+                <div className={`${styles.icon} ${styles.right_icon}`} style={{"--bg-colour": colours?.secondary} as React.CSSProperties}></div>        
             </div>
         </div>
     )
@@ -99,11 +103,17 @@ function Body({screen}: {screen: string}) {
     const [prev, setPrev] = useState("");
     const [out, setOut] = useState(false);
 
+    const [configBreak, setConfigBreak] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("break").then(data => setConfigBreak(data));
+    }, [])
+
     const getRemarks = (key: string) => {
         return (
-            !configBreak.remarks[getType(key)] ? "" : 
+            !configBreak?.remarks[getType(key)] ? "" : 
             <div className="absolute font-metropolis text-3xl text-white text-right right-3 bottom-2">
-                <TextFormatter text={configBreak.remarks[getType(key)]}/>           
+                <TextFormatter text={configBreak?.remarks[getType(key)]}/>           
             </div>
         )
     }
@@ -143,39 +153,55 @@ function Title({screenData}: {screenData: any}) {
     const measureRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        if (!wrapperRef.current || !nextRef.current) return; // no undefines
+        if (!wrapperRef.current || !nextRef.current || !wrapperRef.current) return; // no undefines
 
-        // Measure widths
-        const textWidth = measureRef.current?.offsetWidth || 0;
-        const styles = getComputedStyle(wrapperRef.current);
-        const paddingLeft = parseFloat(styles.paddingLeft) + 0.5; // +1 because silly overflows
-        const paddingRight = parseFloat(styles.paddingRight);
+        const apply = () => {
+            if (!wrapperRef.current || !measureRef.current) return;
 
-        const newWidth = textWidth + paddingLeft + paddingRight;
-        const oldWidth = wrapperRef.current.offsetWidth;
+            // Measure widths
+            const textWidth = measureRef.current?.offsetWidth || 0;
+            const styles = getComputedStyle(wrapperRef.current);
+            const paddingLeft = parseFloat(styles.paddingLeft) + 0.5; // +1 because silly overflows
+            const paddingRight = parseFloat(styles.paddingRight);
 
-        // if new text is longer than the old text, expand the width first then slide
-        if (newWidth > oldWidth) wrapperRef.current.style.width = newWidth + "px";
+            const newWidth = textWidth + paddingLeft + paddingRight;
+            const oldWidth = wrapperRef.current?.offsetWidth || 0;
 
-        // starts the animation
-        setOut(true);
+            console.log(newWidth+ " "+oldWidth)
 
-        // set back
-        const timeout = setTimeout(() => {
-            setOut(false);
+            // if new text is longer than the old text, expand the width first then slide
+            if (newWidth > oldWidth) wrapperRef.current.style.width = newWidth + "px";
 
-            // if new text shorter than the old text, shrink after the slide and when it's visible
-            if (newWidth <= oldWidth && wrapperRef.current) {
-                setTimeout(() => {
-                    wrapperRef.current!.style.width = newWidth + "px";
-                }, 1000)
-            }
+            // starts the animation
+            setOut(true);
 
-            const anotherTimeout = setTimeout(() => {setPrev({title: screenData?.title, subtitle: screenData?.subtitle})}, 1000)
-            return () => clearTimeout(anotherTimeout)
-        }, 500);
+            // set back
+            const timeout = setTimeout(() => {
+                setOut(false);
 
-        return () => clearTimeout(timeout);
+                // if new text shorter than the old text, shrink after the slide and when it's visible
+                if (newWidth <= oldWidth && wrapperRef.current) {
+                    setTimeout(() => {
+                        wrapperRef.current!.style.width = newWidth + "px";
+                    }, 1000)
+                }
+
+                const anotherTimeout = setTimeout(() => {setPrev({title: screenData?.title, subtitle: screenData?.subtitle})}, 1000)
+                return () => clearTimeout(anotherTimeout)
+            }, 500);
+
+            return () => clearTimeout(timeout);
+        }
+
+        if (typeof document !== 'undefined' && 'fonts' in document) {
+            document.fonts.ready.then(() => {
+                apply();
+            });
+        } else {
+            apply();
+        }
+
+    
     }, [screenData?.title, screenData?.subtitle]);
 
     return (

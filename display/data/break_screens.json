@@ -58,6 +58,7 @@
         "picture": "/break_screens/explainers/event_format.png"
     },
     "game_ace_race": {
+        "title": "Ace Race",
         "type": "game_explainer",
         "game": "AR",
         "content": {
@@ -71,6 +72,7 @@
         "picture": "/break_screens/game_explainers/game_ace_race.png"
     },
     "game_battle_box": {
+        "title": "Battle Box",
         "type": "game_explainer",
         "game": "BB",
         "content": {
@@ -84,6 +86,7 @@
         "picture": "/break_screens/game_explainers/game_battle_box.png"
     },
     "game_bingo_but_fast": {
+        "title": "Bingo but Fast",
         "type": "game_explainer",
         "game": "BBF",
         "content": {
@@ -97,6 +100,7 @@
         "picture": "/break_screens/game_explainers/game_bingo_but_fast.png"
     },
     "game_build_mart": {
+        "title": "Big Sales at Build Mart",
         "type": "game_explainer",
         "game": "BM",
         "content": {
@@ -110,6 +114,7 @@
         "picture": "/break_screens/game_explainers/game_build_mart.png"
     },
     "game_dodgebolt": {
+        "title": "Dodgebolt",
         "type": "game_explainer",
         "game": "DB",
         "content": {
@@ -119,6 +124,7 @@
         "picture": "/break_screens/game_explainers/game_dodgebolt.png"
     },
     "game_grid_runners": {
+        "title": "Grid Runners",
         "type": "game_explainer",
         "game": "GR",
         "content": {
@@ -132,6 +138,7 @@
         "picture": "/break_screens/game_explainers/game_grid_runners.png"
     },
     "game_hole_in_the_wall": {
+        "title": "Hole in the Wall",
         "type": "game_explainer",
         "game": "HITW",
         "content": {
@@ -146,6 +153,7 @@
         "picture": "/break_screens/game_explainers/game_hole_in_the_wall.png"
     },
     "game_meltdown": {
+        "title": "Meltdown",
         "type": "game_explainer",
         "game": "MD",
         "content": {
@@ -160,6 +168,7 @@
         "picture": "/break_screens/game_explainers/game_meltdown.png"
     },
     "game_parkour_tag": {
+        "title": "Parkour Tag",
         "type": "game_explainer",
         "game": "PT",
         "content": {
@@ -173,6 +182,7 @@
         "picture": "/break_screens/game_explainers/game_parkour_tag.png"
     },
     "game_parkour_warrior": {
+        "title": "Parkour Warrior",
         "type": "game_explainer",
         "game": "PW",
         "content": {
@@ -186,6 +196,7 @@
         "picture": "/break_screens/game_explainers/game_parkour_warrior.png"
     },
     "game_railroad_rush": {
+        "title": "Railroad Rush",
         "type": "game_explainer",
         "game": "RRR",
         "content": {
@@ -201,6 +212,7 @@
         "picture": "/break_screens/game_explainers/game_railroad_rush.png"
     },
     "game_rocket_spleef_rush": {
+        "title": "Rocket Spleef Rush",
         "type": "game_explainer",
         "game": "RSR",
         "content": {
@@ -215,6 +227,7 @@
         "picture": "/break_screens/game_explainers/game_rocket_spleef_rush.png"
     },
     "game_sky_battle": {
+        "title": "Sky Battle",
         "type": "game_explainer",
         "game": "SB",
         "content": {
@@ -229,6 +242,7 @@
         "picture": "/break_screens/game_explainers/game_sky_battle.png"
     },
     "game_survival_games": {
+        "title": "Survival Games",
         "type": "game_explainer",
         "game": "SG",
         "content": {
@@ -244,6 +258,7 @@
         "picture": "/break_screens/game_explainers/game_survival_games.png"
     },
     "game_sands_of_time": {
+        "title": "Sands of Time",
         "type": "game_explainer",
         "game": "SOT",
         "content": {

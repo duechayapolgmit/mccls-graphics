@@ -8,6 +8,8 @@ export const sortNoCase = (array: []) => {
 
 /* CONVERT HEX COLOUR to RGBA - not checking because is it really needed? */
 export const hexToRGBA = (hex: string, opacity: number) => {
+    if (!hex) return;
+    
     let red = parseInt(hex.substring(1, 3), 16)
     let green = parseInt(hex.substring(3, 5), 16)
     let blue = parseInt(hex.substring(5, 7), 16) 

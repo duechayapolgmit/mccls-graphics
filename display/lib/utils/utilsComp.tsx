@@ -1,10 +1,15 @@
+import { useEffect, useState } from "react";
 import { getConfig } from "../server/config";
 
 const API_URL = "http://localhost:3000/api"
 
-const colours = await getConfig("colours");
-
 export function TextFormatter({text}: {text: string}) {
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
 
     let bold = false;

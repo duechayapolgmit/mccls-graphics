@@ -1,14 +1,11 @@
-'use client'
-import { useLayoutEffect, useState } from "react"
-
 import styles from './countdown.module.css'
 import { getConfig } from "@/lib/server/config"
 import { Countdown } from "@/components/countdown";
 
-const config = await getConfig("general");
-const colours = await getConfig("colours");
+export default async function Page(){
+    const config = await getConfig("general");
+    const colours = await getConfig("colours");
 
-export default function Page(){
     return (
         <div className={styles.main}>
             <div className={styles.header}>

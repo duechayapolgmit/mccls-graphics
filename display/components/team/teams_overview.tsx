@@ -4,11 +4,17 @@ import styles from './teams.module.css'
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
 import { getConfig } from '@/lib/server/config';
-
-const config = await getConfig();
-const colours = await getConfig("colours");
+import { useEffect, useState } from 'react';
 
 export default function TeamsOverview() {
+    const [config, setConfig] = useState<any>(null);
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig().then(data => setConfig(data));
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     if (!config) return null;
 
     return (
@@ -31,9 +37,9 @@ export default function TeamsOverview() {
                     <div className="teams-overview-remark absolute bg-black/75 left-100 w-137.5 h-8
                                     font-metropolis-black text-white uppercase text-center text-[22px]">
                         <p>
-                            <span style={{color: colours.substitute}}>Lime = Sub-ins</span>
+                            <span style={{color: colours?.substitute}}>Lime = Sub-ins</span>
                             &nbsp;|&nbsp;
-                            <span style={{color: colours.newcomer}}>Yellow = New Player</span>
+                            <span style={{color: colours?.newcomer}}>Yellow = New Player</span>
                         </p>
                     </div>
                 </div>
@@ -83,6 +89,11 @@ function Team({team}: {team: string}) {
 }
 
 function Member({team, name}: {team: string, name: string}) {
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("colours").then(data => setColours(data));
+    }, [])
 
     const getBG = (name: string) => {
         let imagePath = getPlayerProfile(name);
@@ -103,11 +114,11 @@ function Member({team, name}: {team: string, name: string}) {
 
         switch (status) {
             case "substitute":
-                ret['--bg-colour'] = colours.substitute;
+                ret['--bg-colour'] = colours?.substitute;
                 ret['--text-colour'] = "white";
                 break;
             case "newcomer":
-                ret['--bg-colour'] = colours.newcomer;
+                ret['--bg-colour'] = colours?.newcomer;
                 ret['--text-colour'] = "black";
                 break;
         }

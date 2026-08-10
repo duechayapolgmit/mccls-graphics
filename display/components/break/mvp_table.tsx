@@ -5,8 +5,7 @@ import { getTitle, getSubtitle, getColumnKeys, getPlayerData, getPlayers } from 
 import { formatValue, hexToRGBA, sortPlayerAndData } from '@/lib/utils/utils';
 import { getConfig } from '@/lib/server/config';
 import { ListEntry } from '../list';
-
-const colours = await getConfig("colours");
+import { useState, useEffect } from 'react';
 
 // there's some hardcoded values, but will be sorted out later on.
 export default function MVPTable ({screen}: {screen: string}) {
@@ -62,9 +61,15 @@ export default function MVPTable ({screen}: {screen: string}) {
 }
 
 function Heading({col}: {col:string}) {
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     const getBgColour = () => {
-        if (col == "weighted") return hexToRGBA(colours.highlight, 0.75);
-        else return hexToRGBA(colours.black, 0.75)
+        if (col == "weighted") return hexToRGBA(colours?.highlight, 0.75);
+        else return hexToRGBA(colours?.black, 0.75)
     }
 
     const getTextColour = () => {
@@ -84,6 +89,12 @@ function Heading({col}: {col:string}) {
 }
 
 function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player: string, screen: string, headings: string[]}) {
+    const [colours, setColours] = useState<any>(null);
+
+    useEffect(() => {
+        getConfig("colours").then(data => setColours(data));
+    }, [])
+
     const getData = (player: string) => {
         let columnData = [];
         for (let col of headings) {
@@ -92,8 +103,8 @@ function PlayerMvpEntry({rank, player, screen, headings}: {rank: number, player:
 
         let divList = columnData.map((col) => {
             const getBgColour = () => {
-                if (col == "weighted") return hexToRGBA(colours.highlight, 0.75);
-                else return hexToRGBA(colours.black, 0.75)
+                if (col == "weighted") return hexToRGBA(colours?.highlight, 0.75);
+                else return hexToRGBA(colours?.black, 0.75)
             }
             const getTextColour = () => {
                 if (col == "weighted") return "black"
