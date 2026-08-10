@@ -4,7 +4,7 @@ export const fetchCache = "force-no-store";
 import { NextResponse, type NextRequest } from "next/server";
 import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber } from '@/lib/server/votingHandler'
 import { notify } from "@/lib/transmitter/listeners";
-import { getConfig } from "@/lib/server/config";
+import { useConfig } from "@/components/providers/configProvider";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
 
     // update game number based on the event status
     if (updateGameHistory === "true") {
-        const config = await getConfig();
+        const config = useConfig().general;
         const delay = config?.voting.update_delay_ms ?? 0;
 
         if (delay > 0) {

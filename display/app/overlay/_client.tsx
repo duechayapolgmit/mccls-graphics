@@ -10,7 +10,8 @@ import { apiFetch, hexToRGBA } from '@/lib/utils/utils';
 
 import teamInfo from '@/data/team_info.json';
 import { useSearchParams } from "next/navigation";
-import { TeamLabel } from "@/components/team/team_label";
+import { TeamLabel } from "@/components/client/team/team_label";
+import { useConfig } from "@/components/providers/configProvider";
 
 export interface ITeamPlacement {
     place: number;
@@ -18,7 +19,10 @@ export interface ITeamPlacement {
     score: number;
 }
 
-export default function OverlayClient({config, colours}: {config: any, colours: any}) {
+export default function OverlayClient() {
+    const config = useConfig().general;
+    const colours = useConfig().colours;
+
     const searchParams = useSearchParams();
     const displayOption = searchParams.get('display');
 

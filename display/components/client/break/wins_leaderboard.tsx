@@ -5,8 +5,7 @@ import Card from "../player/card";
 import { getTeamFromMember } from '@/lib/client/teamInfo';
 import { hexToRGBA } from '@/lib/utils/utils';
 import { getGridColumnFormatFromMap } from '@/lib/utils/winsLeaderboardUtils';
-import { getConfig } from '@/lib/server/config';
-import { useEffect, useState } from 'react';
+import { useConfig } from '@/components/providers/configProvider';
 
 
 const ROWS = 3;
@@ -24,13 +23,8 @@ export default function WinsLeaderboard({playersWins}: {playersWins: Map<number,
 }
 
 function WinsGridItem({amount, players}: {amount: number, players: string[]}){
-    const [config, setConfig] = useState<any>(null);
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig().then(data => setConfig(data));
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const config = useConfig().general;
+    const colours = useConfig().colours;
 
     const getColumns = () => {
         return Math.ceil(players.length / ROWS)

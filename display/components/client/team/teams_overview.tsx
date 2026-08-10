@@ -3,17 +3,12 @@ import styles from './teams.module.css'
 
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
-import { getConfig } from '@/lib/server/config';
 import { useEffect, useState } from 'react';
+import { useConfig } from '@/components/providers/configProvider';
 
 export default function TeamsOverview() {
-    const [config, setConfig] = useState<any>(null);
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig().then(data => setConfig(data));
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const config = useConfig().general;
+    const colours = useConfig().colours;
 
     if (!config) return null;
 
@@ -89,11 +84,7 @@ function Team({team}: {team: string}) {
 }
 
 function Member({team, name}: {team: string, name: string}) {
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const colours = useConfig().colours;
 
     const getBG = (name: string) => {
         let imagePath = getPlayerProfile(name);

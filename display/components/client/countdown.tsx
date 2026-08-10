@@ -1,18 +1,14 @@
 'use client'
-import { getConfig } from "@/lib/server/config";
 import { useEffect, useLayoutEffect, useState } from "react";
+import { useConfig } from "../providers/configProvider";
 
 export function Countdown({time, showMinutes = false, warning = false}: {time: any, showMinutes?: boolean, warning?: boolean}) {
-    const [config, setConfig] = useState<any>(null);
+    const config = useConfig().general;
 
     const [cdTime, setCdTime] = useState({days: 0, hours: 0, mins: 0, secs: 0})
     const [finish, setFinish] = useState(false);
 
     useLayoutEffect(() => countdown(), [time]);
-
-    useEffect(() => {
-        getConfig("general").then(data => setConfig(data));
-    }, [])
 
     const countdown = () => {
         const targetTime = typeof time == "number" 

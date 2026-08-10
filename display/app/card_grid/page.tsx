@@ -1,6 +1,6 @@
 // hard coding stuff right now, will polish later
 
-import CardGrid from "@/components/break/card_grid";
+import CardGrid from "@/components/client/break/card_grid";
 import { getCardGridList } from "@/lib/client/breakInfo";
 
 export default async function Page() {

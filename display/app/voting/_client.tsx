@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import styles from './voting.module.css'
-import { EventProgress } from '@/components/event/progress';
+import { EventProgress } from '@/components/client/event/progress';
 
 export default function VotingClient({gameData}: {gameData: any}) {
     const [data, setData] = useState<any>(null);

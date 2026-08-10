@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
-import { getConfig } from "../server/config";
+import { useConfig } from "@/components/providers/configProvider";
 
 const API_URL = "http://localhost:3000/api"
 
 export function TextFormatter({text}: {text: string}) {
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const colours = useConfig().colours;
 
     const tokens = text.split(/(<\/?b>|<\/?h>|<br\/>)/g);
 

@@ -1,11 +1,11 @@
-import { getConfig } from "@/lib/server/config";
+import { useConfig } from "@/components/providers/configProvider";
 import { apiFetch, hexToRGBA } from "@/lib/utils/utils";
 import { useEffect, useState } from "react";
 
-const config = await getConfig();
-const colours = await getConfig("colours");
+export function EventProgress({games, currentGameNumber}: {games: string[], currentGameNumber: number}) { 
+    const config = useConfig().general;
+    const colours = useConfig().colours;
 
-export function EventProgress({games, currentGameNumber}: {games: string[], currentGameNumber: number}) {
     const [gameData, setGameData] = useState<any>();
 
     useEffect(() => {
@@ -54,6 +54,8 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
 
 // TODO: Refactor this to support multiple colours (probably for team labels)
 function FadeBox({active, className = "", children}: {active: boolean, className?: string, children: React.ReactNode}) {
+    const colours = useConfig().colours;
+
     const activeBg = hexToRGBA(colours.highlight, 0.75);
     const inactiveBg = hexToRGBA(colours.black, 0.75);
 

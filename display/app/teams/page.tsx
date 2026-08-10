@@ -4,11 +4,11 @@ import html2canvas from 'html2canvas-pro';
 
 import styles from './teams.module.css'
 
-import { getConfig } from '@/lib/server/config';
-import TeamsOverview from '@/components/team/teams_overview';
+import TeamsOverview from '@/components/client/team/teams_overview';
+import { useConfig } from '@/components/providers/configProvider';
 
 export default function Page() {
-    const [config, setConfig] = useState<any>(null);
+    const config = useConfig().general;
     
     const captureRef = useRef<HTMLDivElement>(null);
 
@@ -45,9 +45,6 @@ export default function Page() {
         window.addEventListener('keydown', handleKey);
         return () => window.removeEventListener('keydown', handleKey);
     }, []);
-    useEffect(() => {
-        getConfig(config).then(data => setConfig(data));
-    }, [])
 
     const getPageBackground = () => {
         let bgPath = config?.teams.background;

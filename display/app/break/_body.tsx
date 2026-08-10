@@ -1,18 +1,17 @@
-import CardGrid from "@/components/break/card_grid";
-import WinsLeaderboard from "@/components/break/wins_leaderboard";
+import CardGrid from "@/components/client/break/card_grid";
+import WinsLeaderboard from "@/components/client/break/wins_leaderboard";
 
 import { getCardGridList, getGamesFeatured, getGamesOverviewHeader, getTeamFromTeamAnalysis, getType } from "@/lib/client/breakInfo";
 import { getWinsLeaderboardFromAmount } from "@/lib/server/wins";
 import { resolveRule } from "@/lib/utils/utils";
 import { getGridColumnAmountFromMap } from "@/lib/utils/winsLeaderboardUtils";
-import MVPTable from '@/components/break/mvp_table';
-import { getConfig } from '@/lib/server/config';
-import { useEffect, useState } from 'react';
-import Explainer from '@/components/break/explainer';
-import TeamsOverview from "@/components/team/teams_overview";
-import CurrentStandings from "@/components/break/current_standings";
-import { GamesOverview } from "@/components/break/games_overview";
-import { TeamAnalysis } from "@/components/break/team_analysis";
+import MVPTable from '@/components/client/break/mvp_table';
+import Explainer from '@/components/client/break/explainer';
+import TeamsOverview from "@/components/client/team/teams_overview";
+import CurrentStandings from "@/components/client/break/current_standings";
+import { GamesOverview } from "@/components/client/break/games_overview";
+import { TeamAnalysis } from "@/components/client/break/team_analysis";
+import { useConfig } from "@/components/providers/configProvider";
 
 interface IRule {
     eq?: number;
@@ -23,19 +22,8 @@ interface IRule {
 const WINS_LEADERBOARD_ROWS = 3;
 
 export default function BreakScreenBody({screen}: {screen: string}) {
-    const [config, setConfig] = useState<any>(null);
-    const [configBreak, setConfigBreak] = useState<any>(null);
-
-    useEffect(() => {
-        (async () => {
-            setConfig(await getConfig());
-            setConfigBreak(await getConfig("break"));
-        })();
-    }, []);
-
-    if (!config || !configBreak) {
-        return null;
-    }
+    const config = useConfig().general;
+    const configBreak = useConfig().break;
 
     const getScaleSize = (rules: IRule[], amount: number) => Number(resolveRule(rules, amount));
     const type = getType(screen);

@@ -1,10 +1,10 @@
 import styles from './countdown.module.css'
-import { getConfig } from "@/lib/server/config"
-import { Countdown } from "@/components/countdown";
+import { Countdown } from "@/components/client/countdown";
+import { useConfig } from '@/components/providers/configProvider';
 
 export default async function Page(){
-    const config = await getConfig("general");
-    const colours = await getConfig("colours");
+    const config = useConfig().general;
+    const colours = useConfig().colours;
 
     return (
         <div className={styles.main}>

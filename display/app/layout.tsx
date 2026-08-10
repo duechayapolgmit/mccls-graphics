@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { getAllConfig } from "@/lib/server/config";
+import { ConfigProvider } from "@/components/providers/configProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,10 +20,14 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+  const config = await getAllConfig();
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <ConfigProvider configData={config}>
+          {children}
+        </ConfigProvider>
       </body>
     </html>
   );

@@ -3,7 +3,7 @@ import { use, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import html2canvas from 'html2canvas';
 
-import Card from '@/components/player/card';
+import Card from '@/components/client/player/card';
 
 import { getPlayerWins } from '@/lib/client/playerInfo';
 import { getTeamFromMember } from '@/lib/client/teamInfo';

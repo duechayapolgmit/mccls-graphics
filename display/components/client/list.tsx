@@ -1,15 +1,10 @@
-import { getConfig } from "@/lib/server/config";
 import { hexToRGBA } from "@/lib/utils/utils";
 
-import styles from '@/components/list.module.css'
-import { useEffect, useState } from "react";
+import styles from './list.module.css'
+import { useConfig } from "../providers/configProvider";
 
 export function ListEntry({rank, body, currentStandings = false}: {rank: number, body: any, currentStandings?: boolean}) {
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const colours = useConfig().colours;
 
     const getRank = (rank: number) => {
         const getColour = () => {

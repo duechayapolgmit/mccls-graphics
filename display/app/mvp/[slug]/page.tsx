@@ -4,7 +4,7 @@ import { use, useEffect, useRef } from 'react';
 import styles from '@/components/break/mvp_table.module.css'
 import html2canvas from 'html2canvas';
 import { getPlayerWins } from '@/lib/client/playerInfo';
-import MVPTable from '@/components/break/mvp_table';
+import MVPTable from '@/components/client/break/mvp_table';
 
 export default function Page({params}: {params: Promise<{ slug: string }>}) {
     const { slug } = use(params)

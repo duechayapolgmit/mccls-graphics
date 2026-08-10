@@ -6,20 +6,14 @@ import styles from './break.module.css'
 import BreakScreenBody from './_body';
 
 import { getDisplayOption, getType } from '@/lib/client/breakInfo';
-import { getConfig} from '@/lib/server/config';
 import { TextFormatter } from '@/lib/utils/utilsComp';
-import { Countdown } from '@/components/countdown';
+import { Countdown } from '@/components/client/countdown';
 import { apiFetch } from '@/lib/utils/utils';
-
+import { useConfig } from '@/components/providers/configProvider';
 
 export default function Page() {
-    const [config, setConfig] = useState<any>(null);
-    const [colours, setColours] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig().then(data => setConfig(data));
-        getConfig("colours").then(data => setColours(data));
-    }, [])
+    const config = useConfig().general;
+    const colours = useConfig().colours;
 
     const [breakData, setBreakData] = useState<any>(null);
     const [state, setState] = useState<any>(null)
@@ -98,16 +92,12 @@ export default function Page() {
 }
 
 function Body({screen}: {screen: string}) {
+    const configBreak = useConfig().break;
+
     const bodyDivRef = useRef<HTMLDivElement>(null);
 
     const [prev, setPrev] = useState("");
     const [out, setOut] = useState(false);
-
-    const [configBreak, setConfigBreak] = useState<any>(null);
-
-    useEffect(() => {
-        getConfig("break").then(data => setConfigBreak(data));
-    }, [])
 
     const getRemarks = (key: string) => {
         return (
