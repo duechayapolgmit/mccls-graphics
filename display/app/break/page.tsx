@@ -153,7 +153,7 @@ function Title({screenData}: {screenData: any}) {
     const measureRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
-        if (!wrapperRef.current || !nextRef.current || !wrapperRef.current) return; // no undefines
+        if (!wrapperRef.current || !nextRef.current || !screenData?.title) return; // no undefines
 
         const apply = () => {
             if (!wrapperRef.current || !measureRef.current) return;

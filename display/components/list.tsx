@@ -15,16 +15,16 @@ export function ListEntry({rank, body, currentStandings = false}: {rank: number,
         const getColour = () => {
             switch(rank) {
                 case 1: 
-                    if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
+                    if (currentStandings) return hexToRGBA(colours?.highlight, 0.75)
                     return hexToRGBA(colours?.gold, 0.75)
                 case 2: 
-                    if (currentStandings) return hexToRGBA(colours.highlight, 0.75)
+                    if (currentStandings) return hexToRGBA(colours?.highlight, 0.75)
                     return hexToRGBA(colours?.silver, 0.75)
                 case 3: 
-                    if (currentStandings) return hexToRGBA(colours.primary, 0.75)
+                    if (currentStandings) return hexToRGBA(colours?.primary, 0.75)
                     return hexToRGBA(colours?.bronze, 0.75)
                 default: 
-                    if (currentStandings) return hexToRGBA(colours.primary, 0.75)
+                    if (currentStandings) return hexToRGBA(colours?.primary, 0.75)
                     return hexToRGBA(colours?.black, 0.75)
             }
         }
