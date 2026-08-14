@@ -52,20 +52,18 @@ export function TextFormatter({text}: {text: string}) {
     return <span>{output}</span>
 }
 
-export function FadeComponents({active, className = "", childrenA, childrenB}: {active: boolean, className?: string, childrenA: React.ReactNode, childrenB: React.ReactNode}) {
+export function FadeStack({active, className = "", children}: {active: number, className?: string, children: React.ReactNode[]}) {
     return (
         <div className={`relative ${className}`}>
             <div className="opacity-0"> {/* Just for sizing */}
-                {active ? childrenB : childrenA}
+                {children[active]}
             </div>
-            <div className="absolute inset-0 transition-opacity duration-500"
-                 style={{opacity: active ? 0 : 1}}>
-                {childrenA}
-            </div>
-            <div className="absolute inset-0 transition-opacity duration-500"
-                 style={{opacity: active ? 1 : 0}}>
-                {childrenB}
-            </div>
+            {children.map((child, i) => (
+                <div key={i} className="absolute inset-0 transition-opacity duration-500"
+                    style={{opacity: i === active ? 1 : 0}}>
+                    {child}
+                </div>
+            ))}
         </div>
     )
 }

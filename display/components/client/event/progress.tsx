@@ -1,6 +1,6 @@
 import { useConfig } from "@/components/providers/configProvider";
 import { apiFetch, hexToRGBA } from "@/lib/utils/utils";
-import { FadeComponents } from "@/lib/utils/utilsComp";
+import { FadeStack } from "@/lib/utils/utilsComp";
 import { useEffect, useState } from "react";
 
 export function EventProgress({games, currentGameNumber}: {games: string[], currentGameNumber: number}) { 
@@ -31,15 +31,18 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
                 <div key={index} className="flex flex-col gap-1 w-[60px]
                                             font-metropolis-black text-center text-3xl"
                                  style={{'--bg-colour': bgColour, '--text-colour': textColour} as React.CSSProperties}>
-                     <FadeComponents active={highlighted}
-                                     childrenA={<div style={{backgroundColor: bgBlack, color: colours.white}}>{index + 1}</div>}
-                                     childrenB={<div style={{backgroundColor: bgHighlight, color: colours.black}}>{index + 1}</div>}/>
-                     <FadeComponents active={highlighted}
-                                     childrenA={<div style={{backgroundColor: bgBlack, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>}
-                                     childrenB={<div style={{backgroundColor: bgHighlight, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>}/>
-                     <FadeComponents active={highlighted} className="text-2xl"
-                                     childrenA={<div style={{backgroundColor: bgBlack, color: colours.white}}>{config?.event.multipliers[index]}</div>}
-                                     childrenB={<div style={{backgroundColor: bgHighlight, color: colours.black}}>{config?.event.multipliers[index]}</div>}/>
+                    <FadeStack active={highlighted ? 1 : 0}>
+                        <div style={{backgroundColor: bgBlack, color: colours.white}}>{index + 1}</div>
+                        <div style={{backgroundColor: bgHighlight, color: colours.black}}>{index + 1}</div>
+                    </FadeStack>
+                    <FadeStack active={highlighted ? 1 : 0}>
+                        <div style={{backgroundColor: bgBlack, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
+                        <div style={{backgroundColor: bgHighlight, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
+                    </FadeStack>
+                     <FadeStack active={highlighted ? 1 : 0} className="text-2xl">
+                        <div style={{backgroundColor: bgBlack, color: colours.white}}>{config?.event.multipliers[index]}</div>
+                        <div style={{backgroundColor: bgHighlight, color: colours.black}}>{config?.event.multipliers[index]}</div>
+                     </FadeStack>
                 </div>
             )
         })
