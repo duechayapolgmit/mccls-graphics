@@ -1,4 +1,5 @@
 import { useConfig } from "@/components/providers/configProvider";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
 const API_URL = "http://localhost:3000/api"
 
@@ -53,18 +54,46 @@ export function TextFormatter({text}: {text: string}) {
 }
 
 export function FadeStack({active, className = "", children}: {active: number, className?: string, children: React.ReactNode[]}) {
+    const childArray = React.Children.toArray(children); 
+
+    const measureRef = useRef<HTMLDivElement>(null);
+    const [maxSize, setMaxSize] = useState<{width: number, height: number}>({width: 0, height: 0})
+
+    // measure all children for max size
+    useLayoutEffect(() => {
+        if (!measureRef.current) return;
+        const container = measureRef.current;
+        const nodes = Array.from(container.children)
+
+        let maxWidth = 0;
+        let maxHeight = 0;
+
+        nodes.forEach((node) => {
+            maxWidth = Math.max(maxWidth, node.clientWidth);
+            maxHeight = Math.max(maxHeight, node.clientHeight);
+        })
+    
+        setMaxSize({width: maxWidth, height: maxHeight})
+    }, [children]);
+
     return (
-        <div className={`relative ${className}`}>
-            <div className="opacity-0"> {/* Just for sizing */}
-                {children[active]}
+        <>
+            <div ref={measureRef}
+                 style={{position: "absolute", left: "-99999px", top: "-99999px", visibility: "hidden"}}> {/* Just for sizing */}
+                {childArray.map((child, i) => (
+                    <div key={i}>{child}</div>
+                ))}
             </div>
-            {children.map((child, i) => (
-                <div key={i} className="absolute inset-0 transition-opacity duration-500"
-                    style={{opacity: i === active ? 1 : 0}}>
-                    {child}
-                </div>
-            ))}
+            <div className={`relative ${className}`} style={{width: maxSize.width, height: maxSize.height}}>
+                {childArray.map((child, i) => (
+                    <div key={i} className="absolute inset-0 transition-opacity duration-500 content-center"
+                        style={{opacity: i === active ? 1 : 0}}>
+                        {child}
+                    </div>
+                ))}
         </div>
+        </>
+        
     )
 }
 

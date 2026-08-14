@@ -78,6 +78,11 @@ export function setGameNumber(gameNumber) {
     return true;
 }
 
+export function setBelowScreen(key) {
+    data.below_screen = key;
+    return true;
+}
+
 /* --------------
     MISC
 ----------------- */ 

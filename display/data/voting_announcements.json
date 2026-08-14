@@ -1,0 +1,5 @@
+[
+    {"id": "new_game", "text": "Game <b>Arriving</b>", "text_colour": "#000000", "bg_colour": "#f3ce00"},
+    {"id": "audience_takeover", "text": "Audience <b>Blockout</b>", "text_colour": "#000000", "bg_colour": "#f3ce00"},
+    {"id": "frog_dome", "text": "<b>Frog</b> Dome", "text_colour": "#ffffff", "bg_colour": "#09a251"}
+]

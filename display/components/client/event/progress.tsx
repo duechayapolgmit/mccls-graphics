@@ -32,16 +32,16 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
                                             font-metropolis-black text-center text-3xl"
                                  style={{'--bg-colour': bgColour, '--text-colour': textColour} as React.CSSProperties}>
                     <FadeStack active={highlighted ? 1 : 0}>
-                        <div style={{backgroundColor: bgBlack, color: colours.white}}>{index + 1}</div>
-                        <div style={{backgroundColor: bgHighlight, color: colours.black}}>{index + 1}</div>
+                        <div className="w-[60px]" style={{backgroundColor: bgBlack, color: colours.white}}>{index + 1}</div>
+                        <div className="w-[60px]" style={{backgroundColor: bgHighlight, color: colours.black}}>{index + 1}</div>
                     </FadeStack>
                     <FadeStack active={highlighted ? 1 : 0}>
-                        <div style={{backgroundColor: bgBlack, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
-                        <div style={{backgroundColor: bgHighlight, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
+                        <div className="w-[60px]" style={{backgroundColor: bgBlack, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
+                        <div className="w-[60px]" style={{backgroundColor: bgHighlight, color: colours.black}}><img className="h-[60px] p-1" src={gameData?.[game]?.icon} /></div>
                     </FadeStack>
                      <FadeStack active={highlighted ? 1 : 0} className="text-2xl">
-                        <div style={{backgroundColor: bgBlack, color: colours.white}}>{config?.event.multipliers[index]}</div>
-                        <div style={{backgroundColor: bgHighlight, color: colours.black}}>{config?.event.multipliers[index]}</div>
+                        <div className="w-[60px]" style={{backgroundColor: bgBlack, color: colours.white}}>{config?.event.multipliers[index]}</div>
+                        <div className="w-[60px]" style={{backgroundColor: bgHighlight, color: colours.black}}>{config?.event.multipliers[index]}</div>
                      </FadeStack>
                 </div>
             )
@@ -53,7 +53,7 @@ export function EventProgress({games, currentGameNumber}: {games: string[], curr
         )
     }
     return (
-        <div className="">
+        <div className="flex items-center justify-center">
             {getGames()}
         </div>
     )

@@ -1,5 +1,6 @@
 {
     "voting_game_number": 1,
+    "below_screen": "event_progress",
     "slots": [],
     "visible": true
 }

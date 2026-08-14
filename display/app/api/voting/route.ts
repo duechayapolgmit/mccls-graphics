@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber } from '@/lib/server/votingHandler'
+import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber, setBelowScreen } from '@/lib/server/votingHandler'
 import { notify } from "@/lib/transmitter/listeners";
 import { useConfig } from "@/components/providers/configProvider";
 import { getConfig } from "@/lib/server/config";
@@ -19,6 +19,8 @@ export async function GET(request: NextRequest) {
     const votingDisplayUpdate = searchParams.get('display')
 
     const updateGameHistory = searchParams.get('updateGameNo')
+
+    const belowScreenUpdate = searchParams.get('below_screen')
 
     const reset = searchParams.get('reset');
 
@@ -53,6 +55,10 @@ export async function GET(request: NextRequest) {
         const statusJson = await statusRes.json();
 
         if (statusJson?.game_number) changed = setGameNumber(statusJson.game_number)
+    }
+
+    if (belowScreenUpdate) {
+        changed = setBelowScreen(belowScreenUpdate);
     }
 
     // RESET
