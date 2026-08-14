@@ -58,7 +58,21 @@ export async function GET(request: NextRequest) {
     }
 
     if (belowScreenUpdate) {
+        // announcement first
         changed = setBelowScreen(belowScreenUpdate);
+        notify(getData(), "voting");
+
+        // delay hold and then turn back to "event_progress"
+        const config = await getConfig("general");
+        const delay = config?.voting.announcement_hold_ms ?? 0;
+
+        if (delay > 0) {
+            await new Promise(resolve => setTimeout(resolve, delay));
+        }
+
+        const defaultBelow = "event_progress";
+        await fetch(`${request.nextUrl.origin}/api/voting?below_screen=${defaultBelow}`);
+        changed = setGameNumber(defaultBelow)
     }
 
     // RESET

@@ -25,7 +25,8 @@
     },
     "voting": {
         "slots": 8,
-        "update_delay_ms": 1000
+        "update_delay_ms": 1000,
+        "announcement_hold_ms": 18000
     },
     "teams": {
         "background": "none"
