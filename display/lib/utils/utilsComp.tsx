@@ -52,6 +52,24 @@ export function TextFormatter({text}: {text: string}) {
     return <span>{output}</span>
 }
 
+export function FadeComponents({active, className = "", childrenA, childrenB}: {active: boolean, className?: string, childrenA: React.ReactNode, childrenB: React.ReactNode}) {
+    return (
+        <div className={`relative ${className}`}>
+            <div className="opacity-0"> {/* Just for sizing */}
+                {active ? childrenB : childrenA}
+            </div>
+            <div className="absolute inset-0 transition-opacity duration-500"
+                 style={{opacity: active ? 0 : 1}}>
+                {childrenA}
+            </div>
+            <div className="absolute inset-0 transition-opacity duration-500"
+                 style={{opacity: active ? 1 : 0}}>
+                {childrenB}
+            </div>
+        </div>
+    )
+}
+
 export async function apiFetch(endpoint: string, params?: URLSearchParams) {
   const url = params ? `${API_URL}/${endpoint}?${params.toString()}` : `${API_URL}/${endpoint}`;
   return fetch(url, {cache:'no-store'})
