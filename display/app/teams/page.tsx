@@ -18,8 +18,6 @@ export default function Page() {
             if (e.key.toLowerCase() === 's') {
                 if (!captureRef.current) return;
 
-                captureRef.current.classList.add("capture");
-
                 await document.fonts.ready;
 
                 await new Promise(r => requestAnimationFrame(r))
@@ -32,8 +30,6 @@ export default function Page() {
                     width: 1920,
                     height: 1080
                 });
-
-                captureRef.current.classList.remove("capture");
                 
                 const link = document.createElement('a');
                 link.download = 'teams.png';

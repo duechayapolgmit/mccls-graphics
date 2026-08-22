@@ -36,9 +36,6 @@ body {
 }
 
 /** CAPTURE STUFF **/
-.capture .teams-overview-nameplate { padding-bottom: 18px; }
-.capture .teams-overview-event-name p { transform: translateY(-22px) }
-.capture .teams-overview-remark p { transform: translateY(-12px) }
 
 .capture .card-name { transform: translateY(-22px) }
 .capture .card-name-small { transform: translateY(-22px) }
