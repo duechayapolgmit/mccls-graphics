@@ -4,7 +4,6 @@ export const fetchCache = "force-no-store";
 import { NextResponse, type NextRequest } from "next/server";
 import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber, setBelowScreen } from '@/lib/server/votingHandler'
 import { notify } from "@/lib/transmitter/listeners";
-import { useConfig } from "@/components/providers/configProvider";
 import { getConfig } from "@/lib/server/config";
 
 export async function GET(request: NextRequest) {
@@ -29,17 +28,17 @@ export async function GET(request: NextRequest) {
 
     // Update Game Slots
     if (gameUpdate) {
-        if (slotUpdate) changed = setGameInSlot(parseInt(slotUpdate), gameUpdate);
-        else changed = setGame(gameUpdate);
+        if (slotUpdate) changed = await setGameInSlot(parseInt(slotUpdate), gameUpdate);
+        else changed = await setGame(gameUpdate);
     }
 
     // Choose a slot
-    if (slotChosenUpdate) changed = chooseGame(parseInt(slotChosenUpdate));
+    if (slotChosenUpdate) changed = await chooseGame(parseInt(slotChosenUpdate));
 
     // Displays or not
     if (votingDisplayUpdate) {
-        if (votingDisplayUpdate == "show") changed = setDisplayOptions(true);
-        else if (votingDisplayUpdate == "hide") changed = setDisplayOptions(false);
+        if (votingDisplayUpdate == "show") changed = await setDisplayOptions(true);
+        else if (votingDisplayUpdate == "hide") changed = await setDisplayOptions(false);
     }
 
     // update game number based on the event status
@@ -54,13 +53,13 @@ export async function GET(request: NextRequest) {
         const statusRes = await fetch(`${request.nextUrl.origin}/api/event/status`);
         const statusJson = await statusRes.json();
 
-        if (statusJson?.game_number) changed = setGameNumber(statusJson.game_number)
+        if (statusJson?.game_number) changed = await setGameNumber(statusJson.game_number)
     }
 
     if (belowScreenUpdate) {
         // announcement first
-        changed = setBelowScreen(belowScreenUpdate);
-        notify(getData(), "voting");
+        changed = await setBelowScreen(belowScreenUpdate);
+        notify(await getData(), "voting");
 
         // delay hold and then turn back to "event_progress"
         const config = await getConfig("general");
@@ -72,13 +71,13 @@ export async function GET(request: NextRequest) {
 
         const defaultBelow = "event_progress";
         await fetch(`${request.nextUrl.origin}/api/voting?below_screen=${defaultBelow}`);
-        changed = setGameNumber(defaultBelow)
+        changed = await setBelowScreen(defaultBelow)
     }
 
     // RESET
-    if (reset == "true") changed = resetVoting();
+    if (reset == "true") changed = await resetVoting();
 
-    if (changed) notify(getData(), "voting");
+    if (changed) notify(await getData(), "voting");
 
-    return NextResponse.json(getData());
+    return NextResponse.json(await getData());
 }
