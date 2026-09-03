@@ -1,7 +1,7 @@
 'use client'
 import { use, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas-pro';
 
 import Card from '@/components/client/player/card';
 
@@ -22,10 +22,7 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
             if (e.key.toLowerCase() === 's') {
                 if (!captureRef.current) return;
 
-                captureRef.current.classList.add("capture");
-
                 await document.fonts.ready;
-
                 await new Promise(r => requestAnimationFrame(r))
 
                 const canvas = await html2canvas(captureRef.current, {
@@ -36,8 +33,6 @@ export default function Page({params}: {params: Promise<{ slug: string }>}) {
                     width: 500,
                     height: 550
                 });
-
-                captureRef.current.classList.remove("capture");
 
                 // get the wins count
                 const wins = getPlayerWins(slug);
