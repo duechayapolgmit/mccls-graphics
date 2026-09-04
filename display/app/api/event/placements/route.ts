@@ -1,5 +1,9 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const fetchCache = "force-no-store";
+
 import { NextResponse, type NextRequest } from "next/server";
-import { notify } from "@/lib/transmitter/listeners";
+import { notify, notifyState } from "@/lib/transmitter/listeners";
 import { getPlacements, setPlaceName, setPlaceScore, resetEvent } from "@/lib/server/eventProgressHandler";
 
 export async function GET(request: NextRequest) {
@@ -41,7 +45,7 @@ export async function GET(request: NextRequest) {
     // RESET
     if (reset == "true") changed = await resetEvent();
 
-    if (changed) notify(getPlacements(), "event_placements");
+    if (changed) notifyState();
 
     return NextResponse.json(getPlacements());
 }

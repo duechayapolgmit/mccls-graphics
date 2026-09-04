@@ -2,8 +2,8 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 import { NextResponse, type NextRequest } from "next/server";
-import { getData, setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber, setBelowScreen } from '@/lib/server/votingHandler'
-import { notify } from "@/lib/transmitter/listeners";
+import { setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber, setBelowScreen, getVotingData } from '@/lib/server/votingHandler'
+import { notify, notifyState } from "@/lib/transmitter/listeners";
 import { getConfig } from "@/lib/server/config";
 
 export async function GET(request: NextRequest) {
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
     if (belowScreenUpdate) {
         // announcement first
         changed = await setBelowScreen(belowScreenUpdate);
-        notify(await getData(), "voting");
+        notifyState();
 
         // delay hold and then turn back to "event_progress"
         const config = await getConfig("general");
@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
     // RESET
     if (reset == "true") changed = await resetVoting();
 
-    if (changed) notify(await getData(), "voting");
+    if (changed) notifyState();
 
-    return NextResponse.json(await getData());
+    return NextResponse.json(await getVotingData());
 }

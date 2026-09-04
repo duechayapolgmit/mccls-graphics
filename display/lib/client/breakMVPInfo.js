@@ -1,7 +1,7 @@
 import info from '@/config/break.json';
 import { getData } from '../utils/dataHelper';
 
-const mvpData = await getData('/api/break_data/mvp')
+import mvpData from '@/data/break_data_mvp.json'
 
 export const getTitle = (column) => info.mvp_columns[column].title || "";
 export const getSubtitle = (column) => info.mvp_columns[column].subtitle || "";

@@ -1,5 +1,9 @@
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const fetchCache = "force-no-store";
+
 import { NextResponse, type NextRequest } from "next/server";
-import { notify } from "@/lib/transmitter/listeners";
+import { notify, notifyState } from "@/lib/transmitter/listeners";
 import { addGameToHistory, getGames } from "@/lib/server/eventProgressHandler";
 
 export async function GET(request: NextRequest) {
@@ -15,7 +19,7 @@ export async function GET(request: NextRequest) {
 
     const games = await getGames();
 
-    if (changed) notify(games, "event_games");
+    if (changed) notifyState();
 
     return NextResponse.json(games);
 }

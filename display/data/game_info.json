@@ -88,5 +88,10 @@
         "name": "Unknown",
         "icon": "icon.png",
         "logo": "/games/logos/Default.png"
+    },
+    "NONE": {
+        "name": "Unknown",
+        "icon": "icon.png",
+        "logo": null
     }
 }

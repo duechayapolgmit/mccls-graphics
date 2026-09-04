@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
 import { NextResponse, type NextRequest } from "next/server";
-import { notify } from "@/lib/transmitter/listeners";
+import { notify, notifyState } from "@/lib/transmitter/listeners";
 import { getEventStatus, getGameNumber, setGameNumber } from "@/lib/server/eventProgressHandler";
 
 export async function GET(request: NextRequest) {
@@ -34,7 +34,8 @@ export async function GET(request: NextRequest) {
     }
 
     const status = await getEventStatus();
-    if (changed) notify(status, "event_status");
+    
+    if (changed) notifyState();
 
     return NextResponse.json(status);
 }

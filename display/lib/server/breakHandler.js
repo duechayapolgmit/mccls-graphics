@@ -1,5 +1,3 @@
-import path from "path";
-
 import { load, save } from '../utils/localDataManager';
 import { getData } from '../utils/dataHelper';
 

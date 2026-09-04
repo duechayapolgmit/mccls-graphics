@@ -12,6 +12,7 @@ import teamInfo from '@/data/team_info.json';
 import { useSearchParams } from "next/navigation";
 import { TeamLabel } from "@/components/client/team/team_label";
 import { useConfig } from "@/components/providers/configProvider";
+import { useStateOverlay, useStatePlacements, useStateStatus } from "@/components/providers/stateProvider";
 
 export interface ITeamPlacement {
     place: number;
@@ -25,16 +26,12 @@ export default function OverlayClient() {
 
     const searchParams = useSearchParams();
     const displayOption = searchParams.get('display');
-
-    const [overlayData, setOverlayData] = useState({
-        game: "DEFAULT",
-        statusVisible: true,
-        placementsVisible: true,
-        forcedSide: "none"
-    });
-    const [placementsData, setPlacementsData] = useState<any>(null);
-    const [statusData, setStatusData] = useState<any>(null);
     const [gameData, setGameData] = useState<any>(null);
+
+    const overlayData = useStateOverlay();
+    const statusData = useStateStatus();
+    const placementsData = useStatePlacements();
+
 
     useEffect(() => {
         // Preload all team icons
@@ -42,42 +39,6 @@ export default function OverlayClient() {
             const img = new Image();
             img.src = team.icon;
         })
-        
-        // Register SSE
-        const evtSrc = new EventSource('/api/overlay/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setOverlayData(evtData)
-        }
-
-        return () => evtSrc.close();
-    }, []);
-
-    // API Subscribe -> Event Team Placements
-    useEffect(() => {
-        // Register SSE
-        const evtSrc = new EventSource('/api/event/placements/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setPlacementsData(evtData)
-        }
-
-        return () => evtSrc.close();
-    }, []);
-
-    // API Subscribe -> Event Status
-    useEffect(() => {
-        // Register SSE
-        const evtSrc = new EventSource('/api/event/status/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setStatusData(evtData)
-        }
-
-        return () => evtSrc.close();
     }, []);
 
     useEffect(() => {
@@ -88,7 +49,7 @@ export default function OverlayClient() {
     }, [])
 
     const getSide = () => {
-        if (overlayData.forcedSide != "none") return overlayData.forcedSide;
+        if (overlayData?.forcedSide != "none") return overlayData?.forcedSide;
         return displayOption || "left";
     }
 
@@ -122,7 +83,7 @@ export default function OverlayClient() {
     const gameDisplay = () => {
         return (
             <div className={styles.status_game}>
-                <img className={overlayData.game == "DEFAULT" ? "opacity-50" : ""} src={gameData?.[overlayData.game].logo} />
+                <img className={overlayData?.game == "DEFAULT" ? "opacity-50" : ""} src={gameData?.[overlayData?.game]?.logo} />
             </div>
         )
     }
@@ -146,7 +107,7 @@ export default function OverlayClient() {
 
     return (
         <div className={getSide() == "right" ? styles.main_right : styles.main}>
-            <div className={transitionClassNames(overlayData.statusVisible)}>
+            <div className={transitionClassNames(overlayData?.statusVisible)}>
                 <div className={styles.status}>
                     <div className={styles.status_icon} style={{"--bg-colour": colours.secondary} as React.CSSProperties}><img src={"/icon-event.png"}/></div>
                     {headerDisplay()}

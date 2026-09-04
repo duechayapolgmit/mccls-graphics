@@ -1,8 +1,8 @@
 {
     "info": {
         "event_name": "MC Championship",
-        "tagline": "Pride 26",
-        "date_time": "1 August 2026 20:00:00 GMT+1",
+        "tagline": "Fall Stars",
+        "date_time": "5 September 2026 20:00:00 GMT+1",
         "game_amount": 8,
         "teams": 10
     },
@@ -37,7 +37,7 @@
         "rotation": {
             "rotate_time": 15,
             "random": true,
-            "in_rotation": ["explainer_event_format", "teams_overview", "games_overview", "game_dodgebolt", "game_ace_race", "game_battle_box"]
+            "in_rotation": ["explainer_event_format", "teams_overview", "games_overview", "game_dodgebolt", "game_ace_race", "game_battle_box", "game_tgttos", "game_bingo_but_fast", "game_meltdown", "game_sky_battle", "game_hole_in_the_wall", "game_grid_runners"]
         }
     }
 }

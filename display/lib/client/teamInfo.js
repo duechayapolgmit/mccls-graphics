@@ -1,8 +1,7 @@
 import colours from '@/config/colours.json'
-import { getData } from '../utils/dataHelper';
 
-const teamInfo = await getData('/api/teams/info')
-const teamData = await getData('/api/teams/data')
+import teamInfo from '@/data/team_info.json'
+import teamData from '@/data/team_members.json'
 
 export const checkTeam = (team) => teamInfo?.[team] ? true : false;
 

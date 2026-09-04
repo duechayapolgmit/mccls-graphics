@@ -1,7 +1,7 @@
 import { getNoWins } from '../server/wins';
 import { getData } from '../utils/dataHelper';
 
-const breakInfo = await getData('/api/break_data/screens')
+import breakInfo from '@/data/break_screens.json'
 
 export const getAvailableKeys = () => Object.keys(breakInfo)
 

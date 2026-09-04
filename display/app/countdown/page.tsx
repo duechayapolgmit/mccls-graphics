@@ -1,3 +1,5 @@
+'use client'
+ 
 import styles from './countdown.module.css'
 import { Countdown } from "@/components/client/countdown";
 import { useConfig } from '@/components/providers/configProvider';

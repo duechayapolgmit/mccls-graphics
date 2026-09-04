@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getAllConfig } from "@/lib/server/config";
 import { ConfigProvider } from "@/components/providers/configProvider";
+import { StateProvider } from "@/components/providers/stateProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +26,11 @@ export default async function RootLayout({children}: Readonly<{children: React.R
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ConfigProvider configData={config}>
-          {children}
-        </ConfigProvider>
+        <StateProvider>
+          <ConfigProvider configData={config}>
+            {children}
+          </ConfigProvider>
+        </StateProvider>
       </body>
     </html>
   );

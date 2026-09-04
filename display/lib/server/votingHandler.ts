@@ -1,6 +1,6 @@
 import { load, save } from '../utils/localDataManager';
 import { checkGame } from '../client/gameInfo';
-import { notify } from "@/lib/transmitter/listeners";
+import { notifyState } from "@/lib/transmitter/listeners";
 import { getConfig } from '@/lib/server/config'
 
 const statePath = "state/voting.json"
@@ -20,7 +20,7 @@ function setupSlotsAfterLoad(slots: any[], slotsCount: number) {
     return res;
 }
 
-async function initData() {
+export async function initData() {
     if (data) return data;
 
     const config = await getConfig("general");
@@ -34,10 +34,11 @@ async function initData() {
     return data;
 }
 
+
 /* --------------
     GETTERS
 ----------------- */ 
-export const getData = async () => await initData();
+export const getVotingData = async () => await initData();
 
 /* --------------
     SETTERS
@@ -111,7 +112,7 @@ export async function chooseGame(slot: number) {
     if (currentSelectedSlot && currentSelectedTimeout) {
         currData.slots[currentSelectedSlot-1].chosen = false;
         clearTimeout(currentSelectedTimeout);
-        notify(currData, "voting"); // notify that there's a change
+        notifyState();
     }
 
     // Set that chosen slot to be true
@@ -128,14 +129,14 @@ export async function chooseGame(slot: number) {
         currentSelectedSlot = null;
         currentSelectedTimeout = null;
 
-        notify(data, "voting"); // notify that there's a change
+        notifyState();
         // hard-coding the local URLs for now.....
         fetch('http://localhost:3000/api/overlay?game='+game)
         fetch('http://localhost:3000/api/event/games?game='+game)
     }, 30000)
 
 
-    save(statePath, data);
+    save(statePath, currData);
     return true;
 }
 

@@ -1,5 +1,5 @@
 import { getData } from '../utils/dataHelper';
 
-const gameInfo = await getData('/api/games')
+import gameInfo from '@/data/game_info.json'
 
 export const checkGame = (game) => gameInfo?.[game] ? true : false

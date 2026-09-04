@@ -1,7 +1,7 @@
 'use client'
 import { use, useEffect, useRef } from 'react';
 
-import styles from '@/components/break/mvp_table.module.css'
+import styles from '@/components/client/break/mvp_table.module.css'
 import html2canvas from 'html2canvas';
 import { getPlayerWins } from '@/lib/client/playerInfo';
 import MVPTable from '@/components/client/break/mvp_table';

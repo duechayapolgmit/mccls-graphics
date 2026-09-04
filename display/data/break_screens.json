@@ -1,7 +1,7 @@
 {
     "mvp_event": {
         "title": "Top 5 MVPs of the Event",
-        "subtitle": "(MCC: Project G.L.O.P.)",
+        "subtitle": "(MCC: Pride 26)",
         "type": "mvp_table",
         "display": {
             "footer_event_name": false
@@ -26,12 +26,12 @@
     "perspectives": {
         "title": "Perspectives",
         "type": "card_grid",
-        "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
+        "list": ["Shadoune666", "Vickypalami", "KendoMurft", "CapitanGato", "HeySansi", "coldified", "AQUINO", "TinyCherry", "GirlOfNox", "aldo_geo"]
     },
     "roster": {
         "title": "Roster",
         "type": "card_grid",
-        "list": ["Feinberg", "CherriFire", "InTheLittleWood", "Mysticat", "PrinceZam", "GeminiTay", "PeteZahHutt", "Antfrost", "apokuna", "Maezes"]
+        "list": ["Smajor", "HBomb94", "Antfrost", "Shubble", "FalseSymmetry", "fruitberries", "Seapeekay", "Shadoune666", "5up", "BadBoyHalo", "CaptainSparklez", "GeminiTay", "Kratzy", "PeteZahHutt", "Ph1LzA"]
     },
     "teams_overview": {
         "title": "Teams Overview",
@@ -45,7 +45,7 @@
         "title": "Games Overview",
         "type": "games_overview",
         "header_text": "Games in the <b>Decision Dome</b> in tonight's event",
-        "games": ["AR", "BB", "BBF", "PT", "RRR", "RSR", "SG", "SOT", "TGTTOS"]
+        "games": ["AR", "BB", "BBF", "GR", "HITW", "MD", "SB", "TGTTOS"]
     },
     "explainer_event_format": {
         "title": "Event Format",

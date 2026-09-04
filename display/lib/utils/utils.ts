@@ -72,3 +72,13 @@ export const getOrdinal = (n: number) => {
         default: return `${n}th`;
     }
 }
+
+// Imgaes stuff
+export const resolveImageUrl = (path?: string) => {
+    if (!path) return "";
+    if (path.startsWith("http://") || path.startsWith("https://") || path.startsWith("data:")) {
+        return path;
+    }
+    const cleanPath = path.startsWith("/") ? path : `/${path}`;
+    return typeof window !== "undefined" ? `${window.location.origin}${cleanPath}` : cleanPath;
+};

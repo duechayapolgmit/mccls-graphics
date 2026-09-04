@@ -1,16 +1,16 @@
 {
     "teams": {
-        "RED": ["Feinberg", "Grian", "Shubble", "ZombieCleo"],
-        "ORANGE": ["acho", "Cambam010", "CherriFire", "Roscumber"],
-        "YELLOW": ["InTheLittleWood", "KaraCorvus", "Purpled", "Snifferish"],
-        "LIME": ["InfiniteDrift", "Mysticat", "Nukeri", "Shandrea"],
-        "GREEN": ["Graecie", "Legundo", "MythicalSausage", "PrinceZam"],
-        "CYAN": ["4CVIT", "CaptainSparklez", "ElainaExe", "GeminiTay"],
-        "AQUA": ["PeteZahHutt", "SadMilkman", "TapL", "vintage_applesauce"],
-        "BLUE": ["Antfrost", "guqqie", "Rainhoe", "vGumiho"],
-        "PURPLE": ["apokuna", "Couriway", "KatieGoBrr", "LexieMariex"],
-        "PINK": ["jojosolos", "Maezes", "millkberry", "Smajor"]
+        "RED": ["aimsey", "bekyamon", "hannahxxrose", "ghostiefruit"],
+        "ORANGE": ["cubfan135", "ish13c", "Ph1LzA", "Seapeekay"],
+        "YELLOW": ["FalseSymmetry", "InTheLittleWood", "Kratzy", "PeteZahHutt"],
+        "LIME": ["4CVIT", "Smajor", "Sneegsnag", "xChocoBars"],
+        "GREEN": ["Feinberg", "GoodTimesWithScar", "impulseSV", "Tubbo"],
+        "CYAN": ["AntVenom", "ashswag", "SB737", "Shadoune666"],
+        "AQUA": ["Antfrost", "sleepy", "Shubble", "StevenSuptic"],
+        "BLUE": ["CaptainSparklez", "ElainaExe", "fruitberries", "KaraCorvus"],
+        "PURPLE": ["Michaelmcchill", "PrinceZam", "Purpled", "Snifferish"],
+        "PINK": ["Cambam", "FireBreathMan", "Grian", "Rendog"]
     },
-    "new_players": ["Nukeri", "Shandrea", "SadMilkman"],
+    "new_players":[],
     "sub_players": []
 }

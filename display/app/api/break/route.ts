@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getStateData, resetBreakScreen, setBreakScreen, setBreakTimeRemaining, setRotating, setTimeVisible } from '@/lib/server/breakHandler'
-import { notify } from "@/lib/transmitter/listeners";
+import { notify, notifyState } from "@/lib/transmitter/listeners";
+import { getEventStatus, getGames, getPlacements } from "@/lib/server/eventProgressHandler";
+import { getOverlayData } from "@/lib/server/overlayHandler";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -34,7 +36,7 @@ export async function GET(request: NextRequest) {
     // RESET
     if (reset == "true") changed = resetBreakScreen();
 
-    if (changed) notify(getStateData(), "break");
+    if (changed) notifyState();
 
     return NextResponse.json(getStateData());
 }

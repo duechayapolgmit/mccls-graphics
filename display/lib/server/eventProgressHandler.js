@@ -1,11 +1,11 @@
 import { load, save } from '../utils/localDataManager';
 import { checkTeam } from '../client/teamInfo';
-import { getConfig } from "./config";
 
 const statePath = "state/event.json"
 const stateDefaultPath = "state/defaults/event.json"
 
-const config = await getConfig();
+import config from '@/config/general.json' // temporary fix since it's almost event day
+
 /*-------------
  * SETUP
  --------------*/ 

@@ -1,6 +1,6 @@
 import { getData } from '../utils/dataHelper';
 
-const playerInfo = await getData('/api/players')
+import playerInfo from '@/data/player_info.json'
 
 export function getPlayerName(name) {
     let data = playerInfo[name]

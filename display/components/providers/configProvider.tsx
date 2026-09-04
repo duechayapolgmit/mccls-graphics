@@ -1,5 +1,5 @@
 'use client'
-import { createContext, use, useContext, useMemo } from "react";
+import { createContext, use, useContext } from "react";
 
 const ConfigContext = createContext<any>(null);
 

@@ -4,42 +4,16 @@ import { useEffect, useState } from 'react';
 import styles from './voting.module.css'
 import { EventProgress } from '@/components/client/event/progress';
 import { apiFetch, FadeStack, TextFormatter } from '@/lib/utils/utilsComp';
+import { useStateGameHistory, useStateVoting } from '@/components/providers/stateProvider';
 
 export default function VotingClient({gameData}: {gameData: any}) {
-    const [data, setData] = useState<any>(null);
-    const [gameHistoryData, setGameHistoryData] = useState<any>(null);
     const [announcementData, setAnnouncementData] = useState<any>(null);
-    const [activeAnnouncementId, setActiveAnnouncementId] = useState("event_progress");
+
+    const data = useStateVoting();
+    const gameHistoryData = useStateGameHistory();
 
     const belowScreenElementsIdList = [{id: "event_progress"}, ...(announcementData || [])]
-    const belowScreenActiveIndex = belowScreenElementsIdList.findIndex(c => c.id === activeAnnouncementId) ?? 0
-
-    // SSE Subscribe - api/voting
-    useEffect(() => {
-        // Register SSE
-        const evtSrc = new EventSource('/api/voting/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setData(evtData)
-
-            if (evtData.below_screen) setActiveAnnouncementId(evtData.below_screen);
-        }
-
-        return () => evtSrc.close();
-    }, [])
-
-    useEffect(() => {
-        // Register SSE
-        const evtSrc = new EventSource('/api/event/games/subscribe')
-
-        evtSrc.onmessage = (e) => {
-            const evtData = JSON.parse(e.data)
-            setGameHistoryData(evtData)
-        }
-
-        return () => evtSrc.close();
-    }, [])
+    const belowScreenActiveIndex = belowScreenElementsIdList.findIndex(c => c.id === data?.below_screen) ?? 0
 
     useEffect(() => {
         apiFetch('voting_data').then(async res => {
