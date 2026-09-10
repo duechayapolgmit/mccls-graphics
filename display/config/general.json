@@ -33,6 +33,9 @@
         "background": "none"
     },
     "break_screens": {
+        "toggle": {
+            "current_standings_scores": true
+        },
         "minimum_wins": 3,
         "highlight_wins_amounts": [5],
         "rotation": {

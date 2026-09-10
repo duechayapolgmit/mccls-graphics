@@ -3,10 +3,14 @@ import { useEffect, useState } from "react";
 import { ListEntry } from "../list"
 import { TeamLabel } from "../team/team_label"
 import { apiFetch } from "@/lib/utils/utils";
+import { useConfig } from "@/components/providers/configProvider";
 
 const SPLIT_THRESHOLD = 8;
 
 export default function CurrentStandings() {
+    const config = useConfig().general;
+    const colours = useConfig().colours;
+
     const [placements, setPlacements] = useState<any[]>();
 
     useEffect(() => {
@@ -34,9 +38,20 @@ export default function CurrentStandings() {
             column.map((ele) => (
                 <ListEntry key={ele.place} rank={ele.place} currentStandings
                            body={
-                                <div className="flex items-center pl-2.5 bg-black/75 w-150 text-[40px]">
-                                    <TeamLabel team={ele.name} picSize={"40px"} />
-                                </div>
+                                <div className="flex flex-row">
+                                    <div className="flex items-center pl-2.5 bg-black/75 w-150 text-[40px]">
+                                        <TeamLabel team={ele.name} picSize={"40px"} />
+                                    </div>  
+                                    { config.break_screens.toggle.current_standings_scores ?
+                                        (<div className="w-17.5 bg-black/75 ml-2.5 px-2.5 flex justify-center items-center
+                                                    font-metropolis-black text-[50px] text-white text-center leading-17.5">
+                                            {ele.score == -1 ? 
+                                                (<img className="w-12.5 h-12.5 mx-auto" src={"/icon.png"}/>) : 
+                                                (<span>{ele.score}</span>)}
+                                        </div>) : ""
+
+                                    }
+                                </div> 
                             }
                 />
             ));
