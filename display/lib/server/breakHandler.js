@@ -53,6 +53,8 @@ export function setRotating(option) {
     if (option) data.rotating = true;
     else data.rotating = false
 
+    save(statePath, data);
+
     return true;
 }
 
