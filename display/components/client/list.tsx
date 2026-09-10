@@ -4,24 +4,24 @@ import styles from './list.module.css'
 import { useConfig } from "../providers/configProvider";
 
 export function ListEntry({rank, body, currentStandings = false}: {rank: number, body: any, currentStandings?: boolean}) {
+    const config = useConfig().general;
     const colours = useConfig().colours;
 
     const getRank = (rank: number) => {
         const getColour = () => {
-            switch(rank) {
-                case 1: 
-                    if (currentStandings) return hexToRGBA(colours?.highlight, 0.75)
-                    return hexToRGBA(colours?.gold, 0.75)
-                case 2: 
-                    if (currentStandings) return hexToRGBA(colours?.highlight, 0.75)
-                    return hexToRGBA(colours?.silver, 0.75)
-                case 3: 
-                    if (currentStandings) return hexToRGBA(colours?.primary, 0.75)
-                    return hexToRGBA(colours?.bronze, 0.75)
-                default: 
-                    if (currentStandings) return hexToRGBA(colours?.primary, 0.75)
-                    return hexToRGBA(colours?.black, 0.75)
+            if (currentStandings) {
+                const inFinale = rank <= config.info.final_teams
+                return hexToRGBA(inFinale ? colours?.highlight : colours?.primary, 0.75)
             }
+
+            // podium colours
+            const podiumColours: any = {
+                1: colours?.gold,
+                2: colours?.silver,
+                3: colours?.bronze
+            }
+            const selectedColour = podiumColours[rank] ?? colours?.black
+            return hexToRGBA(selectedColour, 0.75)
         }
         
         return (

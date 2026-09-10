@@ -121,12 +121,16 @@ export default function OverlayClient() {
 
 // Placement component
 function TeamPlacement({place, name, score, scoreLimit, colours} : {place: number, name: string, score: number, scoreLimit: number, colours: any}) {
+    const config = useConfig().general;
+
     let placeIconColour = (place: number) => {
-        switch (place) {
-            case 1: return hexToRGBA(colours.gold, 0.75)
-            case 2: return hexToRGBA(colours.silver, 0.75)
-            default: return hexToRGBA(colours.black, 0.75);
+        const podiumColours: any = {
+            1: colours?.gold,
+            2: colours?.silver,
+            3: colours?.bronze
         }
+        const selectedColour = podiumColours[place] ?? colours?.black
+        return hexToRGBA(selectedColour, 0.75)
     }
 
     return (
