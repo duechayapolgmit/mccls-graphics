@@ -12,7 +12,7 @@ export default function Page() {
             <div className="font-metropolis-black text-6xl text-white">CURRENT STANDINGS</div>
             <CurrentStandings/>
             <div className="pt-2.5 font-metropolis-black text-6xl text-white">GAME HISTORY</div>
-            <EventProgress games={gameData} currentGameNumber={eventData.game_number}/>
+            <EventProgress games={gameData} currentGameNumber={eventData?.game_number}/>
         </div>
     )
 }
