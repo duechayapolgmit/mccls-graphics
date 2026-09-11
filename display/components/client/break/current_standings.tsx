@@ -4,21 +4,14 @@ import { ListEntry } from "../list"
 import { TeamLabel } from "../team/team_label"
 import { apiFetch } from "@/lib/utils/utils";
 import { useConfig } from "@/components/providers/configProvider";
+import { useStatePlacements } from "@/components/providers/stateProvider";
 
 const SPLIT_THRESHOLD = 8;
 
 export default function CurrentStandings() {
     const config = useConfig().general;
-    const colours = useConfig().colours;
-
-    const [placements, setPlacements] = useState<any[]>();
-
-    useEffect(() => {
-        apiFetch('event/placements').then(async res => {
-            const json = await res.json();
-            setPlacements(json);
-        });
-    }, [])
+    
+    const placements = useStatePlacements();
 
     const getPlacements = () => {
         if (placements == null) return;
