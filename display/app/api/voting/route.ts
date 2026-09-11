@@ -3,7 +3,7 @@ export const fetchCache = "force-no-store";
 
 import { NextResponse, type NextRequest } from "next/server";
 import { setGame, setGameInSlot, resetVoting, chooseGame, setDisplayOptions, setGameNumber, setBelowScreen, getVotingData } from '@/lib/server/votingHandler'
-import { notify, notifyState } from "@/lib/transmitter/listeners";
+import { notifyState } from "@/lib/transmitter/listeners";
 import { getConfig } from "@/lib/server/config";
 
 export async function GET(request: NextRequest) {

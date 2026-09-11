@@ -3,7 +3,7 @@ export const runtime = "nodejs";
 export const fetchCache = "force-no-store";
 
 import { NextResponse, type NextRequest } from "next/server";
-import { notify, notifyState } from "@/lib/transmitter/listeners";
+import { notifyState } from "@/lib/transmitter/listeners";
 import { addGameToHistory, getGames } from "@/lib/server/eventProgressHandler";
 
 export async function GET(request: NextRequest) {

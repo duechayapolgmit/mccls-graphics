@@ -16,7 +16,7 @@ export default function CurrentStandings() {
     const getPlacements = () => {
         if (placements == null) return;
 
-        const useTwoColumns = placements.length > 8;
+        const useTwoColumns = placements.length > SPLIT_THRESHOLD;
 
         let columnOne = placements;
         let columnTwo: any[] = [];

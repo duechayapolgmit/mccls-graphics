@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {resetOverlay, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, setForcedSideOptions} from '@/lib/server/overlayHandler';
-import { notify, notifyState } from "@/lib/transmitter/listeners";
+import { resetOverlay, getOverlayData, setGame, setStatusDisplayOptions, setPlacementsDisplayOptions, setForcedSideOptions } from '@/lib/server/overlayHandler';
+import { notifyState } from "@/lib/transmitter/listeners";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;

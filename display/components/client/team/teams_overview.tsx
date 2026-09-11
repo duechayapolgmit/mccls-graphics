@@ -3,7 +3,6 @@ import styles from './teams.module.css'
 
 import { getBackground, getIconPath, getMemberStatus, getTeamMembers } from '@/lib/client/teamInfo';
 import { getPlayerName, getPlayerProfile } from '@/lib/client/playerInfo';
-import { useEffect, useState } from 'react';
 import { useConfig } from '@/components/providers/configProvider';
 
 export default function TeamsOverview() {

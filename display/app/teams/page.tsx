@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas-pro';
 
 import styles from './teams.module.css'

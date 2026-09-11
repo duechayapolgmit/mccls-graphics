@@ -34,8 +34,6 @@ export default function VotingClient({gameData}: {gameData: any}) {
         )
     }
 
-    const belowScreenReady = gameHistoryData && announcementData && data;
-
     return (
         <div className='flex pt-12.5 pl-12.5'>
             <div className={data?.visible ? `${styles.games} transition slide-right-in flex-none h-[980px]` : `${styles.games} transition ${styles.games_slide_out} flex-none h-[980px]`}>

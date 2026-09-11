@@ -1,8 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getStateData, resetBreakScreen, setBreakScreen, setBreakTimeRemaining, setRotating, setTimeVisible } from '@/lib/server/breakHandler'
-import { notify, notifyState } from "@/lib/transmitter/listeners";
-import { getEventStatus, getGames, getPlacements } from "@/lib/server/eventProgressHandler";
-import { getOverlayData } from "@/lib/server/overlayHandler";
+import { notifyState } from "@/lib/transmitter/listeners";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;

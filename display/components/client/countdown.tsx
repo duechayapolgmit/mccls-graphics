@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useConfig } from "../providers/configProvider";
 
 export function Countdown({time, showMinutes = false, warning = false}: {time: any, showMinutes?: boolean, warning?: boolean}) {

@@ -2,21 +2,21 @@
     "mvp_event": {
         "columns": ["public", "event", "weighted"],
         "players": {
-            "coldified": {"public": 91.7, "event": 100, "weighted": 92.9},
-            "Shadoune666": {"public": 83.3, "event": 86.6, "weighted": 83.8},
-            "SeFirox": {"public": 50.0, "event": 85.9, "weighted": 55.4},
-            "TheBlazer97": {"public": 33.3, "event": 68.7, "weighted": 38.6},
-            "paache": {"public": 33.3, "event": 44.0, "weighted": 34.9}
+            "PeteZahHutt": {"public": 56.4, "event": 88.9, "weighted": 61.3},
+            "hannahxxrose": {"public": 51.3, "event": 70.5, "weighted": 54.2},
+            "Feinberg": {"public": 38.5, "event": 100, "weighted": 47.7},
+            "ghostiefruit": {"public": 38.5, "event": 76.3, "weighted": 44.2},
+            "4CVIT": {"public": 30.8, "event": 78.3, "weighted": 37.9}
         }
     },
     "mvp_season": {
         "columns": ["average"],
         "players": {
-            "fruitberries": {"average": 5.0},
-            "Feinberg": {"average": 4.6},
-            "Grian": {"average": 4.2},
-            "jojosolos": {"average": 4.2},
-            "Smallishbeans": {"average": 3.6}
+            "Feinberg": {"average": 5.2},
+            "fruitberries": {"average": 4.8},
+            "Grian": {"average": 3.5},
+            "jojosolos": {"average": 3.5},
+            "Smallishbeans": {"average": 3.0}
         }
     }
 }
