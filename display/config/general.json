@@ -1,11 +1,11 @@
 {
     "info": {
-        "event_name": "Central Game Night 49",
-        "tagline": "MCSR Showdown",
-        "date_time": "5 September 2026 20:00:00 GMT+1",
+        "event_name": "MC Championship",
+        "tagline": "Bewitched!",
+        "date_time": "10 October 2026 20:00:00 GMT+1",
         "game_amount": 8,
-        "teams": 17,
-        "final_teams": 3
+        "teams": 10,
+        "final_teams": 2
     },
     "countdown": {
         "warning_starts": 15,
@@ -18,8 +18,8 @@
         },
         "header_text": "ROUND",
         "finale_text": "FINAL DUEL",
-        "placements": 3,
-        "score_limit": 100
+        "placements": 2,
+        "score_limit": 3
     },
     "event": {
         "multipliers": ["x1.0", "x1.5", "x1.5", "x2.0", "x2.0", "x2.5", "x2.5", "x3.0"]

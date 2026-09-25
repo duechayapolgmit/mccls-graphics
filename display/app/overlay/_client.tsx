@@ -121,8 +121,6 @@ export default function OverlayClient() {
 
 // Placement component
 function TeamPlacement({place, name, score, scoreLimit, colours} : {place: number, name: string, score: number, scoreLimit: number, colours: any}) {
-    const config = useConfig().general;
-
     let placeIconColour = (place: number) => {
         const podiumColours: any = {
             1: colours?.gold,
