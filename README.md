@@ -17,6 +17,7 @@ This repository currently contains the following features:
 * Card Grid (`/card_grid`) - displays a simple grid with player cards, via the `roster` break screen
 * MVP Results (`/mvp/[event/season]`) - displays the results of the top five MVPs of each MCC event and season (voted on MCC Live Show)
 * Finale Showdown Screen (`/finale`) - displays a finale showdown screen (with the default Dodgebolt logo) with scores. The score box is currently supported up to 3 points.
+* Event Dashboard (`/dashboard`) - displays the current standings and event progress tracker all in one view.
 
 ## Usage
 For the `display` folder, the application can be deployed by going into the folder and running the application itself.
