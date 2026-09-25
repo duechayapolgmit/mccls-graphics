@@ -1,6 +1,6 @@
 <img src="MCCLS-Logo-Long-Condensed.png" height="50" width="auto"/>
 
-> Version 0.5.0 | Release Date: 28th July 2026
+> Version 0.6.0 | Release Date: 26th September 2026
 
 This repository contains some of the graphics and other tools used for [MCC Live Show](https://www.youtube.com/@mccliveshow_) in its live commentary streams and development. This is a recoding of the earlier [legacy version](https://github.com/duechayapolgmit/mccls-graphics-legacy) of the project.
 
@@ -16,6 +16,7 @@ This repository currently contains the following features:
 * Countdown (`/countdown`) - a simple countdown to the event.
 * Card Grid (`/card_grid`) - displays a simple grid with player cards, via the `roster` break screen
 * MVP Results (`/mvp/[event/season]`) - displays the results of the top five MVPs of each MCC event and season (voted on MCC Live Show)
+* Finale Showdown Screen (`/finale`) - displays a finale showdown screen (with the default Dodgebolt logo) with scores. The score box is currently supported up to 3 points.
 
 ## Usage
 For the `display` folder, the application can be deployed by going into the folder and running the application itself.
